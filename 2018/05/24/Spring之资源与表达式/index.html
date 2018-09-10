@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="抄自：开涛  http://jinnianshilongnian.iteye.com/blog/1416319 ###  资源资源基础知识概述在日常程序开发中，处理外部资源是很繁琐的事情，我们可能需要处理URL资源、File资源、ClassPath相关资源、服务器相关资源(JBoss AS 5.x 上的VFS资源)等等很多资源。因此处理这些资源需要使用不同的接口，这就增加了我们系统的复杂性；而且">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring之资源与表达式">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/Spring之资源与表达式/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="抄自：开涛  http://jinnianshilongnian.iteye.com/blog/1416319 ###  资源资源基础知识概述在日常程序开发中，处理外部资源是很繁琐的事情，我们可能需要处理URL资源、File资源、ClassPath相关资源、服务器相关资源(JBoss AS 5.x 上的VFS资源)等等很多资源。因此处理这些资源需要使用不同的接口，这就增加了我们系统的复杂性；而且">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/whyathere/tuchuang/blob/master/%E7%BE%8E%E5%9B%BE/%E6%9C%88%E5%85%89%E4%B8%8B%E7%9A%84%E7%A5%81%E8%BF%9E%E5%B1%B1%E6%9C%80%E9%AB%98%E5%B3%B0.jpg?raw=true">
+<meta property="og:updated_time" content="2018-09-10T08:30:00.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring之资源与表达式">
+<meta name="twitter:description" content="抄自：开涛  http://jinnianshilongnian.iteye.com/blog/1416319 ###  资源资源基础知识概述在日常程序开发中，处理外部资源是很繁琐的事情，我们可能需要处理URL资源、File资源、ClassPath相关资源、服务器相关资源(JBoss AS 5.x 上的VFS资源)等等很多资源。因此处理这些资源需要使用不同的接口，这就增加了我们系统的复杂性；而且">
+<meta name="twitter:image" content="https://github.com/whyathere/tuchuang/blob/master/%E7%BE%8E%E5%9B%BE/%E6%9C%88%E5%85%89%E4%B8%8B%E7%9A%84%E7%A5%81%E8%BF%9E%E5%B1%B1%E6%9C%80%E9%AB%98%E5%B3%B0.jpg?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/24/Spring之资源与表达式/"/>
+
+
+
+
+
+  <title>Spring之资源与表达式 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Spring之资源与表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring之资源与表达式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T11:27:18+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://github.com/whyathere/tuchuang/blob/master/%E7%BE%8E%E5%9B%BE/%E6%9C%88%E5%85%89%E4%B8%8B%E7%9A%84%E7%A5%81%E8%BF%9E%E5%B1%B1%E6%9C%80%E9%AB%98%E5%B3%B0.jpg?raw=true" alt=""></p>
+<p>抄自：开涛  <a href="http://jinnianshilongnian.iteye.com/blog/1416319" target="_blank" rel="noopener">http://jinnianshilongnian.iteye.com/blog/1416319</a></p>
+<p>### </p>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><h3 id="资源基础知识"><a href="#资源基础知识" class="headerlink" title="资源基础知识"></a>资源基础知识</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>在日常程序开发中，处理外部资源是很繁琐的事情，我们可能需要处理URL资源、File资源、ClassPath相关资源、服务器相关资源(JBoss AS 5.x 上的VFS资源)等等很多资源。因此处理这些资源需要使用不同的接口，这就增加了我们系统的复杂性；而且处理这些资源步骤都是类似的(打开资源、读取资源、关闭资源)，因此如果能抽象出一个统一的接口来对这些底层资源进行统一访问，是不是很方便，而且使我们系统更加简洁，都是对不同的底层资源使用同一个接口进行访问。</p>
+<p>Spring提供了一个Resource接口来统一这些底层资源一直的访问，而且提供了一些便利的接口，从而能提供我们的生产力。</p>
+<h4 id="Resource接口"><a href="#Resource接口" class="headerlink" title="Resource接口"></a>Resource接口</h4><p>Spring的Resource接口代表底层外部资源，提供了对底层外部资源的一致性访问接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InputStreamSource</span> </span>&#123;  </span><br><span class="line">    <span class="function">InputStream <span class="title">getInputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1)InputStreamSource接口解析： </p>
+<p><strong>getInputStream：</strong>每次调用都将返回一个新鲜的资源对应的java.io.InputStream字节流，调用者在使用完毕后必须关闭该资源。</p>
+<p>2）Resource接口继承InputStreamSource接口，并提供一些便利方法：</p>
+<ul>
+<li><p><strong>exists：</strong>返回当前Resource代表的底层资源是否可读，true表示可读</p>
+</li>
+<li><p><strong>isReadable</strong>：返回当前Resource代表的底层资源是否可读，true表示可读。</p>
+</li>
+<li><p><strong>isOpen</strong>：返回当前Resource代表的底层资源是否已经打开，如果返回true，则只能被读取一次然后关闭以避免资源泄露；常见的Resource实现一般返回false。 </p>
+</li>
+<li><p><strong>getURL</strong>：如果当前Resource代表的底层资源能由java.util.URL代表，则返回该URL，否则抛出IOException。</p>
+</li>
+<li><p><strong>getURI</strong>：如果当前Resource代表的底层资源能由java.util.URI代表，则返回该URI，否则抛出IOException。 </p>
+</li>
+<li><p><strong>getFile</strong>：如果当前Resource代表的底层资源能由java.io.File代表，则返回该File，否则抛出IOException。 </p>
+</li>
+<li><p><strong>contentLength</strong>：返回当前Resource代表的底层文件资源的长度，一般是值代表的文件资源的长度。</p>
+</li>
+<li><p><strong>lastModified</strong> ：返回当前Resource代表的底层资源的最后修改时间。 </p>
+</li>
+<li><p><strong>createRelative</strong>：用于创建相对于当前Resource代表的底层资源的资源，比如当前Resource代表文件资源“d:/test/”则createRelative（“test.txt”）将返回表文件资源“d:/test/test.txt”Resource资源。 </p>
+</li>
+<li><p><strong>getFilename</strong>：返回当前Resource代表的底层文件资源的文件路径，比如File资源“file://d:/test.txt”将返回“d:/test.txt”，而URL资源<a href="http://www.javass.cn将返回“”，因为只返回文件路径。" target="_blank" rel="noopener">http://www.javass.cn将返回“”，因为只返回文件路径。</a> </p>
+</li>
+<li><p><strong>getDescription</strong>：返回当前Resource代表的底层资源的描述符，通常就是资源的全路径（实际文件名或实际URL地址）。</p>
+<p>Resource接口提供了足够的抽象，足够满足我们日常使用。而且提供了很多内置Resource实现：ByteArrayResource、InputStreamResource 、FileSystemResource 、UrlResource 、ClassPathResource、ServletContextResource、VfsResource等。</p>
+</li>
+</ul>
+<h3 id="内置Resource实现"><a href="#内置Resource实现" class="headerlink" title="内置Resource实现"></a>内置Resource实现</h3><h4 id="ByteArrayResource"><a href="#ByteArrayResource" class="headerlink" title="ByteArrayResource"></a>ByteArrayResource</h4><p>ByteArrayResource代表byte[]数组资源对于“getInputStream”操作将返回一个ByteArrayInputStream。</p>
+<p>首先让我们看下使用ByteArrayResource如何处理byte数组资源：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testByteArrayResource</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Resource resource = <span class="keyword">new</span> ByteArrayResource(<span class="string">"Hello World !"</span>.getBytes()); <span class="comment">//得到一个操作系统默认的编码格式的字节数组。</span></span><br><span class="line">        <span class="keyword">if</span> (resource.exists())&#123;</span><br><span class="line">            dumpStream(resource);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>是不是很简单，让我们看下“dumpStream”实现：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dumpStream</span><span class="params">(Resource resource)</span> </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//1.获取文件资源</span></span><br><span class="line">            is = resource.getInputStream();</span><br><span class="line">            <span class="comment">//2.读取资源</span></span><br><span class="line">            <span class="keyword">byte</span>[] descBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[is.available()];</span><br><span class="line">            is.read(descBytes);</span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(descBytes));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">//3.关闭资源</span></span><br><span class="line">                is.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>​    让我们来仔细看一下代码，dumpStream方法很抽象定义了访问流的三部曲：打开资源、读取资源、关闭资源，所以dunpStrean可以再进行抽象从而能在自己项目中使用；byteArrayResourceTest测试方法，也定义了基本步骤：定义资源、验证资源存在、访问资源。</p>
+<p>​        ByteArrayResource可多次读取数组资源，即isOpen ()永远返回false。</p>
+<h4 id="InputStreamResource"><a href="#InputStreamResource" class="headerlink" title="InputStreamResource"></a>InputStreamResource</h4><p>​       InputStreamResource代表java.io.InputStream字节流，对于“getInputStream ”操作将直接返回该字节流，因此只能读取一次该字节流，即“isOpen”永远返回true。</p>
+<p>​        让我们看下测试代码吧：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testInputStreamResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(<span class="string">"Hello World!"</span>.getBytes());</span><br><span class="line">    Resource resource = <span class="keyword">new</span> InputStreamResource(bis);</span><br><span class="line">    <span class="keyword">if</span>(resource.exists()) &#123;</span><br><span class="line">        dumpStream(resource);</span><br><span class="line">    &#125;</span><br><span class="line">    Assert.assertEquals(<span class="keyword">true</span>, resource.isOpen());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="FileSystemResource"><a href="#FileSystemResource" class="headerlink" title="FileSystemResource"></a>FileSystemResource</h4><p>​       FileSystemResource代表java.io.File资源，对于“getInputStream ”操作将返回底层文件的字节流，“isOpen”将永远返回false，从而表示可多次读取底层文件的字节流。</p>
+<p>​        让我们看下测试代码吧：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFileResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    File file = <span class="keyword">new</span> File(<span class="string">"d:/test.txt"</span>);</span><br><span class="line">    Resource resource = <span class="keyword">new</span> FileSystemResource(file);</span><br><span class="line">    <span class="keyword">if</span>(resource.exists()) &#123;</span><br><span class="line">        dumpStream(resource);</span><br><span class="line">    &#125;</span><br><span class="line">    Assert.assertEquals(<span class="keyword">false</span>, resource.isOpen());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       注意由于“isOpen”将永远返回false，所以可以多次调用dumpStream(resource)。</p>
+<h4 id="ClassPathResource"><a href="#ClassPathResource" class="headerlink" title="ClassPathResource"></a>ClassPathResource</h4><p>​       ClassPathResource代表classpath路径的资源，将使用ClassLoader进行加载资源。classpath 资源存在于类路径中的文件系统中或jar包里，且“isOpen”永远返回false，表示可多次读取资源。</p>
+<pre><code>ClassPathResource加载资源替代了Class类和ClassLoader类的“getResource(String name)”和“getResourceAsStream(String name)”两个加载类路径资源方法，提供一致的访问方式。
+</code></pre><p> ClassPathResource提供了三个构造器：</p>
+<p>​          <strong>public ClassPathResource(String path)</strong>：使用默认的ClassLoader加载“path”类路径资源；</p>
+<p>​          <strong>public ClassPathResource(String path, ClassLoader classLoader)</strong>：使用指定的ClassLoader加载“path”类路径资源；</p>
+<p> 比如当前类路径是“cn.javass.spring.chapter4.ResourceTest”，而需要加载的资源路径是“cn/javass/spring/chapter4/test1.properties”，则将加载的资源在“cn/javass/spring/chapter4/test1.properties”；</p>
+<p>​          <strong>public ClassPathResource(String path, Class&lt;?&gt; clazz)</strong>：使用指定的类加载“path”类路径资源，将加载相对于当前类的路径的资源；</p>
+<p> 比如当前类路径是“cn.javass.spring.chapter4.ResourceTest”，而需要加载的资源路径是“cn/javass/spring/chapter4/test1.properties”，则将加载的资源在“cn/javass/spring/chapter4/cn/javass/spring/chapter4/test1.properties”；</p>
+<p>​        而如果需要 加载的资源路径为“test1.properties”，将加载的资源为“cn/javass/spring/chapter4/test1.properties”。</p>
+<p>​        让我们直接看测试代码吧：</p>
+<p> 1）使用默认的加载器加载资源，将加载当前ClassLoader类路径上相对于根路径的资源：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClasspathResourceByDefaultClassLoader</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Resource resource = <span class="keyword">new</span> ClassPathResource(<span class="string">"cn/javass/spring/chapter4/test1.properties"</span>);</span><br><span class="line">    <span class="keyword">if</span>(resource.exists()) &#123;</span><br><span class="line">        dumpStream(resource);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"path:"</span> + resource.getFile().getAbsolutePath());</span><br><span class="line">    Assert.assertEquals(<span class="keyword">false</span>, resource.isOpen());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2）使用指定的ClassLoader进行加载资源，将加载指定的ClassLoader类路径上相对于根路径的资源：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClasspathResourceByClassLoader</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    ClassLoader cl = <span class="keyword">this</span>.getClass().getClassLoader();</span><br><span class="line">    Resource resource = <span class="keyword">new</span> ClassPathResource(<span class="string">"cn/javass/spring/chapter4/test1.properties"</span> , cl);</span><br><span class="line">    <span class="keyword">if</span>(resource.exists()) &#123;</span><br><span class="line">        dumpStream(resource);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"path:"</span> + resource.getFile().getAbsolutePath());</span><br><span class="line">    Assert.assertEquals(<span class="keyword">false</span>, resource.isOpen());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3）使用指定的类进行加载资源，将尝试加载相对于当前类的路径的资源：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClasspathResourceByClass</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Class clazz = <span class="keyword">this</span>.getClass();</span><br><span class="line">    Resource resource1 = <span class="keyword">new</span> ClassPathResource(<span class="string">"cn/javass/spring/chapter4/test1.properties"</span> , clazz);</span><br><span class="line">    <span class="keyword">if</span>(resource1.exists()) &#123;</span><br><span class="line">        dumpStream(resource1);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"path:"</span> + resource1.getFile().getAbsolutePath());</span><br><span class="line">    Assert.assertEquals(<span class="keyword">false</span>, resource1.isOpen());</span><br><span class="line"></span><br><span class="line">    Resource resource2 = <span class="keyword">new</span> ClassPathResource(<span class="string">"test1.properties"</span> , <span class="keyword">this</span>.getClass());</span><br><span class="line">    <span class="keyword">if</span>(resource2.exists()) &#123;</span><br><span class="line">        dumpStream(resource2);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"path:"</span> + resource2.getFile().getAbsolutePath());</span><br><span class="line">    Assert.assertEquals(<span class="keyword">false</span>, resource2.isOpen());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       “resource1”将加载cn/javass/spring/chapter4/cn/javass/spring/chapter4/test1.properties资源；“resource2”将加载“cn/javass/spring/chapter4/test1.properties”；</p>
+<p> 4）加载jar包里的资源，首先在当前类路径下找不到，最后才到Jar包里找，而且在第一个Jar包里找到的将被返回：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">classpathResourceTestFromJar</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Resource resource = <span class="keyword">new</span> ClassPathResource(<span class="string">"overview.html"</span>);</span><br><span class="line">    <span class="keyword">if</span>(resource.exists()) &#123;</span><br><span class="line">        dumpStream(resource);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"path:"</span> + resource.getURL().getPath());</span><br><span class="line">    Assert.assertEquals(<span class="keyword">false</span>, resource.isOpen());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果当前类路径包含“overview.html”，在项目的“resources”目录下，将加载该资源，否则将加载Jar包里的“overview.html”，而且不能使用“resource.getFile()”，应该使用“resource.getURL()”，因为资源不存在于文件系统而是存在于jar包里，URL类似于“file:/C:/…/***.jar!/overview.html”。</p>
+<p> 类路径一般都是相对路径，即相对于类路径或相对于当前类的路径，因此如果使用“/test1.properties”带前缀“/”的路径，将自动删除“/”得到“test1.properties”。</p>
+<h4 id="UrlResource"><a href="#UrlResource" class="headerlink" title="UrlResource"></a>UrlResource</h4><p>​       UrlResource代表URL资源，用于简化URL资源访问。“isOpen”永远返回false，表示可多次读取资源。</p>
+<p>​        UrlResource一般支持如下资源访问：</p>
+<p>​      UrlResource一般支持如下资源访问：</p>
+<p>​         <strong>http：</strong>通过标准的http协议访问web资源，如new UrlResource(“http://地址”)；</p>
+<p>​         <strong>ftp：</strong>通过ftp协议访问资源，如new UrlResource(“ftp://地址”)；</p>
+<p>​         <strong>file：</strong>通过file协议访问本地文件系统资源，如new UrlResource(“file:d:/test.txt”)；</p>
+<p>具体使用方法在此就不演示了，可以参考cn.javass.spring.chapter4.ResourceTest中urlResourceTest测试方法。</p>
+<h4 id="ServletContextResource"><a href="#ServletContextResource" class="headerlink" title="ServletContextResource"></a>ServletContextResource</h4><p>​       ServletContextResource代表web应用资源，用于简化servlet容器的ServletContext接口的getResource操作和getResourceAsStream操作；在此就不具体演示了。</p>
+<h4 id="VfsResource"><a href="#VfsResource" class="headerlink" title="VfsResource"></a>VfsResource</h4><p>VfsResource代表Jboss 虚拟文件系统资源。</p>
+<p> Jboss VFS(Virtual File System)框架是一个文件系统资源访问的抽象层，它能一致的访问物理文件系统、jar资源、zip资源、war资源等，VFS能把这些资源一致的映射到一个目录上，访问它们就像访问物理文件资源一样，而其实这些资源不存在于物理文件系统。</p>
+<p> 在示例之前需要准备一些jar包，在此我们使用的是Jboss VFS3版本，可以下载最新的Jboss AS 6x，拷贝lib目录下的“jboss-logging.jar”和“jboss-vfs.jar”两个jar包拷贝到我们项目的lib目录中并添加到“Java Build Path”中的“Libaries”中。</p>
+<p> 让我们看下示例（cn.javass.spring.chapter4.ResourceTest）：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testVfsResourceForRealFileSystem</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"><span class="comment">//1.创建一个虚拟的文件目录</span></span><br><span class="line">        VirtualFile home = VFS.getChild(<span class="string">"/home"</span>);</span><br><span class="line"><span class="comment">//2.将虚拟目录映射到物理的目录</span></span><br><span class="line">        VFS.mount(home, <span class="keyword">new</span> RealFileSystem(<span class="keyword">new</span> File(<span class="string">"d:"</span>)));</span><br><span class="line"><span class="comment">//3.通过虚拟目录获取文件资源</span></span><br><span class="line">        VirtualFile testFile = home.getChild(<span class="string">"test.txt"</span>);</span><br><span class="line"><span class="comment">//4.通过一致的接口访问</span></span><br><span class="line">        Resource resource = <span class="keyword">new</span> VfsResource(testFile);</span><br><span class="line">        <span class="keyword">if</span>(resource.exists()) &#123;</span><br><span class="line">            dumpStream(resource);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"path:"</span> + resource.getFile().getAbsolutePath());</span><br><span class="line">        Assert.assertEquals(<span class="keyword">false</span>, resource.isOpen());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testVfsResourceForJar</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"><span class="comment">//1.首先获取jar包路径</span></span><br><span class="line">        File realFile = <span class="keyword">new</span> File(<span class="string">"lib/org.springframework.beans-3.0.5.RELEASE.jar"</span>);</span><br><span class="line">        <span class="comment">//2.创建一个虚拟的文件目录</span></span><br><span class="line">        VirtualFile home = VFS.getChild(<span class="string">"/home2"</span>);</span><br><span class="line">        <span class="comment">//3.将虚拟目录映射到物理的目录</span></span><br><span class="line">        VFS.mountZipExpanded(realFile, home,</span><br><span class="line">                TempFileProvider.create(<span class="string">"tmp"</span>, Executors.newScheduledThreadPool(<span class="number">1</span>)));</span><br><span class="line"><span class="comment">//4.通过虚拟目录获取文件资源</span></span><br><span class="line">        VirtualFile testFile = home.getChild(<span class="string">"META-INF/spring.handlers"</span>);</span><br><span class="line">        Resource resource = <span class="keyword">new</span> VfsResource(testFile);</span><br><span class="line">        <span class="keyword">if</span>(resource.exists()) &#123;</span><br><span class="line">            dumpStream(resource);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"path:"</span> + resource.getFile().getAbsolutePath());</span><br><span class="line">        Assert.assertEquals(<span class="keyword">false</span>, resource.isOpen());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>​       通过VFS，对于jar里的资源和物理文件系统访问都具有一致性，此处只是简单示例，如果需要请到Jboss官网深入学习。</p>
+<h3 id="访问Resource"><a href="#访问Resource" class="headerlink" title="访问Resource"></a>访问Resource</h3><h4 id="ResourceLoader接口"><a href="#ResourceLoader接口" class="headerlink" title="ResourceLoader接口"></a>ResourceLoader接口</h4><p>ResourceLoader接口用于返回Resource对象；其实现可以看作是一个生产Resource的工厂类。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ResourceLoader</span> </span>&#123;</span><br><span class="line">    <span class="function">Resource <span class="title">getResource</span><span class="params">(String location)</span></span>;</span><br><span class="line">    <span class="function">ClassLoader <span class="title">getClassLoader</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       getResource接口用于根据提供的location参数返回相应的Resource对象；而getClassLoader则返回加载这些Resource的ClassLoader。</p>
+<p>​        Spring提供了一个适用于所有环境的DefaultResourceLoader实现，可以返回ClassPathResource、UrlResource；还提供一个用于web环境的ServletContextResourceLoader，它继承了DefaultResourceLoader的所有功能，又额外提供了获取ServletContextResource的支持。</p>
+<p>​        ResourceLoader在进行加载资源时需要使用前缀来指定需要加载：“classpath:path”表示返回ClasspathResource，“<a href="http://path”和“file:path”表示返回UrlResource资源，如果不加前缀则需要根据当前上下文来决定，DefaultResourceLoader默认实现可以加载classpath资源，如代码所示（cn.javass.spring.chapter4.ResourceLoaderTest）：" target="_blank" rel="noopener">http://path”和“file:path”表示返回UrlResource资源，如果不加前缀则需要根据当前上下文来决定，DefaultResourceLoader默认实现可以加载classpath资源，如代码所示（cn.javass.spring.chapter4.ResourceLoaderTest）：</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testResourceLoad</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ResourceLoader loader = <span class="keyword">new</span> DefaultResourceLoader();</span><br><span class="line">    Resource resource = loader.getResource(<span class="string">"classpath:cn/javass/spring/chapter4/test1.txt"</span>);</span><br><span class="line">    <span class="comment">//验证返回的是ClassPathResource</span></span><br><span class="line">    Assert.assertEquals(ClassPathResource.class, resource.getClass());</span><br><span class="line">    Resource resource2 = loader.getResource(<span class="string">"file:cn/javass/spring/chapter4/test1.txt"</span>);</span><br><span class="line">    <span class="comment">//验证返回的是ClassPathResource</span></span><br><span class="line">    Assert.assertEquals(UrlResource.class, resource2.getClass());</span><br><span class="line">    Resource resource3 = loader.getResource(<span class="string">"cn/javass/spring/chapter4/test1.txt"</span>);</span><br><span class="line">    <span class="comment">//验证返默认可以加载ClasspathResource</span></span><br><span class="line">    Assert.assertTrue(resource3 <span class="keyword">instanceof</span> ClassPathResource);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于目前所有ApplicationContext都实现了ResourceLoader，因此可以使用其来加载资源。</p>
+<p>​         <strong>ClassPathXmlApplicationContext：</strong>不指定前缀将返回默认的ClassPathResource资源，否则将根据前缀来加载资源；</p>
+<p>​         <strong>FileSystemXmlApplicationContext：</strong>不指定前缀将返回FileSystemResource，否则将根据前缀来加载资源；</p>
+<p>​         <strong>WebApplicationContext：</strong>不指定前缀将返回ServletContextResource，否则将根据前缀来加载资源；</p>
+<p>​         <strong>其他：</strong>不指定前缀根据当前上下文返回Resource实现，否则将根据前缀来加载资源。</p>
+<h4 id="ResourceLoaderAware接口"><a href="#ResourceLoaderAware接口" class="headerlink" title="ResourceLoaderAware接口"></a>ResourceLoaderAware接口</h4><p>​       ResourceLoaderAware是一个标记接口，用于通过ApplicationContext上下文注入ResourceLoader。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ResourceLoaderAware</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setResourceLoader</span><span class="params">(ResourceLoader resourceLoader)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1）  首先准备测试Bean，我们的测试Bean还简单只需实现ResourceLoaderAware接口，然后通过回调将ResourceLoader保存下来就可以了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceBean</span> <span class="keyword">implements</span> <span class="title">ResourceLoaderAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ResourceLoader resourceLoader;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setResourceLoader</span><span class="params">(ResourceLoader resourceLoader)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.resourceLoader = resourceLoader;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResourceLoader <span class="title">getResourceLoader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> resourceLoader;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2）  配置Bean定义（chapter4/resourceLoaderAware.xml）：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.zero.resource.ResourceBean"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3）测试(cn.javass.spring.chapter4.ResoureLoaderAwareTest)：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHelloWorld</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"helloworld.xml"</span>);</span><br><span class="line">        ResourceBean resourceBean = ctx.getBean(ResourceBean.class);</span><br><span class="line">        ResourceLoader loader = resourceBean.getResourceLoader();</span><br><span class="line">        Assert.assertTrue(loader <span class="keyword">instanceof</span> ApplicationContext);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       注意此处“loader instanceof ApplicationContext”，说明了ApplicationContext就是个ResoureLoader。</p>
+<p>​        由于上述实现回调接口注入ResourceLoader的方式属于侵入式，所以不推荐上述方法，可以采用更好的自动注入方式，如“byType”和“constructor”，此处就不演示了。   </p>
+<h4 id="注入Resource"><a href="#注入Resource" class="headerlink" title="注入Resource"></a>注入Resource</h4><p>​       通过回调或注入方式注入“ResourceLoader”，然后再通过“ResourceLoader”再来加载需要的资源对于只需要加载某个固定的资源是不是很麻烦，有没有更好的方法类似于前边实例中注入“java.io.File”类似方式呢？</p>
+<p>​        Spring提供了一个PropertyEditor “ResourceEditor”用于在注入的字符串和Resource之间进行转换。因此可以使用注入方式注入Resource。</p>
+<p>​        ResourceEditor完全使用ApplicationContext根据注入的路径字符串获取相应的Resource，说白了还是自己做还是容器帮你做的问题。</p>
+<p> 接下让我们看下示例：</p>
+<p>​        1）准备Bean：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.core.io.Resource;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceBean3</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Resource resource;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Resource <span class="title">getResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> resource;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setResource</span><span class="params">(Resource resource)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.resource = resource;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       2）准备配置文件（chapter4/ resourceInject.xml）：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"resourceBean1"</span> <span class="attr">class</span>=<span class="string">"com.zero.resource.ResourceBean3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"resource"</span> <span class="attr">value</span>=<span class="string">"cn/javass/spring/chapter4/test1.properties"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"resourceBean2"</span> <span class="attr">class</span>=<span class="string">"com.zero.resource.ResourceBean3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"resource"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">value</span>=<span class="string">"classpath:cn/javass/spring/chapter4/test1.properties"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​       注意此处“resourceBean1”注入的路径没有前缀表示根据使用的ApplicationContext实现进行选择Resource实现。</p>
+<p>​        3）让我们来看下测试代码（cn.javass.spring.chapter4.ResourceInjectTest）吧：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"chapter4/resourceInject.xml"</span>);</span><br><span class="line">    ResourceBean3 resourceBean1 = ctx.getBean(<span class="string">"resourceBean1"</span>, ResourceBean3.class);</span><br><span class="line">    ResourceBean3 resourceBean2 = ctx.getBean(<span class="string">"resourceBean2"</span>, ResourceBean3.class);</span><br><span class="line">    Assert.assertTrue(resourceBean1.getResource() <span class="keyword">instanceof</span> ClassPathResource);</span><br><span class="line">    Assert.assertTrue(resourceBean2.getResource() <span class="keyword">instanceof</span> ClassPathResource);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       接下来一节让我们深入ApplicationContext对各种Resource的支持，及如何使用更便利的资源加载方式。</p>
+<h3 id="Resource通配符路径"><a href="#Resource通配符路径" class="headerlink" title="Resource通配符路径"></a>Resource通配符路径</h3><h4 id="使用路径通配符加载Resource"><a href="#使用路径通配符加载Resource" class="headerlink" title="使用路径通配符加载Resource"></a>使用路径通配符加载Resource</h4><p>​        前面介绍的资源路径都是非常简单的一个路径匹配一个资源，Spring还提供了一种更强大的Ant模式通配符匹配，从能一个路径匹配一批资源。</p>
+<p>​        Ant路径通配符支持“？”、“*”、“**”，注意通配符匹配不包括目录分隔符“/”：</p>
+<p> <strong>“?**</strong>”：匹配一个字符**，如“config?.xml”将匹配“config1.xml”；</p>
+<p>​         <strong>“***</strong>”：匹配零个或多个字符串*<em>，如“cn/</em>/config.xml”将匹配“cn/javass/config.xml”，但不匹配匹配“cn/config.xml”；而“cn/config-*.xml”将匹配“cn/config-dao.xml”；</p>
+<p>​         <strong>“****</strong>”：匹配路径中的零个或多个目录<strong>，如“cn/</strong>/config.xml”将匹配“cn /config.xml”，也匹配“cn/javass/spring/config.xml”；而“cn/javass/config-<strong>.xml”将匹配“cn/javass/config-dao.xml”，即把“</strong>”当做两个“*”处理。</p>
+<p>Spring提供AntPathMatcher来进行Ant风格的路径匹配。具体测试请参考cn.javass.spring.chapter4. AntPathMatcherTest。</p>
+<p>Spring在加载类路径资源时除了提供前缀“classpath:”的来支持加载一个Resource，还提供一个前缀“classpath*:”来支持加载所有匹配的类路径Resource。</p>
+<p>Spring提供ResourcePatternResolver接口来加载多个Resource，该接口继承了ResourceLoader并添加了“Resource[] getResources(String locationPattern)”用来加载多个Resource：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ResourcePatternResolver</span> <span class="keyword">extends</span> <span class="title">ResourceLoader</span> </span>&#123;  </span><br><span class="line">       String CLASSPATH_ALL_URL_PREFIX = <span class="string">"classpath*:"</span>;  </span><br><span class="line">       Resource[] getResources(String locationPattern) <span class="keyword">throws</span> IOException;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Spring提供了一个ResourcePatternResolver实现PathMatchingResourcePatternResolver，它是基于模式匹配的，默认使用AntPathMatcher进行路径匹配，它除了支持ResourceLoader支持的前缀外，还额外支持“classpath<em>:”用于加载所有匹配的类路径Resource，ResourceLoader不支持前缀“classpath</em>:”：</p>
+<p> 首先做下准备工作，在项目的“resources”创建“META-INF”目录，然后在其下创建一个“INDEX.LIST”文件。同时在“org.springframework.beans-3.0.5.RELEASE.jar”和“org.springframework.context-3.0.5.RELEASE.jar”两个jar包里也存在相同目录和文件。然后创建一个“LICENSE”文件，该文件存在于“com.springsource.cn.sf.cglib-2.2.0.jar”里。</p>
+<p> <strong>一、“classpath</strong>”：*<em> 用于加载类路径（包括jar包）中的一个且仅一个资源；对于多个匹配的也只返回一个，所以如果需要多个匹配的请考虑“classpath</em>:”前缀；</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClasspathPrefix</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line">    ResourcePatternResolver resolver = <span class="keyword">new</span> PathMatchingResourcePatternResolver();  </span><br><span class="line">    <span class="comment">//只加载一个绝对匹配Resource，且通过ResourceLoader.getResource进行加载  </span></span><br><span class="line">    Resource[] resources=resolver.getResources(<span class="string">"classpath:META-INF/INDEX.LIST"</span>);  </span><br><span class="line">    Assert.assertEquals(<span class="number">1</span>, resources.length);  </span><br><span class="line">    <span class="comment">//只加载一个匹配的Resource，且通过ResourceLoader.getResource进行加载  </span></span><br><span class="line">    resources = resolver.getResources(<span class="string">"classpath:META-INF/*.LIST"</span>);  </span><br><span class="line">    Assert.assertTrue(resources.length == <span class="number">1</span>);             </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>二、“classpath*”：</strong> 用于加载类路径（包括jar包）中的所有匹配的资源。带通配符的classpath使用“ClassLoader”的“Enumeration<url> getResources(String name)”方法来查找通配符之前的资源，然后通过模式匹配来获取匹配的资源。如“classpath:META-INF/*.LIST”将首先加载通配符之前的目录“META-INF”，然后再遍历路径进行子路径匹配从而获取匹配的资源。 </url></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClasspathAsteriskPrefix</span> <span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line">     ResourcePatternResolver resolver = <span class="keyword">new</span> PathMatchingResourcePatternResolver();        </span><br><span class="line">     <span class="comment">//将加载多个绝对匹配的所有Resource  </span></span><br><span class="line">    <span class="comment">//将首先通过ClassLoader.getResources("META-INF")加载非模式路径部分  </span></span><br><span class="line">    <span class="comment">//然后进行遍历模式匹配  </span></span><br><span class="line">    Resource[] resources=resolver.getResources(<span class="string">"classpath*:META-INF/INDEX.LIST"</span>);  </span><br><span class="line">    Assert.assertTrue(resources.length &gt; <span class="number">1</span>);      </span><br><span class="line">    <span class="comment">//将加载多个模式匹配的Resource  </span></span><br><span class="line">    resources = resolver.getResources(<span class="string">"classpath*:META-INF/*.LIST"</span>);  </span><br><span class="line">    Assert.assertTrue(resources.length &gt; <span class="number">1</span>);    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意“resources.length &gt;1”说明返回多个Resource。不管模式匹配还是非模式匹配只要匹配的都将返回。</p>
+<pre><code>在“com.springsource.cn.sf.cglib-2.2.0.jar”里包含“asm-license.txt”文件，对于使用“classpath*: asm-*.txt”进行通配符方式加载资源将什么也加载不了“asm-license.txt”文件，注意一定是模式路径匹配才会遇到这种问题。这是由于“ClassLoader”的“getResources(String name)”方法的限制，对于name为“”的情况将只返回文件系统的类路径，不会包换jar包根路径。 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClasspathAsteriskPrefixLimit</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line">    ResourcePatternResolver resolver = <span class="keyword">new</span> PathMatchingResourcePatternResolver();      <span class="comment">//将首先通过ClassLoader.getResources("")加载目录，  </span></span><br><span class="line">    <span class="comment">//将只返回文件系统的类路径不返回jar的跟路径  </span></span><br><span class="line">    <span class="comment">//然后进行遍历模式匹配  </span></span><br><span class="line">    Resource[] resources = resolver.getResources(<span class="string">"classpath*:asm-*.txt"</span>);  </span><br><span class="line">    Assert.assertTrue(resources.length == <span class="number">0</span>);  </span><br><span class="line">    <span class="comment">//将通过ClassLoader.getResources("asm-license.txt")加载  </span></span><br><span class="line">    <span class="comment">//asm-license.txt存在于com.springsource.net.sf.cglib-2.2.0.jar  </span></span><br><span class="line">    resources = resolver.getResources(<span class="string">"classpath*:asm-license.txt"</span>);  </span><br><span class="line">    Assert.assertTrue(resources.length &gt; <span class="number">0</span>);       </span><br><span class="line">    <span class="comment">//将只加载文件系统类路径匹配的Resource  </span></span><br><span class="line">    resources = resolver.getResources(<span class="string">"classpath*:LICENS*"</span>);  </span><br><span class="line">    Assert.assertTrue(resources.length == <span class="number">1</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于“resolver.getResources(“classpath<em>:asm-</em>.txt”);”，由于在项目“resources”目录下没有所以应该返回0个资源；“resolver.getResources(“classpath<em>:asm-license.txt”);”将返回jar包里的Resource；“resolver.getResources(“classpath</em>:LICENS*”);”，因为将只返回文件系统类路径资源，所以返回1个资源。</p>
+<p> 因此加载通配符路径时（即路径中包含通配符），必须包含一个根目录才能保证加载的资源是所有的，而不是部分。</p>
+<p> <strong>三、“file”：</strong>加载一个或多个文件系统中的Resource。如“file:D:/*.txt”将返回D盘下的所有txt文件；      </p>
+<p><strong>四、无前缀</strong>：通过ResourceLoader实现加载一个资源。</p>
+<p>AppliacationContext提供的getResources方法将获取资源委托给ResourcePatternResolver实现，默认使用PathMatchingResourcePatternResolver。所有在此就无需介绍其使用方法了。</p>
+<h4 id="注入Resource数组"><a href="#注入Resource数组" class="headerlink" title="注入Resource数组"></a>注入Resource数组</h4><p>​       Spring还支持注入Resource数组，直接看配置如下：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"resourceBean1"</span> <span class="attr">class</span>=<span class="string">"cn.javass.spring.chapter4.bean.ResourceBean4"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"resources"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">array</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>cn/javass/spring/chapter4/test1.properties<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>log4j.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">array</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"resourceBean2"</span> <span class="attr">class</span>=<span class="string">"cn.javass.spring.chapter4.bean.ResourceBean4"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"resources"</span> <span class="attr">value</span>=<span class="string">"classpath*:META-INF/INDEX.LIST"</span>/&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"resourceBean3"</span> <span class="attr">class</span>=<span class="string">"cn.javass.spring.chapter4.bean.ResourceBean4"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"resources"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">array</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>cn/javass/spring/chapter4/test1.properties<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath*:META-INF/INDEX.LIST<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">array</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​       “resourceBean1”就不用多介绍了，传统实现方式；对于“resourceBean2”则使用前缀“classpath*”，看到这大家应该懂的，加载匹配多个资源；“resourceBean3”是混合使用的；测试代码在“cn.javass.spring.chapter4.ResourceInjectTest.testResourceArrayInject”。</p>
+<p>​        Spring通过ResourceArrayPropertyEditor来进行类型转换的，而它又默认使用“PathMatchingResourcePatternResolver”来进行把路径解析为Resource对象。所有大家只要会使用“PathMatchingResourcePatternResolver”，其它一些实现都是委托给它的，比如AppliacationContext的“getResources”方法等。</p>
+<h4 id="AppliacationContext实现对各种Resource的支持"><a href="#AppliacationContext实现对各种Resource的支持" class="headerlink" title="AppliacationContext实现对各种Resource的支持"></a>AppliacationContext实现对各种Resource的支持</h4><p>​       <strong>一、ClassPathXmlApplicationContext：</strong>默认将通过classpath进行加载返回ClassPathResource，提供两类构造器方法：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPathXmlApplicationContext</span> </span>&#123;  </span><br><span class="line">    <span class="comment">//1）通过ResourcePatternResolver实现根据configLocation获取资源  </span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String configLocation)</span></span>;  </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String... configLocations)</span>；  </span></span><br><span class="line"><span class="function">       <span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String[] configLocations, ……)</span></span>;  </span><br><span class="line">        </span><br><span class="line">    <span class="comment">//2）通过直接根据path直接返回ClasspathResource  </span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String path, Class clazz)</span></span>;  </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String[] paths, Class clazz)</span></span>;  </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String[] paths, Class clazz, ……)</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       第一类构造器是根据提供的配置文件路径使用“ResourcePatternResolver ”的“getResources()”接口通过匹配获取资源；即如“classpath:config.xml”</p>
+<p>​        第二类构造器则是根据提供的路径和clazz来构造ClassResource资源。即采用“public ClassPathResource(String path, Class&lt;?&gt; clazz)”构造器获取资源。</p>
+<p>​        <strong>二、FileSystemXmlApplicationContext：</strong>将加载相对于当前工作目录的“configLocation”位置的资源，注意在linux系统上不管“configLocation”是否带“/”，都作为相对路径；而在window系统上如“D:/resourceInject.xml”是绝对路径。因此在除非很必要的情况下，不建议使用该ApplicationContext。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileSystemXmlApplicationContext</span></span>&#123;  </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">FileSystemXmlApplicationContext</span><span class="params">(String configLocation)</span></span>;  </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">FileSystemXmlApplicationContext</span><span class="params">(String... configLocations,……)</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//windows系统，第一个将相对于当前vm路径进行加载；  </span></span><br><span class="line"><span class="comment">//第二个则是绝对路径方式加载  </span></span><br><span class="line"><span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"chapter4/config.xml"</span>);  </span><br><span class="line"><span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"d:/chapter4/confg.xml"</span>);</span><br></pre></td></tr></table></figure>
+<p>​       此处还需要注意：在linux系统上，构造器使用的是相对路径，而ctx.getResource()方法如果以“/”开头则表示获取绝对路径资源，而不带前导“/”将返回相对路径资源。如下：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//linux系统，第一个将相对于当前vm路径进行加载；  </span></span><br><span class="line"><span class="comment">//第二个则是绝对路径方式加载  </span></span><br><span class="line">ctx.getResource (<span class="string">"chapter4/config.xml"</span>);  </span><br><span class="line">ctx.getResource (<span class="string">"/root/confg.xml"</span>);  </span><br><span class="line"><span class="comment">//windows系统，第一个将相对于当前vm路径进行加载；  </span></span><br><span class="line"><span class="comment">//第二个则是绝对路径方式加载  </span></span><br><span class="line">ctx.getResource (<span class="string">"chapter4/config.xml"</span>);  </span><br><span class="line">ctx.getResource (<span class="string">"d:/chapter4/confg.xml"</span>);</span><br></pre></td></tr></table></figure>
+<p>​       因此如果需要加载绝对路径资源最好选择前缀“file”方式，将全部根据绝对路径加载。如在linux系统“ctx.getResource (“file:/root/confg.xml”);”    </p>
+<h2 id="Spring表达式语言"><a href="#Spring表达式语言" class="headerlink" title="Spring表达式语言"></a>Spring表达式语言</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>​       Spring表达式语言全称为“Spring Expression Language”，缩写为“SpEL”，类似于Struts2x中使用的OGNL表达式语言，能在运行时构建复杂表达式、存取对象图属性、对象方法调用等等，并且能与Spring功能完美整合，如能用来配置Bean定义。</p>
+<p>​        表达式语言给静态Java语言增加了动态功能。</p>
+<p>​        SpEL是单独模块，只依赖于core模块，不依赖于其他模块，可以单独使用。</p>
+<h4 id="能干什么"><a href="#能干什么" class="headerlink" title="能干什么"></a>能干什么</h4><p> 表达式语言一般是用最简单的形式完成最主要的工作，减少我们的工作量。</p>
+<p>​       SpEL支持如下表达式：</p>
+<p><strong>一、基本表达式：</strong>字面量表达式、关系，逻辑与算数运算表达式、字符串连接及截取表达式、三目运算及Elivis表达式、正则表达式、括号优先级表达式；</p>
+<p><strong>二、类相关表达式：</strong>类类型表达式、类实例化、instanceof表达式、变量定义及引用、赋值表达式、自定义函数、对象属性存取及安全导航表达式、对象方法调用、Bean引用；</p>
+<p><strong>三、集合相关表达式：</strong>内联List、内联数组、集合，字典访问、列表，字典，数组修改、集合投影、集合选择；不支持多维内联数组初始化；不支持内联字典定义；</p>
+<p><strong>四、其他表达式</strong>：模板表达式。</p>
+<p><strong>注：SpEL表达式中的关键字是不区分大小写的。</strong></p>
+<h3 id="SpEL基础"><a href="#SpEL基础" class="headerlink" title="SpEL基础"></a>SpEL基础</h3><h4 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h4><p>​       首先准备支持SpEL的Jar包：“org.springframework.expression-3.0.5.RELEASE.jar”将其添加到类路径中。</p>
+<p>​        SpEL在求表达式值时一般分为四步，其中第三步可选：首先构造一个解析器，其次解析器解析字符串表达式，在此构造上下文，最后根据上下文得到表达式运算后的值。</p>
+<p>​        让我们看下代码片段吧：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpELTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helloWorld</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ExpressionParser parser = <span class="keyword">new</span> SpelExpressionParser();</span><br><span class="line">        Expression expression =</span><br><span class="line">                parser.parseExpression(<span class="string">"('Hello' + ' World').concat(#end)"</span>);</span><br><span class="line">        EvaluationContext context = <span class="keyword">new</span> StandardEvaluationContext();</span><br><span class="line">        context.setVariable(<span class="string">"end"</span>, <span class="string">"!"</span>);</span><br><span class="line">        Assert.assertEquals(<span class="string">"Hello World!"</span>, expression.getValue(context));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来让我们分析下代码：</p>
+<p>1）创建解析器：SpEL使用ExpressionParser接口表示解析器，提供SpelExpressionParser默认实现；</p>
+<p>2）解析表达式：使用ExpressionParser的parseExpression来解析相应的表达式为Expression对象。</p>
+<p>3）构造上下文：准备比如变量定义等等表达式需要的上下文数据。</p>
+<p>4）求值：通过Expression接口的getValue方法根据上下文获得表达式值。</p>
+<p>是不是很简单，接下来让我们看下其具体实现及原理吧。</p>
+<h4 id="SpEL原理及接口"><a href="#SpEL原理及接口" class="headerlink" title="SpEL原理及接口"></a>SpEL原理及接口</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/日志相关/" rel="next" title="日志相关">
+                <i class="fa fa-chevron-left"></i> 日志相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/24/Spring-AOP/" rel="prev" title="Spring--AOP">
+                Spring--AOP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#资源"><span class="nav-number">1.</span> <span class="nav-text">资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#资源基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">资源基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resource接口"><span class="nav-number">1.1.2.</span> <span class="nav-text">Resource接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置Resource实现"><span class="nav-number">1.2.</span> <span class="nav-text">内置Resource实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ByteArrayResource"><span class="nav-number">1.2.1.</span> <span class="nav-text">ByteArrayResource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#InputStreamResource"><span class="nav-number">1.2.2.</span> <span class="nav-text">InputStreamResource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FileSystemResource"><span class="nav-number">1.2.3.</span> <span class="nav-text">FileSystemResource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ClassPathResource"><span class="nav-number">1.2.4.</span> <span class="nav-text">ClassPathResource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UrlResource"><span class="nav-number">1.2.5.</span> <span class="nav-text">UrlResource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServletContextResource"><span class="nav-number">1.2.6.</span> <span class="nav-text">ServletContextResource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VfsResource"><span class="nav-number">1.2.7.</span> <span class="nav-text">VfsResource</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问Resource"><span class="nav-number">1.3.</span> <span class="nav-text">访问Resource</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ResourceLoader接口"><span class="nav-number">1.3.1.</span> <span class="nav-text">ResourceLoader接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ResourceLoaderAware接口"><span class="nav-number">1.3.2.</span> <span class="nav-text">ResourceLoaderAware接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注入Resource"><span class="nav-number">1.3.3.</span> <span class="nav-text">注入Resource</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resource通配符路径"><span class="nav-number">1.4.</span> <span class="nav-text">Resource通配符路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用路径通配符加载Resource"><span class="nav-number">1.4.1.</span> <span class="nav-text">使用路径通配符加载Resource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注入Resource数组"><span class="nav-number">1.4.2.</span> <span class="nav-text">注入Resource数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AppliacationContext实现对各种Resource的支持"><span class="nav-number">1.4.3.</span> <span class="nav-text">AppliacationContext实现对各种Resource的支持</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring表达式语言"><span class="nav-number">2.</span> <span class="nav-text">Spring表达式语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述-1"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">2.1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#能干什么"><span class="nav-number">2.1.2.</span> <span class="nav-text">能干什么</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpEL基础"><span class="nav-number">2.2.</span> <span class="nav-text">SpEL基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HelloWorld"><span class="nav-number">2.2.1.</span> <span class="nav-text">HelloWorld</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SpEL原理及接口"><span class="nav-number">2.2.2.</span> <span class="nav-text">SpEL原理及接口</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

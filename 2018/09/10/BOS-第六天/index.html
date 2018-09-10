@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="BOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="定区目前接触到了三张表，区域，定区，分区 region        定区staff    取派员subarea 分区上有可能定区的，但肯定有区域 ​         region分为多个subarea那么去派员隶属于分区，那么去派员就应该和分区subare有关系。 受理业务：        客户下单        自动分单  给对应的取派员 取派员与定区相关联，定区和分区有关系。 模拟客户：客户">
+<meta name="keywords" content="BOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BOS 第六天">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/BOS-第六天/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="定区目前接触到了三张表，区域，定区，分区 region        定区staff    取派员subarea 分区上有可能定区的，但肯定有区域 ​         region分为多个subarea那么去派员隶属于分区，那么去派员就应该和分区subare有关系。 受理业务：        客户下单        自动分单  给对应的取派员 取派员与定区相关联，定区和分区有关系。 模拟客户：客户">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://whyathere.github.io/images/bos/day05/定区添加截图.jpg">
+<meta property="og:updated_time" content="2018-09-10T08:30:00.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BOS 第六天">
+<meta name="twitter:description" content="定区目前接触到了三张表，区域，定区，分区 region        定区staff    取派员subarea 分区上有可能定区的，但肯定有区域 ​         region分为多个subarea那么去派员隶属于分区，那么去派员就应该和分区subare有关系。 受理业务：        客户下单        自动分单  给对应的取派员 取派员与定区相关联，定区和分区有关系。 模拟客户：客户">
+<meta name="twitter:image" content="http://whyathere.github.io/images/bos/day05/定区添加截图.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/10/BOS-第六天/"/>
+
+
+
+
+
+  <title>BOS 第六天 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/BOS-第六天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BOS 第六天</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="定区"><a href="#定区" class="headerlink" title="定区"></a>定区</h3><p>目前接触到了三张表，区域，定区，分区</p>
+<p>region<br>        定区<br>staff    取派员<br>subarea 分区上有可能定区的，但肯定有区域</p>
+<p>​        </p>
+<p>region分为多个subarea<br>那么去派员隶属于分区，那么去派员就应该和分区subare有关系。</p>
+<p>受理业务：<br>        客户下单<br>        自动分单  给对应的取派员</p>
+<p>取派员与定区相关联，定区和分区有关系。</p>
+<p>模拟客户：客户端   都是有固定的地址  根据地址就可以判断是属于哪个定区的（有定区ID）<br>客户表里有  id name decidedzone </p>
+<pre><code>在这里定区指向取派员表
+</code></pre><h4 id="定区添加业务分析"><a href="#定区添加业务分析" class="headerlink" title="定区添加业务分析"></a>定区添加业务分析</h4><ol>
+<li>定区添加  获取取派员的ID  下拉框选取  显示</li>
+<li>循环更新  分区表  显示未被定区关联分区显示  checkbox显示<br>服务器端：action  接受表单信息</li>
+<li>checkbox分区信息  能否提交给后台？  可以接收</li>
+</ol>
+<p>定区的主键ID是uuid<br>业务层：<br>    svae（decidezone（瞬时态，没有id，但是需要））<br>    更新分区的时候<br>    定区的主键策略  assigend 需要加ajax校验</p>
+<h4 id="定区添加取派员下拉框显示"><a href="#定区添加取派员下拉框显示" class="headerlink" title="定区添加取派员下拉框显示"></a>定区添加取派员下拉框显示</h4><p>在这里由于之前设置了取派员的作废标识<br>所以这里不能用默认的findAll<br>前端代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;选择负责人&lt;/td&gt;</span><br><span class="line">&lt;td&gt;</span><br><span class="line">	&lt;input class=<span class="string">"easyui-combobox"</span> name=<span class="string">"staff.id"</span></span><br><span class="line">					data-options=<span class="string">"valueField:'id',textField:'name',url:'<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/bc/staffAction_ajaxList'"</span> /&gt;</span><br><span class="line">&lt;/td&gt;</span><br></pre></td></tr></table></figure></p>
+<p>action<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 定区关联取派员</span><br><span class="line">@Action(value = <span class="string">"staffAction_ajaxList"</span>,results = &#123;@Result(name = <span class="string">"ajaxList"</span>,<span class="built_in">type</span> = <span class="string">"json"</span>)&#125;)</span><br><span class="line">public String <span class="function"><span class="title">ajaxList</span></span>() &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">		List&lt;Staff&gt; staffs=serviceFacade.getStaffService().findStaffInUse();</span><br><span class="line">		push(staffs);</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">		push(<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> <span class="string">"ajaxList"</span>;  //走全局结果集</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Dao<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Query(<span class="string">"from Staff where deltag = '0' "</span>)</span><br><span class="line">public List&lt;Staff&gt; findStaffInUse();</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>前端会发送多个ID往后端<br>分区的Update中的DecidedZone是一个对象。<br><img src="http://whyathere.github.io/images/bos/day05/定区添加截图.jpg" alt=""><br>从图可以看出<br>关联分区的时候，是一个对象。<br>创建DecidedZoneService相关的类<br>DecidedZoneServiceImpl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">@Transactional</span><br><span class="line">public class DecidedZoneServiceImpl implements DecidedZoneService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private DecidedZoneDao decidedZoneDao;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private SubAreaDao subAreaDao;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void save(DecidedZone model, String[] subareaIds) &#123;</span><br><span class="line">        //定区表添加 分区表外键更新</span><br><span class="line">        decidedZoneDao.save(model);</span><br><span class="line">        <span class="keyword">if</span> (subareaIds != null &amp;&amp; subareaIds.length != 0) &#123;</span><br><span class="line">            <span class="keyword">for</span> (String sid: subareaIds) &#123;</span><br><span class="line">                subAreaDao.assignSubareaToDecidedzone(model,sid);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将DecidedZoneService添加到门面类FacadeService<br>DecidedZoneAction<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 区域添加</span><br><span class="line">@Action(value = <span class="string">"decidedZoneAction_save"</span>, results = &#123;</span><br><span class="line">        @Result(name = <span class="string">"save"</span>, location = <span class="string">"/WEB-INF/pages/base/decidedzone.jsp"</span>)&#125;)</span><br><span class="line">public String <span class="function"><span class="title">save</span></span>() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        String[] subAreaIds = getRequest().getParameterValues(<span class="string">"subAreaId"</span>);</span><br><span class="line">        serviceFacade.getDecidedZoneService().save(model,subAreaIds);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="string">"save"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Dao<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface SubAreaDao extends JpaRepository&lt;Subarea, String&gt;, JpaSpecificationExecutor&lt;Subarea&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Query(<span class="string">"from Subarea where decidedZone is null "</span>)</span><br><span class="line">    public List&lt;Subarea&gt; findnoassociation();</span><br><span class="line"></span><br><span class="line">    @Modifying</span><br><span class="line">    @Query(<span class="string">"update Subarea set decidedZone=?1 where id=?2"</span>)</span><br><span class="line">    public  void assignSubareaToDecidedzone(DecidedZone model,String sid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>关联分区选中的是<br>这里查找的是 Subarea的 decidedZone_id 不为空的<br>一旦被选中就会将 Subarea的 decidedZone_id 标记为1</p>
+<h4 id="定区条件分页查询"><a href="#定区条件分页查询" class="headerlink" title="定区条件分页查询"></a>定区条件分页查询</h4><ol>
+<li>给查询定区的窗口设置一个id<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form id=<span class="string">"searchDecidedZoneForm"</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>是否关联分区<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;是否关联分区&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;</span><br><span class="line">                    &lt;select id=<span class="string">"cc"</span> class=<span class="string">"easyui-combobox"</span> name=<span class="string">"isAssociationSubarea"</span> style=<span class="string">"width:170px;"</span>&gt;</span><br><span class="line">                        &lt;option value=<span class="string">""</span>&gt;===请选择===&lt;/option&gt;</span><br><span class="line">                        &lt;option value=<span class="string">"1"</span>&gt;是&lt;/option&gt;</span><br><span class="line">                        &lt;option value=<span class="string">"0"</span>&gt;否&lt;/option&gt;</span><br><span class="line">                    &lt;/select&gt;</span><br><span class="line">                &lt;/td&gt;</span><br></pre></td></tr></table></figure></p>
+<p>条件查询<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//条件查询定区</span><br><span class="line">  $(<span class="string">"#btn"</span>).click(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      //from序列化</span><br><span class="line">      var jsonObj = $(<span class="string">"#searchDecidedZoneForm"</span>).serializeJson();</span><br><span class="line">      //调用datagrid load 方法 form序列化</span><br><span class="line">      $(<span class="string">"#grid"</span>).datagrid(<span class="string">"load"</span>, jsonObj);</span><br><span class="line">      //3：关闭窗口</span><br><span class="line">      $(<span class="string">"#searchWindow"</span>).window(<span class="string">"close"</span>);</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>datagrid<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 收派标准数据表格</span><br><span class="line">$(<span class="string">'#grid'</span>).datagrid(&#123;</span><br><span class="line">    iconCls: <span class="string">'icon-forward'</span>,</span><br><span class="line">    fit: <span class="literal">true</span>,</span><br><span class="line">    border: <span class="literal">true</span>,</span><br><span class="line">    rownumbers: <span class="literal">true</span>,</span><br><span class="line">    striped: <span class="literal">true</span>,</span><br><span class="line">    pageList: [3, 5, 10],</span><br><span class="line">    pagination: <span class="literal">true</span>,</span><br><span class="line">    toolbar: toolbar,</span><br><span class="line">    url: <span class="string">"<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/bc/decidedZoneAction_pageQuery"</span>,</span><br><span class="line">    idField: <span class="string">'id'</span>,</span><br><span class="line">    columns: columns,</span><br><span class="line">    onDblClickRow: doDblClickRow</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>条件分页查询Action<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 区域的分页查询</span><br><span class="line">@Action(value = <span class="string">"decidedZoneAction_pageQuery"</span>)</span><br><span class="line">public String <span class="function"><span class="title">pageQuery</span></span>() &#123;</span><br><span class="line">    //PageRequest pageable = new PageRequest(page - 1, rows);</span><br><span class="line">    //dao 参数 Pageable pageable 自动完成分页查询 将分页结果数据 自动封装到Page&lt;T&gt;</span><br><span class="line">    //从Page 对象获取总记录数 和 每页分页记录数List&lt;Staff&gt;</span><br><span class="line">    Page&lt;DecidedZone&gt; pageData = serviceFacade.getDecidedZoneService().pageQuery(getPageRequest(), getSpecification());</span><br><span class="line">    setPageData(pageData);</span><br><span class="line">    <span class="built_in">return</span> <span class="string">"pageQuery"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="CRM"><a href="#CRM" class="headerlink" title="CRM"></a>CRM</h3><h4 id="关联客户业务分析"><a href="#关联客户业务分析" class="headerlink" title="关联客户业务分析"></a>关联客户业务分析</h4><pre><code>要把所有的级联删除，否则可能删除全部的数据内容
+</code></pre><ol>
+<li>首先要将定区和客户关联起来，以便于通过客户信息找到定区，然后通过定区找到可以分配的取派员。</li>
+<li>左边显示当前定区未关联的客户信息，右侧是显示已经关联的客户信息，而且可以左右移动<br> . 直观感觉是右侧的是提交    ，左右移动后要做关联，表内数据要更改。客户表内添加一个decidedzone_id</li>
+<li>CRM是一个单独的系统，提供web服务。 </li>
+<li>搭建新的系统 crm客户关系系统  customer</li>
+<li>塔尖环境：ssh</li>
+<li>为bos系统提供客户表的 crud 操作</li>
+<li>restful 最典型的</li>
+<li>@POST（保存） @PUT（修改） @GET（查询） @DELETE（删除） 四种注解表示类型</li>
+<li>@Product 生产者 服务器响应客户端数据类型 CRM回送给BOS数据类型<br>@Customer  消费者 Bos发送给CRM系统数据类型 xml/json<br>@Path  客户端请求路径编写<br>@PathParam  获取请求路径的参数信息<br><a href="http://whyathere.github.io/images/bos/day05/RestFul示例.jpg" target="_blank" rel="noopener"></a>    </li>
+</ol>
+<p>本地测试OK之后再放业务</p>
+<p>过程：ajax–&gt;bos–&gt;action–&gt;service–&gt;restful(crm)–&gt;WebClient(crud)</p>
+<h4 id="定区关联客户之CRM系统环境搭建"><a href="#定区关联客户之CRM系统环境搭建" class="headerlink" title="定区关联客户之CRM系统环境搭建"></a>定区关联客户之CRM系统环境搭建</h4><p>hibernate.properties 用于自动建表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">@Table(name = <span class="string">"t_customer"</span>,catalog = <span class="string">"zero_bos"</span>)</span><br><span class="line">@XmlRootElement(name = <span class="string">"Customer"</span>)  //使用restful的时候要添加，网络传输序列化所需要的注解</span><br><span class="line">public class Customer implements java.io.Serializable &#123;</span><br><span class="line"></span><br><span class="line">    @GenericGenerator(name = <span class="string">"generator"</span>, strategy = <span class="string">"uuid"</span>)</span><br><span class="line">    @Id</span><br><span class="line">    @GeneratedValue(generator = <span class="string">"generator"</span>)</span><br><span class="line">    private String id;</span><br></pre></td></tr></table></figure></p>
+<p>CRM-SERVICE<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Produces(<span class="string">"*/*"</span>)</span><br><span class="line">public interface CustomerService &#123;</span><br><span class="line">    @GET</span><br><span class="line">    @Path(<span class="string">"/customer"</span>)</span><br><span class="line">    @Produces(&#123; <span class="string">"application/xml"</span>, <span class="string">"application/json"</span> &#125;)</span><br><span class="line">    public List&lt;Customer&gt; getNoAssociations();</span><br></pre></td></tr></table></figure></p>
+<p>讲解：查询有@GET方法，路径”/customer”。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BOS/" rel="tag"># BOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/10/BOS-第七天/" rel="next" title="BOS-第七天">
+                <i class="fa fa-chevron-left"></i> BOS-第七天
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/10/BOS-第四天/" rel="prev" title="BOS 第四天">
+                BOS 第四天 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定区"><span class="nav-number">1.</span> <span class="nav-text">定区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定区添加业务分析"><span class="nav-number">1.1.</span> <span class="nav-text">定区添加业务分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定区添加取派员下拉框显示"><span class="nav-number">1.2.</span> <span class="nav-text">定区添加取派员下拉框显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定区条件分页查询"><span class="nav-number">1.4.</span> <span class="nav-text">定区条件分页查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRM"><span class="nav-number">2.</span> <span class="nav-text">CRM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关联客户业务分析"><span class="nav-number">2.1.</span> <span class="nav-text">关联客户业务分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定区关联客户之CRM系统环境搭建"><span class="nav-number">2.2.</span> <span class="nav-text">定区关联客户之CRM系统环境搭建</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
