@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Spring 简介耦合具有两面性。一方面，紧密耦合的代码难以测试，难以复用、难以理解，并且典型地表现出“打地鼠”式的bug特性。另一方面，一定程度的耦合又是必须的—完全没有耦合的代码什么都做不了。为了完成有意义的功能，不同的类必须适当的进行交互。总而言之，耦合是必须的，但应当被小心谨慎地管理。 创建应用组件之间协作的行为通常称为装配（wiring）。Spring有多种装配bean的方式，采用xml">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring刘欣">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/Spring-刘欣/index.html">
+<meta property="og:site_name" content="Bill">
+<meta property="og:description" content="Spring 简介耦合具有两面性。一方面，紧密耦合的代码难以测试，难以复用、难以理解，并且典型地表现出“打地鼠”式的bug特性。另一方面，一定程度的耦合又是必须的—完全没有耦合的代码什么都做不了。为了完成有意义的功能，不同的类必须适当的进行交互。总而言之，耦合是必须的，但应当被小心谨慎地管理。 创建应用组件之间协作的行为通常称为装配（wiring）。Spring有多种装配bean的方式，采用xml">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/08/31/5b890ff0692d6.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/09/03/5b8ce0a3bf779.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/03/5b8ce03672ef7.png">
+<meta property="og:image" content="https://i.loli.net/2018/07/29/5b5d55783c730.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/07/29/5b5d5efbf1eda.png">
+<meta property="og:image" content="https://i.loli.net/2018/07/29/5b5d717a04950.png">
+<meta property="og:image" content="http://pcq0v117m.bkt.clouddn.com/loaderClass.png">
+<meta property="og:updated_time" content="2018-09-10T09:54:57.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring刘欣">
+<meta name="twitter:description" content="Spring 简介耦合具有两面性。一方面，紧密耦合的代码难以测试，难以复用、难以理解，并且典型地表现出“打地鼠”式的bug特性。另一方面，一定程度的耦合又是必须的—完全没有耦合的代码什么都做不了。为了完成有意义的功能，不同的类必须适当的进行交互。总而言之，耦合是必须的，但应当被小心谨慎地管理。 创建应用组件之间协作的行为通常称为装配（wiring）。Spring有多种装配bean的方式，采用xml">
+<meta name="twitter:image" content="https://i.loli.net/2018/08/31/5b890ff0692d6.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/10/Spring-刘欣/"/>
+
+
+
+
+
+  <title>Spring刘欣 | Bill</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bill</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Spring-刘欣/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring刘欣</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T17:49:57+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Spring</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>耦合具有两面性。一方面，紧密耦合的代码难以测试，难以复用、难以理解，并且典型地表现出“打地鼠”式的bug特性。另一方面，一定程度的耦合又是必须的—完全没有耦合的代码什么都做不了。为了完成有意义的功能，不同的类必须适当的进行交互。总而言之，耦合是必须的，但应当被小心谨慎地管理。</p>
+<p>创建应用组件之间协作的行为通常称为装配（wiring）。Spring有多种装配bean的方式，采用xml是很常见的一种装配行为。</p>
+<h4 id="观察它如何工作"><a href="#观察它如何工作" class="headerlink" title="观察它如何工作"></a>观察它如何工作</h4><p>Spring通过应用上下文(Application Context)装载bean的定义并把它们组装起来。Spring应用上下文全权负责对象的创建和组装。Spring自带了多种应用上下文的实现，它们之间主要的区别仅仅在于如何配置。</p>
+<p>ClassPathXmlApplicationContext    该类加载位于应用程序类路径下的一个或多个XML配置文件。</p>
+<h4 id="容纳你的Bean"><a href="#容纳你的Bean" class="headerlink" title="容纳你的Bean"></a>容纳你的Bean</h4><p>在基于Spring的应用中，你的应用对象生存于Spring容器(container)中。Spring容器负责创建对象，装配它们，配置它们并管理它们的整个生命周期，从生存到死亡(在这里，可能就是new 到 finalize())。</p>
+<p>首先了解容纳对象的容器，有助于理解对象是如何被管理的。</p>
+<p>容器上Spring容器的核心。Spring容器使用DI管理构成应用的组建，它会创建相互协作的组件之间的关联。</p>
+<p>Spring容器并不是只有一个。Spring自带了多个容器实现，可以归为两种不同的类型。bean工厂上最简单的容器，提供基本的DI支持。应用上下文基于BeanFactory构建，并提供应用框架级别的服务，例如从属性文件解析文本信息以及发布应用事件给感兴趣的事件监听者。</p>
+<p>虽然我们可以在bean工厂和应用上下文之间任选一种。但bean工厂对大多数应用来说太低级了，因此，应用上下文要比bean工厂更受欢迎。我们把精力集中在应用上下文上，不再浪费时间讨论bean工厂。</p>
+<h5 id="使用应用上下文"><a href="#使用应用上下文" class="headerlink" title="使用应用上下文"></a>使用应用上下文</h5><p>常用的几个应用上下文</p>
+<p>AnnotationConfigApplicationContext：从一个或多个基于Java的配置类中加载Spring应用上下文。</p>
+<p>ClassPathXmlApplicationContext：从类路径下的一个或多个XML配置文件中加载上下文定义，把应用上下文的定义文件作为类资源。</p>
+<p>FileSystemXmlApplicationContext：从文件系统下的一个或多个XML配置文件中加载上下文定义。</p>
+<p>DI是组装应用对象的一种方式，借助这种方式对象无需知道依赖来自何处或者依赖的实现方式。不同于自己获取依赖对象，对象会在运行期赋予它们所依赖的对象。依赖对象通常会通过接口了解所注入的对象，这样的话就能确保低耦合。</p>
+<h3 id="装配Bean"><a href="#装配Bean" class="headerlink" title="装配Bean"></a>装配Bean</h3><h4 id="Spring-配置的可选方案"><a href="#Spring-配置的可选方案" class="headerlink" title="Spring 配置的可选方案"></a>Spring 配置的可选方案</h4><p>Spring容器负责创建应用程序中的bean并通过DI来协调这些对象之间的关系。但是，作为开发人员，你需要告诉Spring要创建哪些bean并且如何将其装配在一起。</p>
+<h3 id="Basic-BeanFactory"><a href="#Basic-BeanFactory" class="headerlink" title="Basic BeanFactory"></a>Basic BeanFactory</h3><p>SRP:单一职责原则</p>
+<p><strong>职责：</strong>是引起变化的原因</p>
+<ul>
+<li>如果有多于一个的动机去改变一个类，这个类就具有多于一个职责</li>
+<li>把多个职责耦合在一起，一个变化可能会消弱或者抑制这个类完成其他职责的能力</li>
+</ul>
+<p><strong>SRP:对于一个类而言，应该仅有一个引起它变化的原因</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clz = cl.loadClass(beanClassName);</span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
+<p>上面代码能够返回实例的前提是，类有一个缺省的无参构造函数。这样才能用newInstance的方式创建出来。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    BeanFactory beanFactory = <span class="keyword">new</span> DefaultBeanFactory(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">    BeanDefinition bd = beanFactory.getBeanDefinition(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertEquals(<span class="string">"org.litespring.service.test.v1.PetStoreService"</span>,bd.getBeanClassName());</span><br><span class="line"></span><br><span class="line">    PetStoreService petStore =   (PetStoreService)beanFactory.getBean(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertNotNull(petStore);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> DefaultBeanFactory(<span class="string">"petstore-v1.xml"</span>);</span><br></pre></td></tr></table></figure>
+<p>能够返回bean的定义，而bean的定义也是一个接口。</p>
+<p>然后从factory中获取bean。</p>
+<p>实现类放到support下面，接口放到factory下面。</p>
+<p>getBean是返回一个实例。</p>
+<p>这里面的代码有太多了try/catch</p>
+<p>常见的方法引入Exception，包装一个Exception可以throw出去，让调用方去处理。</p>
+<p>现在的文件有两个功能，一个是读取xml文件，生成bean定义，就是getBeanDefinition</p>
+<p>一个是生成bean的实例。所以要创建两个exception</p>
+<p>RuntimeException是一个unchecked的异常。</p>
+<p><img src="https://i.loli.net/2018/08/31/5b890ff0692d6.jpg" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">catch</span> (DocumentException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BeanDefinitionStoreException(<span class="string">"IOException parsing XML document from"</span>+configFile,e);</span><br></pre></td></tr></table></figure>
+<p>xml异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (bd == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BeanCreationException(<span class="string">"Bean Definition does not exist"</span>);</span><br><span class="line"><span class="comment">//            return null;</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>bean异常</p>
+<p>SRP：单一职责原则</p>
+<ul>
+<li>职责：是引起变化的原因<ul>
+<li>如果有多于一个的动机起改变一个类，这个类就具有多于一个职责</li>
+<li>把多个职责耦合在一起，一个的变化可能会消弱或者抑制这个类完成其他职责的能力</li>
+</ul>
+</li>
+<li>SRP：对于一个类而言，应该仅有一个引起它变化的原因。</li>
+</ul>
+<p><img src="https://i.loli.net/2018/09/03/5b8ce0a3bf779.png" alt=""></p>
+<p>这里现在的DefaultBeanFactory具有多于一个 的职责。</p>
+<p>现在需要单独 的抽取出来</p>
+<p>创建一个reader来读取并解析xml，那么读取来以后怎么把definition告诉factory呢？让BeanDefiniton提供一个方法，registerBeanDefinition.当reader去解析xml文件后，可以去调用register方法，让reader持有一个BeanFactory的实例。但是这样并不好，BeanFactory是给客户使用的，并不希望客户调用register方法。BeanDefinition本质上是一个内部的概念，把一个xml变成一个BeanDefinition，我们拥有它的意义是通过反射去创建一个Bean的实例。所以BeanDefiniton应该是一个内部的概念。</p>
+<p><img src="https://i.loli.net/2018/09/03/5b8ce03672ef7.png" alt=""></p>
+<p>这样有两个好处，1/xmlBeanDefinitionReader只知道一个知识，我可以去获得和注册BeanDefinition，但是并不知道getBean。这个类知道越少的类越好。接口最小化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先修改testCase</span><br></pre></td></tr></table></figure>
+<p>XmlBeanDefinitionRead。er设置单一职责</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line">XmlBeanDefinitionReader reader = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">    reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    reader.loadBeanDefinitions(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">    PetStoreService petStore =   (PetStoreService)factory.getBean(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertNotNull(petStore);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的去除重复的测试用例代码</p>
+<p>@Before</p>
+<p>每次调用测试用例setUp都会被调用</p>
+<p>没运行一个测试用例，reader和factory都会被清空一次。测试用例之间互不影响。</p>
+<p>每个测试用例都会调用@Before。factory和reader都是new出来的，各个测试用例之间互不影响。</p>
+<h4 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h4><p>在spring中，实际工作中很少会用BeanDefinition。而是使用ApplicationContext，封装了Factory和DefinitionReader。后面从ApplicationContext中获取Bean而不用关心底层的实现和处理。</p>
+<p>创建一个新的Test。 ApplicationContextTest</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationContextTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line">        PetStoreService petStoreService = (PetStoreService)ctx.getBean(<span class="string">"petStore"</span>);</span><br><span class="line">        Assert.assertNotNull(petStoreService);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ApplicationContext是一个接口。</p>
+<p>ClassPathXmlApplicationContext是一个实现，从类路径下寻找文件。</p>
+<p>ApplicationContext有一个方法，getBean：从Context中把petStore这个bean取出。但是这个方法已经在BeanFactory中定义过了。因此可以让ApplicationContext去扩展BeanFactory接口，这样ApplicationContext就具有getBean方法了。</p>
+<p><img src="https://i.loli.net/2018/07/29/5b5d55783c730.jpg" alt=""></p>
+<p>根据上图，把BeanFactory两个关于BeanDefinition的两个方法挪到BeanDefinitionRegistry中。 </p>
+<p>ApplicationContext是给客户使用的，继承了BeanFactory，它的实现就是ClassPathXmlApplicationContext</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassPathXmlApplicationContext</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPathXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title">ApplicationContext</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String conigFile)</span> </span>&#123;</span><br><span class="line">       factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">        XmlBeanDefinitionReader reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">        reader.loadBeanDefinitions(conigFile);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String beanID)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory.getBean(beanID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了ApplicationContext内部有了一个DefaultBeanFactory的实例。</p>
+<p>然后在构造中，new出来reader和factory。</p>
+<p>loadBeanDefinitions过程当中，DefaultBeanFactory会不断的调用BeanDefinition的方法registerBeanDefinition。于是这些Defnition就会进入到factory中。</p>
+<p>持有所有的实例，就可以通过getBean来获取</p>
+<h4 id="filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource"><a href="#filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource" class="headerlink" title="filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource"></a>filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource</h4><p>Rresource类图</p>
+<p><img src="https://i.loli.net/2018/07/29/5b5d5efbf1eda.png" alt=""></p>
+<p>都会变成inputstream送给dom4j去解析</p>
+<p>ResourceTest</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClassPathResource</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        Resource r = <span class="keyword">new</span> ClassPathResource(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = r.getInputStream();</span><br><span class="line">            Assert.assertNotNull(is);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (is != <span class="keyword">null</span>)&#123;</span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFileSystemResource</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        Resource r = <span class="keyword">new</span> FileSystemResource(<span class="string">"/Users/mac/Documents/workspace/litespring/src/test/resources/petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = r.getInputStream();</span><br><span class="line">            Assert.assertNotNull(is);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (is != <span class="keyword">null</span>)&#123;</span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ClassPathResource</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPathResource</span> <span class="keyword">implements</span> <span class="title">Resource</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String path;</span><br><span class="line">    <span class="keyword">private</span> ClassLoader classLoader;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathResource</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(path,(ClassLoader)<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathResource</span><span class="params">(String path, ClassLoader classLoader)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.path = path;</span><br><span class="line">        <span class="keyword">this</span>.classLoader =(classLoader !=<span class="keyword">null</span>? classLoader: ClassUtils.getDefaultClassLoader());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> InputStream <span class="title">getInputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.classLoader.getResourceAsStream(<span class="keyword">this</span>.path);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (is == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException(path+<span class="string">"cannot be opened"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> is;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.path;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileSystemXmlApplicationContext</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileSystemXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title">ApplicationContext</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FileSystemXmlApplicationContext</span><span class="params">(String configFile)</span> </span>&#123;</span><br><span class="line">        factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">        XmlBeanDefinitionReader reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">        Resource resource = <span class="keyword">new</span> FileSystemResource(configFile);</span><br><span class="line">        reader.loadBeanDefinitions(resource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String beanID)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory.getBean(beanID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个类与classpath的区别几乎只有Resource的区别。</p>
+<p>模版方法</p>
+<p><img src="https://i.loli.net/2018/07/29/5b5d717a04950.png" alt=""></p>
+<p>抽象出一个新的抽象类，实现了applicationContext的接口</p>
+<p> <img src="http://pcq0v117m.bkt.clouddn.com/loaderClass.png" alt=""></p>
+<p>这里还是让BeanFactory只保留一个getBean()最小集。把一些不常用的，可配置的相关方法放到一个新的接口当中。</p>
+<p>ConfigurableBeanFactory</p>
+<h3 id="Setter注入"><a href="#Setter注入" class="headerlink" title="Setter注入"></a>Setter注入</h3><p>新增的PetStoreService</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"petStore"</span> <span class="attr">class</span>=<span class="string">"org.litespring.service.v2.PetStoreService"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"accountDao"</span> <span class="attr">ref</span>=<span class="string">"accoutDao"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"itemDao"</span> <span class="attr">ref</span>=<span class="string">"itemDao"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们之前用BeanDefinition表达了<bean>标签中的id, class.这些property怎么表达？</bean></p>
+<p>ref怎么表达？</p>
+<p>value怎么表达？</p>
+<p>这里必须要做点抽象，或者说用类来代表这些感念。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/10/数据类型问题/" rel="next" title="数据类型相关">
+                <i class="fa fa-chevron-left"></i> 数据类型相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#观察它如何工作"><span class="nav-number">1.1.</span> <span class="nav-text">观察它如何工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容纳你的Bean"><span class="nav-number">1.2.</span> <span class="nav-text">容纳你的Bean</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用应用上下文"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用应用上下文</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装配Bean"><span class="nav-number">2.</span> <span class="nav-text">装配Bean</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-配置的可选方案"><span class="nav-number">2.1.</span> <span class="nav-text">Spring 配置的可选方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-BeanFactory"><span class="nav-number">3.</span> <span class="nav-text">Basic BeanFactory</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ApplicationContext"><span class="nav-number">3.1.</span> <span class="nav-text">ApplicationContext</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource"><span class="nav-number">3.2.</span> <span class="nav-text">filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setter注入"><span class="nav-number">4.</span> <span class="nav-text">Setter注入</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

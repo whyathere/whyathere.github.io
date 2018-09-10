@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -83,7 +83,7 @@
 <meta property="og:title" content="Bill">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Bill">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bill">
 
@@ -101,7 +101,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -133,7 +133,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -182,7 +182,27 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -192,7 +212,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -215,6 +235,248 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Spring-刘欣/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/10/Spring-刘欣/" itemprop="url">Spring刘欣</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T17:49:57+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Spring</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>耦合具有两面性。一方面，紧密耦合的代码难以测试，难以复用、难以理解，并且典型地表现出“打地鼠”式的bug特性。另一方面，一定程度的耦合又是必须的—完全没有耦合的代码什么都做不了。为了完成有意义的功能，不同的类必须适当的进行交互。总而言之，耦合是必须的，但应当被小心谨慎地管理。</p>
+<p>创建应用组件之间协作的行为通常称为装配（wiring）。Spring有多种装配bean的方式，采用xml是很常见的一种装配行为。</p>
+<h4 id="观察它如何工作"><a href="#观察它如何工作" class="headerlink" title="观察它如何工作"></a>观察它如何工作</h4><p>Spring通过应用上下文(Application Context)装载bean的定义并把它们组装起来。Spring应用上下文全权负责对象的创建和组装。Spring自带了多种应用上下文的实现，它们之间主要的区别仅仅在于如何配置。</p>
+<p>ClassPathXmlApplicationContext    该类加载位于应用程序类路径下的一个或多个XML配置文件。</p>
+<h4 id="容纳你的Bean"><a href="#容纳你的Bean" class="headerlink" title="容纳你的Bean"></a>容纳你的Bean</h4><p>在基于Spring的应用中，你的应用对象生存于Spring容器(container)中。Spring容器负责创建对象，装配它们，配置它们并管理它们的整个生命周期，从生存到死亡(在这里，可能就是new 到 finalize())。</p>
+<p>首先了解容纳对象的容器，有助于理解对象是如何被管理的。</p>
+<p>容器上Spring容器的核心。Spring容器使用DI管理构成应用的组建，它会创建相互协作的组件之间的关联。</p>
+<p>Spring容器并不是只有一个。Spring自带了多个容器实现，可以归为两种不同的类型。bean工厂上最简单的容器，提供基本的DI支持。应用上下文基于BeanFactory构建，并提供应用框架级别的服务，例如从属性文件解析文本信息以及发布应用事件给感兴趣的事件监听者。</p>
+<p>虽然我们可以在bean工厂和应用上下文之间任选一种。但bean工厂对大多数应用来说太低级了，因此，应用上下文要比bean工厂更受欢迎。我们把精力集中在应用上下文上，不再浪费时间讨论bean工厂。</p>
+<h5 id="使用应用上下文"><a href="#使用应用上下文" class="headerlink" title="使用应用上下文"></a>使用应用上下文</h5><p>常用的几个应用上下文</p>
+<p>AnnotationConfigApplicationContext：从一个或多个基于Java的配置类中加载Spring应用上下文。</p>
+<p>ClassPathXmlApplicationContext：从类路径下的一个或多个XML配置文件中加载上下文定义，把应用上下文的定义文件作为类资源。</p>
+<p>FileSystemXmlApplicationContext：从文件系统下的一个或多个XML配置文件中加载上下文定义。</p>
+<p>DI是组装应用对象的一种方式，借助这种方式对象无需知道依赖来自何处或者依赖的实现方式。不同于自己获取依赖对象，对象会在运行期赋予它们所依赖的对象。依赖对象通常会通过接口了解所注入的对象，这样的话就能确保低耦合。</p>
+<h3 id="装配Bean"><a href="#装配Bean" class="headerlink" title="装配Bean"></a>装配Bean</h3><h4 id="Spring-配置的可选方案"><a href="#Spring-配置的可选方案" class="headerlink" title="Spring 配置的可选方案"></a>Spring 配置的可选方案</h4><p>Spring容器负责创建应用程序中的bean并通过DI来协调这些对象之间的关系。但是，作为开发人员，你需要告诉Spring要创建哪些bean并且如何将其装配在一起。</p>
+<h3 id="Basic-BeanFactory"><a href="#Basic-BeanFactory" class="headerlink" title="Basic BeanFactory"></a>Basic BeanFactory</h3><p>SRP:单一职责原则</p>
+<p><strong>职责：</strong>是引起变化的原因</p>
+<ul>
+<li>如果有多于一个的动机去改变一个类，这个类就具有多于一个职责</li>
+<li>把多个职责耦合在一起，一个变化可能会消弱或者抑制这个类完成其他职责的能力</li>
+</ul>
+<p><strong>SRP:对于一个类而言，应该仅有一个引起它变化的原因</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clz = cl.loadClass(beanClassName);</span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
+<p>上面代码能够返回实例的前提是，类有一个缺省的无参构造函数。这样才能用newInstance的方式创建出来。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    BeanFactory beanFactory = <span class="keyword">new</span> DefaultBeanFactory(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">    BeanDefinition bd = beanFactory.getBeanDefinition(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertEquals(<span class="string">"org.litespring.service.test.v1.PetStoreService"</span>,bd.getBeanClassName());</span><br><span class="line"></span><br><span class="line">    PetStoreService petStore =   (PetStoreService)beanFactory.getBean(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertNotNull(petStore);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> DefaultBeanFactory(<span class="string">"petstore-v1.xml"</span>);</span><br></pre></td></tr></table></figure>
+<p>能够返回bean的定义，而bean的定义也是一个接口。</p>
+<p>然后从factory中获取bean。</p>
+<p>实现类放到support下面，接口放到factory下面。</p>
+<p>getBean是返回一个实例。</p>
+<p>这里面的代码有太多了try/catch</p>
+<p>常见的方法引入Exception，包装一个Exception可以throw出去，让调用方去处理。</p>
+<p>现在的文件有两个功能，一个是读取xml文件，生成bean定义，就是getBeanDefinition</p>
+<p>一个是生成bean的实例。所以要创建两个exception</p>
+<p>RuntimeException是一个unchecked的异常。</p>
+<p><img src="https://i.loli.net/2018/08/31/5b890ff0692d6.jpg" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">catch</span> (DocumentException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BeanDefinitionStoreException(<span class="string">"IOException parsing XML document from"</span>+configFile,e);</span><br></pre></td></tr></table></figure>
+<p>xml异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (bd == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BeanCreationException(<span class="string">"Bean Definition does not exist"</span>);</span><br><span class="line"><span class="comment">//            return null;</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>bean异常</p>
+<p>SRP：单一职责原则</p>
+<ul>
+<li>职责：是引起变化的原因<ul>
+<li>如果有多于一个的动机起改变一个类，这个类就具有多于一个职责</li>
+<li>把多个职责耦合在一起，一个的变化可能会消弱或者抑制这个类完成其他职责的能力</li>
+</ul>
+</li>
+<li>SRP：对于一个类而言，应该仅有一个引起它变化的原因。</li>
+</ul>
+<p><img src="https://i.loli.net/2018/09/03/5b8ce0a3bf779.png" alt=""></p>
+<p>这里现在的DefaultBeanFactory具有多于一个 的职责。</p>
+<p>现在需要单独 的抽取出来</p>
+<p>创建一个reader来读取并解析xml，那么读取来以后怎么把definition告诉factory呢？让BeanDefiniton提供一个方法，registerBeanDefinition.当reader去解析xml文件后，可以去调用register方法，让reader持有一个BeanFactory的实例。但是这样并不好，BeanFactory是给客户使用的，并不希望客户调用register方法。BeanDefinition本质上是一个内部的概念，把一个xml变成一个BeanDefinition，我们拥有它的意义是通过反射去创建一个Bean的实例。所以BeanDefiniton应该是一个内部的概念。</p>
+<p><img src="https://i.loli.net/2018/09/03/5b8ce03672ef7.png" alt=""></p>
+<p>这样有两个好处，1/xmlBeanDefinitionReader只知道一个知识，我可以去获得和注册BeanDefinition，但是并不知道getBean。这个类知道越少的类越好。接口最小化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先修改testCase</span><br></pre></td></tr></table></figure>
+<p>XmlBeanDefinitionRead。er设置单一职责</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line">XmlBeanDefinitionReader reader = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">    reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    reader.loadBeanDefinitions(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">    PetStoreService petStore =   (PetStoreService)factory.getBean(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertNotNull(petStore);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的去除重复的测试用例代码</p>
+<p>@Before</p>
+<p>每次调用测试用例setUp都会被调用</p>
+<p>没运行一个测试用例，reader和factory都会被清空一次。测试用例之间互不影响。</p>
+<p>每个测试用例都会调用@Before。factory和reader都是new出来的，各个测试用例之间互不影响。</p>
+<h4 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h4><p>在spring中，实际工作中很少会用BeanDefinition。而是使用ApplicationContext，封装了Factory和DefinitionReader。后面从ApplicationContext中获取Bean而不用关心底层的实现和处理。</p>
+<p>创建一个新的Test。 ApplicationContextTest</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationContextTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line">        PetStoreService petStoreService = (PetStoreService)ctx.getBean(<span class="string">"petStore"</span>);</span><br><span class="line">        Assert.assertNotNull(petStoreService);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ApplicationContext是一个接口。</p>
+<p>ClassPathXmlApplicationContext是一个实现，从类路径下寻找文件。</p>
+<p>ApplicationContext有一个方法，getBean：从Context中把petStore这个bean取出。但是这个方法已经在BeanFactory中定义过了。因此可以让ApplicationContext去扩展BeanFactory接口，这样ApplicationContext就具有getBean方法了。</p>
+<p><img src="https://i.loli.net/2018/07/29/5b5d55783c730.jpg" alt=""></p>
+<p>根据上图，把BeanFactory两个关于BeanDefinition的两个方法挪到BeanDefinitionRegistry中。 </p>
+<p>ApplicationContext是给客户使用的，继承了BeanFactory，它的实现就是ClassPathXmlApplicationContext</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassPathXmlApplicationContext</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPathXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title">ApplicationContext</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String conigFile)</span> </span>&#123;</span><br><span class="line">       factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">        XmlBeanDefinitionReader reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">        reader.loadBeanDefinitions(conigFile);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String beanID)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory.getBean(beanID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了ApplicationContext内部有了一个DefaultBeanFactory的实例。</p>
+<p>然后在构造中，new出来reader和factory。</p>
+<p>loadBeanDefinitions过程当中，DefaultBeanFactory会不断的调用BeanDefinition的方法registerBeanDefinition。于是这些Defnition就会进入到factory中。</p>
+<p>持有所有的实例，就可以通过getBean来获取</p>
+<h4 id="filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource"><a href="#filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource" class="headerlink" title="filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource"></a>filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource</h4><p>Rresource类图</p>
+<p><img src="https://i.loli.net/2018/07/29/5b5d5efbf1eda.png" alt=""></p>
+<p>都会变成inputstream送给dom4j去解析</p>
+<p>ResourceTest</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClassPathResource</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        Resource r = <span class="keyword">new</span> ClassPathResource(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = r.getInputStream();</span><br><span class="line">            Assert.assertNotNull(is);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (is != <span class="keyword">null</span>)&#123;</span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFileSystemResource</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        Resource r = <span class="keyword">new</span> FileSystemResource(<span class="string">"/Users/mac/Documents/workspace/litespring/src/test/resources/petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = r.getInputStream();</span><br><span class="line">            Assert.assertNotNull(is);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (is != <span class="keyword">null</span>)&#123;</span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ClassPathResource</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPathResource</span> <span class="keyword">implements</span> <span class="title">Resource</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String path;</span><br><span class="line">    <span class="keyword">private</span> ClassLoader classLoader;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathResource</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(path,(ClassLoader)<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathResource</span><span class="params">(String path, ClassLoader classLoader)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.path = path;</span><br><span class="line">        <span class="keyword">this</span>.classLoader =(classLoader !=<span class="keyword">null</span>? classLoader: ClassUtils.getDefaultClassLoader());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> InputStream <span class="title">getInputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.classLoader.getResourceAsStream(<span class="keyword">this</span>.path);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (is == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException(path+<span class="string">"cannot be opened"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> is;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.path;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileSystemXmlApplicationContext</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileSystemXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title">ApplicationContext</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FileSystemXmlApplicationContext</span><span class="params">(String configFile)</span> </span>&#123;</span><br><span class="line">        factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">        XmlBeanDefinitionReader reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">        Resource resource = <span class="keyword">new</span> FileSystemResource(configFile);</span><br><span class="line">        reader.loadBeanDefinitions(resource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String beanID)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory.getBean(beanID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个类与classpath的区别几乎只有Resource的区别。</p>
+<p>模版方法</p>
+<p><img src="https://i.loli.net/2018/07/29/5b5d717a04950.png" alt=""></p>
+<p>抽象出一个新的抽象类，实现了applicationContext的接口</p>
+<p> <img src="http://pcq0v117m.bkt.clouddn.com/loaderClass.png" alt=""></p>
+<p>这里还是让BeanFactory只保留一个getBean()最小集。把一些不常用的，可配置的相关方法放到一个新的接口当中。</p>
+<p>ConfigurableBeanFactory</p>
+<h3 id="Setter注入"><a href="#Setter注入" class="headerlink" title="Setter注入"></a>Setter注入</h3><p>新增的PetStoreService</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"petStore"</span> <span class="attr">class</span>=<span class="string">"org.litespring.service.v2.PetStoreService"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"accountDao"</span> <span class="attr">ref</span>=<span class="string">"accoutDao"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"itemDao"</span> <span class="attr">ref</span>=<span class="string">"itemDao"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们之前用BeanDefinition表达了<bean>标签中的id, class.这些property怎么表达？</bean></p>
+<p>ref怎么表达？</p>
+<p>value怎么表达？</p>
+<p>这里必须要做点抽象，或者说用类来代表这些感念。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -258,9 +520,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -279,7 +541,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -404,9 +666,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -425,7 +687,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -546,9 +808,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -667,9 +929,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -785,7 +1047,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/10/Spring/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/09/10/Spring/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -795,9 +1057,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -952,9 +1214,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -973,7 +1235,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1746,9 +2008,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -1767,7 +2029,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -2608,9 +2870,9 @@ else：
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -2629,7 +2891,7 @@ else：
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -2778,9 +3040,9 @@ else：
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
                 2018-09-10
               </time>
             
@@ -2799,7 +3061,7 @@ else：
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -2845,249 +3107,6 @@ else：
             <ol>
 <li>从git上拉取代码后无法运行，而且Idea也编译代码。<br> 解决办法：本例中ide左下角有提示，需要修改才可以。所以任意修改一下代码就可以正常编译了。</li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/BOS-第四天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/BOS-第四天/" itemprop="url">BOS 第四天</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/项目/" itemprop="url" rel="index">
-                    <span itemprop="name">项目</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="取派员的批量作废"><a href="#取派员的批量作废" class="headerlink" title="取派员的批量作废"></a>取派员的批量作废</h3><h4 id="业务分析"><a href="#业务分析" class="headerlink" title="业务分析"></a>业务分析</h4><pre><code>（1）分析：
-          首先需要知道用户选中了那几个取派员。通过ID来识别，通过js来获取选中的取派员的ID。
-          那么这些怎么传递给后台就是关键了。要考虑：是同步请求还是异步请求，肯定是异步操作。
-          异步操作那就是ajax。
-          往后端传递的数据格式：{&quot;&quot;:&quot;1,2,3,4&quot;}
-         satffAction接收所有ids，接收到字符串进行切割，就会变成字符串数组
-         String ids[]={1,2,3,4};
-         -----&gt;service----&gt;dao
-         事务管理  循环更新每一条记录
-         update xxx  set deltag=&quot;1&quot;  where id=&quot;&quot;
-
- （2）步骤：
-        1、选中一行或者多行，如果没有选中不发送ajax请求，给予用户提示
-        2、选中后，获取所有取派员ID，拼接成字符串给ajax
-        3、action接收ids----&gt;service（切割 循环更新dao）
-</code></pre><h4 id="前端页面代码"><a href="#前端页面代码" class="headerlink" title="前端页面代码"></a>前端页面代码</h4><pre><code>        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">doDelete</span></span>() &#123;</span><br><span class="line">	//  取派员批量作废  业务分析 : </span><br><span class="line">	//  作废 必须 选中一行或者多行 取派员记录 然后才能作废 </span><br><span class="line">	var arr = $(<span class="string">"#grid"</span>).datagrid(<span class="string">"getSelections"</span>);//  [&#123;id:1.......&#125;,&#123;id:2&#125;,&#123;&#125;]</span><br><span class="line">	<span class="keyword">if</span> (arr == null || arr.length == 0) &#123;</span><br><span class="line">		$.messager.alert(<span class="string">"警告"</span>, <span class="string">"至少选中一行"</span>, <span class="string">"warning"</span>);</span><br><span class="line">		<span class="built_in">return</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		//  用户选中  ...批量作废  发送   ids ---&gt;action  ids  ---&gt;业务层 <span class="keyword">for</span> 事务管理   dao  update  xxx <span class="built_in">set</span>  deltag =<span class="string">'1'</span> <span class="built_in">where</span> id = ?</span><br><span class="line">		// ajax  请求   获取用户选中所有id   发送action  </span><br><span class="line">		var idsArray = new Array();</span><br><span class="line">		//  2: 遍历数组   获取数组对象 id  拼接  ids  给ajax </span><br><span class="line">		<span class="keyword">for</span> (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">			// js  数组操作</span><br><span class="line">			idsArray.push(arr[i].id);</span><br><span class="line">		&#125;//  循环结束  将所有选中取派员对象id  存放到idsArray数组中</span><br><span class="line"></span><br><span class="line">		// 将含有全部取派员id数组 转换字符串   join 方法 将数组转化成字符串 </span><br><span class="line">		var ids = idsArray.join(<span class="string">","</span>);//  1,2,3,4</span><br><span class="line">		// 3: 将选中取派员ids 发送给action  批量删除  update 操作</span><br><span class="line">	    $.post(<span class="string">"<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/bc/staffAction_delBatch"</span>,&#123;<span class="string">"ids"</span>:ids&#125;,<span class="keyword">function</span>(data)&#123;</span><br><span class="line">    		//  data(<span class="literal">true</span>/<span class="literal">false</span>)  Map</span><br><span class="line">    			 <span class="keyword">if</span>(data)&#123;</span><br><span class="line">    				    $.messager.alert(<span class="string">"恭喜"</span>,<span class="string">"批量修改成功"</span>,<span class="string">"info"</span>); </span><br><span class="line">    			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    				    $.messager.alert(<span class="string">"错误"</span>,<span class="string">"批量作废失败"</span>,<span class="string">"error"</span>);</span><br><span class="line">    				  &#125;</span><br><span class="line">    		 // 作废成功 datagrid url 地址 再发送一次 以实现页面的及时刷新，否则需要重新打开才会显示</span><br><span class="line">    		 $(<span class="string">"#grid"</span>).datagrid(<span class="string">"reload"</span>);</span><br><span class="line">    		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-由以上可知，ajax通过post方式将数据发送到了staffAction_delBatch。
-</code></pre><h4 id="SatffAction中的代码"><a href="#SatffAction中的代码" class="headerlink" title="SatffAction中的代码"></a>SatffAction中的代码</h4><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">	// 取派员批量删除</span><br><span class="line">@Action(value = <span class="string">"staffAction_delBatch"</span>, results = &#123;</span><br><span class="line">@Result(name = <span class="string">"delBatch"</span>, location = <span class="string">"/WEB-INF/pages/base/staff.jsp"</span>) &#125;)</span><br><span class="line">public String <span class="function"><span class="title">delBatch</span></span>() &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">		String ids=getParameter(<span class="string">"ids"</span>);</span><br><span class="line">		serviceFacade.getStaffService().delBatch(ids);</span><br><span class="line">		push(<span class="literal">true</span>);</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">		push(<span class="literal">false</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">return</span> <span class="string">"delBatch"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="实现层Impl代码"><a href="#实现层Impl代码" class="headerlink" title="实现层Impl代码"></a>实现层Impl代码</h4><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void delBatch(String ids) &#123;</span><br><span class="line">	// 业务层进行ids切割</span><br><span class="line">	<span class="keyword">if</span> (StringUtils.isNotBlank(ids)) &#123;</span><br><span class="line">		String delIds[] = ids.split(<span class="string">","</span>);</span><br><span class="line">		<span class="keyword">for</span> (String id : delIds) &#123;</span><br><span class="line">			staffDao.delBatch(id);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><p>​    </p>
-<h3 id="区域分区定区"><a href="#区域分区定区" class="headerlink" title="区域分区定区"></a>区域分区定区</h3><h4 id="区域分区定区说明"><a href="#区域分区定区说明" class="headerlink" title="区域分区定区说明"></a>区域分区定区说明</h4><p>取派员：取货 送货 是分区域的<br>将全国 地理信息  录入bos系统<br>区域信息   包括国家行政信息</p>
-<pre><code>Region  区域表
-</code></pre><p>存放  国家 各省各市  地理信息<br>例如：江苏省   南京市  玄武区</p>
-<p> 定区管理客户，取派员通过定区获取客户信息</p>
-<p> 省市区录入会很麻烦，因为数据太多，想要简化的话就需要一键上传</p>
-<p> 一键将外部的数据源导入</p>
-<h4 id="区域一键上传使用说明"><a href="#区域一键上传使用说明" class="headerlink" title="区域一键上传使用说明"></a>区域一键上传使用说明</h4><pre><code>excel文件上传   action
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"file"</span>&gt;</span><br></pre></td></tr></table></figure>
-<pre><code>google  one click
-优点：可以在页面的任意一个标签添加上传功能
-
-后台就需要使用java语音来解析 Excel，获取里面的数据转换成对象
-
-以便于插入到数据库中
-
-List&lt;Region&gt; ---&gt;Dao
-
-JPA自带了保存方法
-
-上传的时候要做判断，必须是Excel类型的文件才能上传
-</code></pre><h4 id="一键文件上传前端代码"><a href="#一键文件上传前端代码" class="headerlink" title="一键文件上传前端代码"></a>一键文件上传前端代码</h4><pre><code>(1)首先将一键上传的组件导入到项目中的js目录下
-    这里放在了js/oneclick目录下
-    然后在regin.jsp页面引入该插件
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script</span><br><span class="line">  src=<span class="string">"<span class="variable">$&#123;pageContext.request.contextPath &#125;</span>/js/oneclick/jquery.ocupload-1.1.2.js"</span></span><br><span class="line">  <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>找到toobar中的工具栏<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#125;, &#123;</span><br><span class="line">	id : <span class="string">'button-import'</span>,</span><br><span class="line">	text : <span class="string">'导入'</span>,</span><br><span class="line">	iconCls : <span class="string">'icon-redo'</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
-<p>那么我们创建一个名称为  button-import的函数<br><img src="http://whyathere.github.io/images/bos/bos04/一键上传前端代码.jpg" alt=""><br>    这里需要注意的有正则表达式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^(.+\.xls|.+\.xlsx)$/; //a.xls ss.xlsx这两种格式  .代表任意字符  + 至少一个字符  \. 转义.</span><br></pre></td></tr></table></figure></p>
-<h4 id="一键文件上传原理分析"><a href="#一键文件上传原理分析" class="headerlink" title="一键文件上传原理分析"></a>一键文件上传原理分析</h4><p>（1）如何接收上传的Excel文件<br> Struts2是如何接受上传文件的，通过拦截器（已经有的一个拦截器）FileUploadInterceptor<br> FileUploadInterceptor的源码注释<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* &lt;!-- START SNIPPET: description --&gt;</span><br><span class="line">* &lt;p/&gt;</span><br><span class="line">* Interceptor that is based off of &#123;@link MultiPartRequestWrapper&#125;, <span class="built_in">which</span> is automatically applied <span class="keyword">for</span> any request that</span><br><span class="line">* includes a file. It adds the following parameters, <span class="built_in">where</span> [File Name] is the name given to the file uploaded by the</span><br><span class="line">* HTML form:</span><br><span class="line">* &lt;p/&gt;</span><br><span class="line">* &lt;ul&gt;</span><br><span class="line">* &lt;p/&gt;</span><br><span class="line">* &lt;li&gt;[File Name] : File - the actual File&lt;/li&gt;</span><br><span class="line">* &lt;p/&gt;</span><br><span class="line">* &lt;li&gt;[File Name]ContentType : String - the content <span class="built_in">type</span> of the file&lt;/li&gt;</span><br><span class="line">* &lt;p/&gt;</span><br><span class="line">* &lt;li&gt;[File Name]FileName : String - the actual name of the file uploaded (not the HTML name)&lt;/li&gt;</span><br><span class="line">* &lt;p/&gt;</span><br><span class="line">* &lt;/ul&gt;</span><br><span class="line">* &lt;p/&gt;</span><br></pre></td></tr></table></figure></p>
-<pre><code>Name:文件名
-ContentType：文件类型
-FileName：文件名
-</code></pre><p> 原始案例：先来一个表单</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* &lt;!-- START SNIPPET: example-form --&gt;</span><br><span class="line">*   &amp;lt;s:form action=<span class="string">"doUpload"</span> method=<span class="string">"post"</span> enctype=<span class="string">"multipart/form-data"</span>&amp;gt;</span><br><span class="line">*       &amp;lt;s:file name=<span class="string">"upload"</span> label=<span class="string">"File"</span>/&amp;gt;</span><br><span class="line">*       &amp;lt;s:submit/&amp;gt;</span><br><span class="line">*   &amp;lt;/s:form&amp;gt;</span><br><span class="line">* &lt;!-- END SNIPPET: example-form --&gt;</span><br></pre></td></tr></table></figure>
-<p>官方Action案例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">* &lt;!-- START SNIPPET: example-action --&gt;</span><br><span class="line">*    package com.example;</span><br><span class="line">*</span><br><span class="line">*    import java.io.File;</span><br><span class="line">*    import com.opensymphony.xwork2.ActionSupport;</span><br><span class="line">*</span><br><span class="line">*    public UploadAction extends ActionSupport &#123;</span><br><span class="line">*       private File file;</span><br><span class="line">*       private String contentType;</span><br><span class="line">*       private String filename;</span><br><span class="line">*</span><br><span class="line">*       public void setUpload(File file) &#123;</span><br><span class="line">*          this.file = file;</span><br><span class="line">*       &#125;</span><br><span class="line">*</span><br><span class="line">*       public void setUploadContentType(String contentType) &#123;</span><br><span class="line">*          this.contentType = contentType;</span><br><span class="line">*       &#125;</span><br><span class="line">*</span><br><span class="line">*       public void setUploadFileName(String filename) &#123;</span><br><span class="line">*          this.filename = filename;</span><br><span class="line">*       &#125;</span><br><span class="line">*</span><br><span class="line">*       public String <span class="function"><span class="title">execute</span></span>() &#123;</span><br><span class="line">*          //...</span><br><span class="line">*          <span class="built_in">return</span> SUCCESS;</span><br><span class="line">*       &#125;</span><br><span class="line">*  &#125;</span><br></pre></td></tr></table></figure></p>
-<p> 拦截器把文件解析完了，action接受文件。弄一个set方法就可以了，拦截器调set方法，拿到文件。<br> 按照规范是setUpload<br> 因此action中也添加一个upload属性，并且添加set方法就可以拿到upload，即上传文件。这里一定要和前端页面name一样。</p>
-<p> 由于Struts2是先执行拦截器，再执行action。所以一定要保证它走了    FileUploadInterceptor拦截器<br> FileUploadInterceptor是在默认栈里的，所以不需要配置</p>
-<h4 id="一键上传文件解析-poi"><a href="#一键上传文件解析-poi" class="headerlink" title="一键上传文件解析-poi"></a>一键上传文件解析-poi</h4><pre><code> Apache-poi
-Excel工作簿
-</code></pre><p><img src="http://whyathere.github.io/images/bos/bos04/Apache-poi的read.jpg" alt=""><br>    首先通过流inp拿到工作簿 Workbook<br>    拿到工作簿之后，拿到sheet下标<br>    拿到之后一行行读  sheet<br>    然后再一格格的读就可以了<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 创建对Excel工作簿文件的引用</span><br><span class="line">   HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(fileToBeRead));</span><br></pre></td></tr></table></figure></p>
-<h4 id="关于-FileUploadInterceptor拦截器"><a href="#关于-FileUploadInterceptor拦截器" class="headerlink" title="关于 FileUploadInterceptor拦截器"></a>关于 FileUploadInterceptor拦截器</h4><pre><code>思考：FileUploadInterceptor 是怎么来检测到你上传了文件的。
-</code></pre><p>  FileUploadInterceptor：位于Struts2的defaultStack第十的位置，通过它的名称就可以知道它是用于处<br>  理文件的Struts2处理文件上传内部使用的是commons-fileupload组件，当我们在form表单中把enctype属性设置为<br>  “multipart/form-data”时表示这是一个文件上传请求，当Struts2接收到这样一个请求后把请求包装在一个<br>  MultiPartRequestWrapper对象中，而MultiPartRequestWrapper又包装了JakartaMultiPartRequest，<br>  JakartaMultiPartRequest对象才是真正处理文件上传的request对象<br>  下面说一下该拦截器中三个重要属性：</p>
-<ol>
-<li>maximumSize –&gt;允许上传文件最大大小，单位为byte（字节）</li>
-<li>allowedTypesSet –&gt;允许上传文件类型集合</li>
-<li><p>allowedExtensionsSet –&gt;允许上传文件扩展名集合</p>
-<p>必须这三个条件都符合，文件上传才能成功。<br>下面是拦截器的intercept方法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line">public String intercept(ActionInvocation invocation) throws Exception &#123;  </span><br><span class="line">    ActionContext ac = invocation.getInvocationContext();//获取ActionContext对象  </span><br><span class="line">    //获取request对象  </span><br><span class="line">    HttpServletRequest request = (HttpServletRequest) ac.get(ServletActionContext.HTTP_REQUEST);  </span><br><span class="line">    //判断是否是文件上传请求  </span><br><span class="line">    <span class="keyword">if</span> (!(request instanceof MultiPartRequestWrapper)) &#123;  </span><br><span class="line">        <span class="keyword">if</span> (LOG.isDebugEnabled()) &#123;  </span><br><span class="line">            ActionProxy proxy = invocation.getProxy();  </span><br><span class="line">            LOG.debug(getTextMessage(<span class="string">"struts.messages.bypass.request"</span>, new Object[]&#123;proxy.getNamespace(), proxy.getActionName()&#125;, ac.getLocale()));  </span><br><span class="line">        &#125;  </span><br><span class="line">        //如果不是则直接调用下一个拦截器，因为不需要处理文件上传  </span><br><span class="line">        <span class="built_in">return</span> invocation.invoke();  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    ValidationAware validation = null;  </span><br><span class="line">    Object action = invocation.getAction();//获取当前Action对象  </span><br><span class="line">    //判断有无实现ValidationAware接口，当Action继承自ActionSupport类时是实现了该接口的  </span><br><span class="line">    <span class="keyword">if</span> (action instanceof ValidationAware) &#123;  </span><br><span class="line">        validation = (ValidationAware) action;  </span><br><span class="line">    &#125;  </span><br><span class="line">    //前面说了文件上传时request类型就是MultiPartRequestWrapper  </span><br><span class="line">    MultiPartRequestWrapper multiWrapper = (MultiPartRequestWrapper) request;  </span><br><span class="line">    //判断文件上传是否有错误，也就是是否符合上面的三个上传条件  </span><br><span class="line">    <span class="keyword">if</span> (multiWrapper.hasErrors()) &#123;  </span><br><span class="line">        <span class="keyword">for</span> (String error : multiWrapper.getErrors()) &#123;  </span><br><span class="line">            <span class="keyword">if</span> (validation != null) &#123;//有错误则添加ActionError，注意validation就是当前Action对象  </span><br><span class="line">                validation.addActionError(error);  </span><br><span class="line">            &#125;  </span><br><span class="line">  </span><br><span class="line">            LOG.warn(error);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    //获取上传文件参数名(input的name属性值)枚举，因为struts2支持一欠上传多个文件  </span><br><span class="line">    Enumeration fileParameterNames = multiWrapper.getFileParameterNames();  </span><br><span class="line">    <span class="keyword">while</span> (fileParameterNames != null &amp;&amp; fileParameterNames.hasMoreElements()) &#123;//迭代  </span><br><span class="line">        // 当前文件参数名  </span><br><span class="line">        String inputName = (String) fileParameterNames.nextElement();  </span><br><span class="line">        // 获取上传文件类型，因为多个文件上传input的name属性可以相同，所以这里是数组  </span><br><span class="line">        String[] contentType = multiWrapper.getContentTypes(inputName);  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">if</span> (isNonEmpty(contentType)) &#123;  </span><br><span class="line">            // 获取上传文件的真实名称(在客户端文件系统中的名称)，至于返回值为什么是数组与上同理  </span><br><span class="line">            String[] fileName = multiWrapper.getFileNames(inputName);  </span><br><span class="line">            <span class="keyword">if</span> (isNonEmpty(fileName)) &#123;  </span><br><span class="line">                // 获取上传的文件  </span><br><span class="line">                File[] files = multiWrapper.getFiles(inputName);  </span><br><span class="line">                <span class="keyword">if</span> (files != null &amp;&amp; files.length &gt; 0) &#123;  </span><br><span class="line">                    List&lt;File&gt; acceptedFiles = new ArrayList&lt;File&gt;(files.length);  </span><br><span class="line">                    List&lt;String&gt; acceptedContentTypes = new ArrayList&lt;String&gt;(files.length);  </span><br><span class="line">                    List&lt;String&gt; acceptedFileNames = new ArrayList&lt;String&gt;(files.length);  </span><br><span class="line">                    String contentTypeName = inputName + <span class="string">"ContentType"</span>;  </span><br><span class="line">                    String fileNameName = inputName + <span class="string">"FileName"</span>;//这时就是文件上传时接收文件类型与文件名称固定写法的原因  </span><br><span class="line">                    //迭代文件数组  </span><br><span class="line">                    <span class="keyword">for</span> (int index = 0; index &lt; files.length; index++) &#123;  </span><br><span class="line">                        //判断该文件是否合法，如果合法则添加到合法集合中  </span><br><span class="line">                        <span class="keyword">if</span> (acceptFile(action, files[index], fileName[index], contentType[index], inputName, validation, ac.getLocale())) &#123;  </span><br><span class="line">                            acceptedFiles.add(files[index]);  </span><br><span class="line">                            acceptedContentTypes.add(contentType[index]);  </span><br><span class="line">                            acceptedFileNames.add(fileName[index]);  </span><br><span class="line">                        &#125;  </span><br><span class="line">                    &#125;  </span><br><span class="line">                    //如果合法文件集合不为空  </span><br><span class="line">                    <span class="keyword">if</span> (!acceptedFiles.isEmpty()) &#123;  </span><br><span class="line">                        Map&lt;String, Object&gt; params = ac.getParameters();  </span><br><span class="line">                        //将上传的文件，文件类型，文件名称存储到ActionContext的parameters Map中  </span><br><span class="line">                        params.put(inputName, acceptedFiles.toArray(new File[acceptedFiles.size()]));  </span><br><span class="line">                        params.put(contentTypeName, acceptedContentTypes.toArray(new String[acceptedContentTypes.size()]));  </span><br><span class="line">                        params.put(fileNameName, acceptedFileNames.toArray(new String[acceptedFileNames.size()]));  </span><br><span class="line">                    &#125;  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                LOG.warn(getTextMessage(action, <span class="string">"struts.messages.invalid.file"</span>, new Object[]&#123;inputName&#125;, ac.getLocale()));  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            LOG.warn(getTextMessage(action, <span class="string">"struts.messages.invalid.content.type"</span>, new Object[]&#123;inputName&#125;, ac.getLocale()));  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    // 调用下一个拦截器，当然也调用了Action  </span><br><span class="line">    String result = invocation.invoke();  </span><br><span class="line">  </span><br><span class="line">    // 当Action执行完毕，拦截器执行依次返回又执行到该拦截器，清理文件上传时的临时文件  </span><br><span class="line">    fileParameterNames = multiWrapper.getFileParameterNames();  </span><br><span class="line">    <span class="keyword">while</span> (fileParameterNames != null &amp;&amp; fileParameterNames.hasMoreElements()) &#123;  </span><br><span class="line">        String inputValue = (String) fileParameterNames.nextElement();  </span><br><span class="line">        File[] files = multiWrapper.getFiles(inputValue);  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">for</span> (File currentFile : files) &#123;  </span><br><span class="line">            <span class="keyword">if</span> (LOG.isInfoEnabled()) &#123;  </span><br><span class="line">                LOG.info(getTextMessage(action, <span class="string">"struts.messages.removing.file"</span>, new Object[]&#123;inputValue, currentFile&#125;, ac.getLocale()));  </span><br><span class="line">            &#125;  </span><br><span class="line">  </span><br><span class="line">            <span class="keyword">if</span> ((currentFile != null) &amp;&amp; currentFile.isFile()) &#123;  </span><br><span class="line">                <span class="keyword">if</span> (currentFile.delete() == <span class="literal">false</span>) &#123;//这里调用了currentFile.delete()将临时文件删除，因为此时在Action对上传的文件处理已经完成  </span><br><span class="line">                    LOG.warn(<span class="string">"Resource Leaking:  Could not remove uploaded file '"</span>+currentFile.getCanonicalPath()+<span class="string">"'."</span>);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    //返回上一个拦截器  </span><br><span class="line">    <span class="built_in">return</span> result;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">下面再去看一下该拦截器是如何判断上传的文件是否合法的，即acceptFile方法：</span><br><span class="line"></span><br><span class="line">[java] view plain copy</span><br><span class="line">protected boolean acceptFile(Object action, File file, String filename, String contentType, String inputName, ValidationAware validation, Locale locale) &#123;  </span><br><span class="line">    boolean fileIsAcceptable = <span class="literal">false</span>;  </span><br><span class="line">  </span><br><span class="line">    // If it<span class="string">'s null the upload failed  </span></span><br><span class="line"><span class="string">    if (file == null) &#123;  </span></span><br><span class="line"><span class="string">        String errMsg = getTextMessage(action, "struts.messages.error.uploading", new Object[]&#123;inputName&#125;, locale);  </span></span><br><span class="line"><span class="string">        if (validation != null) &#123;  </span></span><br><span class="line"><span class="string">            validation.addFieldError(inputName, errMsg);  </span></span><br><span class="line"><span class="string">        &#125;  </span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">        LOG.warn(errMsg);  </span></span><br><span class="line"><span class="string">    &#125; else if (maximumSize != null &amp;&amp; maximumSize &lt; file.length()) &#123;  </span></span><br><span class="line"><span class="string">        String errMsg = getTextMessage(action, "struts.messages.error.file.too.large", new Object[]&#123;inputName, filename, file.getName(), "" + file.length()&#125;, locale);  </span></span><br><span class="line"><span class="string">        if (validation != null) &#123;  </span></span><br><span class="line"><span class="string">            validation.addFieldError(inputName, errMsg);  </span></span><br><span class="line"><span class="string">        &#125;  </span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">        LOG.warn(errMsg);  </span></span><br><span class="line"><span class="string">    &#125; else if ((!allowedTypesSet.isEmpty()) &amp;&amp; (!containsItem(allowedTypesSet, contentType))) &#123;  </span></span><br><span class="line"><span class="string">        String errMsg = getTextMessage(action, "struts.messages.error.content.type.not.allowed", new Object[]&#123;inputName, filename, file.getName(), contentType&#125;, locale);  </span></span><br><span class="line"><span class="string">        if (validation != null) &#123;  </span></span><br><span class="line"><span class="string">            validation.addFieldError(inputName, errMsg);  </span></span><br><span class="line"><span class="string">        &#125;  </span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">        LOG.warn(errMsg);  </span></span><br><span class="line"><span class="string">    &#125; else if ((! allowedExtensionsSet.isEmpty()) &amp;&amp; (!hasAllowedExtension(allowedExtensionsSet, filename))) &#123;  </span></span><br><span class="line"><span class="string">        String errMsg = getTextMessage(action, "struts.messages.error.file.extension.not.allowed", new Object[]&#123;inputName, filename, file.getName(), contentType&#125;, locale);  </span></span><br><span class="line"><span class="string">        if (validation != null) &#123;  </span></span><br><span class="line"><span class="string">            validation.addFieldError(inputName, errMsg);  </span></span><br><span class="line"><span class="string">        &#125;  </span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">        LOG.warn(errMsg);  </span></span><br><span class="line"><span class="string">    &#125; else &#123;  </span></span><br><span class="line"><span class="string">        fileIsAcceptable = true;  </span></span><br><span class="line"><span class="string">    &#125;  </span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">    return fileIsAcceptable;  </span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>该方法逻辑很简单，就是依次判断上传的文件是否为null，是否符合设定的文件大小，是否符合设定的文件类型，<br>是否符合设定的文件扩展名。如果没有设定文件类型与文件扩展名则表示文件类型与文件扩展名没有限制，而在<br>defaultStack中，该拦截器的这两个都是没有进行设定的，但是上传文件的最大大小是设置了的，肯定有人会说<br>maximumSize不是也没有设置吗？没错，在该拦截器maximumSize的确没有设置，默认值就是为null，刚刚也说<br>了，真正处理文件上传的request对象是JakartaMultiPartRequest，在JakartaMultiPartRequest中有一个<br>相应的maxSize属性在实例化JakartaMultiPartRequest对象的时候通过struts2的容器把该值注入进来了，<br>该值的配置在struts2-core.jar中的org.apache.struts2包中的default.properties文件中<br>(struts.multipart.maxSize=2097152)，默认值为2097152，即2M大小。<br>  我们在进行文件上传的时候是在Action中定义相应的属性来接收上传的文件，文件的类型与文件名，但在大家发现没有在该拦截器并没有调用当前Action设置当前上传文件的方法，即没有调用相应的setXxx()、setXxxContentType()、setXxxFileName()方法，xxx为input的name属性值，只是将上传的文件，文件类型，文件名称存储到ActionContext的parameters Map中，这个问题在ParametersInterceptor拦截器进行讲解。</p>
-<h4 id="POI代码"><a href="#POI代码" class="headerlink" title="POI代码"></a>POI代码</h4><p>目标：从Excel表中拿到数据装到List<region>然后放入到数据库中。<br>那么循环sheet就可以了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface Sheet extends Iterable&lt;Row&gt; &#123;</span><br></pre></td></tr></table></figure></region></p>
-<p>for each继承了这个接口才能够循环<br>那么这里Sheet就相当于List而Row就相当于Region<br>这里循环遍历从每一个sheet内获取数据，但是要把第一行跳过。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface Sheet extends Iterable&lt;Row&gt; &#123;</span><br></pre></td></tr></table></figure></p>
-<p>由于Sheet继承了Iterable，所以Sheet相当于一个List<br>一键上传的action代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">// 如何接收上传的文件？</span><br><span class="line">	private File upload;   //与前端页面的name一致，当前的action就可以获取上传文件</span><br><span class="line">	</span><br><span class="line">	public void setUpload(File upload) &#123;</span><br><span class="line">		this.upload = upload;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 一键上传</span><br><span class="line">	@Action(value = <span class="string">"regionAction_oneclickupload"</span>, results = &#123;</span><br><span class="line">			@Result(name = <span class="string">"oneclickupload"</span>, location = <span class="string">"/WEB-INF/pages/base/region.jsp"</span>) &#125;)</span><br><span class="line">	public String <span class="function"><span class="title">oneclickupload</span></span>() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			//如何接收上传文件</span><br><span class="line">            // 创建对Excel工作簿文件的引用</span><br><span class="line">            HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(upload));</span><br><span class="line">            // 创建对工作表的引用。</span><br><span class="line">            // 本例是按名引用（让我们假定那张表有着缺省名<span class="string">"Sheet1"</span>）</span><br><span class="line">//            HSSFSheet sheet = workbook.getSheet(<span class="string">"Sheet1"</span>);</span><br><span class="line">            HSSFSheet sheet = workbook.getSheetAt(0);</span><br><span class="line">            // 也可用getSheetAt(int index)按索引引用，</span><br><span class="line">            // 在Excel文档中，第一张工作表的缺省索引是0，</span><br><span class="line">            // 其语句为：HSSFSheet sheet = workbook.getSheetAt(0);</span><br><span class="line">            // 读取左上端单元</span><br><span class="line">            List&lt;Region&gt; regions=new ArrayList&lt;Region&gt;();</span><br><span class="line">			<span class="keyword">for</span> (Row row:sheet)&#123;</span><br><span class="line">				//如果是第一行就跳过</span><br><span class="line">				<span class="keyword">if</span> (row.getRowNum()==0)&#123;</span><br><span class="line">					<span class="built_in">continue</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				Region r=new Region();//一行代表一个Region对象</span><br><span class="line">				//依次从几个小格中取数据</span><br><span class="line">				r.setId(row.getCell(0).getStringCellValue());</span><br><span class="line">				r.setProvince(row.getCell(1).getStringCellValue());</span><br><span class="line">				r.setCity(row.getCell(2).getStringCellValue());</span><br><span class="line">				r.setDistrict(row.getCell(3).getStringCellValue());</span><br><span class="line">				r.setPostcode(row.getCell(4).getStringCellValue());</span><br><span class="line"></span><br><span class="line">				/*r.setShortcode(shortcode);</span><br><span class="line">				r.setCitycode(citycode);*/</span><br><span class="line">				regions.add(r);</span><br><span class="line">			&#125;</span><br><span class="line">			//业务层，将数据更新</span><br><span class="line">			serviceFacade.getRegionService().batchImport(regions);</span><br><span class="line"></span><br><span class="line">//			push(<span class="literal">true</span>);</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">			push(<span class="literal">false</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">return</span> <span class="string">"oneclickupload"</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<p>说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HSSFSheet sheet = workbook.getSheetAt(0);</span><br></pre></td></tr></table></figure></p>
-<p>按照表单取第一个工作簿<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Region&gt; regions=new ArrayList&lt;Region&gt;();</span><br></pre></td></tr></table></figure></p>
-<p>将当前工作簿作为一个List集合，每行为Region<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Row row:sheet)&#123;</span><br><span class="line">	//如果是第一行就跳过</span><br><span class="line">	<span class="keyword">if</span> (row.getRowNum()==0)&#123;</span><br><span class="line">		<span class="built_in">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Region r=new Region();//一行代表一个Region对象</span><br><span class="line">	//依次从几个小格中取数据</span><br><span class="line">	r.setId(row.getCell(0).getStringCellValue());</span><br><span class="line">	r.setProvince(row.getCell(1).getStringCellValue());</span><br><span class="line">	r.setCity(row.getCell(2).getStringCellValue());</span><br><span class="line">	r.setDistrict(row.getCell(3).getStringCellValue());</span><br><span class="line">	r.setPostcode(row.getCell(4).getStringCellValue());</span><br><span class="line"></span><br><span class="line">	/*r.setShortcode(shortcode);</span><br><span class="line">	r.setCitycode(citycode);*/</span><br><span class="line">	regions.add(r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>循环遍历，将工作簿放入到regions集合中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//业务层，将数据更新</span><br><span class="line">serviceFacade.getRegionService().batchImport(regions);</span><br></pre></td></tr></table></figure></p>
-<p>调用业务层，更新数据到数据库。</p>
-<h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//服务器完成  回送200</span><br><span class="line">onComplete : <span class="keyword">function</span>(data, self, element) &#123;</span><br><span class="line">	//data 服务器回送  <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span> (data) &#123;</span><br><span class="line">    $.messager.alert(<span class="string">"恭喜"</span>, <span class="string">"上传成功"</span>, <span class="string">"info"</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	$.messager.alert(<span class="string">"错误"</span>, <span class="string">"上传失败"</span>, <span class="string">"error"</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>这里不管前端传什么，都会提示“上传成功”。如果在action中添加push(true);data为string<br>也会当做true。false也会为string会被当做true<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy=<span class="string">"region"</span>)</span><br><span class="line">@JSON(serialize = <span class="literal">false</span>)</span><br><span class="line">public Set&lt;Subarea&gt; <span class="function"><span class="title">getSubareas</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.subareas;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>将不需要显示的不进行数据化处理，否则会出现懒加载<br>区域分页查询代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 区域的分页查询</span><br><span class="line">@Action(value = <span class="string">"regionAction_pageQuery"</span>, results = &#123;</span><br><span class="line">        @Result(name = <span class="string">"pageQuery"</span>, <span class="built_in">type</span> = <span class="string">"json"</span>)&#125;)</span><br><span class="line">public String <span class="function"><span class="title">pageQuery</span></span>() &#123;</span><br><span class="line">    Map&lt;String, Object&gt; data = new HashMap&lt;String, Object&gt;();</span><br><span class="line">    try &#123;</span><br><span class="line">        PageRequest pageable = new PageRequest(page - 1, rows);</span><br><span class="line">        Page&lt;Region&gt; pageData = serviceFacade.getRegionService().pageQuery(pageable);</span><br><span class="line">        //dao 参数 Pageable pageable 自动完成分页查询 将分页结果数据 自动封装到Page&lt;T&gt;</span><br><span class="line">        //从Page 对象获取总记录数 和 每页分页记录数List&lt;Staff&gt;</span><br><span class="line">        data.put(<span class="string">"total"</span>, pageData.getTotalElements());</span><br><span class="line">        data.put(<span class="string">"rows"</span>, pageData.getContent());</span><br><span class="line">        push(data);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        push(<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="string">"pageQuery"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="分页优化"><a href="#分页优化" class="headerlink" title="分页优化"></a>分页优化</h4><p>首先分析之前两个分页的相同之处，如下图所示:<br><img src="http://whyathere.github.io/images/bos/bos04/分页相同代码分析.jpg" alt=""><br>比较代码几乎都一样，只有泛型不同。<br>前端的分页插件默认会自动从栈顶拿分页数据，所以之前的后端代码都是push（data）；<br>那么如果 我们想对分页代码进行优化就将重复的代码放入到父类中，以方便子类调用<br>而结果集由于要被不同的action所使用，所以不能在类中配置，而且应该配置一个全家的结果集<br>在struts.xml中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 定义全局结果集视图 --&gt;</span><br><span class="line">&lt;global-results&gt;</span><br><span class="line">	&lt;result name=<span class="string">"no_login"</span> <span class="built_in">type</span>=<span class="string">"redirect"</span>&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">	&lt;result name=<span class="string">"pageQuery"</span> <span class="built_in">type</span>=<span class="string">"json"</span>&gt;</span><br><span class="line">		&lt;param name=<span class="string">"root"</span>&gt;obj&lt;/param&gt;</span><br><span class="line">	&lt;/result&gt;</span><br><span class="line">&lt;/global-results&gt;</span><br></pre></td></tr></table></figure></p>
-<p>之后，只要结果集是pageQuery就会走这个结果集。<br>那么代码中的结果集就不需要配置了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">results = &#123;@Result(name = <span class="string">"pageQuery"</span>, <span class="built_in">type</span> = <span class="string">"json"</span>)&#125;</span><br></pre></td></tr></table></figure></p>
-<p>return “pageQuery”;就全部都走全局结果集</p>
-<p>但是这个的数据一定要放在栈顶，但是有的时候栈顶数据不能是这个，而是model<br>一定放的话就会产生冲突（默认是model），会影响数据的获取。<br>这里涉及到一个拦截器：ModelDrivenInterceptor，在action执行前执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ModelDriven modelDriven = (ModelDriven) action;</span><br><span class="line">ValueStack stack = invocation.getStack();</span><br></pre></td></tr></table></figure>
-<p>作用是将model压到栈顶。</p>
-<p>插件默认是从栈顶拿数据，但是插件可以配置不从栈顶拿<br>只要配置了root就不从栈顶取数据了，而是搜索值栈。</p>
-<p>model在栈顶，而BaseAction也在值栈，那么BaseAction所有的属性和方法也可以取到，<br>getObj方法在值栈，之前用push放栈顶。<br>例如：push<user>   &lt;s:property value=”name”&gt;<br>push将user放入值栈，前端通过 &lt;s:property value=”name”&gt;  可以拿到name<br>可以拿到name的原因是：user提供了get方法<br>而这里，BaseAction在值栈，那么getObj能拿到。<br>插件会搜索obj，全局结果集已经挂起，而正好父类BaseAciton提供getObj，那么就可以<br>通过这个方法拿到Map<br>父类结果集优化代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//分页结果集的优化</span><br><span class="line">protected PageRequest <span class="function"><span class="title">getPageRequest</span></span>() &#123;</span><br><span class="line">    PageRequest pageable = new PageRequest(page - 1, rows);</span><br><span class="line">    <span class="built_in">return</span> pageable;</span><br><span class="line">&#125;</span><br><span class="line">//父类要的</span><br><span class="line">private Page&lt;T&gt; pageData;</span><br><span class="line"></span><br><span class="line">public void setPageData(Page&lt;T&gt; pageData) &#123;</span><br><span class="line">    this.pageData = pageData;</span><br><span class="line">&#125;</span><br><span class="line">//父类 提供getObj方法</span><br><span class="line">public Map&lt;String, Object&gt; <span class="function"><span class="title">getObj</span></span>()&#123;</span><br><span class="line">    Map&lt;String, Object&gt; data = new HashMap&lt;String, Object&gt;();</span><br><span class="line">    data.put(<span class="string">"total"</span>, pageData.getTotalElements());</span><br><span class="line">    data.put(<span class="string">"rows"</span>, pageData.getContent());</span><br><span class="line">    <span class="built_in">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></user></p>
-<p>这样子类的代码就简单了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">return</span> <span class="string">"pageQuery"</span>;  //走全局结果集</span><br></pre></td></tr></table></figure></p>
-<p>就会走全局结果集，找到这个结果集走json，配置了以后不会走栈顶，会搜索值栈，getObj<br>从而拿到数据<br>子类代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Page&lt;Region&gt; pageData = serviceFacade.getRegionService().pageQuery(getPageRequest());</span><br><span class="line">setPageData(pageData);</span><br></pre></td></tr></table></figure></p>
-<p>这里的setPageData是将数据发送给父类，以便于父类生成Map&lt;String,Object&gt;</p>
-<h4 id="分页查询结果集优化流程说明"><a href="#分页查询结果集优化流程说明" class="headerlink" title="分页查询结果集优化流程说明"></a>分页查询结果集优化流程说明</h4><p><img src="http://whyathere.github.io/images/bos/bos04/分页查询优化封装.png" alt=""><br>第一步：父类封装了Spring Data JPA 需要的分页查询对象<br>封装好后，返回给子类。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">protected PageRequest <span class="function"><span class="title">getPageRequest</span></span>() &#123;</span><br><span class="line">    PageRequest pageable = new PageRequest(page - 1, rows);</span><br><span class="line">    <span class="built_in">return</span> pageable;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>第二步：子类拿到数据之后去数据库进行查询<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Page&lt;Region&gt; pageData = serviceFacade.getRegionService().pageQuery(getPageRequest());</span><br></pre></td></tr></table></figure></p>
-<p>第三步：查询好分页数据之后传递给父类<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setPageData(pageData);</span><br></pre></td></tr></table></figure></p>
-<p>父类：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//父类要的</span><br><span class="line">private Page&lt;T&gt; pageData;</span><br><span class="line"></span><br><span class="line">public void setPageData(Page&lt;T&gt; pageData) &#123;</span><br><span class="line">    this.pageData = pageData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>第四步：给到父类之后，子类就会去找全局结果集。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">return</span> <span class="string">"pageQuery"</span>;</span><br></pre></td></tr></table></figure></p>
-<p>全局结果集：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 定义全局结果集视图 --&gt;</span><br><span class="line">&lt;global-results&gt;</span><br><span class="line">	&lt;result name=<span class="string">"no_login"</span> <span class="built_in">type</span>=<span class="string">"redirect"</span>&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">	&lt;result name=<span class="string">"pageQuery"</span> <span class="built_in">type</span>=<span class="string">"json"</span>&gt;</span><br><span class="line">		&lt;param name=<span class="string">"root"</span>&gt;obj&lt;/param&gt;</span><br><span class="line">	&lt;/result&gt;</span><br><span class="line">&lt;/global-results&gt;</span><br></pre></td></tr></table></figure></p>
-<p>这里配置了root而且使用Json，root就会走struts2的json插件中的JSONResult的findRootObject方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">protected Object findRootObject(ActionInvocation invocation) &#123;</span><br><span class="line">    Object rootObject;</span><br><span class="line">    <span class="keyword">if</span> (this.root != null) &#123;</span><br><span class="line">        ValueStack stack = invocation.getStack();</span><br><span class="line">        rootObject = stack.findValue(root);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        rootObject = invocation.getStack().peek(); // model overrides action</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> rootObject;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>进行判断 if (this.root != null)<br>这个root的值就是Obj，else就不走了，不拿栈顶数据。<br>走：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rootObject = stack.findValue(root);</span><br></pre></td></tr></table></figure></p>
-<p>第五步：搜索值栈（从上往下依次搜索）<br>值栈的栈顶是：model<br>在值栈的某个区域有getObj，这个方法是stack.findValue(root);来调用的（插件调用的）<br>找到getObj，这样就又会找到父类的getObj方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//父类 提供getObj方法</span><br><span class="line">public Map&lt;String, Object&gt; <span class="function"><span class="title">getObj</span></span>()&#123;</span><br><span class="line">    Map&lt;String, Object&gt; data = new HashMap&lt;String, Object&gt;();</span><br><span class="line">    data.put(<span class="string">"total"</span>, pageData.getTotalElements());</span><br><span class="line">    data.put(<span class="string">"rows"</span>, pageData.getContent());</span><br><span class="line">    <span class="built_in">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>就会返回Map，那么序列化的也是Map。</p>
 
           
         
@@ -3173,8 +3192,8 @@ Excel工作簿
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -3185,7 +3204,7 @@ Excel工作簿
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
                   <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">categories</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
               </div>
             
@@ -3196,7 +3215,7 @@ Excel工作簿
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">13</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
             
@@ -3242,7 +3261,7 @@ Excel工作簿
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -3250,7 +3269,7 @@ Excel工作簿
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
