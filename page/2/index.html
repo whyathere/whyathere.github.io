@@ -249,6 +249,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Spring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/10/Spring/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Spring</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>耦合具有两面性。一方面，紧密耦合的代码难以测试，难以复用、难以理解，并且典型地表现出“打地鼠”式的bug特性。另一方面，一定程度的耦合又是必须的—完全没有耦合的代码什么都做不了。为了完成有意义的功能，不同的类必须适当的进行交互。总而言之，耦合是必须的，但应当被小心谨慎地管理。</p>
+<p>创建应用组件之间协作的行为通常称为装配（wiring）。Spring有多种装配bean的方式，采用xml是很常见的一种装配行为。</p>
+<h4 id="观察它如何工作"><a href="#观察它如何工作" class="headerlink" title="观察它如何工作"></a>观察它如何工作</h4><p>Spring通过应用上下文(Application Context)装载bean的定义并把它们组装起来。Spring应用上下文全权负责对象的创建和组装。Spring自带了多种应用上下文的实现，它们之间主要的区别仅仅在于如何配置。</p>
+<p>ClassPathXmlApplicationContext    该类加载位于应用程序类路径下的一个或多个XML配置文件。</p>
+<h4 id="容纳你的Bean"><a href="#容纳你的Bean" class="headerlink" title="容纳你的Bean"></a>容纳你的Bean</h4><p>在基于Spring的应用中，你的应用对象生存于Spring容器(container)中。Spring容器负责创建对象，装配它们，配置它们并管理它们的整个生命周期，从生存到死亡(在这里，可能就是new 到 finalize())。</p>
+<p>首先了解容纳对象的容器，有助于理解对象是如何被管理的。</p>
+<p>容器上Spring容器的核心。Spring容器使用DI管理构成应用的组建，它会创建相互协作的组件之间的关联。</p>
+<p>Spring容器并不是只有一个。Spring自带了多个容器实现，可以归为两种不同的类型。bean工厂上最简单的容器，提供基本的DI支持。应用上下文基于BeanFactory构建，并提供应用框架级别的服务，例如从属性文件解析文本信息以及发布应用事件给感兴趣的事件监听者。</p>
+<p>虽然我们可以在bean工厂和应用上下文之间任选一种。但bean工厂对大多数应用来说太低级了，因此，应用上下文要比bean工厂更受欢迎。我们把精力集中在应用上下文上，不再浪费时间讨论bean工厂。</p>
+<h5 id="使用应用上下文"><a href="#使用应用上下文" class="headerlink" title="使用应用上下文"></a>使用应用上下文</h5><p>常用的几个应用上下文</p>
+<p>AnnotationConfigApplicationContext：从一个或多个基于Java的配置类中加载Spring应用上下文。</p>
+<p>ClassPathXmlApplicationContext：从类路径下的一个或多个XML配置文件中加载上下文定义，把应用上下文的定义文件作为类资源。</p>
+<p>FileSystemXmlApplicationContext：从文件系统下的一个或多个XML配置文件中加载上下文定义。</p>
+<p>DI是组装应用对象的一种方式，借助这种方式对象无需知道依赖来自何处或者依赖的实现方式。不同于自己获取依赖对象，对象会在运行期赋予它们所依赖的对象。依赖对象通常会通过接口了解所注入的对象，这样的话就能确保低耦合。</p>
+<h3 id="装配Bean"><a href="#装配Bean" class="headerlink" title="装配Bean"></a>装配Bean</h3><h4 id="Spring-配置的可选方案"><a href="#Spring-配置的可选方案" class="headerlink" title="Spring 配置的可选方案"></a>Spring 配置的可选方案</h4><p>Spring容器负责创建应用程序中的bean并通过DI来协调这些对象之间的关系。但是，作为开发人员，你需要告诉Spring要创建哪些bean并且如何将其装配在一起。</p>
+<p>当描述bean如何进行装配时，Spring具有非常大的灵活性，它提供了三种主要的装配机制：</p>
+<ul>
+<li>在XML中进行显式配置</li>
+<li>在Java中进行显示配置</li>
+<li>隐式的bean发现机制和自动装配</li>
+</ul>
+<h4 id="自动装配bean"><a href="#自动装配bean" class="headerlink" title="自动装配bean"></a>自动装配bean</h4><p>Spring从两个角度来实现自动化装配：</p>
+<ul>
+<li>组件扫描(component scanning)：Spring 会自动发现应用上下文中所创建的bean。</li>
+<li>自动装配(autowiring)：Spring 自动满足bean之间的依赖。</li>
+</ul>
+<p>组件扫描和自动装配组合在一起就能发挥出强大的威力，它们能够将你的显示配置降低到最少。</p>
+<h5 id="创建可被发现的bean"><a href="#创建可被发现的bean" class="headerlink" title="创建可被发现的bean"></a>创建可被发现的bean</h5><p>CD为我们阐述DI如何运行提供了一个很好的样例。如果你不将CD插入(注入)到CD播放器中，那么CD播放器其实是没有太大的用处的。所以，可以这样说，CD播放器依赖于CD才能完成它的使命。</p>
+<p>使用</p>
+<p>@Component 注解：这个简单的注解表明该类会作为组件类，并告知Spring要为这个类创建bean。</p>
+<p>不过组件扫描默认是不开启的。需要显示配置一下Spring，从而命令它去寻找带有@Component注解的类，并为其创建bean。</p>
+<p>@Configuration</p>
+<p>@ComponentScan：这个注解能够在Spring中启用组件扫描。默认会扫描与配置类相同的包。会扫描这个包以及这个包下的所有子包，查找带有@Component注解的类。</p>
+<p>XML方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-<span class="keyword">package</span>=<span class="string">"soundsystem"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="高级装配"><a href="#高级装配" class="headerlink" title="高级装配"></a>高级装配</h3><h4 id="3-5-运行时值注入"><a href="#3-5-运行时值注入" class="headerlink" title="3.5 运行时值注入"></a>3.5 运行时值注入</h4><p>当我们讨论依赖注入的时候，我们通常所讨论的是将一个bean引用注入到另一个bean的属性或构造器参数中。它通常来讲指的是将一个对象与另一个对象进行关联。</p>
+<p>但是bean装配的另外一个方面指的是将一个值注入到bean的属性或者构造器参数中。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Shiro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3181,194 +3338,11 @@ textField：下拉框显示的内容。是id=&apos;id&apos;的name的值
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/Spring-MVC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/Spring-MVC/" itemprop="url">Spring MVC</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T10:03:30+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring-MVC/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring MVC</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="SpringMVC的注解"><a href="#SpringMVC的注解" class="headerlink" title="SpringMVC的注解"></a>SpringMVC的注解</h3><ol>
-<li>@ModelAttribute</li>
-</ol>
-<p>大致有两种使用方式，一种是直接标记在方法上，一种是标记在方法的参数中，两种标记方法产生的效果也各不相同。</p>
-<ul>
-<li>注解放在方法上面</li>
-</ul>
-<p>当同一个controller中有任意一个方法被@ModelAttribute注解标记，页面请求只要进入这个控制器，不管请求那个方法，均会先执行被@ModelAttribute标记的方法，所以我们可以用@ModelAttribute注解的方法做一些初始化操作。当同一个controller中有多个方法被@ModelAttribute注解标记，所有被@ModelAttribute标记的方法均会被执行，按先后顺序执行，然后再进入请求的方法。</p>
-<p>​    </p>
-<p>下面方法做一些变形，变形为带有参数的返回，这样也是实际开发中经常会操作的 </p>
-<p>首先创建一个pojo对象，对象包含name，sex两个属性。并对JSP及控制器代码做一些修改</p>
-<p>页面首先使用EL表达式接收返回参数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> <span class="keyword">import</span>=<span class="string">"java.util.*"</span> %&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    String path = request.getContextPath();</span><br><span class="line">    String basePath = request.getScheme() + <span class="string">"://"</span> + request.getServerName() + <span class="string">":"</span> + request.getServerPort() + path + <span class="string">"/"</span>;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(function () &#123;</span><br><span class="line">            $(<span class="string">"#modelTest"</span>).on(<span class="string">"click"</span>, function () &#123;</span><br><span class="line"></span><br><span class="line">                window.location.href = <span class="string">"&lt;%=basePath%&gt;model/modelTest.do"</span>;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type=<span class="string">"button"</span> id=<span class="string">"modelTest"</span> value=<span class="string">"测试"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=<span class="string">"text"</span> value=<span class="string">"$&#123;pojo.name &#125;"</span>&gt;</span><br><span class="line">&lt;input type=<span class="string">"text"</span> value=<span class="string">"$&#123;pojo.sex &#125;"</span>&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>@ModelAtterbute方法无返回值情况</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"model"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModelAttributeTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(Model mode)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        PojoTest pojo=<span class="keyword">new</span> PojoTest(<span class="keyword">null</span>, <span class="string">"小明"</span>, <span class="string">"男"</span>);</span><br><span class="line">        mode.addAttribute(<span class="string">"pojo"</span>, pojo);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"modelTest.do"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelTest</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"modelTest"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>访问ModelTest.jsp页面并点击测试</p>
-<p> <img src="https://img-blog.csdn.net/20170225235700722?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSGFycnlfWkhfV2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>从执行结果看出，当访问请求时，会首先访问init方法，然后再对modelTest方法进行访问，并且是同一个请求，因为model模型数据的作用域与request相同，所以可以用此标记直接标记在方法上对实际要访问的方法进行一些初始化操作</p>
-<ul>
-<li>@ModelAttribute标记方法有返回值</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"model"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ItemController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">init</span><span class="params">(Model mode)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"进入init方法"</span>);</span><br><span class="line">        PojoTest pojo=<span class="keyword">new</span> PojoTest(<span class="string">"小明"</span>, <span class="string">"男"</span>);</span><br><span class="line">        mode.addAttribute(<span class="string">"pojo"</span>, pojo);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"model/befor"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"befor"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">befor</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"进入befor方法"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"modelTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelTest</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"进入modelTest方法"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"modelTest"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里稍微做了点变形，可以看到在被@ModelAttribute方法中设值了返回路径为befor方法，但是在在代码运行的过程中并不会跳转befor方法，而是在代码执行完成return之前直接跳转了实际请求的方法。不执行return</p>
-<p> 进入init方法<br>进入modelTest方法</p>
-<ul>
-<li><p>当@RequestMapping标记和@ModelAttribute同时标记在一个方法上</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"model"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModelAttributeTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"modelTest.do"</span>)</span><br><span class="line">    <span class="meta">@ModelAttribute</span>(value=<span class="string">"pojo"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelTest</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"进入modelTest方法"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"modelTest"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>点击测试页面发现进入控制器后返回，页面报404，这是因为当两个注解标记到同一个方法上时，逻辑视图名并不是返回值，而是返回请求的路径，根据model/modelTest.do生成逻辑视图。在这里我们修改下代码，把controller上的@RequestMapping标记去掉，并修改下页面的请求路径，让生成的视图路径和访问的页面路径相同</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModelAttributeTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"modelTest.do"</span>)</span><br><span class="line">    <span class="meta">@ModelAttribute</span>(value=<span class="string">"pojo"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelTest</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"进入modelTest方法"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"modelTest"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">       $(function()&#123;</span><br><span class="line">           $(<span class="string">"#modelTest"</span>).on(<span class="string">"click"</span>,function()&#123;</span><br><span class="line">  </span><br><span class="line">               window.location.href=<span class="string">"&lt;%=basePath%&gt;modelTest.do"</span>;</span><br><span class="line">           &#125;)</span><br><span class="line">       &#125;);</span><br><span class="line"> &lt;/script&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">  </span><br><span class="line">   &lt;input type=<span class="string">"button"</span> id=<span class="string">"modelTest"</span> value=<span class="string">"测试"</span>&gt;</span><br><span class="line">  </span><br><span class="line">   &lt;input type=<span class="string">"text"</span> value=<span class="string">"$&#123;pojo &#125;"</span>&gt;</span><br><span class="line">  </span><br><span class="line"> &lt;/body&gt;</span><br></pre></td></tr></table></figure>
-<p>点击测试页面，会发现当两个注解同时注解到一个方法上时，方法的返回值会变成model模型的返回值，key是标记的名</p>
-<h4 id="ModelAttribute标记在参数前"><a href="#ModelAttribute标记在参数前" class="headerlink" title="@ModelAttribute标记在参数前"></a>@ModelAttribute标记在参数前</h4><p>从from表单或url地址中取值，这里就以url地址为例，为了避免url地址中文乱码问题，这里调用了encodeURL函数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        $(function()&#123;</span><br><span class="line">            $(<span class="string">"#modelTest"</span>).on(<span class="string">"click"</span>,function()&#123;</span><br><span class="line"></span><br><span class="line">                window.location.href=<span class="string">"&lt;%=basePath%&gt;model/modelTest.do?userName="</span>+encodeURI(<span class="string">'小明'</span>)+<span class="string">"&amp;sex="</span>+encodeURI(<span class="string">'男'</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line"></span><br><span class="line">    &lt;input type=<span class="string">"button"</span> id=<span class="string">"modelTest"</span> value=<span class="string">"测试"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> value=<span class="string">"$&#123;pojo.userName &#125;"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> value=<span class="string">"$&#123;pojo.sex &#125;"</span>&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/body&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"model"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModelAttributeTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"modelTest.do"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelTest</span><span class="params">(@ModelAttribute(<span class="string">"pojo"</span>)</span> PojoTest pojo) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            pojo.setUserName(<span class="keyword">new</span> String(pojo.getUserName().getBytes(<span class="string">"iso-8859-1"</span>),<span class="string">"utf-8"</span>));</span><br><span class="line">            pojo.setSex(<span class="keyword">new</span> String(pojo.getSex().getBytes(<span class="string">"iso-8859-1"</span>),<span class="string">"utf-8"</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(pojo);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"modelTest"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>点击页面测试，页面文本框会显示URL地址传递过来的参数，因为SpringMVC会自动匹匹配页面传递过来的参数的name属性和后台控制器中的方法中的参数名，如果参数名相同，会自动匹配，如果控制器中方法是封装的bean,会自动匹配bean中的属性，其实这种取值方式不需要用@ModelAttribute注解，只要满足匹配要求，也能拿得到值</p>
-<p> <img src="https://img-blog.csdn.net/20170226011711946?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSGFycnlfWkhfV2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>从model对象中取值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"model"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ModelAttributeTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span>(<span class="string">"pojo"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> PojoTest <span class="title">init</span><span class="params">( PojoTest pojo)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        pojo.setSex(<span class="string">"男"</span>);</span><br><span class="line">        <span class="keyword">return</span> pojo;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"modelTest.do"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelTest</span><span class="params">(@ModelAttribute(<span class="string">"pojo"</span>)</span> PojoTest pojo) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        pojo.setUserName(<span class="string">"小明"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"modelTest"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>点击测试发现，modelTest拿到inint方法中的pojo对象，合并两次set的参数后返回页面</p>
-</li>
-</ul>
-<p>   <img src="https://img-blog.csdn.net/20170226023308348?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSGFycnlfWkhfV2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -3414,7 +3388,7 @@ textField：下拉框显示的内容。是id=&apos;id&apos;的name的值
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
