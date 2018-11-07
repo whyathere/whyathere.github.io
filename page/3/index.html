@@ -2108,289 +2108,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/单元测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/21/单元测试/" itemprop="url">Junit</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T19:37:39+08:00">
-                2018-05-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/单元测试/" itemprop="url" rel="index">
-                    <span itemprop="name">单元测试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h4 id="什么是单元测试？"><a href="#什么是单元测试？" class="headerlink" title="什么是单元测试？"></a>什么是单元测试？</h4><ul>
-<li>单元测试是<strong>开发人员</strong>编写的一小段代码，用于检验被测代码的一个有明确功能的小模块是否正确<ul>
-<li>通常是用来判断某个类和函数的行为</li>
-<li>白盒测试：开发人员已经很清楚的知道代码的内部实现。黑盒测试：不知道内部的实现是什么，只知道对外提供的接口，软件像黑盒一样，对外暴露了一些接口，要验证是否与自己所想的一样。</li>
-<li><strong>开发人员</strong>是最大的收益者</li>
-</ul>
-</li>
-</ul>
-<h4 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">testString</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">25</span>;</span><br><span class="line">    Assert.assertEquals(<span class="number">25</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>绿色表示通过。</p>
-<p>只要按照规律来写代码，框架能够找到我们的测试用例，如上所示。然后，执行这些测试用例，通过Assert来检查实际值和期待值是否一致。如果不一致就是bug。</p>
-<p> <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E6%88%90%E7%99%BE%E4%B8%8A%E5%8D%83%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AF%A5%E6%80%8E%E4%B9%88%E7%BB%84%E7%BB%87.jpg?raw=true" alt=""></p>
-<p>作为一个套件来执行，套件下有各种V*Tests。</p>
-<h4 id="JUnit常用的几种断言"><a href="#JUnit常用的几种断言" class="headerlink" title="JUnit常用的几种断言"></a>JUnit常用的几种断言</h4><p>Assert.assertEquals(expected,actual);   两个数值变量等是否一致</p>
-<p>Assert.assertTrue(condition);   是否为true</p>
-<p>Assert.assertNotNull(object);  是否为null</p>
-<p>Assert.assertArrayEquals(expecteds,actuals);   数组是否相等</p>
-<h4 id="如何对Exception进行测试"><a href="#如何对Exception进行测试" class="headerlink" title="如何对Exception进行测试"></a>如何对Exception进行测试</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E5%A6%82%E4%BD%95%E5%AF%B9Exception%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95.jpg?raw=true" alt=""></p>
-<h4 id="两个特殊的方法"><a href="#两个特殊的方法" class="headerlink" title="两个特殊的方法"></a>两个特殊的方法</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%B8%A4%E4%B8%AA%E7%89%B9%E6%AE%8A%E7%9A%84%E6%96%B9%E6%B3%95.jpg?raw=true" alt=""></p>
-<p>有多少个testCase就有多少个setUp()和tearDown()</p>
-<h4 id="两个更特殊的方法"><a href="#两个更特殊的方法" class="headerlink" title="两个更特殊的方法"></a>两个更特殊的方法</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%B8%A4%E4%B8%AA%E6%9B%B4%E7%89%B9%E6%AE%8A%E7%9A%84%E6%96%B9%E6%B3%95.jpg?raw=true" alt=""></p>
-<h3 id="单元测试的优点"><a href="#单元测试的优点" class="headerlink" title="单元测试的优点"></a>单元测试的优点</h3><ul>
-<li>验证行为<ul>
-<li>保证代码的正确性</li>
-<li>回归测试：即使到项目后期，我们仍然有勇气去增加新功能，修改程序结果，而不用担心破坏重要功能</li>
-<li>给重构带来保证</li>
-</ul>
-</li>
-<li>设计行为<ul>
-<li><strong>测试驱动</strong>迫使我们从调用者的角度去观察和思考问题，迫使我们把代码设计成可测试的，松耦合的。</li>
-</ul>
-</li>
-<li>文档行为<ul>
-<li>单元测试是一种无价的文档，精确的描述了代码的行为，是如何使用函数和类的最佳文档</li>
-</ul>
-</li>
-</ul>
-<h4 id="单元测试是个团队行为"><a href="#单元测试是个团队行为" class="headerlink" title="单元测试是个团队行为"></a>单元测试是个团队行为</h4><ul>
-<li>互相帮助 ，互相扶持，共同前进<ul>
-<li><strong>你运行别人的测试用例：验证你的代码修改</strong></li>
-<li><strong>别人运行你的测试用例：验证别人的代码修改</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="单元测试的原则"><a href="#单元测试的原则" class="headerlink" title="单元测试的原则"></a>单元测试的原则</h4><ul>
-<li><strong>测试代码和被测试是同等重要的，需要被同时维护</strong><ul>
-<li><strong>测试代码不是附属品</strong></li>
-<li><strong>不但要重构代码，也要重构单元测试！</strong></li>
-</ul>
-</li>
-<li><strong>单元测试一定是隔离的</strong><ul>
-<li><strong>一个测试用例的运行结果不能影响其他测试用例</strong></li>
-<li><strong>测试用例不能相互依赖，应该能够以任何次序执行</strong></li>
-</ul>
-</li>
-<li><strong>单元测试一定是可以重复执行的</strong><ul>
-<li><strong>不能依赖环境变化</strong></li>
-</ul>
-</li>
-<li><strong>保持单元测试的简单性和可读性</strong></li>
-<li><strong>尽量对接口进行测试</strong></li>
-<li><strong>单元测试应该可以迅速执行</strong>(不可能等待几十分钟，应该是秒级的)<ul>
-<li><strong>给程序员提供及时的反馈</strong></li>
-<li><strong>使用Mock对象对数据库，网络的依赖进行解耦</strong></li>
-</ul>
-</li>
-<li><strong>自动化单元测试</strong><ul>
-<li><strong>集成到build过程中去</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="使用Mock对象"><a href="#使用Mock对象" class="headerlink" title="使用Mock对象"></a>使用Mock对象</h4><ul>
-<li><strong>真实的对象不易构造</strong><ul>
-<li><strong>例如httpservlet必须在servlet容器中才能创建出来</strong></li>
-</ul>
-</li>
-<li><strong>真实的对象非常复杂</strong><ul>
-<li><strong>如jdbc中的Connection，ResultSet</strong></li>
-</ul>
-</li>
-<li><strong>真实的对象的行为具有不确定性，难于控制他们的输出或者返回结果</strong></li>
-<li><strong>真实的对象的有些行为难于触发，例如硬盘已满，网络连接断开</strong></li>
-<li><strong>真实的对象可能还不存在，例如依赖的另外一个模块还没开发完毕</strong></li>
-</ul>
-<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/Mock%20Object%E7%9A%84%E4%BE%8B%E5%AD%90.jpg?raw=true" alt=""></p>
-<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%BD%BF%E7%94%A8Mock%E5%AF%B9%E8%B1%A1.jpg?raw=true" alt=""></p>
-<p>录制和回放。</p>
-<h3 id="对遗留代码进行测试"><a href="#对遗留代码进行测试" class="headerlink" title="对遗留代码进行测试"></a>对遗留代码进行测试</h3><ul>
-<li>遗留代码不可避免<ul>
-<li><strong>虽然TDD是很有效的编程方法，但是我们的工作很少从第一行代码开始。</strong></li>
-</ul>
-</li>
-<li><strong>遗留代码不是坏代码</strong><ul>
-<li><strong>它是可以工作的软件/组件，但是</strong></li>
-<li><strong>在设计和开发时没有考虑“可测试性”</strong></li>
-</ul>
-</li>
-<li><strong>遗留代码难于测试</strong><ul>
-<li><strong>长久失修，导致业务逻辑难于理解</strong></li>
-<li><strong>依赖的资源太多，导致测试无从下手</strong></li>
-<li><strong>不敢修改，害怕牵一发而动全身</strong></li>
-</ul>
-</li>
-</ul>
-<p>如果代码去访问数据库和访问网络如何测试。</p>
-<h4 id="处理遗留代码的策略"><a href="#处理遗留代码的策略" class="headerlink" title="处理遗留代码的策略"></a>处理遗留代码的策略</h4><ul>
-<li><strong>重构代码，提高可测试性</strong></li>
-<li><strong>使用Mock Object接触依赖</strong></li>
-<li><strong>测试分解</strong><ul>
-<li><strong>先写粗粒度的测试代码，然后编写细粒度的代码</strong></li>
-<li><strong>Package-&gt;Class-&gt;method</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="处理遗留代码的步骤"><a href="#处理遗留代码的步骤" class="headerlink" title="处理遗留代码的步骤"></a>处理遗留代码的步骤</h4><ul>
-<li><strong>确定要测试的类和函数</strong></li>
-<li><strong>解除依赖</strong>(最重要，解除依赖的时候可能破坏掉代码，但是必须要做，所以尽可能的不要破坏老的功能)</li>
-<li><strong>编写测试用例</strong></li>
-<li><strong>重构代码</strong></li>
-</ul>
-<p><strong>重构的例子‘</strong></p>
-<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E9%87%8D%E6%9E%84%E7%9A%84%E4%BE%8B%E5%AD%90.jpg?raw=true" alt=""></p>
-<h4 id="好的单元测试"><a href="#好的单元测试" class="headerlink" title="好的单元测试"></a>好的单元测试</h4><ul>
-<li>简单<ul>
-<li>防止多度的Steup，否则不知道是单元测用例的错误，还是业务逻辑的错误</li>
-</ul>
-</li>
-<li>隔离</li>
-<li>可重复<ul>
-<li>防止在一台机器上可以运行，在另外一台机器上失败</li>
-<li>防止今天成功，明天失败</li>
-</ul>
-</li>
-<li>运行快<ul>
-<li>防止长时间的运行</li>
-</ul>
-</li>
-<li>代码覆盖面广<ul>
-<li>防止测试通过，但是没测到什么代码</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/Spring基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3047,6 +2764,289 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/单元测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/21/单元测试/" itemprop="url">Junit</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T19:37:39+08:00">
+                2018-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/单元测试/" itemprop="url" rel="index">
+                    <span itemprop="name">单元测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h4 id="什么是单元测试？"><a href="#什么是单元测试？" class="headerlink" title="什么是单元测试？"></a>什么是单元测试？</h4><ul>
+<li>单元测试是<strong>开发人员</strong>编写的一小段代码，用于检验被测代码的一个有明确功能的小模块是否正确<ul>
+<li>通常是用来判断某个类和函数的行为</li>
+<li>白盒测试：开发人员已经很清楚的知道代码的内部实现。黑盒测试：不知道内部的实现是什么，只知道对外提供的接口，软件像黑盒一样，对外暴露了一些接口，要验证是否与自己所想的一样。</li>
+<li><strong>开发人员</strong>是最大的收益者</li>
+</ul>
+</li>
+</ul>
+<h4 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">testString</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">25</span>;</span><br><span class="line">    Assert.assertEquals(<span class="number">25</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>绿色表示通过。</p>
+<p>只要按照规律来写代码，框架能够找到我们的测试用例，如上所示。然后，执行这些测试用例，通过Assert来检查实际值和期待值是否一致。如果不一致就是bug。</p>
+<p> <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E6%88%90%E7%99%BE%E4%B8%8A%E5%8D%83%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AF%A5%E6%80%8E%E4%B9%88%E7%BB%84%E7%BB%87.jpg?raw=true" alt=""></p>
+<p>作为一个套件来执行，套件下有各种V*Tests。</p>
+<h4 id="JUnit常用的几种断言"><a href="#JUnit常用的几种断言" class="headerlink" title="JUnit常用的几种断言"></a>JUnit常用的几种断言</h4><p>Assert.assertEquals(expected,actual);   两个数值变量等是否一致</p>
+<p>Assert.assertTrue(condition);   是否为true</p>
+<p>Assert.assertNotNull(object);  是否为null</p>
+<p>Assert.assertArrayEquals(expecteds,actuals);   数组是否相等</p>
+<h4 id="如何对Exception进行测试"><a href="#如何对Exception进行测试" class="headerlink" title="如何对Exception进行测试"></a>如何对Exception进行测试</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E5%A6%82%E4%BD%95%E5%AF%B9Exception%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95.jpg?raw=true" alt=""></p>
+<h4 id="两个特殊的方法"><a href="#两个特殊的方法" class="headerlink" title="两个特殊的方法"></a>两个特殊的方法</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%B8%A4%E4%B8%AA%E7%89%B9%E6%AE%8A%E7%9A%84%E6%96%B9%E6%B3%95.jpg?raw=true" alt=""></p>
+<p>有多少个testCase就有多少个setUp()和tearDown()</p>
+<h4 id="两个更特殊的方法"><a href="#两个更特殊的方法" class="headerlink" title="两个更特殊的方法"></a>两个更特殊的方法</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%B8%A4%E4%B8%AA%E6%9B%B4%E7%89%B9%E6%AE%8A%E7%9A%84%E6%96%B9%E6%B3%95.jpg?raw=true" alt=""></p>
+<h3 id="单元测试的优点"><a href="#单元测试的优点" class="headerlink" title="单元测试的优点"></a>单元测试的优点</h3><ul>
+<li>验证行为<ul>
+<li>保证代码的正确性</li>
+<li>回归测试：即使到项目后期，我们仍然有勇气去增加新功能，修改程序结果，而不用担心破坏重要功能</li>
+<li>给重构带来保证</li>
+</ul>
+</li>
+<li>设计行为<ul>
+<li><strong>测试驱动</strong>迫使我们从调用者的角度去观察和思考问题，迫使我们把代码设计成可测试的，松耦合的。</li>
+</ul>
+</li>
+<li>文档行为<ul>
+<li>单元测试是一种无价的文档，精确的描述了代码的行为，是如何使用函数和类的最佳文档</li>
+</ul>
+</li>
+</ul>
+<h4 id="单元测试是个团队行为"><a href="#单元测试是个团队行为" class="headerlink" title="单元测试是个团队行为"></a>单元测试是个团队行为</h4><ul>
+<li>互相帮助 ，互相扶持，共同前进<ul>
+<li><strong>你运行别人的测试用例：验证你的代码修改</strong></li>
+<li><strong>别人运行你的测试用例：验证别人的代码修改</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="单元测试的原则"><a href="#单元测试的原则" class="headerlink" title="单元测试的原则"></a>单元测试的原则</h4><ul>
+<li><strong>测试代码和被测试是同等重要的，需要被同时维护</strong><ul>
+<li><strong>测试代码不是附属品</strong></li>
+<li><strong>不但要重构代码，也要重构单元测试！</strong></li>
+</ul>
+</li>
+<li><strong>单元测试一定是隔离的</strong><ul>
+<li><strong>一个测试用例的运行结果不能影响其他测试用例</strong></li>
+<li><strong>测试用例不能相互依赖，应该能够以任何次序执行</strong></li>
+</ul>
+</li>
+<li><strong>单元测试一定是可以重复执行的</strong><ul>
+<li><strong>不能依赖环境变化</strong></li>
+</ul>
+</li>
+<li><strong>保持单元测试的简单性和可读性</strong></li>
+<li><strong>尽量对接口进行测试</strong></li>
+<li><strong>单元测试应该可以迅速执行</strong>(不可能等待几十分钟，应该是秒级的)<ul>
+<li><strong>给程序员提供及时的反馈</strong></li>
+<li><strong>使用Mock对象对数据库，网络的依赖进行解耦</strong></li>
+</ul>
+</li>
+<li><strong>自动化单元测试</strong><ul>
+<li><strong>集成到build过程中去</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="使用Mock对象"><a href="#使用Mock对象" class="headerlink" title="使用Mock对象"></a>使用Mock对象</h4><ul>
+<li><strong>真实的对象不易构造</strong><ul>
+<li><strong>例如httpservlet必须在servlet容器中才能创建出来</strong></li>
+</ul>
+</li>
+<li><strong>真实的对象非常复杂</strong><ul>
+<li><strong>如jdbc中的Connection，ResultSet</strong></li>
+</ul>
+</li>
+<li><strong>真实的对象的行为具有不确定性，难于控制他们的输出或者返回结果</strong></li>
+<li><strong>真实的对象的有些行为难于触发，例如硬盘已满，网络连接断开</strong></li>
+<li><strong>真实的对象可能还不存在，例如依赖的另外一个模块还没开发完毕</strong></li>
+</ul>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/Mock%20Object%E7%9A%84%E4%BE%8B%E5%AD%90.jpg?raw=true" alt=""></p>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%BD%BF%E7%94%A8Mock%E5%AF%B9%E8%B1%A1.jpg?raw=true" alt=""></p>
+<p>录制和回放。</p>
+<h3 id="对遗留代码进行测试"><a href="#对遗留代码进行测试" class="headerlink" title="对遗留代码进行测试"></a>对遗留代码进行测试</h3><ul>
+<li>遗留代码不可避免<ul>
+<li><strong>虽然TDD是很有效的编程方法，但是我们的工作很少从第一行代码开始。</strong></li>
+</ul>
+</li>
+<li><strong>遗留代码不是坏代码</strong><ul>
+<li><strong>它是可以工作的软件/组件，但是</strong></li>
+<li><strong>在设计和开发时没有考虑“可测试性”</strong></li>
+</ul>
+</li>
+<li><strong>遗留代码难于测试</strong><ul>
+<li><strong>长久失修，导致业务逻辑难于理解</strong></li>
+<li><strong>依赖的资源太多，导致测试无从下手</strong></li>
+<li><strong>不敢修改，害怕牵一发而动全身</strong></li>
+</ul>
+</li>
+</ul>
+<p>如果代码去访问数据库和访问网络如何测试。</p>
+<h4 id="处理遗留代码的策略"><a href="#处理遗留代码的策略" class="headerlink" title="处理遗留代码的策略"></a>处理遗留代码的策略</h4><ul>
+<li><strong>重构代码，提高可测试性</strong></li>
+<li><strong>使用Mock Object接触依赖</strong></li>
+<li><strong>测试分解</strong><ul>
+<li><strong>先写粗粒度的测试代码，然后编写细粒度的代码</strong></li>
+<li><strong>Package-&gt;Class-&gt;method</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="处理遗留代码的步骤"><a href="#处理遗留代码的步骤" class="headerlink" title="处理遗留代码的步骤"></a>处理遗留代码的步骤</h4><ul>
+<li><strong>确定要测试的类和函数</strong></li>
+<li><strong>解除依赖</strong>(最重要，解除依赖的时候可能破坏掉代码，但是必须要做，所以尽可能的不要破坏老的功能)</li>
+<li><strong>编写测试用例</strong></li>
+<li><strong>重构代码</strong></li>
+</ul>
+<p><strong>重构的例子‘</strong></p>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E9%87%8D%E6%9E%84%E7%9A%84%E4%BE%8B%E5%AD%90.jpg?raw=true" alt=""></p>
+<h4 id="好的单元测试"><a href="#好的单元测试" class="headerlink" title="好的单元测试"></a>好的单元测试</h4><ul>
+<li>简单<ul>
+<li>防止多度的Steup，否则不知道是单元测用例的错误，还是业务逻辑的错误</li>
+</ul>
+</li>
+<li>隔离</li>
+<li>可重复<ul>
+<li>防止在一台机器上可以运行，在另外一台机器上失败</li>
+<li>防止今天成功，明天失败</li>
+</ul>
+</li>
+<li>运行快<ul>
+<li>防止长时间的运行</li>
+</ul>
+</li>
+<li>代码覆盖面广<ul>
+<li>防止测试通过，但是没测到什么代码</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/Python之爬虫/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3261,7 +3261,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
