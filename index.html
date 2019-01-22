@@ -249,6 +249,1175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/正则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/26/正则/" itemprop="url">正则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T19:36:21+08:00">
+                2018-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><p>正则表达式是对<a href="https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6" target="_blank" rel="noopener">字符</a>串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/Spring 的注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/03/Spring 的注解/" itemprop="url">Spring 注解和配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-03T18:42:24+08:00">
+                2018-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Spring-XML"><a href="#Spring-XML" class="headerlink" title="Spring-XML"></a>Spring-XML</h3><h4 id="lt-context-component-scan-base-package-quot-quot-gt"><a href="#lt-context-component-scan-base-package-quot-quot-gt" class="headerlink" title="&lt;context:component-scan base-package=&quot;&quot; &gt;"></a><code>&lt;context:component-scan base-package=&quot;&quot; &gt;</code></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--自动扫描base-package 对应路径或者改路径子包下面的java文件，带有@Service、@Controller等这些注解的类，则把这些类注册为bean--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--只想扫描包下面的 controller可以用  include-filter--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">"assignable"</span> <span class="attr">expression</span>=<span class="string">"com"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">"assignable"</span> <span class="attr">expression</span>=<span class="string">"com"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>context:component-scan</code></p>
+<p>自动扫描base-package 对应路径或者改路径子包下面的java文件。将带有@Service、@Controller等这些注解的类，则把这些类注册为bean。</p>
+<p><code>&lt;context:include-filter</code> ：只扫描这个下面的包，并起作用</p>
+<p>这个需要与 <code>use-dafault-filters=”false”</code>搭配使用，否则不起作用。</p>
+<p><code>&lt;context:exclude-filter</code>：除这个路径之外的起作用</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Filter Type</th>
+<th style="text-align:center">Examples Expression</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">annotation</td>
+<td style="text-align:center">org.example.SomeAnnotation</td>
+<td style="text-align:center">符合SomeAnnoation的target class</td>
+</tr>
+<tr>
+<td style="text-align:center">assignable</td>
+<td style="text-align:center">org.example.SomeClass</td>
+<td style="text-align:center">指定class或interface的全名</td>
+</tr>
+<tr>
+<td style="text-align:center">aspectj</td>
+<td style="text-align:center">org.example..*Service+</td>
+<td style="text-align:center">AspetJ语法</td>
+</tr>
+<tr>
+<td style="text-align:center">regex</td>
+<td style="text-align:center">org.example.Default.*</td>
+<td style="text-align:center">Regelar Expression</td>
+</tr>
+<tr>
+<td style="text-align:center">custom</td>
+<td style="text-align:center">org.example.MyTypeFilter</td>
+<td style="text-align:center">Spring3新增自订Type,称作org.springframework.core.type.TypeFilter</td>
+</tr>
+</tbody>
+</table>
+<h4 id="lt-mvc-annotation-driven-gt"><a href="#lt-mvc-annotation-driven-gt" class="headerlink" title="&lt;mvc:annotation-driven&gt;"></a><code>&lt;mvc:annotation-driven&gt;</code></h4><p>​        <code>&lt;</code>mvc:annotation-driven<code>&gt;</code>会自动注册<code>RequestMappingHandlerMapping</code>与<code>RequestMappingHandlerAdapter</code>两个Bean,这是Spring MVC为@Controller分发请求所必需的，并且提供了数据绑定支持，<code>@NumberFormatannotation</code>支持，<code>@DateTimeFormat</code>支持,@Valid支持读写XML的支持（JAXB）和读写JSON的支持（默认Jackson）等功能</p>
+<p>​    </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mvc:message-converters</span> <span class="attr">register-defaults</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 配置Fastjson支持 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"supportedMediaTypes"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">value</span>&gt;</span>application/json<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"features"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>WriteDateUseDateFormat<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;list&gt;--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;value&gt;WriteDateUseDateFormat&lt;/value&gt;--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;value&gt;QuoteFieldNames&lt;/value&gt;--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;value&gt;WriteNullListAsEmpty&lt;/value&gt;--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;value&gt;WriteNullStringAsEmpty&lt;/value&gt;--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;value&gt;WriteNullNumberAsZero&lt;/value&gt;--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;value&gt;WriteNullBooleanAsFalse&lt;/value&gt;--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;value&gt;WriteMapNullValue&lt;/value&gt;--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;/list&gt;--&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">mvc:message-converters</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>&lt;mvc:message-converters register-defaults=”true”&gt;</strong>    </p>
+<p>​    在说 <code>&lt;mvc:message-converters register-defaults=&quot;true&quot;&gt;</code>之前要说一下</p>
+<p><strong><code>@ResponseBody注解</code></strong></p>
+<p>​    很明显这个注解是将方法的返回值作为response的body部分。首先就是方法返回的类型，可以是字节、数组、字符串、对象引用等，将这些返回类型以什么样的内容格式(即response的content-type类型，同时还要考虑到客户是否接受这个类型)存进response的body中返回给客户端是一个问题，对于    这个过程的处理都是靠许许多多的HttpMessageConverter转换器来完成的。</p>
+<p>​    常用的content-type类型有：text/html、text/plain、text/xml、application/json、application/x-www-form-urlencoded、image/png等，不同的类型，对body中的数据的解析也是不一样的。 </p>
+<p>​    &lt;mvc:message-converters register-defaults=”true”&gt;有一个register-defaults属性，当为true时，仍然注册默认的HttpMessageConverter，当为false则不注册，仅仅使用用户自定义的HttpMessageConverter。     </p>
+<p>​    HttpMessageConverter主要针对那些不会返回view视图的response： </p>
+<p>含有方法含有<strong>@ResponseBody</strong>或者返回值为<strong>HttpEntity</strong>等类型的，它们都会用到HttpMessageConverter。以@ResponseBody举例：</p>
+<p>首先先决定由那个HandlerMethodReturnValueHandler来处理返回值，由于是@ResponseBody所以将会由RequestResponseBodyMethodProcessor来处理，选取一个合适的content-type，再由这个content-type和返回类型来选取合适的HttpMessageConverter，找到合适的HttpMessageConverter后，便调用它的write方法。 </p>
+<p>这里是fastjson</p>
+<h4 id="lt-mvc-default-servlet-handler-gt"><a href="#lt-mvc-default-servlet-handler-gt" class="headerlink" title="&lt;mvc:default-servlet-handler /&gt;"></a><code>&lt;mvc:default-servlet-handler /&gt;</code></h4><p>​    如果将DispatcherServlet请求映射配置为”/“，则Spring MVC将捕获Web容器所有的请求，包括静态资源的请求，Spring MVC会将它们当成一个普通请求处理，因此找不到对应处理器将导致错误。</p>
+<p>​    在springMVC-servlet.xml中配置&lt;mvc:default-servlet-handler /&gt;后，会在Spring MVC上下文中定义一个org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler，它会像一个检查员，对进入DispatcherServlet的URL进行筛查，如果发现是静态资源的请求，就将该请求转由Web应用服务器默认的Servlet处理，如果不是静态资源的请求，才由DispatcherServlet继续处理。</p>
+<h4 id="mvc-view-controller"><a href="#mvc-view-controller" class="headerlink" title="mvc:view-controller"></a><code>mvc:view-controller</code></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:view-controller</span> <span class="attr">path</span>=<span class="string">"/"</span> <span class="attr">view-name</span>=<span class="string">"redirect:$&#123;shiro.loginUrl&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在springmvc中使用mvc:view-controller标签直接将访问url和视图进行映射，而无需要通过控制器。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/Spring Boot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/26/Spring Boot/" itemprop="url">Spring Boot</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T16:19:20+08:00">
+                2018-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Spring-Boot简介"><a href="#Spring-Boot简介" class="headerlink" title="Spring Boot简介"></a>Spring Boot简介</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/常用类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/26/常用类/" itemprop="url">常用工具类和加密</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T14:47:41+08:00">
+                2018-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h3><h4 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">方法名</th>
+<th style="text-align:center">用法</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">deleteCharAt()</td>
+<td style="text-align:center">deleteCharAt(buffer.length() - 1)</td>
+<td style="text-align:center">从字符串后面删除第几个字符最后一个为 1</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">方法名</th>
+<th style="text-align:center">用法</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">reverse()</td>
+<td style="text-align:center">new StringBuilder(te).reverse().toString();</td>
+<td style="text-align:center">顺序反转</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Bigdecimal"><a href="#Bigdecimal" class="headerlink" title="Bigdecimal"></a>Bigdecimal</h4><p>double和float无法精准的表示一个数，商业使用的一般都是Bigdecimal</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">用法</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">add(BigDecimal value)</td>
+<td style="text-align:center">加</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">subtract(BigDecimal value)</td>
+<td style="text-align:center">减</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">multiply(BigDecimal value)</td>
+<td style="text-align:center">乘</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">divide(BigDecimal value)</td>
+<td style="text-align:center">除</td>
+<td style="text-align:center">无法整除时会报错</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">setScale</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">进行截断和四舍五入</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ROUND_CEILING</td>
+<td style="text-align:center">向正无穷方向舍入</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ROUND_DOWN</td>
+<td style="text-align:center">向零方向舍入</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ROUND_FLOOR</td>
+<td style="text-align:center">向负无穷方向舍入</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ROUND_HALF_DOWN</td>
+<td style="text-align:center">向（距离）最近的一边舍入，除非两边（的距离）是相等,如果是这样，向下舍入, 例如1.55 保留一位小数结果为1.5</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ROUND_HALF_EVEN</td>
+<td style="text-align:center">向（距离）最近的一边舍入，除非两边（的距离）是相等,如果是这样，如果保留位数是奇数，使用ROUND_HALF_UP，如果是偶数，使用ROUND_HALF_DOWN</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ROUND_HALF_UP</td>
+<td style="text-align:center">向（距离）最近的一边舍入，除非两边（的距离）是相等,如果是这样，向上舍入, 1.55保留一位小数结果为1.6</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ROUND_UNNECESSARY</td>
+<td style="text-align:center">计算结果是精确的，不需要舍入模式</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ROUND_UP</td>
+<td style="text-align:center">向远离0的方向舍入</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setScale(<span class="number">3</span>, RoundingMode.HALF_UP);    <span class="comment">//保留3位小数，且四舍五入</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意事项</strong></p>
+<ol>
+<li>商业计算使用Bigdecimal</li>
+<li>尽量使用参数类型为String的构造函数</li>
+<li>Bigdecimal都是不可变的，在进行每一步运算时，都会产生一个新的对象，所以在做加减乘除运算时千万要保存操作后的值</li>
+</ol>
+<h3 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h3><h4 id="Base64编码"><a href="#Base64编码" class="headerlink" title="Base64编码"></a>Base64编码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line">Base64.getEncoder().encodeToString(jsonData.getBytes(StandardCharsets.UTF_8));</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/22/IDEA使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/22/IDEA使用/" itemprop="url">IDEA使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T18:27:21+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="代码合并"><a href="#代码合并" class="headerlink" title="代码合并"></a>代码合并</h2><h4 id="1、merge代码"><a href="#1、merge代码" class="headerlink" title="1、merge代码"></a>1、merge代码</h4><p><img src="/Users/mac/Library/Application Support/typora-user-images/image-20181122185526775.png" alt="image-20181122185526775"></p>
+<p>2、</p>
+<h2 id="IDEA快捷键"><a href="#IDEA快捷键" class="headerlink" title="IDEA快捷键"></a>IDEA快捷键</h2><h3 id="按键对应名称"><a href="#按键对应名称" class="headerlink" title="按键对应名称"></a>按键对应名称</h3><ul>
+<li><p>⌘ Command</p>
+</li>
+<li><p>⇧ Shift</p>
+</li>
+<li><p>⌥ Option</p>
+</li>
+<li><p>⌃ Control</p>
+</li>
+<li><p>↩︎ Return/Enter</p>
+</li>
+<li><p>⌫ Delete</p>
+</li>
+<li><p>⌦ 向前删除键（Fn+Delete）</p>
+</li>
+<li><p>⇞ Page Up（Fn+↑）</p>
+</li>
+<li><p>⇟ Page Down（Fn+↓）</p>
+</li>
+<li><p>Home Fn + ←</p>
+</li>
+<li><p>End Fn + →</p>
+</li>
+<li><p>⇥ 右制表符（Tab键）</p>
+</li>
+<li><p>⇤ 左制表符（Shift+Tab）</p>
+</li>
+<li><p>⎋ Escape (Esc)</p>
+</li>
+</ul>
+<h3 id="实用快捷键"><a href="#实用快捷键" class="headerlink" title="实用快捷键"></a>实用快捷键</h3><ul>
+<li><p>Command+I :实现接口中的方法</p>
+</li>
+<li><p>Command+E:打开最近访问的文件</p>
+</li>
+<li><p>Command+SHIFT+E:最近编辑过的文件</p>
+</li>
+<li><p>Ctrl+H：显示当前类的子类</p>
+</li>
+<li><p>Ctrl+ENTER：getter和setter方法</p>
+</li>
+<li><p>Command+SHIFT+V：从剪切板中选择要粘贴的内容</p>
+</li>
+<li><p>Option+Command+L：格式化代码</p>
+</li>
+<li><p>Command+Shift+上下箭头：代码上下移动</p>
+</li>
+<li><p>Command+Alt+B:导航到一个抽象方法的实现代码</p>
+</li>
+<li><p>Command+Alt+T:包围代码(使用if..else,try..catch)</p>
+</li>
+<li><p>Command+U:打开父类方法</p>
+</li>
+<li><p>Ctrl+↑或↓：上下个方法</p>
+</li>
+<li><p>Command+7：查看当前类的所有方法</p>
+</li>
+<li><p>Command+5：打开Debug面板</p>
+</li>
+<li><p>Command+9：版本控制面板</p>
+</li>
+<li><p>Command+1：打开隐藏Project控制面板</p>
+</li>
+<li><p>Alt+Command+B：接口方法的实现</p>
+</li>
+<li><p>fn+option+F7 :查看调用该方法的类</p>
+</li>
+<li><p>control+shift+R:全局替换</p>
+</li>
+<li>Command + R:当前类替换</li>
+<li>Command + 6 ：TODO</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/22/英文提示不用怕/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/22/英文提示不用怕/" itemprop="url">英文提示不用怕</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T18:27:21+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ERROR"><a href="#ERROR" class="headerlink" title="ERROR"></a>ERROR</h3><p>Could not resolve dependencies for project DD。     无法解决项目DD的依赖关系;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">单词</th>
+<th style="text-align:center">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">resolve</td>
+<td style="text-align:center">解析</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/hexo使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/31/hexo使用/" itemprop="url">Hexo 使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-31T14:30:08+08:00">
+                2018-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1、清理缓存：hexo clean</p>
+<p>2、终端创建新文件：hexo new “&lt;文件名&gt;”</p>
+<p>3、</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/26/Linux相关知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -977,1184 +2146,10 @@
 </ol>
 <h4 id="合并分支与master的代码"><a href="#合并分支与master的代码" class="headerlink" title="合并分支与master的代码"></a>合并分支与master的代码</h4><ol>
 <li>git branch -vv :本地分支跟踪的远程分支</li>
-<li></li>
+<li>git fetch origin –prune :GitLab更新远程分支信息</li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/复制hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/复制hexo/" itemprop="url">复制hexo</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T18:27:21+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>在系统上安装相应的hexo，初始化。</li>
-<li>之后将source  themes _config.yml复制过来即可</li>
-<li>hexo clean.   </li>
-<li>hexo g</li>
-<li>hexo d</li>
-<li></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/Nginx/" itemprop="url">Nginx</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T18:27:21+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/服务器/" itemprop="url" rel="index">
-                    <span itemprop="name">服务器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="启动Nginx"><a href="#启动Nginx" class="headerlink" title="启动Nginx"></a>启动Nginx</h3><h4 id="nginx启动文件的目录"><a href="#nginx启动文件的目录" class="headerlink" title="nginx启动文件的目录"></a>nginx启动文件的目录</h4><p>/usr/local/bin</p>
-<p>然后运行命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./nginx</span><br></pre></td></tr></table></figure>
-<h4 id="Nginx的安装目录"><a href="#Nginx的安装目录" class="headerlink" title="Nginx的安装目录"></a>Nginx的安装目录</h4><p>/usr/local/etc/nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       800;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /Users/mac/workspace/web/;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Spring-刘欣/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/Spring-刘欣/" itemprop="url">Spring刘欣</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T17:49:57+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/框架/" itemprop="url" rel="index">
-                    <span itemprop="name">框架</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Spring</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>耦合具有两面性。一方面，紧密耦合的代码难以测试，难以复用、难以理解，并且典型地表现出“打地鼠”式的bug特性。另一方面，一定程度的耦合又是必须的—完全没有耦合的代码什么都做不了。为了完成有意义的功能，不同的类必须适当的进行交互。总而言之，耦合是必须的，但应当被小心谨慎地管理。</p>
-<p>创建应用组件之间协作的行为通常称为装配（wiring）。Spring有多种装配bean的方式，采用xml是很常见的一种装配行为。</p>
-<h4 id="观察它如何工作"><a href="#观察它如何工作" class="headerlink" title="观察它如何工作"></a>观察它如何工作</h4><p>Spring通过应用上下文(Application Context)装载bean的定义并把它们组装起来。Spring应用上下文全权负责对象的创建和组装。Spring自带了多种应用上下文的实现，它们之间主要的区别仅仅在于如何配置。</p>
-<p>ClassPathXmlApplicationContext    该类加载位于应用程序类路径下的一个或多个XML配置文件。</p>
-<h4 id="容纳你的Bean"><a href="#容纳你的Bean" class="headerlink" title="容纳你的Bean"></a>容纳你的Bean</h4><p>在基于Spring的应用中，你的应用对象生存于Spring容器(container)中。Spring容器负责创建对象，装配它们，配置它们并管理它们的整个生命周期，从生存到死亡(在这里，可能就是new 到 finalize())。</p>
-<p>首先了解容纳对象的容器，有助于理解对象是如何被管理的。</p>
-<p>容器上Spring容器的核心。Spring容器使用DI管理构成应用的组建，它会创建相互协作的组件之间的关联。</p>
-<p>Spring容器并不是只有一个。Spring自带了多个容器实现，可以归为两种不同的类型。bean工厂上最简单的容器，提供基本的DI支持。应用上下文基于BeanFactory构建，并提供应用框架级别的服务，例如从属性文件解析文本信息以及发布应用事件给感兴趣的事件监听者。</p>
-<p>虽然我们可以在bean工厂和应用上下文之间任选一种。但bean工厂对大多数应用来说太低级了，因此，应用上下文要比bean工厂更受欢迎。我们把精力集中在应用上下文上，不再浪费时间讨论bean工厂。</p>
-<h5 id="使用应用上下文"><a href="#使用应用上下文" class="headerlink" title="使用应用上下文"></a>使用应用上下文</h5><p>常用的几个应用上下文</p>
-<p>AnnotationConfigApplicationContext：从一个或多个基于Java的配置类中加载Spring应用上下文。</p>
-<p>ClassPathXmlApplicationContext：从类路径下的一个或多个XML配置文件中加载上下文定义，把应用上下文的定义文件作为类资源。</p>
-<p>FileSystemXmlApplicationContext：从文件系统下的一个或多个XML配置文件中加载上下文定义。</p>
-<p>DI是组装应用对象的一种方式，借助这种方式对象无需知道依赖来自何处或者依赖的实现方式。不同于自己获取依赖对象，对象会在运行期赋予它们所依赖的对象。依赖对象通常会通过接口了解所注入的对象，这样的话就能确保低耦合。</p>
-<h3 id="装配Bean"><a href="#装配Bean" class="headerlink" title="装配Bean"></a>装配Bean</h3><h4 id="Spring-配置的可选方案"><a href="#Spring-配置的可选方案" class="headerlink" title="Spring 配置的可选方案"></a>Spring 配置的可选方案</h4><p>Spring容器负责创建应用程序中的bean并通过DI来协调这些对象之间的关系。但是，作为开发人员，你需要告诉Spring要创建哪些bean并且如何将其装配在一起。</p>
-<h3 id="Basic-BeanFactory"><a href="#Basic-BeanFactory" class="headerlink" title="Basic BeanFactory"></a>Basic BeanFactory</h3><p>SRP:单一职责原则</p>
-<p><strong>职责：</strong>是引起变化的原因</p>
-<ul>
-<li>如果有多于一个的动机去改变一个类，这个类就具有多于一个职责</li>
-<li>把多个职责耦合在一起，一个变化可能会消弱或者抑制这个类完成其他职责的能力</li>
-</ul>
-<p><strong>SRP:对于一个类而言，应该仅有一个引起它变化的原因</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clz = cl.loadClass(beanClassName);</span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
-<p>上面代码能够返回实例的前提是，类有一个缺省的无参构造函数。这样才能用newInstance的方式创建出来。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    BeanFactory beanFactory = <span class="keyword">new</span> DefaultBeanFactory(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">    BeanDefinition bd = beanFactory.getBeanDefinition(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    			        assertEquals(<span class="string">"org.litespring.service.test.v1.PetStoreService"</span>,bd.getBeanClassName());</span><br><span class="line"></span><br><span class="line">    PetStoreService petStore =   (PetStoreService)beanFactory.getBean(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertNotNull(petStore);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> DefaultBeanFactory(<span class="string">"petstore-v1.xml"</span>);</span><br></pre></td></tr></table></figure>
-<p>能够返回bean的定义，而bean的定义也是一个接口。</p>
-<p>然后从factory中获取bean。</p>
-<p>实现类放到support下面，接口放到factory下面。</p>
-<p>getBean是返回一个实例。</p>
-<p>这里面的代码有太多了try/catch</p>
-<p>常见的方法引入Exception，包装一个Exception可以throw出去，让调用方去处理。</p>
-<p>现在的文件有两个功能，一个是读取xml文件，生成bean定义，就是getBeanDefinition</p>
-<p>一个是生成bean的实例。所以要创建两个exception</p>
-<p>RuntimeException是一个unchecked的异常。</p>
-<p><img src="https://i.loli.net/2018/08/31/5b890ff0692d6.jpg" alt=""></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">catch</span> (DocumentException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BeanDefinitionStoreException(<span class="string">"IOException parsing XML document from"</span>+configFile,e);</span><br></pre></td></tr></table></figure>
-<p>xml异常</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (bd == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BeanCreationException(<span class="string">"Bean Definition does not exist"</span>);</span><br><span class="line"><span class="comment">//            return null;</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>bean异常</p>
-<p>SRP：单一职责原则</p>
-<ul>
-<li>职责：是引起变化的原因<ul>
-<li>如果有多于一个的动机起改变一个类，这个类就具有多于一个职责</li>
-<li>把多个职责耦合在一起，一个的变化可能会消弱或者抑制这个类完成其他职责的能力</li>
-</ul>
-</li>
-<li>SRP：对于一个类而言，应该仅有一个引起它变化的原因。</li>
-</ul>
-<p><img src="https://i.loli.net/2018/09/03/5b8ce0a3bf779.png" alt=""></p>
-<p>这里现在的DefaultBeanFactory具有多于一个 的职责。</p>
-<p>现在需要单独 的抽取出来</p>
-<p>BeanDefinition是一个内部的概念，不应该暴露给client也不应该放到BeanFactory这个借口上，只让客户看到一个最小集。</p>
-<p>创建一个接口出来，专门用于处理BeanDefinition</p>
-<p>创建一个reader来读取并解析xml，那么读取来以后怎么把definition告诉factory呢？让BeanDefiniton提供一个方法，registerBeanDefinition.当reader去解析xml文件后，可以去调用register方法，让reader持有一个BeanFactory的实例。但是这样并不好，BeanFactory是给客户使用的，并不希望客户调用register方法。BeanDefinition本质上是一个内部的概念，把一个xml变成一个BeanDefinition，我们拥有它的意义是通过反射去创建一个Bean的实例。所以BeanDefiniton应该是一个内部的概念。</p>
-<p><img src="https://i.loli.net/2018/09/03/5b8ce03672ef7.png" alt=""></p>
-<p>这样有两个好处，1/xmlBeanDefinitionReader只知道一个知识，我可以去获得和注册BeanDefinition，但是并不知道getBean。这个类知道越少的类越好。接口最小化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先修改testCase</span><br></pre></td></tr></table></figure>
-<p>XmlBeanDefinitionReader设置单一职责</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line">XmlBeanDefinitionReader reader = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">    reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    reader.loadBeanDefinitions(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">    PetStoreService petStore =   (PetStoreService)factory.getBean(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertNotNull(petStore);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面的去除重复的测试用例代码</p>
-<p>@Before</p>
-<p>每次调用测试用例setUp都会被调用</p>
-<p>没运行一个测试用例，reader和factory都会被清空一次。测试用例之间互不影响。</p>
-<p>每个测试用例都会调用@Before。factory和reader都是new出来的，各个测试用例之间互不影响。</p>
-<h4 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h4><p>在spring中，实际工作中很少会用BeanDefinition。而是使用ApplicationContext，封装了Factory和DefinitionReader。后面从ApplicationContext中获取Bean而不用关心底层的实现和处理。</p>
-<p>创建一个新的Test。 ApplicationContextTest</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationContextTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line">        PetStoreService petStoreService = (PetStoreService)ctx.getBean(<span class="string">"petStore"</span>);</span><br><span class="line">        Assert.assertNotNull(petStoreService);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ApplicationContext是一个接口。</p>
-<p>ClassPathXmlApplicationContext是一个实现，从类路径下寻找文件。</p>
-<p>ApplicationContext有一个方法，getBean：从Context中把petStore这个bean取出。但是这个方法已经在BeanFactory中定义过了。因此可以让ApplicationContext去扩展BeanFactory接口，这样ApplicationContext就具有getBean方法了。</p>
-<p><img src="https://i.loli.net/2018/07/29/5b5d55783c730.jpg" alt=""></p>
-<p>根据上图，把BeanFactory两个关于BeanDefinition的两个方法挪到BeanDefinitionRegistry中。 </p>
-<p>ApplicationContext是给客户使用的，继承了BeanFactory，它的实现就是ClassPathXmlApplicationContext</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassPathXmlApplicationContext</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPathXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title">ApplicationContext</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String conigFile)</span> </span>&#123;</span><br><span class="line">       factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">        XmlBeanDefinitionReader reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">        reader.loadBeanDefinitions(conigFile);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String beanID)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory.getBean(beanID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>实现了ApplicationContext内部有了一个DefaultBeanFactory的实例。</p>
-<p>然后在构造中，new出来reader和factory。</p>
-<p>loadBeanDefinitions过程当中，DefaultBeanFactory会不断的调用BeanDefinition的方法registerBeanDefinition。于是这些Defnition就会进入到factory中。</p>
-<p>持有所有的实例，就可以通过getBean来获取</p>
-<h4 id="filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource"><a href="#filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource" class="headerlink" title="filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource"></a>filesysytemapplication和ClassPathXmlApplicationContext的共同点—-Resource</h4><p>Rresource类图</p>
-<p><img src="https://i.loli.net/2018/07/29/5b5d5efbf1eda.png" alt=""></p>
-<p>都会变成inputstream送给dom4j去解析</p>
-<p>ResourceTest</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClassPathResource</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        Resource r = <span class="keyword">new</span> ClassPathResource(<span class="string">"petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = r.getInputStream();</span><br><span class="line">            Assert.assertNotNull(is);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (is != <span class="keyword">null</span>)&#123;</span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFileSystemResource</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        Resource r = <span class="keyword">new</span> FileSystemResource(<span class="string">"/Users/mac/Documents/workspace/litespring/src/test/resources/petstore-v1.xml"</span>);</span><br><span class="line"></span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = r.getInputStream();</span><br><span class="line">            Assert.assertNotNull(is);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (is != <span class="keyword">null</span>)&#123;</span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ClassPathResource</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPathResource</span> <span class="keyword">implements</span> <span class="title">Resource</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String path;</span><br><span class="line">    <span class="keyword">private</span> ClassLoader classLoader;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathResource</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(path,(ClassLoader)<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathResource</span><span class="params">(String path, ClassLoader classLoader)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.path = path;</span><br><span class="line">        <span class="keyword">this</span>.classLoader =(classLoader !=<span class="keyword">null</span>? classLoader: ClassUtils.getDefaultClassLoader());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> InputStream <span class="title">getInputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.classLoader.getResourceAsStream(<span class="keyword">this</span>.path);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (is == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException(path+<span class="string">"cannot be opened"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> is;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.path;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileSystemXmlApplicationContext</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileSystemXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title">ApplicationContext</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DefaultBeanFactory factory = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FileSystemXmlApplicationContext</span><span class="params">(String configFile)</span> </span>&#123;</span><br><span class="line">        factory = <span class="keyword">new</span> DefaultBeanFactory();</span><br><span class="line">        XmlBeanDefinitionReader reader = <span class="keyword">new</span> XmlBeanDefinitionReader(factory);</span><br><span class="line">        Resource resource = <span class="keyword">new</span> FileSystemResource(configFile);</span><br><span class="line">        reader.loadBeanDefinitions(resource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String beanID)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory.getBean(beanID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个类与classpath的区别几乎只有Resource的区别。</p>
-<p>模版方法</p>
-<p><img src="https://i.loli.net/2018/07/29/5b5d717a04950.png" alt=""></p>
-<p>抽象出一个新的抽象类，实现了applicationContext的接口</p>
-<p> <img src="http://pcq0v117m.bkt.clouddn.com/loaderClass.png" alt=""></p>
-<p>这里还是让BeanFactory只保留一个getBean()最小集。把一些不常用的，可配置的相关方法放到一个新的接口当中。</p>
-<p>ConfigurableBeanFactory</p>
-<h3 id="Setter注入"><a href="#Setter注入" class="headerlink" title="Setter注入"></a>Setter注入</h3><p>新增的PetStoreService</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"petStore"</span> <span class="attr">class</span>=<span class="string">"org.litespring.service.v2.PetStoreService"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"accountDao"</span> <span class="attr">ref</span>=<span class="string">"accoutDao"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"itemDao"</span> <span class="attr">ref</span>=<span class="string">"itemDao"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们之前用BeanDefinition表达了<bean>标签中的id, class.这些property怎么表达？</bean></p>
-<p>ref怎么表达？</p>
-<p>value怎么表达？</p>
-<p>这里必须要做点抽象，或者说用类来代表这些感念。</p>
-<p>两个类：</p>
-<ul>
-<li>RuntimeBeanReference <ul>
-<li><ul>
-<li>beanName</li>
-<li>getBeanName()</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>TypedStringValue<ul>
-<li><ul>
-<li>value</li>
-<li>getValue()</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="整体类图"><a href="#整体类图" class="headerlink" title="整体类图"></a>整体类图</h4><p><img src="http://pcq0v117m.bkt.clouddn.com/fullClassMap.jpg" alt=""></p>
-<p><strong>XmlBeanDefinitionReader</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XmlBeanDefinitionReader</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ID_ATTRIBUTE = <span class="string">"id"</span>;	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CLASS_ATTRIBUTE = <span class="string">"class"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SCOPE_ATTRIBUTE = <span class="string">"scope"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String PROPERTY_ELEMENT = <span class="string">"property"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String REF_ATTRIBUTE = <span class="string">"ref"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String VALUE_ATTRIBUTE = <span class="string">"value"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NAME_ATTRIBUTE = <span class="string">"name"</span>;</span><br><span class="line">	</span><br><span class="line">	BeanDefinitionRegistry registry;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">final</span> Log logger = LogFactory.getLog(getClass());</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">XmlBeanDefinitionReader</span><span class="params">(BeanDefinitionRegistry registry)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.registry = registry;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadBeanDefinitions</span><span class="params">(Resource resource)</span></span>&#123;</span><br><span class="line">		InputStream is = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span>&#123;			</span><br><span class="line">			is = resource.getInputStream();</span><br><span class="line">			SAXReader reader = <span class="keyword">new</span> SAXReader();</span><br><span class="line">			Document doc = reader.read(is);</span><br><span class="line">			</span><br><span class="line">			Element root = doc.getRootElement(); <span class="comment">//&lt;beans&gt;</span></span><br><span class="line">			Iterator&lt;Element&gt; iter = root.elementIterator();</span><br><span class="line">			<span class="keyword">while</span>(iter.hasNext())&#123;</span><br><span class="line">				Element ele = (Element)iter.next();</span><br><span class="line">				String id = ele.attributeValue(ID_ATTRIBUTE);</span><br><span class="line">				String beanClassName = ele.attributeValue(CLASS_ATTRIBUTE);</span><br><span class="line">				BeanDefinition bd = <span class="keyword">new</span> GenericBeanDefinition(id,beanClassName);</span><br><span class="line">				<span class="keyword">if</span> (ele.attribute(SCOPE_ATTRIBUTE)!=<span class="keyword">null</span>) &#123;					</span><br><span class="line">					bd.setScope(ele.attributeValue(SCOPE_ATTRIBUTE));					</span><br><span class="line">				&#125;</span><br><span class="line">				parsePropertyElement(ele,bd); </span><br><span class="line">				<span class="keyword">this</span>.registry.registerBeanDefinition(id, bd);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;		</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> BeanDefinitionStoreException(<span class="string">"IOException parsing XML document from "</span> + resource.getDescription(),e);</span><br><span class="line">		&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(is != <span class="keyword">null</span>)&#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					is.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;					</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parsePropertyElement</span><span class="params">(Element beanElem, BeanDefinition bd)</span> </span>&#123;</span><br><span class="line">		Iterator iter= beanElem.elementIterator(PROPERTY_ELEMENT);</span><br><span class="line">		<span class="keyword">while</span>(iter.hasNext())&#123;</span><br><span class="line">			Element propElem = (Element)iter.next();</span><br><span class="line">			String propertyName = propElem.attributeValue(NAME_ATTRIBUTE);</span><br><span class="line">			<span class="keyword">if</span> (!StringUtils.hasLength(propertyName)) &#123;</span><br><span class="line">				logger.fatal(<span class="string">"Tag 'property' must have a 'name' attribute"</span>);</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			Object val = parsePropertyValue(propElem, bd, propertyName);</span><br><span class="line">			PropertyValue pv = <span class="keyword">new</span> PropertyValue(propertyName, val);</span><br><span class="line">			</span><br><span class="line">			bd.getPropertyValues().add(pv);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">parsePropertyValue</span><span class="params">(Element ele, BeanDefinition bd, String propertyName)</span> </span>&#123;</span><br><span class="line">		String elementName = (propertyName != <span class="keyword">null</span>) ?</span><br><span class="line">						<span class="string">"&lt;property&gt; element for property '"</span> + propertyName + <span class="string">"'"</span> :</span><br><span class="line">						<span class="string">"&lt;constructor-arg&gt; element"</span>;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">boolean</span> hasRefAttribute = (ele.attribute(REF_ATTRIBUTE)!=<span class="keyword">null</span>);</span><br><span class="line">		<span class="keyword">boolean</span> hasValueAttribute = (ele.attribute(VALUE_ATTRIBUTE) !=<span class="keyword">null</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (hasRefAttribute) &#123;</span><br><span class="line">			String refName = ele.attributeValue(REF_ATTRIBUTE);</span><br><span class="line">			<span class="keyword">if</span> (!StringUtils.hasText(refName)) &#123;</span><br><span class="line">				logger.error(elementName + <span class="string">" contains empty 'ref' attribute"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			RuntimeBeanReference ref = <span class="keyword">new</span> RuntimeBeanReference(refName);			</span><br><span class="line">			<span class="keyword">return</span> ref;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> (hasValueAttribute) &#123;</span><br><span class="line">			TypedStringValue valueHolder = <span class="keyword">new</span> TypedStringValue(ele.attributeValue(VALUE_ATTRIBUTE));</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">return</span> valueHolder;</span><br><span class="line">		&#125;		</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(elementName + <span class="string">" must specify a ref or value"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>实际情况中，我们说需要将ref。new出来的。</p>
-<p>将一个名称变为实例，</p>
-<h4 id="注入bean"><a href="#注入bean" class="headerlink" title="注入bean"></a>注入bean</h4><p>TDD的思路</p>
-<ul>
-<li><ol>
-<li>针对接口写“high level”的测试用例，暂时不用pass，可以保持fail状态<ul>
-<li>例如ApplicationContextTestV2</li>
-</ul>
-</li>
-<li>对一些子任务写测试用例<ul>
-<li>BeanDefinitionTestV2 ：</li>
-<li>BeanDefinitionValueResolverTest ：测试ref和value</li>
-</ul>
-</li>
-<li>把子任务生成的代码，类组合起来，让high level的测试用例pass</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">populateBean</span><span class="params">(BeanDefinition bd, Object bean)</span></span>&#123;</span><br><span class="line">	List&lt;PropertyValue&gt; pvs = bd.getPropertyValues();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (pvs == <span class="keyword">null</span> || pvs.isEmpty()) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	BeanDefinitionValueResolver valueResolver = <span class="keyword">new</span> BeanDefinitionValueResolver(<span class="keyword">this</span>);</span><br><span class="line">	SimpleTypeConverter converter = <span class="keyword">new</span> SimpleTypeConverter(); </span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		</span><br><span class="line">		BeanInfo beanInfo = Introspector.getBeanInfo(bean.getClass());</span><br><span class="line">		PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (PropertyValue pv : pvs)&#123;</span><br><span class="line">			String propertyName = pv.getName();</span><br><span class="line">			Object originalValue = pv.getValue();</span><br><span class="line">			Object resolvedValue = valueResolver.resolveValueIfNecessary(originalValue);			</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">for</span> (PropertyDescriptor pd : pds) &#123;</span><br><span class="line">				<span class="keyword">if</span>(pd.getName().equals(propertyName))&#123;</span><br><span class="line">					Object convertedValue = converter.convertIfNecessary(resolvedValue, pd.getPropertyType());</span><br><span class="line">					pd.getWriteMethod().invoke(bean, convertedValue);</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">catch</span>(Exception ex)&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> BeanCreationException(<span class="string">"Failed to obtain BeanInfo for class ["</span> + bd.getBeanClassName() + <span class="string">"]"</span>, ex);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里要实现setter的注入</p>
-<p>现在唯一知道的就说它的名称，可以使用javabean使用的功能。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">BeanInfo beanInfo = Introspector.getBeanInfo(bean.getClass());</span><br><span class="line">PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();</span><br><span class="line"><span class="keyword">for</span>(PropertyDescriptor pd : pds)&#123;</span><br><span class="line">             <span class="keyword">if</span>(pd.getName().equals(proertyName))&#123;</span><br><span class="line">                 pd.getWriteMethod().invoke(bean,resolvedValue);</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">             &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>代码中的bean就是petStoreService</p>
-<p>Introspector可以拿到bean的info也就是拿到petStoreService的相关信息。</p>
-<p>然后调用getPropertyDescriptors（）属性的描述器</p>
-<p>proertyName就相当于bean的名称。</p>
-<p>如果相等就认为找到了这个属性，就调用它的getWriteMethod其实就是它的get和set方法。 </p>
-<p>通过反射的方式，bean是对象本身，resolvedValue就是AccountDao</p>
-<p>下一个循环就可能是把itemDao也set进去。</p>
-<p>此时再运行测试用例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetBeanProperty</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"petstore-v2.xml"</span>);</span><br><span class="line">    PetStoreService petStore = (PetStoreService)ctx.getBean(<span class="string">"petStore"</span>);</span><br><span class="line"></span><br><span class="line">    assertNotNull(petStore.getAccountDao());</span><br><span class="line">    assertNotNull(petStore.getItemDao());</span><br><span class="line">    </span><br><span class="line">    assertTrue(petStore.getAccountDao() <span class="keyword">instanceof</span> AccountDao);</span><br><span class="line">    assertTrue(petStore.getItemDao() <span class="keyword">instanceof</span> ItemDao);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不报错就证明已经注入进去了。</p>
-<p>那么此时我们测试了是一个ref的属性。</p>
-<h4 id="注入value"><a href="#注入value" class="headerlink" title="注入value"></a>注入value</h4><p>现在将</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"owner"</span> <span class="attr">value</span>=<span class="string">"liuxin"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<p>加入到PetStoreService中以及它的getter和setter方法。</p>
-<p>此时再增加一个int类型的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=&quot;version&quot;  value=&quot;2&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p>此时再运行测试用例就会失败</p>
-<p>我们在xml文件当中没有类型只有字符串。所在setVersion的时候就会报错，因为不是int类型的。</p>
-<p>所以一定要根据类型去转换。</p>
-<p>目标：做转换</p>
-<h4 id="实现类型转换"><a href="#实现类型转换" class="headerlink" title="实现类型转换"></a>实现类型转换</h4><p><img src="http://pcq0v117m.bkt.clouddn.com/Spring%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%AE%BE%E8%AE%A1%E5%9B%BE.jpg" alt="">    </p>
-<p>上图是Spring做类型转换的设计图</p>
-<p>创建一个想做类型转换的接口，它只有一个方法。</p>
-<p>convertIfNessessary如果有必要的话就进行一个转换，两个参数，一个是2一个是类型</p>
-<p>传递给这个方法后，这个方法会返回一个整型的值</p>
-<p>它的实现是SimpleTypeConverter利用了java的beans</p>
-<p>想实现这个功能，先实现小功能，依次通过测试用例来实现</p>
-<p>先写一个测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomNumberEditorTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testConvertString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//true 代表是否允许为null</span></span><br><span class="line">		CustomNumberEditor editor = <span class="keyword">new</span> CustomNumberEditor(Integer.class,<span class="keyword">true</span>);</span><br><span class="line">		</span><br><span class="line">		editor.setAsText(<span class="string">"3"</span>);</span><br><span class="line">		Object value = editor.getValue();</span><br><span class="line">		Assert.assertTrue(value <span class="keyword">instanceof</span> Integer);		</span><br><span class="line">		Assert.assertEquals(<span class="number">3</span>, ((Integer)editor.getValue()).intValue());</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		editor.setAsText(<span class="string">""</span>);</span><br><span class="line">		Assert.assertTrue(editor.getValue() == <span class="keyword">null</span>);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			editor.setAsText(<span class="string">"3.1"</span>);</span><br><span class="line">			</span><br><span class="line">		&#125;<span class="keyword">catch</span>(IllegalArgumentException e)&#123;</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		Assert.fail();		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Setter注入的回顾</p>
-<ul>
-<li>1.引入新的概念PropertyValue<ul>
-<li>RuntimeBeanReference</li>
-<li>TypedStringValue</li>
-</ul>
-</li>
-<li>2.用BeanDefinitionResolver去resolve</li>
-<li>3.使用TypeConverter去把字符的值进行转型</li>
-</ul>
-<h4 id="课后答疑"><a href="#课后答疑" class="headerlink" title="课后答疑"></a>课后答疑</h4><p>我们用BeanDefinition表达<bean>标签中的id，class</bean></p>
-<p>那么property ref value怎么表达</p>
-<p>ref如恶化保证从factory中获取的时候已经是一个bean</p>
-<h3 id="使用构造器注入"><a href="#使用构造器注入" class="headerlink" title="使用构造器注入"></a>使用构造器注入</h3><h4 id="解析xml"><a href="#解析xml" class="headerlink" title="解析xml"></a>解析xml</h4><p><strong>xml文件</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"petStore"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.litespring.service.v3.PetStoreService"</span> &gt;</span>  </span><br><span class="line">   	<span class="tag">&lt;<span class="name">constructor-arg</span>  <span class="attr">ref</span>=<span class="string">"accountDao"</span>/&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">constructor-arg</span>  <span class="attr">ref</span>=<span class="string">"itemDao"</span>/&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">constructor-arg</span>  <span class="attr">value</span>=<span class="string">"1"</span>/&gt;</span>       </span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"itemDao"</span> <span class="attr">class</span>=<span class="string">"org.litespring.dao.v3.ItemDao"</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountDao"</span>  <span class="attr">class</span>=<span class="string">"org.litespring.dao.v3.AccountDao"</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在实现层面肯定要去解析xml才可以。假设，在解析它们的时候，解析完需要用一个类来表达这些构造器的参数。</p>
-<p>所以仍然要做一个设计，请先查看类图。</p>
-<p><img src="http://pcq0v117m.bkt.clouddn.com/Contstructor-arg.png" alt=""></p>
-<p>会新增加一个类ConstructorArgument</p>
-<p>里面会有一个list，list里面的ValueHolder是ref或value</p>
-<p>那么为什么不能将List<valueholder>中的 ValueHolder换成Object呢？</valueholder></p>
-<p>其实Spring中支持的Constructor-arg是比较复杂的</p>
-<p><img src="http://pcq0v117m.bkt.clouddn.com/Spring%E6%94%AF%E6%8C%81%E7%9A%84constructor%E7%B1%BB%E5%9E%8B.png" alt=""></p>
-<p>type指定类型</p>
-<p>name表示注入到参数名称是years中，指定参数名称。</p>
-<p>index指定参数顺序。</p>
-<p>因此我们这里简化了，这里只用value</p>
-<p>在ConstructorArgument中有一个静态的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static class ValueHolder</span><br></pre></td></tr></table></figure>
-<p>静态内部类，因为它只在ConstructorArgument中使用，只用来描述一个构造函数的参数，高内聚。</p>
-<p>这里我们只用了value</p>
-<h4 id="和setter做对比"><a href="#和setter做对比" class="headerlink" title="和setter做对比"></a>和setter做对比</h4><ul>
-<li>和setter注入做对比<ul>
-<li>设计一个数据结构PropertyValue/ConstructorArgument</li>
-<li>解析XML，填充这个数据结构</li>
-<li>利用这个数据结构做事情</li>
-</ul>
-</li>
-</ul>
-<h4 id="实现构造器注入"><a href="#实现构造器注入" class="headerlink" title="实现构造器注入"></a>实现构造器注入</h4><p>如果一个类有多个构造函数，那么怎么选取</p>
-<p><img src="http://pcq0v117m.bkt.clouddn.com/%E9%80%89%E5%8F%96%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0.png" alt=""></p>
-<p>找到参数合适的之后也要匹配参数对象类型是否一致，能不能对这个类型做赋值或转型操作。</p>
-<p>设计一个类来解决这个问题。</p>
-<p><img src="http://pcq0v117m.bkt.clouddn.com/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2Construstor.png" alt=""></p>
-<p>可以把一个ref变成一个实际的类型对象出来。</p>
-<p>通过find来找到这个对象，然后通过autowire来创建对象。在创建对象的过程当中就会把三个参数的值注入到对象中去了。这个就是ConstructorResolver的作用。</p>
-<p>BeanDefinition可以获取ConstructorArgument</p>
-<p>ConstructorResolver</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">ublic <span class="class"><span class="keyword">class</span> <span class="title">ConstructorResolver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">final</span> Log logger = LogFactory.getLog(getClass());</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ConfigurableBeanFactory beanFactory;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ConstructorResolver</span><span class="params">(ConfigurableBeanFactory beanFactory)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.beanFactory = beanFactory;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">autowireConstructor</span><span class="params">(<span class="keyword">final</span> BeanDefinition bd)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		Constructor&lt;?&gt; constructorToUse = <span class="keyword">null</span>;		<span class="comment">//找到一个可以用的Constructor</span></span><br><span class="line">		Object[] argsToUse = <span class="keyword">null</span>;	<span class="comment">//PetStoreService需要有参数，这里用Objcet来记录</span></span><br><span class="line">	</span><br><span class="line">		Class&lt;?&gt; beanClass = <span class="keyword">null</span>; <span class="comment">//通过BeanFactory来获取，每次进来都装载</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			beanClass = <span class="keyword">this</span>.beanFactory.getBeanClassLoader().loadClass(bd.getBeanClassName());</span><br><span class="line">			</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> BeanCreationException( bd.getID(), <span class="string">"Instantiation of bean failed, can't resolve class"</span>, e);</span><br><span class="line">		&#125;	</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		Constructor&lt;?&gt;[] candidates = beanClass.getConstructors();	<span class="comment">//反射方法</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		BeanDefinitionValueResolver valueResolver =</span><br><span class="line">				<span class="keyword">new</span> BeanDefinitionValueResolver(<span class="keyword">this</span>.beanFactory);</span><br><span class="line">		</span><br><span class="line">		ConstructorArgument cargs = bd.getConstructorArgument();</span><br><span class="line">        </span><br><span class="line">		SimpleTypeConverter typeConverter = <span class="keyword">new</span> SimpleTypeConverter();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;candidates.length;i++)&#123;</span><br><span class="line">			</span><br><span class="line">			Class&lt;?&gt; [] parameterTypes = candidates[i].getParameterTypes();<span class="comment">//拿到两个参数</span></span><br><span class="line">			<span class="keyword">if</span>(parameterTypes.length != cargs.getArgumentCount())&#123;<span class="comment">//是否和xml中的数量相等</span></span><br><span class="line">				<span class="keyword">continue</span>; <span class="comment">//不管用，找第二个构造函数的循环</span></span><br><span class="line">			&#125;			</span><br><span class="line">			argsToUse = <span class="keyword">new</span> Object[parameterTypes.length]; </span><br><span class="line">			</span><br><span class="line">			<span class="keyword">boolean</span> result = <span class="keyword">this</span>.valuesMatchTypes(parameterTypes,  <span class="comment">//值是否和ref匹配</span></span><br><span class="line">					cargs.getArgumentValues(), </span><br><span class="line">					argsToUse, </span><br><span class="line">					valueResolver, </span><br><span class="line">					typeConverter);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(result)&#123;</span><br><span class="line">				constructorToUse = candidates[i];<span class="comment">//如果匹配成功，这个候选的构造函数就是我们要的</span></span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//找不到一个合适的构造函数</span></span><br><span class="line">		<span class="keyword">if</span>(constructorToUse == <span class="keyword">null</span>)&#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> BeanCreationException( bd.getID(), <span class="string">"can't find a apporiate constructor"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> constructorToUse.newInstance(argsToUse); <span class="comment">//传递对象</span></span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> BeanCreationException( bd.getID(), <span class="string">"can't find a create instance using "</span>+constructorToUse);</span><br><span class="line">		&#125;		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">valuesMatchTypes</span><span class="params">(Class&lt;?&gt; [] parameterTypes,</span></span></span><br><span class="line"><span class="function"><span class="params">			List&lt;ConstructorArgument.ValueHolder&gt; valueHolders,</span></span></span><br><span class="line"><span class="function"><span class="params">			Object[] argsToUse,</span></span></span><br><span class="line"><span class="function"><span class="params">			BeanDefinitionValueResolver valueResolver,</span></span></span><br><span class="line"><span class="function"><span class="params">			SimpleTypeConverter typeConverter )</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;parameterTypes.length;i++)&#123;</span><br><span class="line">			ConstructorArgument.ValueHolder valueHolder </span><br><span class="line">				= valueHolders.get(i);</span><br><span class="line">			<span class="comment">//获取参数的值，可能是TypedStringValue, 也可能是RuntimeBeanReference</span></span><br><span class="line">			Object originalValue = valueHolder.getValue();</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">try</span>&#123;</span><br><span class="line">				<span class="comment">//获得真正的值</span></span><br><span class="line">				Object resolvedValue = valueResolver.resolveValueIfNecessary( originalValue);</span><br><span class="line">				<span class="comment">//如果参数类型是 int, 但是值是字符串,例如"3",还需要转型</span></span><br><span class="line">				<span class="comment">//如果转型失败，则抛出异常。说明这个构造函数不可用</span></span><br><span class="line">				Object convertedValue = typeConverter.convertIfNecessary(resolvedValue, parameterTypes[i]);</span><br><span class="line">				<span class="comment">//转型成功，记录下来</span></span><br><span class="line">				argsToUse[i] = convertedValue;</span><br><span class="line">			&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">				logger.error(e);</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;				</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Commons-BeanUtils"><a href="#Commons-BeanUtils" class="headerlink" title="Commons-BeanUtils"></a>Commons-BeanUtils</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/数据类型问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/数据类型问题/" itemprop="url">数据类型相关</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><hr>
-<h3 id="long类型："><a href="#long类型：" class="headerlink" title="long类型："></a>long类型：</h3><p>（1）例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        long l1=1000*60*60*24*365*10L;</span><br><span class="line">        long l2=1000*60*60*24*3650L;</span><br><span class="line">        System.out.println(l1);</span><br><span class="line">        System.out.println(l2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out:</span><br><span class="line">14712289280</span><br><span class="line">315360000000</span><br></pre></td></tr></table></figure></p>
-<p>两次输出不一致。原因：在运算的时候是按照int类型计算的，只有当与带L的数运算的时候才开始按Long运算。<br>所以这里可以尽量把L数据类型提前到int类型异常之前。</p>
-<hr>
-<h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><p>String s1=”dfd”; 相当于在堆内存的常量池中创建了一个对象。<br>如果再有<br>String s2=”dfd”; 就会先检查常量池中是否有这个值，如果有就不会再创建，而是把值给s2;<br>new String（”dfd”）； 就是在内存中<br>==比较的是内存地址。<br>所以在比较内容的时候最好使用equals</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/hexo使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/hexo使用/" itemprop="url">Hexo 使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、清理缓存：hexo clean</p>
-<p>2、终端创建新文件：hexo new “&lt;文件名&gt;”</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/前端页面/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/前端页面/" itemprop="url">前端工具类</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、在前端form表单转换为json格式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//封装js方法，基于jquery</span><br><span class="line">$.fn.serializeJson = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    var serializeObj = &#123;&#125;;</span><br><span class="line">    var array = this.serializeArray();</span><br><span class="line">    var str = this.serialize();</span><br><span class="line">    $(array).each(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        <span class="keyword">if</span> (serializeObj[this.name]) &#123;</span><br><span class="line">            <span class="keyword">if</span> ($.isArray(serializeObj[this.name])) &#123;</span><br><span class="line">                serializeObj[this.name].push(this.value);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                serializeObj[this.name] = [serializeObj[this.name], this.value];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            serializeObj[this.name] = this.value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">return</span> serializeObj;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h4><p>1、git reset –hard 139dcfaa558e3276b30b6b2e5cbbb9c00bbdca96   回滚到某个版本</p>
+<p>2、git push -f -u origin &lt;分支名&gt;   ：强制提交到分支</p>
 
           
         
@@ -2194,7 +2189,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2240,7 +2235,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2262,7 +2257,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2299,7 +2294,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
