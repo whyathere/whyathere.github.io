@@ -921,6 +921,7 @@
 <li>Bigdecimal都是不可变的，在进行每一步运算时，都会产生一个新的对象，所以在做加减乘除运算时千万要保存操作后的值</li>
 </ol>
 <h3 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h3><h4 id="Base64编码"><a href="#Base64编码" class="headerlink" title="Base64编码"></a>Base64编码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line">Base64.getEncoder().encodeToString(jsonData.getBytes(StandardCharsets.UTF_8));</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -1367,9 +1368,17 @@
       
         
           
-            <p>1、清理缓存：hexo clean</p>
-<p>2、终端创建新文件：hexo new “&lt;文件名&gt;”</p>
-<p>3、</p>
+            <ol>
+<li><p>清理缓存：hexo clean</p>
+</li>
+<li><p>终端创建新文件：hexo new “&lt;文件名&gt;”</p>
+</li>
+<li><p>启动本地服务器：  hexo  s</p>
+</li>
+<li>新建 hexo new “标题”</li>
+<li>生成静态文件并部署到远端  hexo  g -d</li>
+<li></li>
+</ol>
 
           
         
