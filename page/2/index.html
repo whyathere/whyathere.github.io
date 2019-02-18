@@ -348,6 +348,7 @@
 <p>column:指定数据库中那一列的值</p>
 <p>javaType:列值对应的java类型</p>
 <p>discriminator:标签鉴别器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--获取自增主键的值</span></span><br><span class="line"><span class="comment">    useGeneratedKeys 使用自增主键获取主键值策略</span></span><br><span class="line"><span class="comment">    keyProperty : 指定对应的主键属性，也就是mybatis获取到主键值以后，将这个值封装给javaBean的那个属性</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addEmployee"</span> <span class="attr">useGeneratedKeys</span>=<span class="string">"true"</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">    insert into tb_user (name,address)</span><br><span class="line">    values</span><br><span class="line">    (#&#123;name&#125;,#&#123;address&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="Param"><a href="#Param" class="headerlink" title="@Param"></a>@Param</h4><p>多个参数会被封装成一个map，#{}就是从map中获取指定的key的值。</p>
 <p>key是param</p>
 <p>value是传入的值</p>
@@ -493,7 +494,7 @@
 <p>例如：如果是女生就把该女生的部门信息查询出来</p>
 <p>​       如果是男生就不查询部门信息，但是要把name赋值给email</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"MyEmpDis"</span> <span class="attr">type</span>=<span class="string">"com.zero.bean.Employee"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">property</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--mybatis可以使用鉴别器判某列的值，然后根据某列的值改变封装行为</span></span><br><span class="line"><span class="comment">        封装Employee:</span></span><br><span class="line"><span class="comment">            如果查出的是女生 0 就把部门信息查询出来，否则不查。</span></span><br><span class="line"><span class="comment">            如果是男生 1，把name这一列的值赋值给email</span></span><br><span class="line"><span class="comment">        column:指定要判定的列名</span></span><br><span class="line"><span class="comment">        javaType:列值对应的java类型</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">discriminator</span> <span class="attr">javaType</span>=<span class="string">"string"</span> <span class="attr">column</span>=<span class="string">"gender"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--女生 resultType:列值对应的java类型.也可以是resultMap但是不能缺少--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">case</span> <span class="attr">value</span>=<span class="string">"0"</span> <span class="attr">resultType</span>=<span class="string">"com.zero.bean.Employee"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">"dept"</span> <span class="attr">select</span>=<span class="string">"com.zero.dao.DepartmentMapper.getDeptById"</span> <span class="attr">column</span>=<span class="string">"d_id"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">case</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--男生把name赋值给email--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">case</span> <span class="attr">value</span>=<span class="string">"1"</span> <span class="attr">resultType</span>=<span class="string">"com.zero.bean.Employee"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">property</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">property</span>=<span class="string">"email"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"gender"</span> <span class="attr">property</span>=<span class="string">"gender"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">case</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">discriminator</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Mybatis-动态SQL-DynamicSQL"><a href="#Mybatis-动态SQL-DynamicSQL" class="headerlink" title="Mybatis-动态SQL.     DynamicSQL"></a>Mybatis-动态SQL.     DynamicSQL</h3><ul>
+<h3 id="DynamicSQL"><a href="#DynamicSQL" class="headerlink" title="DynamicSQL"></a>DynamicSQL</h3><ul>
 <li>动态SQL是Mybatis强大特性之一。极大的简化我们拼装SQL的操作。</li>
 <li>动态SQL元素和使用JSTL或其他类似基于XML的文本处理器相似。</li>
 <li>MyBatis采用功能强大的基于OGNL的表达式来简化操作。<ul>
@@ -545,7 +546,135 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addEmps"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"emp"</span> <span class="attr">separator</span>=<span class="string">";"</span>&gt;</span></span><br><span class="line">        insert into tb_user(name,address,gender,email,d_id)</span><br><span class="line">        values (#&#123;emp.name&#125;,#&#123;emp.address&#125;,#&#123;emp.gender&#125;,#&#123;emp.email&#125;,#&#123;emp.dept.id&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>但是这个时候会报错。sql不支持。需要进行配置</p>
 <p>allowMultiQueries：在一条语句中，运行使用”;”来分隔多条查询(真/假，默认值为”假”)</p>
+<h4 id="内置参数-parameter-amp-databaseld"><a href="#内置参数-parameter-amp-databaseld" class="headerlink" title="内置参数_parameter&amp;_databaseld"></a>内置参数_parameter&amp;_databaseld</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--两个内置参数</span></span><br><span class="line"><span class="comment">    不只是方法传递过来的参数可以被用来判断，取值</span></span><br><span class="line"><span class="comment">    mybatis默认还有两个内置参数：</span></span><br><span class="line"><span class="comment">    _parameter:代表整个参数</span></span><br><span class="line"><span class="comment">    如果是单个参数:_parameter就是这个参数；</span></span><br><span class="line"><span class="comment">         多个参数:就会被封装为一个map，_parameter就代表这个map；</span></span><br><span class="line"><span class="comment">    _databaseId:</span></span><br><span class="line"><span class="comment">         如果配置了databaseIdProvider标签</span></span><br><span class="line"><span class="comment">         _databaseId就是代表当前数据库的别名</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/Java%E5%9F%BA%E7%A1%80/databaseProvider.png?raw=true" alt=""></p>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/Java%E5%9F%BA%E7%A1%80/select.png?raw=true" alt=""></p>
+<h4 id="sql-bing绑定"><a href="#sql-bing绑定" class="headerlink" title="sql_bing绑定"></a>sql_bing绑定</h4><p>bing：可以将ognl表达式的值绑定到一个变量中，方便后面引用这个变量的值</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- bind: 可以将OGNL表达式的值绑定到一个变量中，方便后面来引用这个变量的值</span></span><br><span class="line"><span class="comment">     value:就是要绑定值</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bind</span> <span class="attr">name</span>=<span class="string">"_name"</span> <span class="attr">value</span>=<span class="string">"'%'+name+'%'"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面的是将name拼串模糊查询的样例，然后赋值给_name</p>
+<h4 id="抽取可重用sql片段"><a href="#抽取可重用sql片段" class="headerlink" title="抽取可重用sql片段 "></a>抽取可重用sql片段 <sql></sql></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">"insertColum"</span>&gt;</span></span><br><span class="line">  user_id,name,email</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>引用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">"insertColum"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"testColomn"</span> <span class="attr">value</span>=<span class="string">"adc"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">设置了property就可以用$&#123;testColomn&#125;取值</span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<ol>
+<li><p>sql抽取：将常要查询的列名，或者插入用的列名抽取出来方便使用</p>
+</li>
+<li><p>include还可以自定义一些property，sql标签内部就能使用自定义的属性</p>
+<p>include标签的property设置的值，需要用${取值}而不能用#{}</p>
+</li>
+</ol>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>Mybatis包含一个非常强大的查询缓存特性，它可以非常方便地配置和定制。缓存可以极大的提升查询效率。</p>
+<ol>
+<li>Mybatis系统中默认定义了两级缓存。</li>
+<li><p>一级缓存<strong>和 </strong>二级缓存**</p>
+</li>
+<li><p>默认情况下，只有一级缓存(SqlSession级别的缓存，也称为本地缓存)开启。</p>
+</li>
+<li><p>二级缓存需要手动开启和配置，他是基于namespace级别的缓存</p>
+</li>
+<li><p>为了提高扩展性。Mybatis定义了缓存接口Cache。我们可以通过实现Cache接口来自定义二级缓存</p>
+</li>
+</ol>
+<h4 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h4><p>一级缓存：本地缓存</p>
+<p>与数据库同一次会话期间查询到的数据会放在本地缓存中。以后如果要获取相同的数据，直接从缓存中拿，没必要再去查询数据库。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EmployeeMapperPlus mapper = session.getMapper(EmployeeMapperPlus.class);</span><br><span class="line">Employee emp1 = mapper.getEmployeeById(<span class="number">5</span>);</span><br><span class="line">Employee emp2 = mapper.getEmployeeById(<span class="number">5</span>);</span><br><span class="line">System.out.println(emp1);</span><br><span class="line">System.out.println(emp2);</span><br></pre></td></tr></table></figure>
+<p>二级缓存：全局缓存</p>
+<p>例如：按照id来查询同一个id两次，那么两次拿到的东西其实是一样的。包括对象。是从一级缓存中拿的。</p>
+<h5 id="一级缓存失效的四种情况"><a href="#一级缓存失效的四种情况" class="headerlink" title="一级缓存失效的四种情况"></a>一级缓存失效的四种情况</h5><p>一级缓存是一直开启的，个人是无法关闭的。</p>
+<p>一级缓存是sqlSession级别的缓存。</p>
+<p>一级缓存失效情况：一级缓存没有使用，效果是还需要再向数据库发送查询</p>
+<ol>
+<li><p>sqlsession不同</p>
+</li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EmployeeMapperPlus mapper = session.getMapper(EmployeeMapperPlus.class);</span><br><span class="line">Employee emp1 = mapper.getEmployeeById(<span class="number">5</span>);</span><br><span class="line">System.out.println(emp1);</span><br><span class="line"></span><br><span class="line">SqlSession session1 = sessionFactory.openSession();</span><br><span class="line">EmployeeMapperPlus mapper1 = session1.getMapper(EmployeeMapperPlus.class);</span><br><span class="line">Employee employeeById = mapper1.getEmployeeById(<span class="number">5</span>);</span><br><span class="line">System.out.println(employeeById);</span><br></pre></td></tr></table></figure>
+<p>两次结果就不同了。而且发送了两次sql查询语句。</p>
+</li>
+<li><p>sqlSession相同，但是查询条件不同，当前这个session还没有这个数据</p>
+</li>
+<li><p>sqlSession相同，两次查询之间执行了增删改操作。添加了信息就会重新发送</p>
+</li>
+<li><p>sqlSession相同，但是手动清除了一级缓存。</p>
+</li>
+</ol>
+<p>openSession.clearCache();    //清除缓存</p>
+<h4 id="二级缓存介绍"><a href="#二级缓存介绍" class="headerlink" title="二级缓存介绍"></a>二级缓存介绍</h4><p>二级缓存是基于namespace级别的缓存：一个名称空间对应一个二级缓存</p>
+<p>二级缓存工作机制：</p>
+<ol>
+<li>一个会话查询一条数据：这个数据就会被放在当前会话的一级缓存中；</li>
+<li>如果当前会话关闭了，这个会话对应的一级缓存也就没有了。但是mybatis并没有清空，如果会话关闭，一级缓存中的数据会被保存到二级缓存中。新的会话查询信息，就可以参照二级缓存</li>
+<li>sqlSession既有employeemapper查的employee又有DepartmentMapper查的Department对象。会被放在两个不同的namespace中，会放在自己的map中。</li>
+</ol>
+<h4 id="二级缓存的使用"><a href="#二级缓存的使用" class="headerlink" title="二级缓存的使用"></a>二级缓存的使用</h4><p>使用：开启全局二级缓存配置</p>
+<ol>
+<li><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--显式的指定每个我们需要更改的配置的值，即使他是默认的。防止版本更新带来的问题--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"cacheEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.</p>
+<p>由于二级缓存是基于mapper级别的，一个namespace对应一个二级缓存</p>
+<p>需要去mapper.xml中配置二级缓存。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.zero.dao.EmployeeMapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">cache</span>&gt;</span><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样即开启了。</p>
+<p>但是也有一些默认的策略。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span> <span class="attr">eviction</span>=<span class="string">""</span> <span class="attr">flushInterval</span>=<span class="string">""</span> <span class="attr">readOnly</span>=<span class="string">""</span> <span class="attr">size</span>=<span class="string">""</span> <span class="attr">type</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>eviction</strong>：缓存的回收策略:</p>
+<ul>
+<li><p>LRU - 最近最少使用的；移除最长时间不被使用的对象。</p>
+</li>
+<li><p>FIFO - 先进先出；按照对象进入缓存的顺序来移除它们</p>
+</li>
+<li>SOFT - 软引用;移除基于垃圾回收器状态和软引用规则的对象</li>
+<li>WEAK - 弱引用；更积极地移除基于垃圾收集器状态和弱引用规则的对象</li>
+<li>默认的是LRU。</li>
+</ul>
+<p><strong>flushInterval</strong> : 缓存刷新间隔</p>
+<p>缓存多长时间清空一次，默认是不清空，设置一个毫秒值</p>
+<p><strong>readOnly</strong>：缓存是否只读。</p>
+<p>true:只读。mybatis认为所有从缓存中获取数据的操作都是只读操作，不会修改操作</p>
+<p>​        mybatis为了加快获取速度，直接就会将数据在缓存中的引用交给用户。不安全，但是速度快</p>
+<p>false：非只读；mybatis觉的获取来的数据可能会被修改。</p>
+<p>​            mybatis会利用序列化&amp;反序列化技术克隆一份新的数据给你。安全，速度稍慢一点。</p>
+<p>默认是false</p>
+<p><strong>size</strong>：缓存存放多少元素</p>
+<p><strong>type</strong>:””,指定自定义缓存的全类名；</p>
+<p>​        实现Cache接口即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span> <span class="attr">eviction</span>=<span class="string">"FOFO"</span> <span class="attr">flushInterval</span>=<span class="string">"60000"</span> <span class="attr">readOnly</span>=<span class="string">"false"</span> <span class="attr">size</span>=<span class="string">"1024"</span> <span class="attr">type</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>我们的POJO需要实现序列号接口，因为需要序列化和序列化</li>
+</ol>
+<p>首先在未开启二级缓存的时候进行测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String resource = <span class="string">"mybatis/mybatis-config.xml"</span>;</span><br><span class="line">    InputStream is = Resources.getResourceAsStream(resource);</span><br><span class="line">    SqlSessionFactory sessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line">    SqlSession session1 = sessionFactory.openSession();</span><br><span class="line">    SqlSession session2 = sessionFactory.openSession();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        EmployeeMapper mapper1 = session1.getMapper(EmployeeMapper.class);</span><br><span class="line">        EmployeeMapper mapper2 = session2.getMapper(EmployeeMapper.class);</span><br><span class="line">        Employee employee = mapper1.getEmployee(<span class="number">5</span>);</span><br><span class="line">        System.out.println(employee);</span><br><span class="line">        session1.close();</span><br><span class="line">        Employee employee1 = mapper2.getEmployee(<span class="number">5</span>);</span><br><span class="line">        System.out.println(employee1);</span><br><span class="line">        session2.close();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        session1.close();</span><br><span class="line">        session2.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时会进行两次sql查询。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span> <span class="attr">eviction</span>=<span class="string">"FIFO"</span> <span class="attr">flushInterval</span>=<span class="string">"60000"</span> <span class="attr">readOnly</span>=<span class="string">"false"</span> <span class="attr">size</span>=<span class="string">"1024"</span>&gt;</span><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>开启缓存</p>
+<p>就只会查询一次了，这里要注意一定要实现Employee类的序列化。</p>
+<p>这次查询 是从二级缓存中获取，而不是再去查询。</p>
+<p>虽然关闭了一级缓存，但是放到了二级缓存中。</p>
+<p>只有会话提交或者关闭，一级缓存中的数据才会转移到二级缓存中。</p>
+<h4 id="缓存有关的设置以及属性"><a href="#缓存有关的设置以及属性" class="headerlink" title="缓存有关的设置以及属性"></a>缓存有关的设置以及属性</h4><ol>
+<li><p>开启缓存，false的时候是关闭缓存。关闭的是二级缓存，一级缓存一直可用</p>
+</li>
+<li><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"cacheEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为什么可以用缓存。</p>
+<p>在每一个查询<select>标签都会有一个属性，userCache使用缓存，默认为true</select></p>
+<p>一级二级都可以使用，当关闭的时候禁用的时候一级缓存依然可以使用。</p>
+<p>useCache对一级缓存是没有影响的，影响的是二级缓存。</p>
+</li>
+<li><p>每个增删改标签都有一个属性 flushCache = “true”；增删改执行完成后就会清除缓存。清除一级缓存和二级缓存。都会清除。虽然会从二级缓存查询，但是二级缓存已经被清除了。查询是不清除缓存的，如果查询标签设置flushCache = “true”也会禁用掉一级二级缓存。</p>
+</li>
+<li><p>sqlSession.clearCache();  只是清除Session的一级缓存跟二级缓存没有关系</p>
+<h4 id="缓存的原理总结"><a href="#缓存的原理总结" class="headerlink" title="缓存的原理总结"></a>缓存的原理总结</h4><p>一级缓存会话关闭才会保存在二级缓存中。</p>
+<p>关闭以后，新的会话进来，已经存在二级缓存的话就会先查找二级缓存中是否有对应的数据。</p>
+<p>一进来就先看二级缓存，因为它的范围更大，如果没有才会去查找一级缓存。最好才会去查找数据库。</p>
+</li>
+</ol>
+<h3 id="整合ehcache"><a href="#整合ehcache" class="headerlink" title="整合ehcache"></a>整合ehcache</h3><p>1、首先导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.caches<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-ehcache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在mapper中添加一个标签就可以了</p>
+<cache type="org.mybatis.caches.encache.EncacheCache">
 
+<p>ehcache运行的时候需要一个ehcache.xml文件</p>
+</cache>
           
         
       
@@ -939,6 +1068,19 @@
 <h4 id="627-Swap-Salary"><a href="#627-Swap-Salary" class="headerlink" title="627. Swap Salary"></a>627. Swap Salary</h4><p><strong>explain</strong>：更新数据库表，如果值为多少就改为多少，否则…..</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> tb_address <span class="keyword">set</span> city = <span class="keyword">CASE</span> city</span><br><span class="line">	<span class="keyword">WHEN</span> <span class="string">'北京'</span> <span class="keyword">THEN</span></span><br><span class="line">		<span class="string">'上海'</span></span><br><span class="line">	<span class="keyword">when</span> <span class="string">'上海'</span> <span class="keyword">then</span></span><br><span class="line">		<span class="string">'湖南'</span></span><br><span class="line">	<span class="keyword">ELSE</span></span><br><span class="line">		<span class="string">'南京'</span></span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
 <p>上例中，当tb_address表的 city字段，值为’北京’ 时，将值设置为’上海’；值为’上海’的，设置为’湖南’。其他的设置为’南京’。可以多加几个when   … then的判断条件。END为结尾，不需要加 END CASE;</p>
+<h4 id="TO-DAYS"><a href="#TO-DAYS" class="headerlink" title="TO_DAYS"></a><strong>TO_DAYS</strong></h4><p><strong>TO_DAYS(wt1.DATE)</strong> return the number of days between from year 0 to date DATE</p>
+<p>会将日期变为一个数字，日期越大数字越大</p>
+<p>Given a <code>Weather</code> table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+---------+------------------+------------------+</span><br><span class="line">| Id(INT) | RecordDate(DATE) | Temperature(INT) |</span><br><span class="line">+---------+------------------+------------------+</span><br><span class="line">|       1 |       2015-01-01 |               10 |</span><br><span class="line">|       2 |       2015-01-02 |               25 |</span><br><span class="line">|       3 |       2015-01-03 |               20 |</span><br><span class="line">|       4 |       2015-01-04 |               30 |</span><br><span class="line">+---------+------------------+------------------+</span><br></pre></td></tr></table></figure>
+<p>For example, return the following Ids for the above <code>Weather</code> table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----+</span><br><span class="line">| Id |</span><br><span class="line">+----+</span><br><span class="line">|  2 |</span><br><span class="line">|  4 |</span><br><span class="line">+----+</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> wt1.Id </span><br><span class="line"><span class="keyword">FROM</span> Weather wt1, Weather wt2</span><br><span class="line"><span class="keyword">WHERE</span> wt1.Temperature &gt; wt2.Temperature <span class="keyword">AND</span> </span><br><span class="line">      <span class="keyword">TO_DAYS</span>(wt1.DATE)-<span class="keyword">TO_DAYS</span>(wt2.DATE)=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="196-Delete-Duplicate-Emails"><a href="#196-Delete-Duplicate-Emails" class="headerlink" title="196. Delete Duplicate Emails"></a>196. Delete Duplicate Emails</h4><p>Write a SQL query to <strong>delete</strong> all duplicate email entries in a table named <code>Person</code>, keeping only unique emails based on its <em>smallest</em> <strong>Id</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+----+------------------+</span><br><span class="line">| Id | Email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">Id is the primary key column for this table.</span><br></pre></td></tr></table></figure>
+<p>For example, after running your query, the above <code>Person</code> table should have the following rows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----+------------------+</span><br><span class="line">| Id | Email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> p1</span><br><span class="line"><span class="keyword">FROM</span> Person p1, Person p2</span><br><span class="line"><span class="keyword">WHERE</span> p1.Email = p2.Email <span class="keyword">AND</span></span><br><span class="line">p1.Id &gt; p2.Id</span><br></pre></td></tr></table></figure>
+<h4 id="177-Nth-Highest-Salary"><a href="#177-Nth-Highest-Salary" class="headerlink" title="177. Nth Highest Salary"></a>177. Nth Highest Salary</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> getNthHighestSalary(N <span class="built_in">INT</span>) <span class="keyword">RETURNS</span> <span class="built_in">INT</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">DECLARE</span> M <span class="built_in">INT</span>;</span><br><span class="line"><span class="keyword">SET</span> M=N<span class="number">-1</span>;</span><br><span class="line">  RETURN (</span><br><span class="line">      # Write your MySQL query statement below.</span><br><span class="line">      <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> Salary <span class="keyword">FROM</span> Employee <span class="keyword">ORDER</span> <span class="keyword">BY</span> Salary <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> M, <span class="number">1</span></span><br><span class="line">  );</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
 
           
         
