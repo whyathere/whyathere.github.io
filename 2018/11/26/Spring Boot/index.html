@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Bill">
 <meta property="og:description" content="Spring Boot简介因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。 Spring Boot的功能​    Spring Boot实现了自动配置，降低了项目搭建的复杂度。 ​    Spring框架需要进行大量的配置，Spring B">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-18T09:33:13.828Z">
+<meta property="og:updated_time" content="2019-02-19T06:24:04.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot">
 <meta name="twitter:description" content="Spring Boot简介因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。 Spring Boot的功能​    Spring Boot实现了自动配置，降低了项目搭建的复杂度。 ​    Spring框架需要进行大量的配置，Spring B">
@@ -348,6 +348,95 @@
 <p>​    Spring Boot只是承载者，辅助你简化项目搭建过程的。如果承载的是WEB项目，使用Spring MVC作为MVC框架，那么工作流程和你上面描述的是完全一样的，因为这部分工作是Spring MVC做的而不是Spring Boot。</p>
 <p>​    对使用者来说，换用Spring Boot以后，项目初始化方法变了，配置文件变了，另外就是不需要单独安装Tomcat这类容器服务器了，maven打出jar包直接跑起来就是个网站，但你最核心的业务逻辑实现与业务流程实现没有任何变化。</p>
 <p>​    Spring Boot 是基于Spring4的条件注册的一套快速开发整合包。</p>
+<h3 id="Spring-boot-热部署"><a href="#Spring-boot-热部署" class="headerlink" title="Spring boot 热部署"></a>Spring boot 热部署</h3><p>在pom中加入devtools</p>
+<h3 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h3><ul>
+<li>Commons-logging or SLF4j</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Log log = LogFactory.getLog(HelloWorld.class);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(HelloWorld.class);</span><br></pre></td></tr></table></figure>
+<p>静态是因为在静态的方法里也会需要日志，一般是当前类的class。</p>
+<ul>
+<li>日志级别：</li>
+</ul>
+<p>TRACE&lt;DEBUG&lt;INFO&lt;WARN&lt;ERROR&lt;FATAL</p>
+<ul>
+<li>Application.yml配置日志</li>
+</ul>
+<h3 id="使用CURL来测试API"><a href="#使用CURL来测试API" class="headerlink" title="使用CURL来测试API"></a>使用CURL来测试API</h3><p>在命令行</p>
+<p>curl -v <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></p>
+<p>如果是post delete 和put就不好通过浏览器来操作。</p>
+<p>这里就可以使用命令行工具</p>
+<p>GET：curl  <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></p>
+<p>POST:  curl -H “Content-Type:application/json” -X POST —data ‘{“name”:”World”,”age”:”17”}’ <a href="http://127.0.0.1:8080/" target="_blank" rel="noopener">http://127.0.0.1:8080/</a></p>
+<p>-H 指定http头里面的信息。requestBody就是—data里面的信息</p>
+<p>DELETE：curl -X DELETE <a href="http://127.0.0.1:8080/" target="_blank" rel="noopener">http://127.0.0.1:8080/</a></p>
+<p>PUT: curl -H “Content-Type:application/json” -X PUT —data’{“name”:”Person of Interest”}’ <a href="http://127.0.0.1:8080/" target="_blank" rel="noopener">http://127.0.0.1:8080/</a></p>
+<p>或者POST Man</p>
+<h3 id="RestController中获取请求的各种数"><a href="#RestController中获取请求的各种数" class="headerlink" title="RestController中获取请求的各种数"></a>RestController中获取请求的各种数</h3><h4 id="Get"><a href="#Get" class="headerlink" title="Get"></a>Get</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getStr</span><span class="params">(@PathVariable <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> id+<span class="string">""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@PathVariable 这里指定的id表示会从路径中输入的{id}来取值。</p>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> UserDto <span class="title">insertOne</span><span class="params">(@RequestBody UserDto userDto)</span></span>&#123;</span><br><span class="line">    userDto.setAge(<span class="number">123</span>);</span><br><span class="line">    <span class="keyword">return</span> userDto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@RequestBody :将request的内容转换成UserDto</p>
+<p>通过命令行来看</p>
+<p>curl -H “Content-Type:application/json” -X POST –data ‘{“name”:”西部实际”,”age”:1}’ <a href="http://localhost:8080/zero" target="_blank" rel="noopener">http://localhost:8080/zero</a><br>返回   ：{“name”:”西部实际”,”age”:123}%</p>
+<h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping</span>(<span class="string">"/&#123;name&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> UserDto <span class="title">updateOne</span><span class="params">(@PathVariable String name,@RequestBody UserDto userDto)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> userDto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>curl -H “Content-Type:application/json” -X PUT –data ‘{“name”:”西部实际”,”age”:1}’ <a href="http://localhost:8080/zero" target="_blank" rel="noopener">http://localhost:8080/zero</a></p>
+<p>返回：{“name”:”西部实际”,”age”:1}%</p>
+<p>DELETE</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeleteMapping</span>(<span class="string">"/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Map&lt;String,String&gt; <span class="title">deleteOne</span> <span class="params">(@PathVariable <span class="keyword">int</span> id, HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                                     @RequestParam(value = <span class="string">"delete_reason"</span>,required = <span class="keyword">false</span>)</span>String deleteReason) <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"></span><br><span class="line">    Map&lt;String,String&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    result.put(<span class="string">"message"</span>,<span class="string">"101"</span>+request.getRemoteAddr()+<span class="string">"删除原因:"</span>+deleteReason);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HttpServletRequest request</span><br></pre></td></tr></table></figure>
+<p>获取request，不需要加任何注解，spring boot会自动将request传进来，只要声明就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestParam</span><br></pre></td></tr></table></figure>
+<p>这个注解只要request.getParamter可以取到就都可以取到。</p>
+<h3 id="上传和下载简单示例"><a href="#上传和下载简单示例" class="headerlink" title="上传和下载简单示例"></a>上传和下载简单示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"/&#123;id&#125;/photos"</span>,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addPhoto</span><span class="params">(@PathVariable <span class="keyword">int</span> id, @RequestParam(<span class="string">"photo"</span>)</span>MultipartFile imgFile) <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">//保存文件</span></span><br><span class="line">    FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"target/"</span>+imgFile.getOriginalFilename());</span><br><span class="line"></span><br><span class="line">    IOUtils.copy(imgFile.getInputStream(),fos);</span><br><span class="line"></span><br><span class="line">    fos.close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consumes</span><br></pre></td></tr></table></figure>
+<p>指定传入的数据是什么格式的，request里面的数据。fromdata的形式</p>
+<p>@RequestParam(“photo”)MultipartFile imgFile   多部分的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOUtils</span><br></pre></td></tr></table></figure>
+<p>可以将inputStream拷贝到outputStream</p>
+<p>这样就将文件保存了。</p>
+<p> mac@MacBook-Pro-2  ~/Documents/zero/img  curl -v  -F “<a href="mailto:photo=@poi.png" target="_blank" rel="noopener">photo=@poi.png</a>“ <a href="http://127.0.0.1:8080/zero/12/photos" target="_blank" rel="noopener">http://127.0.0.1:8080/zero/12/photos</a></p>
+<ul>
+<li>Trying 127.0.0.1…</li>
+<li>TCP_NODELAY set</li>
+<li>Connected to 127.0.0.1 (127.0.0.1) port 8080 (#0)<blockquote>
+<p>POST /zero/12/photos HTTP/1.1<br>Host: 127.0.0.1:8080<br>User-Agent: curl/7.54.0<br>Accept: <em>/</em><br>Content-Length: 45416<br>Expect: 100-continue<br>Content-Type: multipart/form-data; boundary=————————7d06709df61f1d53</p>
+<p>&lt; HTTP/1.1 100<br>&lt; HTTP/1.1 200<br>&lt; Content-Length: 0<br>&lt; Date: Tue, 19 Feb 2019 00:45:08 GMT<br>&lt;</p>
+</blockquote>
+</li>
+<li>Connection #0 to host 127.0.0.1 left intact<br> mac@MacBook-Pro-2  ~/Documents/zero/img </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/&#123;id&#125;/icon"</span>,produces = MediaType.MULTIPART_FORM_DATA_VALUE)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">byte</span>[] getIcon(<span class="meta">@PathVariable</span> <span class="keyword">int</span> id) <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    String iconFile = <span class="string">"src/test/resource/icon.jpg"</span>;</span><br><span class="line">    InputStream is = <span class="keyword">new</span> FileInputStream(iconFile);</span><br><span class="line">    <span class="keyword">return</span> IOUtils.toByteArray(is);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里是使用的produces</p>
+<h3 id="对传入参数的校验"><a href="#对传入参数的校验" class="headerlink" title="对传入参数的校验"></a>对传入参数的校验</h3><p><strong>原则</strong></p>
+<ul>
+<li>不要相信前端传过来的数据</li>
+<li>不能相信前端传递过来的任何数据</li>
+<li>绝不要相信前端传过来的任何数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> UserDto <span class="title">insertOne1</span><span class="params">(@RequestBody UserDto userDto)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (userDto == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"参数userDto不可为空"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (userDto.getName() == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"电视剧名字不能为空"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比如这样写是没有问题的，但是代码行数比较多。比较繁琐。条件也比较单一</p>
+<p><strong>简单办法</strong></p>
+<p>Bean Validation</p>
+<ul>
+<li>JSR303</li>
+<li>Hibernate Validator</li>
+</ul>
+<p>JSR303：一个java规范，对JavaBean进行验证的规范。是标准而不是具体的实现。</p>
+<p>Hibernate Validator：实现bean的验证的实现。</p>
+<p>在spring boot加入就可以使用</p>
+<p>Bean Validation注解如下：</p>
+<ul>
+<li>@Null  验证对象是否为空        传了就错了</li>
+<li>@NotNull 验证对象是否为非空        不传就错了</li>
+<li>@Min 验证Number和String对象是否大等于指定的值</li>
+<li>@Max 验证Number和String对象是否小等于指定的值</li>
+<li>@Size  验证对象(Array,Collection,Map,String)长度是否在给定的范围之内   验证长度</li>
+<li>@Past 验证Date和Calendar对象是否在当前时间之前</li>
+<li>@Future 验证Date和Calendar对象是否在当前时间之后</li>
+<li>@AssertTrue 验证Boolean对象是否为true</li>
+<li>@AssertFalse 验证Boolean对象是否为false</li>
+<li>@Valid 级联验证注解   写在一个Bean前面的</li>
+</ul>
+<p>还有验证邮箱和信用卡的</p>
 
       
     </div>
@@ -467,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -489,7 +578,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -522,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot简介"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Boot的功能"><span class="nav-number">1.1.</span> <span class="nav-text">Spring Boot的功能</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot简介"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Boot的功能"><span class="nav-number">1.1.</span> <span class="nav-text">Spring Boot的功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-boot-热部署"><span class="nav-number">2.</span> <span class="nav-text">Spring boot 热部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录日志"><span class="nav-number">3.</span> <span class="nav-text">记录日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用CURL来测试API"><span class="nav-number">4.</span> <span class="nav-text">使用CURL来测试API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RestController中获取请求的各种数"><span class="nav-number">5.</span> <span class="nav-text">RestController中获取请求的各种数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Get"><span class="nav-number">5.1.</span> <span class="nav-text">Get</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST"><span class="nav-number">5.2.</span> <span class="nav-text">POST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PUT"><span class="nav-number">5.3.</span> <span class="nav-text">PUT</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传和下载简单示例"><span class="nav-number">6.</span> <span class="nav-text">上传和下载简单示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对传入参数的校验"><span class="nav-number">7.</span> <span class="nav-text">对传入参数的校验</span></a></li></ol></div>
             
 
           </div>
