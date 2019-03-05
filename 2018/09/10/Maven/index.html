@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Maven">
+<meta name="description" content="MavenMaven简介​    Apache Maven是一个软件项目管理工具。基于项目对象模型(Project Object Model,POM)的概念，Maven可用来管理项目的依赖、编译、文档等信息。 ​    使用Maven管理项目时，项目依赖的jar包将不再包含在项目内，而是集中放置在用户目录下的.m2文件夹下。 Maven的pom.xml​    Maven是基于项目对象模型的概念运">
 <meta name="keywords" content="Maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven">
 <meta property="og:url" content="http://yoursite.com/2018/09/10/Maven/index.html">
 <meta property="og:site_name" content="Bill">
-<meta property="og:description" content="Maven">
+<meta property="og:description" content="MavenMaven简介​    Apache Maven是一个软件项目管理工具。基于项目对象模型(Project Object Model,POM)的概念，Maven可用来管理项目的依赖、编译、文档等信息。 ​    使用Maven管理项目时，项目依赖的jar包将不再包含在项目内，而是集中放置在用户目录下的.m2文件夹下。 Maven的pom.xml​    Maven是基于项目对象模型的概念运">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-19T06:55:47.036Z">
+<meta property="og:updated_time" content="2019-02-19T13:05:55.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven">
-<meta name="twitter:description" content="Maven">
+<meta name="twitter:description" content="MavenMaven简介​    Apache Maven是一个软件项目管理工具。基于项目对象模型(Project Object Model,POM)的概念，Maven可用来管理项目的依赖、编译、文档等信息。 ​    使用Maven管理项目时，项目依赖的jar包将不再包含在项目内，而是集中放置在用户目录下的.m2文件夹下。 Maven的pom.xml​    Maven是基于项目对象模型的概念运">
 
 
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/项目管理/" itemprop="url" rel="index">
+                    <span itemprop="name">项目管理</span>
                   </a>
                 </span>
 
@@ -342,7 +342,26 @@
       
 
       
-        <h2 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h2>
+        <h2 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h2><h3 id="Maven简介"><a href="#Maven简介" class="headerlink" title="Maven简介"></a>Maven简介</h3><p>​    Apache Maven是一个软件项目管理工具。基于项目对象模型(Project Object Model,POM)的概念，Maven可用来管理项目的依赖、编译、文档等信息。</p>
+<p>​    使用Maven管理项目时，项目依赖的jar包将不再包含在项目内，而是集中放置在用户目录下的.m2文件夹下。</p>
+<h3 id="Maven的pom-xml"><a href="#Maven的pom-xml" class="headerlink" title="Maven的pom.xml"></a>Maven的pom.xml</h3><p>​    Maven是基于项目对象模型的概念运作的，所以Maven的项目都有一个pom.xml用来管理项目的依赖以及项目的编译等功能。</p>
+<p>​    1、dependencies元素</p>
+<p><code>&lt;dependencies&gt;&lt;/dependencies&gt;</code>，此元素包含了多个项目依赖需要使用的<code>&lt;dependency&gt;&lt;/dpendency&gt;</code></p>
+<p>​    2、dependency元素</p>
+<p><code>&lt;dependency&gt;&lt;/dpendency&gt;</code>    内部通过groupId、artifactId、以及version确定唯一的依赖，有人称这三个为坐标，代码如下。</p>
+<p>​    groupId：组织的唯一标识</p>
+<p>​    artifactId： 项目的唯一标识</p>
+<p>​    version： 项目的版本</p>
+<p>​    3、变量定义</p>
+<p>​    <code>&lt;properties&gt;&lt;/properties&gt;</code>    可定义变量在dependency中引用，代码如下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​    4、编译插件</p>
+<p>​    Maven提供了编译插件，可在编译插件中涉及Java的编译级别，代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​    5、Maven运作方式</p>
+<p>​    Maven会自动根据dependency中的依赖配置，直接通过互联网在Maven中心库下载相关依赖包到.m2目录下，.m2目录下是你本地Maven库。</p>
+<p>​    </p>
+
       
     </div>
     
@@ -472,7 +491,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -483,7 +502,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -516,7 +535,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven"><span class="nav-number">1.</span> <span class="nav-text">Maven</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven"><span class="nav-number">1.</span> <span class="nav-text">Maven</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven简介"><span class="nav-number">1.1.</span> <span class="nav-text">Maven简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven的pom-xml"><span class="nav-number">1.2.</span> <span class="nav-text">Maven的pom.xml</span></a></li></ol></li></ol></div>
             
 
           </div>

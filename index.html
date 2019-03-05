@@ -662,14 +662,14 @@
       
         
           
-            <h3 id="Spring-Boot简介"><a href="#Spring-Boot简介" class="headerlink" title="Spring Boot简介"></a>Spring Boot简介</h3><p>因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。</p>
-<h4 id="Spring-Boot的功能"><a href="#Spring-Boot的功能" class="headerlink" title="Spring Boot的功能"></a>Spring Boot的功能</h4><p>​    Spring Boot实现了自动配置，降低了项目搭建的复杂度。</p>
+            <h2 id="Spring-Boot简介"><a href="#Spring-Boot简介" class="headerlink" title="Spring Boot简介"></a>Spring Boot简介</h2><p>因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。</p>
+<h3 id="Spring-Boot的功能"><a href="#Spring-Boot的功能" class="headerlink" title="Spring Boot的功能"></a>Spring Boot的功能</h3><p>​    Spring Boot实现了自动配置，降低了项目搭建的复杂度。</p>
 <p>​    Spring框架需要进行大量的配置，Spring Boot引入自动配置的概念，让项目设置变得很容易。它并不是用来替代Spring的解决方案，而是和Spring框架紧密结合用于提升Spring开发者体验的工具。同时它集成了大量常用的第三方库配置(例如Jackson, JDBC, Mongo, Redis, Mail等等)，Spring Boot应用中这些第三方库几乎可以零配置的开箱即用(out-of-the-box)，大部分的Spring Boot应用都只需要非常少量的配置代码，开发者能够更加专注于业务逻辑。</p>
 <p>​    Spring Boot只是承载者，辅助你简化项目搭建过程的。如果承载的是WEB项目，使用Spring MVC作为MVC框架，那么工作流程和你上面描述的是完全一样的，因为这部分工作是Spring MVC做的而不是Spring Boot。</p>
 <p>​    对使用者来说，换用Spring Boot以后，项目初始化方法变了，配置文件变了，另外就是不需要单独安装Tomcat这类容器服务器了，maven打出jar包直接跑起来就是个网站，但你最核心的业务逻辑实现与业务流程实现没有任何变化。</p>
 <p>​    Spring Boot 是基于Spring4的条件注册的一套快速开发整合包。</p>
 <h3 id="Spring-boot-热部署"><a href="#Spring-boot-热部署" class="headerlink" title="Spring boot 热部署"></a>Spring boot 热部署</h3><p>在pom中加入devtools</p>
-<h3 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h3><ul>
+<h2 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h2><ul>
 <li>Commons-logging or SLF4j</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Log log = LogFactory.getLog(HelloWorld.class);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(HelloWorld.class);</span><br></pre></td></tr></table></figure>
@@ -681,7 +681,7 @@
 <ul>
 <li>Application.yml配置日志</li>
 </ul>
-<h3 id="使用CURL来测试API"><a href="#使用CURL来测试API" class="headerlink" title="使用CURL来测试API"></a>使用CURL来测试API</h3><p>在命令行</p>
+<h2 id="使用CURL来测试API"><a href="#使用CURL来测试API" class="headerlink" title="使用CURL来测试API"></a>使用CURL来测试API</h2><p>在命令行</p>
 <p>curl -v <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></p>
 <p>如果是post delete 和put就不好通过浏览器来操作。</p>
 <p>这里就可以使用命令行工具</p>
@@ -691,7 +691,7 @@
 <p>DELETE：curl -X DELETE <a href="http://127.0.0.1:8080/" target="_blank" rel="noopener">http://127.0.0.1:8080/</a></p>
 <p>PUT: curl -H “Content-Type:application/json” -X PUT —data’{“name”:”Person of Interest”}’ <a href="http://127.0.0.1:8080/" target="_blank" rel="noopener">http://127.0.0.1:8080/</a></p>
 <p>或者POST Man</p>
-<h3 id="RestController中获取请求的各种数"><a href="#RestController中获取请求的各种数" class="headerlink" title="RestController中获取请求的各种数"></a>RestController中获取请求的各种数</h3><h4 id="Get"><a href="#Get" class="headerlink" title="Get"></a>Get</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getStr</span><span class="params">(@PathVariable <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> id+<span class="string">""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="RestController中获取请求的各种数"><a href="#RestController中获取请求的各种数" class="headerlink" title="RestController中获取请求的各种数"></a>RestController中获取请求的各种数</h2><h4 id="Get"><a href="#Get" class="headerlink" title="Get"></a>Get</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getStr</span><span class="params">(@PathVariable <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> id+<span class="string">""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>@PathVariable 这里指定的id表示会从路径中输入的{id}来取值。</p>
 <h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> UserDto <span class="title">insertOne</span><span class="params">(@RequestBody UserDto userDto)</span></span>&#123;</span><br><span class="line">    userDto.setAge(<span class="number">123</span>);</span><br><span class="line">    <span class="keyword">return</span> userDto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>@RequestBody :将request的内容转换成UserDto</p>
@@ -757,7 +757,177 @@
 <li>@Valid 级联验证注解   写在一个Bean前面的</li>
 </ul>
 <p>还有验证邮箱和信用卡的</p>
+<h2 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h2><p>通用的Servlet容器配置都以”server”作为前缀，而Tomcat特有配置都以”server.tomcat”作为前缀。</p>
+<p>例子：</p>
+<p><strong>配置Servlet容器:</strong></p>
+<p>server.port= #配置程序端口，默认是8080</p>
+<p>server.session-timeout= #用户会话session过期时间，以秒为单位</p>
+<p>server.context-path= #配置访问路径，默认为/</p>
+<p><strong>配置Tomcat</strong></p>
+<p>server.tomcat.uri-encoding= #配置程序端口，默认为8080</p>
+<p>server.tomcat.compression= #Tomcat是否开启压缩，默认为关闭off</p>
+<h2 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h2><h3 id="程序的层次结构"><a href="#程序的层次结构" class="headerlink" title="程序的层次结构"></a>程序的层次结构</h3><ul>
+<li>@Controller   @RestController</li>
+<li>@Service</li>
+<li>@Repository</li>
+<li>@Component</li>
+</ul>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/springboot/1.png?raw=true" alt=""></p>
+<p>功能是相似的，根据层次来区分。对应三个层次，增加程序的可读性。</p>
+<p>@Component是个例外，如果多个层次都用就使用这个注解。</p>
+<p>分包可以按照功能划分或者按照层次划分</p>
+<h3 id="分层之间的传输"><a href="#分层之间的传输" class="headerlink" title="分层之间的传输"></a>分层之间的传输</h3><ul>
+<li>PO = Persistant Object 持久化对象           数据访问层</li>
+<li>DTO = Data Transfer Object 数据传输对象      最外层通信</li>
+<li>VO = Value Object 或View Object        显示对象，在mvc中传递</li>
+<li>POJO = Pure Old Java Object /Plain Ordinary Java Object      一种比较单纯的Java对象</li>
+<li>DO = Domain Object ; BO = Business Object 处理业务逻辑    少见，同一种东西</li>
+<li>DAO  = Data Access Object      数据访问对象，处理和数据库发生交互的，增删改查都是通过DAO操作</li>
+</ul>
+<p>POJO和javaBean</p>
+<p>POJO：所有属性都是私有的，只通过get和set开放出来</p>
+<p>JavaBean：会有一些业务逻辑</p>
+<h3 id="添加Mybatis"><a href="#添加Mybatis" class="headerlink" title="添加Mybatis"></a>添加Mybatis</h3><ul>
+<li>修改pom.xml ，添加mybatis支持</li>
+<li>修改application.yml添加数据库连接</li>
+<li>修改启动类，增加@MapperScan(“package-of-mapping”)注解</li>
+<li>添加Mybatis Mapping接口</li>
+<li>添加Mapping 对应的XML(可选)</li>
+</ul>
+<h2 id="Spring-Boot-单元测试"><a href="#Spring-Boot-单元测试" class="headerlink" title="Spring Boot 单元测试"></a>Spring Boot 单元测试</h2><p>Assert   -Junit的断言</p>
+<ul>
+<li><p>判断某条件是否为真Assert.assertTrue(条件表达式);</p>
+</li>
+<li><p>判断某条件是否为假Assert.assertFalse(条件表达式);</p>
+</li>
+<li><p>判断两个变量值是否相同Assert.assertEquals(v1,v2);</p>
+</li>
+<li><p>判断两个变量值是否不相同Assert.assertNotEquals(v1,v2);</p>
+</li>
+<li><p>判断两个数组是否相同Assert.assertArrayEquals(数组1，数组2);</p>
+</li>
+<li><p>直接测试失败Assert.fail()  Assert.fail(message)</p>
+<h3 id="Assert-vs-assert"><a href="#Assert-vs-assert" class="headerlink" title="Assert    vs  assert"></a>Assert    vs  assert</h3></li>
+<li><p>Assert是JUnit的断言类，全名是org.junit.Assert</p>
+</li>
+<li><p>Assert提供了很多静态方法，例如assertTrue,assertFalse,assertNotNull,assertNull,assertEquals,assertNotEquals等</p>
+</li>
+<li><p>assert是java关键字，使用方法有两种，表达式为false时，jvm会退出</p>
+<ul>
+<li>assert表达式；    assert表达式：表达式不成立后的提示信息</li>
+</ul>
+</li>
+<li><p>assert关键字内表达式是否被检查成立依赖jvm的参数，默认是关闭的</p>
+</li>
+</ul>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>驱动模块</li>
+<li>被测模块</li>
+<li>桩模块</li>
+</ul>
+<p>场景1:测试A模块，但是要传入进来的桩模块还没有开发完。模拟桩模块</p>
+<p>场景2：数据访问量比较大，代替数据访问层，检查是否正确。</p>
+<p>Aseert示例1：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">calMonthSalary</span><span class="params">(<span class="keyword">int</span> workdays,<span class="keyword">double</span> monthSalary)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> monthSalary/<span class="number">21.75</span>*workdays;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>月薪2175，工作了一天，使用Asset查看结果是否等于100</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Assert.assertTrue(calMonthSalary(<span class="number">1</span>,<span class="number">2175</span>)==<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>Aseert示例2：</p>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/springboot/%E8%A3%85%E6%A8%A1%E5%9D%97%E7%A4%BA%E4%BE%8B.png?raw=true" alt=""></p>
+<h3 id="Mockito"><a href="#Mockito" class="headerlink" title="Mockito"></a>Mockito</h3><p>首先加入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mockito<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mockito-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>TDD</strong></p>
+<ul>
+<li>Test Driven Development（测试驱动开发） </li>
+<li>先写测试用例，后写实现代码</li>
+<li>重构现有代码时特别好用</li>
+</ul>
+<p><strong>RDD</strong></p>
+<p>Resume Driven Devolopment 简历驱动开发</p>
+<h4 id="使用mockito做桩模块来测试业务逻辑层"><a href="#使用mockito做桩模块来测试业务逻辑层" class="headerlink" title="使用mockito做桩模块来测试业务逻辑层"></a>使用mockito做桩模块来测试业务逻辑层</h4><h2 id="SpringBoot-应用监控"><a href="#SpringBoot-应用监控" class="headerlink" title="SpringBoot 应用监控"></a>SpringBoot 应用监控</h2><h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>不显示详细信息</li>
+<li>只有health和info没有其他的接口可以访问</li>
+</ol>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><ol>
+<li>添加依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置application.yml</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">management:</span><br><span class="line">  endpoints:</span><br><span class="line">    web:</span><br><span class="line">      exposure:</span><br><span class="line">        include: '*'</span><br><span class="line">//配置之后会显示全部的端点，否则只显示health和info</span><br><span class="line">   endpoint:</span><br><span class="line">    health:</span><br><span class="line">      show-details: always</span><br><span class="line">//配置后显示detail信息</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/24977343/53216720-7bb28b80-3690-11e9-8bb8-a2238fc9da65.png" alt=""></p>
+<p>这个图是之前的版本，2.0的已经做了一些修改。仅供参考</p>
+<h3 id="定制端点"><a href="#定制端点" class="headerlink" title="定制端点"></a>定制端点</h3><ol>
+<li>修改端点id        //TODO</li>
+<li>开启端点</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">management:</span><br><span class="line">  endpoints:</span><br><span class="line">	enabled-by-default: true</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>关闭端点    将enabled-by-default: true    改为false</p>
+</li>
+<li><p>只开启所需端点</p>
+<ul>
+<li>关闭所有端点      enabled-by-default: false</li>
+<li>开启所需端口例如health</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">management:</span><br><span class="line">	endpoint:</span><br><span class="line">		health:</span><br><span class="line">			enabled: true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义端点访问端口</p>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">management:</span><br><span class="line">	  server:</span><br><span class="line">    	port: 8081</span><br></pre></td></tr></table></figure>
+<p>重启后访问地址为：</p>
+<p><a href="http://localhost:8081/actuator" target="_blank" rel="noopener">http://localhost:8081/actuator</a></p>
+<ol start="6">
+<li>关闭端口    将端口号改为-1</li>
+</ol>
+<h3 id="自定义端点"><a href="#自定义端点" class="headerlink" title="自定义端点"></a>自定义端点</h3><p>​    当Spring Boot提供的端点不能满足我们的特殊需求，而我们又需要对特殊的应用状态进行监控的时候，就需要自定义一个端点。</p>
+<h2 id="Spring-Boot开发Web应用"><a href="#Spring-Boot开发Web应用" class="headerlink" title="Spring Boot开发Web应用"></a>Spring Boot开发Web应用</h2><p><strong>默认配置</strong></p>
+<p>Spring Boot默认提供静态资源目录位置需要于classpath下，目录名需符合如下规则：</p>
+<ul>
+<li>/static</li>
+<li>/public</li>
+<li>resources</li>
+<li>/META-INF/resources</li>
+</ul>
+<h3 id="Spring-Boot提供了默认配置的模板引擎主要有以下几种："><a href="#Spring-Boot提供了默认配置的模板引擎主要有以下几种：" class="headerlink" title="Spring Boot提供了默认配置的模板引擎主要有以下几种："></a>Spring Boot提供了默认配置的模板引擎主要有以下几种：</h3><ul>
+<li>Thymeleaf</li>
+<li>FreeMarker</li>
+<li>Velocity</li>
+<li>Groovy</li>
+<li>Mustache</li>
+</ul>
+<p><strong>Spring Boot建议使用这些模板引擎，避免使用JSP，若一定要使用JSP将无法实现Spring Boot的多种特性</strong></p>
+<p>​    当你使用上述模板引擎中的任何一个，它们默认的模板配置路径为：<code>src/main/resources/templates</code>。当然也可以修改这个路径，具体如何修改，可在后续各模板引擎的配置属性中查询并修改。</p>
+<h4 id="Thymeleaf"><a href="#Thymeleaf" class="headerlink" title="Thymeleaf"></a>Thymeleaf</h4><p>​    Thymeleaf是一个XML/XHTML/HTML5模板引擎，可用于Web与非Web环境中的应用开发。它是一个开源的Java库，基于Apache License 2.0许可，由Daniel Fernández创建，该作者还是Java加密库Jasypt的作者。</p>
+<p>​    Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。你可以使用它创建经过验证的XML与HTML模板。相对于编写逻辑或代码，开发者只需将标签属性添加到模板中即可。接下来，这些标签属性就会在DOM（文档对象模型）上执行预先制定好的逻辑。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">  &lt;thead&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">      &lt;th th:text="#&#123;msgs.headers.name&#125;"&gt;Name&lt;/td&gt;</span><br><span class="line">      &lt;th th:text="#&#123;msgs.headers.price&#125;"&gt;Price&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">  &lt;/thead&gt;</span><br><span class="line">  &lt;tbody&gt;</span><br><span class="line">    &lt;tr th:each=<span class="string">"prod : $&#123;allProducts&#125;"</span>&gt;</span><br><span class="line">      &lt;td th:text="$&#123;prod.name&#125;"&gt;Oranges&lt;/td&gt;</span><br><span class="line">      &lt;td th:text="$&#123;#numbers.formatDecimal(prod.price,1,2)&#125;"&gt;0.99&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">  &lt;/tbody&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<p>​    可以看到Thymeleaf主要以属性的方式加入到html标签中，浏览器在解析html时，当检查到没有的属性时候会忽略，所以Thymeleaf的模板可以通过浏览器直接打开展现，这样非常有利于前后端的分离。</p>
+<p>​    在Spring Boot中使用Thymeleaf，只需要引入下面依赖，并在默认的模板路径<code>src/main/resources/templates</code>下编写模板文件即可完成。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在完成配置之后，举一个简单的例子，在快速入门工程的基础上，举一个简单的示例来通过Thymeleaf渲染一个页面。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello World"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(ModelMap map)</span> </span>&#123;</span><br><span class="line">        map.addAttribute(<span class="string">"host"</span>, <span class="string">"http://blog.didispace.com"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​        </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">th:text</span>=<span class="string">"$&#123;host&#125;"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如上页面，直接打开html页面展现Hello World，但是启动程序后，访问<code>http://localhost:8080/</code>，则是展示Controller中host的值：<code>http://blog.didispace.com</code>，做到了不破坏HTML自身内容的数据逻辑分离。</p>
+<p>这里返回的index其实应该是一个路径，然后跳转过去，并带着参数。在index.html中通过表达式获取参数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">th:text</span>=<span class="string">"$&#123;host&#125;"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如有需要修改默认配置的时候，只需复制下面要修改的属性到<code>application.properties</code>中，并修改成需要的值，如修改模板文件的扩展名，修改默认的模板路径等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Enable template caching.</span><br><span class="line">spring.thymeleaf.cache=true </span><br><span class="line"># Check that the templates location exists.</span><br><span class="line">spring.thymeleaf.check-template-location=true </span><br><span class="line"># Content-Type value.</span><br><span class="line">spring.thymeleaf.content-type=text/html </span><br><span class="line"># Enable MVC Thymeleaf view resolution.</span><br><span class="line">spring.thymeleaf.enabled=true </span><br><span class="line"># Template encoding.</span><br><span class="line">spring.thymeleaf.encoding=UTF-8 </span><br><span class="line"># Comma-separated list of view names that should be excluded from resolution.</span><br><span class="line">spring.thymeleaf.excluded-view-names= </span><br><span class="line"># Template mode to be applied to templates. See also StandardTemplateModeHandlers.</span><br><span class="line">spring.thymeleaf.mode=HTML5 </span><br><span class="line"># Prefix that gets prepended to view names when building a URL.</span><br><span class="line">spring.thymeleaf.prefix=classpath:/templates/ </span><br><span class="line"># Suffix that gets appended to view names when building a URL.</span><br><span class="line">spring.thymeleaf.suffix=.html  spring.thymeleaf.template-resolver-order=</span><br></pre></td></tr></table></figure>
+<h4 id="FreeMarker"><a href="#FreeMarker" class="headerlink" title="FreeMarker"></a>FreeMarker</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">FreeMarker模板引擎</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>$&#123;host&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其余部分都一样。文件结尾ftl</p>
+<h4 id="Velocity"><a href="#Velocity" class="headerlink" title="Velocity"></a>Velocity</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">Velocity模板</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>$&#123;host&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其余部分一样，文件结尾为vm</p>
+<h3 id="Spring-Boot中使用Swagger2构建强大的RESTful-API文档"><a href="#Spring-Boot中使用Swagger2构建强大的RESTful-API文档" class="headerlink" title="Spring Boot中使用Swagger2构建强大的RESTful API文档"></a>Spring Boot中使用Swagger2构建强大的RESTful API文档</h3><p>Swagger2，它可以轻松的整合到Spring Boot中，并与Spring MVC程序配合组织出强大RESTful API文档。它既可以减少我们创建文档的工作量，同时说明内容又整合入实现代码中，让维护文档和修改代码整合为一体，可以让我们在修改代码逻辑的同时方便的修改文档说明。另外Swagger2也提供了强大的页面测试功能来调试每个RESTful API。具体效果如下图所示：</p>
+<p><img src="http://blog.didispace.com/content/images/2016/04/swagger2_1.png" alt=""></p>
+<p>如果在Spring Boot中使用Swagger2。首先，我们需要一个Spring Boot实现的RESTful API工程</p>
+<p><strong>添加Swagger2依赖</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>创建Swagger2配置类</strong></p>
+<p>在<code>Application.java</code>同级创建Swagger2的配置类<code>Swagger2</code>。</p>
+<h1 th:text="${host}">
 
+</h1>
           
         
       
@@ -1105,6 +1275,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IDEA/" itemprop="url" rel="index">
+                    <span itemprop="name">IDEA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -2252,8 +2444,8 @@
 <li>git branch -vv :本地分支跟踪的远程分支</li>
 <li>git fetch origin –prune :GitLab更新远程分支信息</li>
 </ol>
-<h4 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h4><p>1、git reset –hard 139dcfaa558e3276b30b6b2e5cbbb9c00bbdca96   回滚到某个版本</p>
-<p>2、git push -f -u origin &lt;分支名&gt;   ：强制提交到分支</p>
+<h4 id="回滚到指定commit，丢弃commit之后的提交记录"><a href="#回滚到指定commit，丢弃commit之后的提交记录" class="headerlink" title="回滚到指定commit，丢弃commit之后的提交记录"></a>回滚到指定commit，丢弃commit之后的提交记录</h4><p>1、git reset –hard 139dcfaa558e3276b30b6b2e5cbbb9c00bbdca96   回滚到某个版本</p>
+<p>2、git push -f -u origin &lt;分支名&gt;   ：强制提交到分支，覆盖远程分支</p>
 
           
         
@@ -2350,7 +2542,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2361,7 +2553,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
