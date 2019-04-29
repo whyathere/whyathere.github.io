@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/深入理解计算机原理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Maven/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -268,7 +268,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/10/深入理解计算机原理/" itemprop="url">深入理解计算机原理</a></h1>
+                <a class="post-title-link" href="/2018/09/10/Maven/" itemprop="url">Maven</a></h1>
         
 
         <div class="post-meta">
@@ -290,6 +290,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目管理/" itemprop="url" rel="index">
+                    <span itemprop="name">项目管理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -320,146 +342,35 @@
       
         
           
-            <h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><h3 id="程序编码"><a href="#程序编码" class="headerlink" title="程序编码"></a>程序编码</h3><h4 id="机器级代码"><a href="#机器级代码" class="headerlink" title="机器级代码"></a>机器级代码</h4><p>​    计算机系统使用了多种不同形式的抽象，利用更简单的抽象模型来隐藏实现的细节。其中两种尤为重要。第一种是由指令集体系结构或指令集架构，来定义机器级程序的格式和行为，它定义了处理器状态、指令的格式，以及每条指令对状态的影响。</p>
-<p>​    它们并发地执行许多指令，但是可以采取措施保证整体行为与ISA指定的顺序执行的行为完全一致。</p>
-<p>​    第二种抽象是，机器级程序使用的内存地址是虚拟的地址，提供的内存模型看上去是一个非常大的字节数组。存储器系统的实际实现是将多个硬件存储器和操作系统软件组合起来。</p>
-<p>​    在编译过程中，编译器会将C语言提供的相对比较抽象的执行模型表示的程序转化成处理器执行的非常基本的指令。</p>
-<p>​    计算机系统底层硬件只识别机器语言，而处理器就是用来执行一系列指令，每条指令执行某个简单的操作。比如两个数相加，汇编指令ADD会被编码为一个或多个字节组成的二进制格式。</p>
-<p>​    这里 <strong>一个处理器支持的指令和指令的字节级编码称为它的指令集体系结构(Instruction-Set Architecture ,ISA)</strong></p>
-<p>​    而不同的处理器家族，比如Intel IA32、IBM/Freescale PowerPC和AMD处理器家族，都有不同的ISA。不同类型的CPU有不同的机器指令系统，也就有不同的汇编语言是一样的。不同的处理器，其指令集体系结构也不一样，也就是说一个程序编译在一种机器上运行，就不能在另外一种机器上运行。如何处理这种兼容性问题呢？ <strong>ISA在编译器编写者和处理器设计人之间提供了一个抽象概念层，编译器编写者只需要知道允许那些指令，以及它们是如何编写的；而处理器设计者必须建造出这些指令的处理器。</strong></p>
-<ul>
-<li>程序计数器(通常称为”PC”，在x86-64中用%rip表示)给出将要执行的下一条指令在内存中的地址。</li>
-</ul>
-<p>机器代码只是简单地将内存看出一个很大的、按字节寻址的数组。C语言中的聚合数据类型，例如数组和结构，在机器代码中用一组连续的字节来表示。<strong>即使是对标量数据类型，汇编代码也不区分有符号或无符号整数，不区分各种类型的指针，甚至不区分指针和整数</strong></p>
-<p>​    程序内存包括：程序的可执行机器代码，操作系统需要的一些信息，用来管理过程调用和返回的运行时栈，以及用户分配的内存块。程序内存用 <strong>虚拟地址来寻址</strong>。在任意给定时刻，只有有限的一部分虚拟地址被认为是合法的。例如，x86-64的虚拟地址是由64位的字来表示的。在目前的实现中，这些地址的高16位必须设置为0，所以一个地址实际上能够指定的是2的48次方或64TB范围内的一个字节。操作系统负责管理虚拟地址空间，将虚拟地址翻译成实际处理器内存中的物理地址。</p>
-<p>反汇编器只是基于机器代码文件中的字节序列来确定汇编代码。它不需要访问该程序的源代码或汇编代码。</p>
-<h3 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h3><p>​    由于是从16位体系结构扩展成32位的，Intel 用术语 “字(word)”表示16位数据类型。因此32位数为”双字(double words)”，称64位数为”四字(quad words)”。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">C声明</th>
-<th style="text-align:center">Intel数据类型</th>
-<th style="text-align:center">汇编代码后缀</th>
-<th style="text-align:center">大小(字节)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">char</td>
-<td style="text-align:center">字节</td>
-<td style="text-align:center">b</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">short</td>
-<td style="text-align:center">字</td>
-<td style="text-align:center">w</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td style="text-align:center">int</td>
-<td style="text-align:center">字</td>
-<td style="text-align:center">l</td>
-<td style="text-align:center">4</td>
-</tr>
-<tr>
-<td style="text-align:center">long</td>
-<td style="text-align:center">四字</td>
-<td style="text-align:center">q</td>
-<td style="text-align:center">8</td>
-</tr>
-<tr>
-<td style="text-align:center">char*</td>
-<td style="text-align:center">四字</td>
-<td style="text-align:center">q</td>
-<td style="text-align:center">8</td>
-</tr>
-<tr>
-<td style="text-align:center">float</td>
-<td style="text-align:center">单精度</td>
-<td style="text-align:center">s</td>
-<td style="text-align:center">4</td>
-</tr>
-<tr>
-<td style="text-align:center">double</td>
-<td style="text-align:center">双精度</td>
-<td style="text-align:center">l</td>
-<td style="text-align:center">8</td>
-</tr>
-</tbody>
-</table>
-<p>​            C语言数据类型在x86-64中的大小。在64位机器中，指针长8字节</p>
-<p>​    浮点数主要有两种形式：单精度(4字节)值，对应于C语言数据类型float；双精度对应double。    </p>
-<p>​    如上表所示，大多数GCC生成的汇编代码指令都有一个字符的后缀，表明操作数的大小。例如：数据传送指令有四个变种：movb(传送字节)、movw(传送字)、movl(传送双字)和movq(传送四字)。注意，汇编代码也会使用后缀’1’来表示4字节整数和8字节双精度浮点数。因为浮点数使用的是一组完全不同的指令和寄存器。</p>
-<h3 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h3><p>​    一个x86-64的中央处理单元(CPU)包含一组16个存储64位值的 <strong>通用目的的寄存器</strong>。这些寄存器用来<strong>存储整数数据和指针。</strong></p>
-<p><img src="http://pcq0v117m.bkt.clouddn.com/2018-11-16-093431.png" alt=""></p>
-<h4 id="操作数指示符"><a href="#操作数指示符" class="headerlink" title="操作数指示符"></a>操作数指示符</h4><p>​    大多数指令有一个或多个 <strong>操作数(operand)</strong>，指示出执行一个操作中要使用的源数据值，以及放置结果的目的位置。x86-64支持多种操作数格式。如下图。源数据值可以以常数形式给出，或是从寄存器或内存中读出。结果可以存放在寄存器或内存中。因此，各种不同的操作数的可能性被分为三种类型。</p>
-<p>​    第一种类型是 <strong>立即数(immediate)</strong>，用来表示常数值。在ATT格式的汇编代码中，立即数的书写方式是’$’后面跟一个用标准C表示法表示的整数，比如,$-577或$0x1F。不同的指令允许的立即数数值范围不同，汇编器会自动选择最紧凑的方式进行数值编码。</p>
-<p>​    第二种类型是 <strong>寄存器(register)</strong>，它表示某个寄存器的内容，16个寄存器的低位1字节、2字节、4字节或8字节中的一个作为操作数，这些字节分别对应于8位、16位、32位或64位。符号ra来表示任意寄存器a，用引用R[ra]来表示它的值，这是将寄存器集合看成一个数组R，用寄存器标识符做索引。</p>
-<p>​    第三类操作数是 <strong>内存引用</strong>，它会根据计算出来的地址(通常称为有效地址)访问某个内存位置。因为将内存看成一个很大的字节数组。</p>
-<p><img src="http://pcq0v117m.bkt.clouddn.com/2018-11-16-093554.png" alt="image-20181116173554467"></p>
-<h4 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h4><p>​    最频繁使用的指令是将数据从一个位置复制到另一个位置。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">效果</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">MOV       S,D</td>
-<td style="text-align:center">D←S</td>
-<td style="text-align:center">传送</td>
-</tr>
-<tr>
-<td style="text-align:center">movb</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">传送字节</td>
-</tr>
-<tr>
-<td style="text-align:center">movw</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">传送字(2字节)</td>
-</tr>
-<tr>
-<td style="text-align:center">movl</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">传送双字(4字节)</td>
-</tr>
-<tr>
-<td style="text-align:center">movq</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">传送四字(8字节)</td>
-</tr>
-<tr>
-<td style="text-align:center">movabsq     I,R</td>
-<td style="text-align:center">R←I</td>
-<td style="text-align:center">传送绝对的四字</td>
-</tr>
-</tbody>
-</table>
-<p>​    源操作数指定的值是一个立即数，存储在寄存器中或者内存中。目的操作数指定一个 <strong>位置</strong>，要么是一个寄存器要么是一个内存地址。x86-64限制， <strong>传送指令的两个操作数不能都指向内存位置。</strong>因为这样需要将需要两条指令：第一条指令将源值加载到寄存器中，第二条将寄存器值写入到目的位置。</p>
-<h4 id="压入和弹出栈数据"><a href="#压入和弹出栈数据" class="headerlink" title="压入和弹出栈数据"></a>压入和弹出栈数据</h4><p>在x86-64中，程序栈存放在内存中某个区域。栈向下增长，这样一来，栈顶元素的地址是所有栈中元素地址中最低的。栈指针%rsp保存着栈顶元素的地址。</p>
-<p>将一个四字值压入栈中，首先要将栈指针减8，然后将值写到新的栈顶地址。因此，指令 pushq %rbp的行为等价于下面两条指令：</p>
-<p>​    subq $8,%rsp</p>
-<p>​    movq %rbp,(%rsp)</p>
-<p>它们之前的区别是在机器代码中pushq指令编码为1个字节，而上面那两条指令一共需要8个字节。</p>
-<p>如下图前两栏给出的是，当%rsp为0x108,%rax 为0x123时，执行指令pushq %rax的效果。首先%rsp会减8，得到0x100，然后将0x123存放到内存地址0x100处。</p>
-<p><img src="http://pcq0v117m.bkt.clouddn.com/2018-11-16-093235.png" alt="image-20181116173231518"></p>
-<p>弹出一个四字的操作包括从栈顶位置读出数据，然后将栈指针加8.因此，指令popq %rax等价于下面两条指令：        </p>
-<p>​    movq (%rsp),%rax</p>
-<p>​    add $8,%rsp</p>
-<p>​    上图的第三栏说明的是在执行完pushq后立即执行指令popq %rdx的效果。先从内存中读处值 0x123，再写到寄存器%rdx中，然后，寄存器%rsp的值将增加回到0x108。如图中所示，值0x123仍然会保持在内存位置0x100中，知道被覆盖(例如被另外一条入栈操作覆盖)。无论如何，%rsp指向的地址总是栈顶。</p>
-<p>​    因为栈和程序代码以及其他形式的程序数据都是放在同一内存中，所以程序可以用标准的内存寻址方法访问栈内的任意位置。例如，假设栈顶元素是四字，指令movq 8(%rsp),%rdx会将第二个四字从栈中复制到寄存器%rdx.</p>
-<h2 id="第八章：异常控制流"><a href="#第八章：异常控制流" class="headerlink" title="第八章：异常控制流"></a>第八章：异常控制流</h2><p>从处理器通电开始，知道断电，程序计数器假设了一个值的序列</p>
-<p>​        a0,a1,a2……,an-1</p>
-<p>每个ak是某个相应的指令Ik的地址。每次从ak到ak+1的过渡叫  <code>控制转移</code>(control transfer)。这样的控制转义序列叫做处理器的 <code>控制流</code>(flow of control 或control flow)。</p>
-<p>最简单的控制流是一个“平滑的”序列，每个Ik和Ik+1在内存中都是相邻的。不相邻的就是平滑流的突变，通常是由诸如跳转、调用和返回这样的程序指令造成的。这样使得程序能够对程序变量表示的内部程序状态中的变化做出反应。</p>
-<p>系统也应该要对系统状态的变化做出反应，例如网络信号的到达，必须放到内存中，需要处理器进行反应。现代的操作系统通过 <code>是控制流发生突变来对这些情况做出反应</code>。一般而言，我们称这些突变为 <strong>异常控制流(Exceptional Control Flow ,ECF)</strong></p>
-<p>应用和操作系统的交互都是围绕着ECF开始的。一个计算机操作系统中所有层次上有各种各样的ECF，从异常开始，异常位于硬件和操作系统交界的部分。</p>
-<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>异常是异常控制流的一种形式，它一部分由硬件实现，一部分由操作系统实现;是控制流中的一种突变，用来响应处理器状态中的某些变化。</p>
+            <h2 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h2><h3 id="Maven简介"><a href="#Maven简介" class="headerlink" title="Maven简介"></a>Maven简介</h3><p>​    Apache Maven是一个软件项目管理工具。基于项目对象模型(Project Object Model,POM)的概念，Maven可用来管理项目的依赖、编译、文档等信息。</p>
+<p>​    使用Maven管理项目时，项目依赖的jar包将不再包含在项目内，而是集中放置在用户目录下的.m2文件夹下。</p>
+<h3 id="Maven的pom-xml"><a href="#Maven的pom-xml" class="headerlink" title="Maven的pom.xml"></a>Maven的pom.xml</h3><p>​    Maven是基于项目对象模型的概念运作的，所以Maven的项目都有一个pom.xml用来管理项目的依赖以及项目的编译等功能。</p>
+<p>​    1、dependencies元素</p>
+<p><code>&lt;dependencies&gt;&lt;/dependencies&gt;</code>，此元素包含了多个项目依赖需要使用的<code>&lt;dependency&gt;&lt;/dpendency&gt;</code></p>
+<p>​    2、dependency元素</p>
+<p><code>&lt;dependency&gt;&lt;/dpendency&gt;</code>    内部通过groupId、artifactId、以及version确定唯一的依赖，有人称这三个为坐标，代码如下。</p>
+<p>​    groupId：组织的唯一标识</p>
+<p>​    artifactId： 项目的唯一标识</p>
+<p>​    version： 项目的版本</p>
+<p>​    3、变量定义</p>
+<p>​    <code>&lt;properties&gt;&lt;/properties&gt;</code>    可定义变量在dependency中引用，代码如下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​    4、编译插件</p>
+<p>​    Maven提供了编译插件，可在编译插件中涉及Java的编译级别，代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​    5、Maven运作方式</p>
+<p>​    Maven会自动根据dependency中的依赖配置，直接通过互联网在Maven中心库下载相关依赖包到.m2目录下，.m2目录下是你本地Maven库。</p>
+<p>​    </p>
+<h2 id="Maven问题汇总"><a href="#Maven问题汇总" class="headerlink" title="Maven问题汇总"></a>Maven问题汇总</h2><h3 id="依赖问题"><a href="#依赖问题" class="headerlink" title="依赖问题"></a>依赖问题</h3><p>报错信息如下：由于两个日志文件jar包冲突导致项目无法启动，卡住</p>
+<p><img src="https://user-images.githubusercontent.com/24977343/54276414-4252a900-45c8-11e9-8f87-4b389419bbcc.png" alt=""></p>
+<p>解决方法：根据提示来查找是那个依赖引出的这个jar包。</p>
+<p>slf4j-log4j12-1.6.1.jar</p>
+<p>通过依次注释掉pom.xml文件中的依赖观察得出这个jar包来自zk</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.101tec<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zkclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;zkclient.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<p><exclusions>排除这个依赖的传递。</exclusions></p>
+<p>在mavenB项目中引入mavenA项目依赖，通过依赖传递，会将mavenA中的jar包传递进来</p>
+<p>如果B中不需要A中的某个jar包就可以使用此标签</p>
 
           
         
@@ -508,7 +419,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Redis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/异常/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -527,7 +438,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/10/Redis/" itemprop="url">Redis</a></h1>
+                <a class="post-title-link" href="/2018/09/10/异常/" itemprop="url">异常</a></h1>
         
 
         <div class="post-meta">
@@ -579,17 +490,158 @@
       
         
           
-            <h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><h3 id="大概"><a href="#大概" class="headerlink" title="大概"></a>大概</h3><p>redis是单线程的</p>
-<p>io多路复用，所以不需要线程池</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="如何保证缓存与数据库双写时数据一致性？"><a href="#如何保证缓存与数据库双写时数据一致性？" class="headerlink" title="如何保证缓存与数据库双写时数据一致性？"></a>如何保证缓存与数据库双写时数据一致性？</h4><p>只要用缓存，就可能涉及到缓存与数据库双存储双写，只要是双写，就一定有数据一致性的问题。</p>
-<ul>
-<li>先更新数据库，再更新缓存</li>
-<li>先删除缓存，再更新数据库</li>
-<li>先更新数据库，再删除缓存</li>
-</ul>
-<h5 id="先更新数据库，再更新缓存"><a href="#先更新数据库，再更新缓存" class="headerlink" title="先更新数据库，再更新缓存**"></a>先更新数据库，再更新缓存**</h5><p><strong>原因一：线程安全角度</strong></p>
-<p>同时有请求A和请求B进行更新操作，那么会出现<br>（1）线程A更新了数据库<br>（2）线程B更新了数据库<br>（3）线程B更新了缓存<br>（4）线程A更新了缓存<br>这就出现请求A更新缓存应该比请求B更新缓存早才对，但是因为网络等原因，B却比A更早更新了缓存。这就导致了脏数据，因此不考虑。<br><strong>原因二（业务场景角度）</strong><br>有如下两点：<br>（1）如果你是一个写数据库场景比较多，而读数据场景比较少的业务需求，采用这种方案就会导致，数据压根还没读到，缓存就被频繁的更新，浪费性能。<br>（2）如果你写入数据库的值，并不是直接写入缓存的，而是要经过一系列复杂的计算再写入缓存。那么，每次写入数据库后，都再次计算写入缓存的值，无疑是浪费性能的。显然，删除缓存更为适合。</p>
-<h5 id="先删缓存，再更新数据库"><a href="#先删缓存，再更新数据库" class="headerlink" title="先删缓存，再更新数据库"></a>先删缓存，再更新数据库</h5><p>A更新操作，B查询操作</p>
+            <h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><p>### </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/MySQL语法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/10/MySQL语法/" itemprop="url">MySQL语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T18:27:21+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><h4 id="left-jon"><a href="#left-jon" class="headerlink" title="left jon"></a>left jon</h4><p> <strong>left join is a short hand for left outer join - they are the same.</strong></p>
+<p>左外链接  left outer join的简写是 left join。会将左边表里的全部查出来，只显示右边表里与左边表里对应有的数据。on为合并条件</p>
+<p>右外链接 right (outer) join  ：与左外相反</p>
+<p>全外链接：full (outer) join :显示左右两边的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> Person.FirstName,Person.LastName,Address.City,Address.State <span class="keyword">from</span> Person <span class="keyword">left</span> <span class="keyword">join</span> </span><br><span class="line">Address</span><br><span class="line"><span class="keyword">on</span> Person.PersonId = Address.PersonId</span><br></pre></td></tr></table></figure>
+<p>如果将left join 换成join会查询两张表都有的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> p1.id,p1.name,p1.address,p2.password <span class="keyword">from</span> tb_customer p1  <span class="keyword">JOIN</span> tb_user p2 <span class="keyword">ON</span>	p2.id = p1.id;</span><br></pre></td></tr></table></figure>
+<h4 id="176-Second-Highest-Salary"><a href="#176-Second-Highest-Salary" class="headerlink" title="176. Second Highest Salary"></a>176. Second Highest Salary</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">    Salary <span class="keyword">AS</span> SecondHighestSalary</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    Employee</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> Salary <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">1</span> <span class="keyword">OFFSET</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>如果只有一条记录的话就会报错。因为不存在</p>
+<p>可以将其作为一个临时表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">            Salary</span><br><span class="line">        <span class="keyword">FROM</span></span><br><span class="line">            Employee</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> Salary <span class="keyword">DESC</span></span><br><span class="line">        <span class="keyword">LIMIT</span> <span class="number">1</span> <span class="keyword">OFFSET</span> <span class="number">1</span>) <span class="keyword">AS</span> SecondHighestSalary</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<p>distinct 去除重复值</p>
+<p>desc 降序</p>
+<p>或者添加判断</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="keyword">IFNULL</span>(</span><br><span class="line">      (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> Salary</span><br><span class="line">       <span class="keyword">FROM</span> Employee</span><br><span class="line">       <span class="keyword">ORDER</span> <span class="keyword">BY</span> Salary <span class="keyword">DESC</span></span><br><span class="line">        <span class="keyword">LIMIT</span> <span class="number">1</span> <span class="keyword">OFFSET</span> <span class="number">1</span>),</span><br><span class="line">    <span class="literal">NULL</span>) <span class="keyword">AS</span> SecondHighestSalary</span><br></pre></td></tr></table></figure>
+<h4 id="595-Big-Countries"><a href="#595-Big-Countries" class="headerlink" title="595. Big Countries"></a>595. Big Countries</h4><p>select name,population,area from World where population &gt; 25000000<br>union<br>select name,population,area from World where area &gt; 3000000;</p>
+<h4 id="627-Swap-Salary"><a href="#627-Swap-Salary" class="headerlink" title="627. Swap Salary"></a>627. Swap Salary</h4><p><strong>explain</strong>：更新数据库表，如果值为多少就改为多少，否则…..</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> tb_address <span class="keyword">set</span> city = <span class="keyword">CASE</span> city</span><br><span class="line">	<span class="keyword">WHEN</span> <span class="string">'北京'</span> <span class="keyword">THEN</span></span><br><span class="line">		<span class="string">'上海'</span></span><br><span class="line">	<span class="keyword">when</span> <span class="string">'上海'</span> <span class="keyword">then</span></span><br><span class="line">		<span class="string">'湖南'</span></span><br><span class="line">	<span class="keyword">ELSE</span></span><br><span class="line">		<span class="string">'南京'</span></span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<p>上例中，当tb_address表的 city字段，值为’北京’ 时，将值设置为’上海’；值为’上海’的，设置为’湖南’。其他的设置为’南京’。可以多加几个when   … then的判断条件。END为结尾，不需要加 END CASE;</p>
+<h4 id="TO-DAYS"><a href="#TO-DAYS" class="headerlink" title="TO_DAYS"></a><strong>TO_DAYS</strong></h4><p><strong>TO_DAYS(wt1.DATE)</strong> return the number of days between from year 0 to date DATE</p>
+<p>会将日期变为一个数字，日期越大数字越大</p>
+<p>Given a <code>Weather</code> table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+---------+------------------+------------------+</span><br><span class="line">| Id(INT) | RecordDate(DATE) | Temperature(INT) |</span><br><span class="line">+---------+------------------+------------------+</span><br><span class="line">|       1 |       2015-01-01 |               10 |</span><br><span class="line">|       2 |       2015-01-02 |               25 |</span><br><span class="line">|       3 |       2015-01-03 |               20 |</span><br><span class="line">|       4 |       2015-01-04 |               30 |</span><br><span class="line">+---------+------------------+------------------+</span><br></pre></td></tr></table></figure>
+<p>For example, return the following Ids for the above <code>Weather</code> table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----+</span><br><span class="line">| Id |</span><br><span class="line">+----+</span><br><span class="line">|  2 |</span><br><span class="line">|  4 |</span><br><span class="line">+----+</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> wt1.Id </span><br><span class="line"><span class="keyword">FROM</span> Weather wt1, Weather wt2</span><br><span class="line"><span class="keyword">WHERE</span> wt1.Temperature &gt; wt2.Temperature <span class="keyword">AND</span> </span><br><span class="line">      <span class="keyword">TO_DAYS</span>(wt1.DATE)-<span class="keyword">TO_DAYS</span>(wt2.DATE)=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="196-Delete-Duplicate-Emails"><a href="#196-Delete-Duplicate-Emails" class="headerlink" title="196. Delete Duplicate Emails"></a>196. Delete Duplicate Emails</h4><p>Write a SQL query to <strong>delete</strong> all duplicate email entries in a table named <code>Person</code>, keeping only unique emails based on its <em>smallest</em> <strong>Id</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+----+------------------+</span><br><span class="line">| Id | Email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">| 3  | john@example.com |</span><br><span class="line">+----+------------------+</span><br><span class="line">Id is the primary key column for this table.</span><br></pre></td></tr></table></figure>
+<p>For example, after running your query, the above <code>Person</code> table should have the following rows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----+------------------+</span><br><span class="line">| Id | Email            |</span><br><span class="line">+----+------------------+</span><br><span class="line">| 1  | john@example.com |</span><br><span class="line">| 2  | bob@example.com  |</span><br><span class="line">+----+------------------+</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> p1</span><br><span class="line"><span class="keyword">FROM</span> Person p1, Person p2</span><br><span class="line"><span class="keyword">WHERE</span> p1.Email = p2.Email <span class="keyword">AND</span></span><br><span class="line">p1.Id &gt; p2.Id</span><br></pre></td></tr></table></figure>
+<h4 id="177-Nth-Highest-Salary"><a href="#177-Nth-Highest-Salary" class="headerlink" title="177. Nth Highest Salary"></a>177. Nth Highest Salary</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> getNthHighestSalary(N <span class="built_in">INT</span>) <span class="keyword">RETURNS</span> <span class="built_in">INT</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">DECLARE</span> M <span class="built_in">INT</span>;</span><br><span class="line"><span class="keyword">SET</span> M=N<span class="number">-1</span>;</span><br><span class="line">  RETURN (</span><br><span class="line">      # Write your MySQL query statement below.</span><br><span class="line">      <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> Salary <span class="keyword">FROM</span> Employee <span class="keyword">ORDER</span> <span class="keyword">BY</span> Salary <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> M, <span class="number">1</span></span><br><span class="line">  );</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -2229,6 +2281,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/MySQL主主说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/10/MySQL主主说明/" itemprop="url">MySQL多主循环 使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="配置文件样例："><a href="#配置文件样例：" class="headerlink" title="配置文件样例："></a>配置文件样例：</h3><p>164：<br>port=3306<br>server-id=164<br>log-bin=mysql<br>binlog-do-db=mytest<br>binlog-ignore-db=mysql  #忽略的数据库<br>log-slave-updates=true    #需要<br>replicate-do-db=mytest    #要同步的数据库，如果需要多个库，重复这行<br>replicate-do-db=zero_bos #<br>slave-skip-errors=all   #忽略同步过程中的错误</p>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><p>MySQL的配置文件各种参数说明<br>binlog-do-db：指定mysql的binlog日志记录哪个db<br>Replicate_Do_DB：参数是在slave上配置，指定slave要复制哪个库<br>binlog-do-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可<br>binlog-ignore-db=不需要复制的数据库苦命，如果复制多个数据库，重复设置这个选项即可<br>replicate-do-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可<br>replicate-ignore-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可<br>log-bin=mysql-bin  //启动二进制日志系统<br>sync_binlog = 1 or N：This makes MySQL synchronize the binary log’s contents to disk each time it commits a transaction </p>
+<p>注意：如果你想做一个复杂点的结构：比如说，A-&gt;B-&gt;C，其中B是A的从服务器，同时B又是C的主服务器，那么B服务器除了需要打开log-bin之外，还需要打开log-slave-updates选项，你可以再B上使用“show variables like ‘log%’;”来确认是否已经生效。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>若同步某一数据库，应确保主从服务器上均有此数据库</li>
+<li>不指定‘binlog-do-db’ 与‘replicate-do-db’即位同步整个服务器</li>
+<li>配置完成后，尽量不要对从库进行插入、更新等操作，只进行查询操作即可</li>
+</ol>
+<h3 id="常用操作命令"><a href="#常用操作命令" class="headerlink" title="常用操作命令"></a>常用操作命令</h3><ol>
+<li>停止从库服务：slave stop;</li>
+<li>重置从库服务：slave reset;   // 重新启动从库服务后，会从新同步</li>
+</ol>
+<h4 id="权限相关"><a href="#权限相关" class="headerlink" title="权限相关"></a>权限相关</h4><ol>
+<li>在主服务器上查询当前二进制文件的文件名及偏移位置：show master status;</li>
+<li>启动从服务器上的复制线程：start slave;</li>
+<li>刷新权限：FLUSH PRIVILEGES;</li>
+</ol>
+<h4 id="日志相关"><a href="#日志相关" class="headerlink" title="日志相关"></a>日志相关</h4><ol>
+<li>是否启用了日志：show variables like ‘log_%’; </li>
+<li>刷新日志：flush logs;</li>
+</ol>
+<h3 id="从库"><a href="#从库" class="headerlink" title="从库"></a>从库</h3><p>从库更改要复制的主库：change master to master_host=’10.0.0.164’,master_user=’replicate’,master_password=’123456’，<br>master_log_file=’mysql-bin.000013’,master_log_pos=107;;</p>
+<h3 id="遇到的错误"><a href="#遇到的错误" class="headerlink" title="遇到的错误"></a>遇到的错误</h3><h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><p>1.错误提示：<br>Last_IO_Error: Got fatal error 1236 from master when reading dat<br>a from binary log: ‘Could not find first log file name in binary log index file’<br>解决方法：查看master的错误日志<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">180413 16:33:02 [Note] Error reading relay <span class="built_in">log</span> event: slave SQL thread was killed</span><br><span class="line">180413 16:33:02 [Note] Slave I/O thread killed <span class="keyword">while</span> connecting to master</span><br><span class="line">180413 16:33:02 [Note] Slave I/O thread exiting, <span class="built_in">read</span> up to <span class="built_in">log</span> <span class="string">'mysql.000004'</span>, position 107</span><br><span class="line">180413 16:33:05 [Note] Slave SQL thread initialized, starting replication <span class="keyword">in</span> <span class="built_in">log</span> <span class="string">'mysql.000004'</span> at position 107, relay <span class="built_in">log</span> <span class="string">'.\DESKTOP-5ECA991-relay-bin.000015'</span> position: 4</span><br><span class="line">180413 16:33:06 [ERROR] Slave I/O: error connecting to master <span class="string">'root@10.0.0.32:3306'</span> - retry-time: 60  retries: 86400, Error_code: 2003</span><br></pre></td></tr></table></figure></p>
+<p>将从库的改为’mysql.000004’ at position 107</p>
+<h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><p>2.错误提示<br>Slave I/O: Got fatal error 1236 from master when reading data from binary<br>log: ‘Binary log is not open’,Error_code: 1236<br>原因：没有设置log-bin，在master的my文件中设置log-bin=mysql-bin  //启动二进制日志系统 </p>
+<h3 id="主从相关单词意义"><a href="#主从相关单词意义" class="headerlink" title="主从相关单词意义"></a>主从相关单词意义</h3><ol>
+<li>Slave_IO_Running: No是主从同步故障</li>
+<li>Slave_SQL_Running: Yes是从服务器读取中继日志</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/Python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3078,363 +3300,6 @@ else：
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/MySQL主主说明/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/MySQL主主说明/" itemprop="url">MySQL多主循环 使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="配置文件样例："><a href="#配置文件样例：" class="headerlink" title="配置文件样例："></a>配置文件样例：</h3><p>164：<br>port=3306<br>server-id=164<br>log-bin=mysql<br>binlog-do-db=mytest<br>binlog-ignore-db=mysql  #忽略的数据库<br>log-slave-updates=true    #需要<br>replicate-do-db=mytest    #要同步的数据库，如果需要多个库，重复这行<br>replicate-do-db=zero_bos #<br>slave-skip-errors=all   #忽略同步过程中的错误</p>
-<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><p>MySQL的配置文件各种参数说明<br>binlog-do-db：指定mysql的binlog日志记录哪个db<br>Replicate_Do_DB：参数是在slave上配置，指定slave要复制哪个库<br>binlog-do-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可<br>binlog-ignore-db=不需要复制的数据库苦命，如果复制多个数据库，重复设置这个选项即可<br>replicate-do-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可<br>replicate-ignore-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可<br>log-bin=mysql-bin  //启动二进制日志系统<br>sync_binlog = 1 or N：This makes MySQL synchronize the binary log’s contents to disk each time it commits a transaction </p>
-<p>注意：如果你想做一个复杂点的结构：比如说，A-&gt;B-&gt;C，其中B是A的从服务器，同时B又是C的主服务器，那么B服务器除了需要打开log-bin之外，还需要打开log-slave-updates选项，你可以再B上使用“show variables like ‘log%’;”来确认是否已经生效。</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>若同步某一数据库，应确保主从服务器上均有此数据库</li>
-<li>不指定‘binlog-do-db’ 与‘replicate-do-db’即位同步整个服务器</li>
-<li>配置完成后，尽量不要对从库进行插入、更新等操作，只进行查询操作即可</li>
-</ol>
-<h3 id="常用操作命令"><a href="#常用操作命令" class="headerlink" title="常用操作命令"></a>常用操作命令</h3><ol>
-<li>停止从库服务：slave stop;</li>
-<li>重置从库服务：slave reset;   // 重新启动从库服务后，会从新同步</li>
-</ol>
-<h4 id="权限相关"><a href="#权限相关" class="headerlink" title="权限相关"></a>权限相关</h4><ol>
-<li>在主服务器上查询当前二进制文件的文件名及偏移位置：show master status;</li>
-<li>启动从服务器上的复制线程：start slave;</li>
-<li>刷新权限：FLUSH PRIVILEGES;</li>
-</ol>
-<h4 id="日志相关"><a href="#日志相关" class="headerlink" title="日志相关"></a>日志相关</h4><ol>
-<li>是否启用了日志：show variables like ‘log_%’; </li>
-<li>刷新日志：flush logs;</li>
-</ol>
-<h3 id="从库"><a href="#从库" class="headerlink" title="从库"></a>从库</h3><p>从库更改要复制的主库：change master to master_host=’10.0.0.164’,master_user=’replicate’,master_password=’123456’，<br>master_log_file=’mysql-bin.000013’,master_log_pos=107;;</p>
-<h3 id="遇到的错误"><a href="#遇到的错误" class="headerlink" title="遇到的错误"></a>遇到的错误</h3><h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><p>1.错误提示：<br>Last_IO_Error: Got fatal error 1236 from master when reading dat<br>a from binary log: ‘Could not find first log file name in binary log index file’<br>解决方法：查看master的错误日志<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">180413 16:33:02 [Note] Error reading relay <span class="built_in">log</span> event: slave SQL thread was killed</span><br><span class="line">180413 16:33:02 [Note] Slave I/O thread killed <span class="keyword">while</span> connecting to master</span><br><span class="line">180413 16:33:02 [Note] Slave I/O thread exiting, <span class="built_in">read</span> up to <span class="built_in">log</span> <span class="string">'mysql.000004'</span>, position 107</span><br><span class="line">180413 16:33:05 [Note] Slave SQL thread initialized, starting replication <span class="keyword">in</span> <span class="built_in">log</span> <span class="string">'mysql.000004'</span> at position 107, relay <span class="built_in">log</span> <span class="string">'.\DESKTOP-5ECA991-relay-bin.000015'</span> position: 4</span><br><span class="line">180413 16:33:06 [ERROR] Slave I/O: error connecting to master <span class="string">'root@10.0.0.32:3306'</span> - retry-time: 60  retries: 86400, Error_code: 2003</span><br></pre></td></tr></table></figure></p>
-<p>将从库的改为’mysql.000004’ at position 107</p>
-<h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><p>2.错误提示<br>Slave I/O: Got fatal error 1236 from master when reading data from binary<br>log: ‘Binary log is not open’,Error_code: 1236<br>原因：没有设置log-bin，在master的my文件中设置log-bin=mysql-bin  //启动二进制日志系统 </p>
-<h3 id="主从相关单词意义"><a href="#主从相关单词意义" class="headerlink" title="主从相关单词意义"></a>主从相关单词意义</h3><ol>
-<li>Slave_IO_Running: No是主从同步故障</li>
-<li>Slave_SQL_Running: Yes是从服务器读取中继日志</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/BOS-第六天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/10/BOS-第六天/" itemprop="url">BOS 第六天</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/项目/" itemprop="url" rel="index">
-                    <span itemprop="name">项目</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="定区"><a href="#定区" class="headerlink" title="定区"></a>定区</h3><p>目前接触到了三张表，区域，定区，分区</p>
-<p>region<br>        定区<br>staff    取派员<br>subarea 分区上有可能定区的，但肯定有区域</p>
-<p>​        </p>
-<p>region分为多个subarea<br>那么去派员隶属于分区，那么去派员就应该和分区subare有关系。</p>
-<p>受理业务：<br>        客户下单<br>        自动分单  给对应的取派员</p>
-<p>取派员与定区相关联，定区和分区有关系。</p>
-<p>模拟客户：客户端   都是有固定的地址  根据地址就可以判断是属于哪个定区的（有定区ID）<br>客户表里有  id name decidedzone </p>
-<pre><code>在这里定区指向取派员表
-</code></pre><h4 id="定区添加业务分析"><a href="#定区添加业务分析" class="headerlink" title="定区添加业务分析"></a>定区添加业务分析</h4><ol>
-<li>定区添加  获取取派员的ID  下拉框选取  显示</li>
-<li>循环更新  分区表  显示未被定区关联分区显示  checkbox显示<br>服务器端：action  接受表单信息</li>
-<li>checkbox分区信息  能否提交给后台？  可以接收</li>
-</ol>
-<p>定区的主键ID是uuid<br>业务层：<br>    svae（decidezone（瞬时态，没有id，但是需要））<br>    更新分区的时候<br>    定区的主键策略  assigend 需要加ajax校验</p>
-<h4 id="定区添加取派员下拉框显示"><a href="#定区添加取派员下拉框显示" class="headerlink" title="定区添加取派员下拉框显示"></a>定区添加取派员下拉框显示</h4><p>在这里由于之前设置了取派员的作废标识<br>所以这里不能用默认的findAll<br>前端代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;选择负责人&lt;/td&gt;</span><br><span class="line">&lt;td&gt;</span><br><span class="line">	&lt;input class=<span class="string">"easyui-combobox"</span> name=<span class="string">"staff.id"</span></span><br><span class="line">					data-options=<span class="string">"valueField:'id',textField:'name',url:'<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/bc/staffAction_ajaxList'"</span> /&gt;</span><br><span class="line">&lt;/td&gt;</span><br></pre></td></tr></table></figure></p>
-<p>action<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 定区关联取派员</span><br><span class="line">@Action(value = <span class="string">"staffAction_ajaxList"</span>,results = &#123;@Result(name = <span class="string">"ajaxList"</span>,<span class="built_in">type</span> = <span class="string">"json"</span>)&#125;)</span><br><span class="line">public String <span class="function"><span class="title">ajaxList</span></span>() &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">		List&lt;Staff&gt; staffs=serviceFacade.getStaffService().findStaffInUse();</span><br><span class="line">		push(staffs);</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">		push(<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> <span class="string">"ajaxList"</span>;  //走全局结果集</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Dao<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Query(<span class="string">"from Staff where deltag = '0' "</span>)</span><br><span class="line">public List&lt;Staff&gt; findStaffInUse();</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>前端会发送多个ID往后端<br>分区的Update中的DecidedZone是一个对象。<br><img src="http://whyathere.github.io/images/bos/day05/定区添加截图.jpg" alt=""><br>从图可以看出<br>关联分区的时候，是一个对象。<br>创建DecidedZoneService相关的类<br>DecidedZoneServiceImpl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">@Transactional</span><br><span class="line">public class DecidedZoneServiceImpl implements DecidedZoneService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private DecidedZoneDao decidedZoneDao;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private SubAreaDao subAreaDao;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void save(DecidedZone model, String[] subareaIds) &#123;</span><br><span class="line">        //定区表添加 分区表外键更新</span><br><span class="line">        decidedZoneDao.save(model);</span><br><span class="line">        <span class="keyword">if</span> (subareaIds != null &amp;&amp; subareaIds.length != 0) &#123;</span><br><span class="line">            <span class="keyword">for</span> (String sid: subareaIds) &#123;</span><br><span class="line">                subAreaDao.assignSubareaToDecidedzone(model,sid);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>将DecidedZoneService添加到门面类FacadeService<br>DecidedZoneAction<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 区域添加</span><br><span class="line">@Action(value = <span class="string">"decidedZoneAction_save"</span>, results = &#123;</span><br><span class="line">        @Result(name = <span class="string">"save"</span>, location = <span class="string">"/WEB-INF/pages/base/decidedzone.jsp"</span>)&#125;)</span><br><span class="line">public String <span class="function"><span class="title">save</span></span>() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        String[] subAreaIds = getRequest().getParameterValues(<span class="string">"subAreaId"</span>);</span><br><span class="line">        serviceFacade.getDecidedZoneService().save(model,subAreaIds);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="string">"save"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Dao<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface SubAreaDao extends JpaRepository&lt;Subarea, String&gt;, JpaSpecificationExecutor&lt;Subarea&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Query(<span class="string">"from Subarea where decidedZone is null "</span>)</span><br><span class="line">    public List&lt;Subarea&gt; findnoassociation();</span><br><span class="line"></span><br><span class="line">    @Modifying</span><br><span class="line">    @Query(<span class="string">"update Subarea set decidedZone=?1 where id=?2"</span>)</span><br><span class="line">    public  void assignSubareaToDecidedzone(DecidedZone model,String sid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>关联分区选中的是<br>这里查找的是 Subarea的 decidedZone_id 不为空的<br>一旦被选中就会将 Subarea的 decidedZone_id 标记为1</p>
-<h4 id="定区条件分页查询"><a href="#定区条件分页查询" class="headerlink" title="定区条件分页查询"></a>定区条件分页查询</h4><ol>
-<li>给查询定区的窗口设置一个id<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form id=<span class="string">"searchDecidedZoneForm"</span>&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>是否关联分区<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;是否关联分区&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;</span><br><span class="line">                    &lt;select id=<span class="string">"cc"</span> class=<span class="string">"easyui-combobox"</span> name=<span class="string">"isAssociationSubarea"</span> style=<span class="string">"width:170px;"</span>&gt;</span><br><span class="line">                        &lt;option value=<span class="string">""</span>&gt;===请选择===&lt;/option&gt;</span><br><span class="line">                        &lt;option value=<span class="string">"1"</span>&gt;是&lt;/option&gt;</span><br><span class="line">                        &lt;option value=<span class="string">"0"</span>&gt;否&lt;/option&gt;</span><br><span class="line">                    &lt;/select&gt;</span><br><span class="line">                &lt;/td&gt;</span><br></pre></td></tr></table></figure></p>
-<p>条件查询<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//条件查询定区</span><br><span class="line">  $(<span class="string">"#btn"</span>).click(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      //from序列化</span><br><span class="line">      var jsonObj = $(<span class="string">"#searchDecidedZoneForm"</span>).serializeJson();</span><br><span class="line">      //调用datagrid load 方法 form序列化</span><br><span class="line">      $(<span class="string">"#grid"</span>).datagrid(<span class="string">"load"</span>, jsonObj);</span><br><span class="line">      //3：关闭窗口</span><br><span class="line">      $(<span class="string">"#searchWindow"</span>).window(<span class="string">"close"</span>);</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>datagrid<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 收派标准数据表格</span><br><span class="line">$(<span class="string">'#grid'</span>).datagrid(&#123;</span><br><span class="line">    iconCls: <span class="string">'icon-forward'</span>,</span><br><span class="line">    fit: <span class="literal">true</span>,</span><br><span class="line">    border: <span class="literal">true</span>,</span><br><span class="line">    rownumbers: <span class="literal">true</span>,</span><br><span class="line">    striped: <span class="literal">true</span>,</span><br><span class="line">    pageList: [3, 5, 10],</span><br><span class="line">    pagination: <span class="literal">true</span>,</span><br><span class="line">    toolbar: toolbar,</span><br><span class="line">    url: <span class="string">"<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/bc/decidedZoneAction_pageQuery"</span>,</span><br><span class="line">    idField: <span class="string">'id'</span>,</span><br><span class="line">    columns: columns,</span><br><span class="line">    onDblClickRow: doDblClickRow</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>条件分页查询Action<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 区域的分页查询</span><br><span class="line">@Action(value = <span class="string">"decidedZoneAction_pageQuery"</span>)</span><br><span class="line">public String <span class="function"><span class="title">pageQuery</span></span>() &#123;</span><br><span class="line">    //PageRequest pageable = new PageRequest(page - 1, rows);</span><br><span class="line">    //dao 参数 Pageable pageable 自动完成分页查询 将分页结果数据 自动封装到Page&lt;T&gt;</span><br><span class="line">    //从Page 对象获取总记录数 和 每页分页记录数List&lt;Staff&gt;</span><br><span class="line">    Page&lt;DecidedZone&gt; pageData = serviceFacade.getDecidedZoneService().pageQuery(getPageRequest(), getSpecification());</span><br><span class="line">    setPageData(pageData);</span><br><span class="line">    <span class="built_in">return</span> <span class="string">"pageQuery"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="CRM"><a href="#CRM" class="headerlink" title="CRM"></a>CRM</h3><h4 id="关联客户业务分析"><a href="#关联客户业务分析" class="headerlink" title="关联客户业务分析"></a>关联客户业务分析</h4><pre><code>要把所有的级联删除，否则可能删除全部的数据内容
-</code></pre><ol>
-<li>首先要将定区和客户关联起来，以便于通过客户信息找到定区，然后通过定区找到可以分配的取派员。</li>
-<li>左边显示当前定区未关联的客户信息，右侧是显示已经关联的客户信息，而且可以左右移动<br> . 直观感觉是右侧的是提交    ，左右移动后要做关联，表内数据要更改。客户表内添加一个decidedzone_id</li>
-<li>CRM是一个单独的系统，提供web服务。 </li>
-<li>搭建新的系统 crm客户关系系统  customer</li>
-<li>塔尖环境：ssh</li>
-<li>为bos系统提供客户表的 crud 操作</li>
-<li>restful 最典型的</li>
-<li>@POST（保存） @PUT（修改） @GET（查询） @DELETE（删除） 四种注解表示类型</li>
-<li>@Product 生产者 服务器响应客户端数据类型 CRM回送给BOS数据类型<br>@Customer  消费者 Bos发送给CRM系统数据类型 xml/json<br>@Path  客户端请求路径编写<br>@PathParam  获取请求路径的参数信息<br><a href="http://whyathere.github.io/images/bos/day05/RestFul示例.jpg" target="_blank" rel="noopener"></a>    </li>
-</ol>
-<p>本地测试OK之后再放业务</p>
-<p>过程：ajax–&gt;bos–&gt;action–&gt;service–&gt;restful(crm)–&gt;WebClient(crud)</p>
-<h4 id="定区关联客户之CRM系统环境搭建"><a href="#定区关联客户之CRM系统环境搭建" class="headerlink" title="定区关联客户之CRM系统环境搭建"></a>定区关联客户之CRM系统环境搭建</h4><p>hibernate.properties 用于自动建表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">@Table(name = <span class="string">"t_customer"</span>,catalog = <span class="string">"zero_bos"</span>)</span><br><span class="line">@XmlRootElement(name = <span class="string">"Customer"</span>)  //使用restful的时候要添加，网络传输序列化所需要的注解</span><br><span class="line">public class Customer implements java.io.Serializable &#123;</span><br><span class="line"></span><br><span class="line">    @GenericGenerator(name = <span class="string">"generator"</span>, strategy = <span class="string">"uuid"</span>)</span><br><span class="line">    @Id</span><br><span class="line">    @GeneratedValue(generator = <span class="string">"generator"</span>)</span><br><span class="line">    private String id;</span><br></pre></td></tr></table></figure></p>
-<p>CRM-SERVICE<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Produces(<span class="string">"*/*"</span>)</span><br><span class="line">public interface CustomerService &#123;</span><br><span class="line">    @GET</span><br><span class="line">    @Path(<span class="string">"/customer"</span>)</span><br><span class="line">    @Produces(&#123; <span class="string">"application/xml"</span>, <span class="string">"application/json"</span> &#125;)</span><br><span class="line">    public List&lt;Customer&gt; getNoAssociations();</span><br></pre></td></tr></table></figure></p>
-<p>讲解：查询有@GET方法，路径”/customer”。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3485,7 +3350,7 @@ else：
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
