@@ -249,6 +249,686 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/Spring-JDBC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/28/Spring-JDBC/" itemprop="url">Spring-JDBC</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T15:02:23+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://github.com/whyathere/tuchuang/blob/master/%E7%BE%8E%E5%9B%BE/%E8%A9%B9%E5%A7%86%E6%96%AF.jpg?raw=true" alt=""></p>
+<p>抄自开涛博客   <a href="http://jinnianshilongnian.iteye.com/blog/1423896" target="_blank" rel="noopener">http://jinnianshilongnian.iteye.com/blog/1423896</a></p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><h4 id="JDBC回顾"><a href="#JDBC回顾" class="headerlink" title="JDBC回顾"></a>JDBC回顾</h4><p>​       传统应用程序开发中，进行JDBC编程是相当痛苦的，如下所示：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//cn.javass.spring.chapter7. TraditionalJdbcTest  </span></span><br><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;  </span><br><span class="line">    Connection conn = <span class="keyword">null</span>;  </span><br><span class="line">    PreparedStatement pstmt = <span class="keyword">null</span>;  </span><br><span class="line">    <span class="keyword">try</span> &#123;  </span><br><span class="line">      conn = getConnection();              <span class="comment">//1.获取JDBC连接  </span></span><br><span class="line">                                       <span class="comment">//2.声明SQL  </span></span><br><span class="line">      String sql = <span class="string">"select * from INFORMATION_SCHEMA.SYSTEM_TABLES"</span>;  </span><br><span class="line">      pstmt = conn.prepareStatement(sql);    <span class="comment">//3.预编译SQL  </span></span><br><span class="line">      ResultSet rs = pstmt.executeQuery();   <span class="comment">//4.执行SQL  </span></span><br><span class="line">      process(rs);                       <span class="comment">//5.处理结果集  </span></span><br><span class="line">      closeResultSet(rs);                 <span class="comment">//5.释放结果集  </span></span><br><span class="line">      closeStatement(pstmt);              <span class="comment">//6.释放Statement  </span></span><br><span class="line">      conn.commit();                    <span class="comment">//8.提交事务  </span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">      <span class="comment">//9.处理异常并回滚事务  </span></span><br><span class="line">      conn.rollback();  </span><br><span class="line">      <span class="keyword">throw</span> e;  </span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;  </span><br><span class="line">      <span class="comment">//10.释放JDBC连接，防止JDBC连接不关闭造成的内存泄漏  </span></span><br><span class="line">      closeConnection(conn);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       以上代码片段具有冗长、重复、容易忘记某一步骤从而导致出错、显示控制事务、显示处理受检查异常等等。</p>
+<p>​        有朋友可能重构出自己的一套JDBC模板，从而能简化日常开发，但自己开发的JDBC模板不够通用，而且对于每一套JDBC模板实现都差不多，从而导致开发人员必须掌握每一套模板。</p>
+<p>​        Spring JDBC提供了一套JDBC抽象框架，用于简化JDBC开发，而且如果各个公司都使用该抽象框架，开发人员首先减少了学习成本，直接上手开发，如图7-1所示。</p>
+<p> <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Spring/JDBC.JPG?raw=true" alt=""></p>
+<p>图7-1 Spring JDBC与传统JDBC编程对比</p>
+<h4 id="Spring对JDBC的支持"><a href="#Spring对JDBC的支持" class="headerlink" title="Spring对JDBC的支持"></a>Spring对JDBC的支持</h4><p>​       Spring通过抽象JDBC访问并提供一致的API来简化JDBC编程的工作量。我们只需要<strong>声明SQL、调用合适的Spring JDBC框架API、处理结果集</strong>即可。事务由Spring管理，并将JDBC受查异常转换为Spring一致的非受查异常，从而简化开发。</p>
+<p>​        Spring主要提供<strong>JDBC模板方式、关系数据库对象化方式和SimpleJdbc</strong>方式三种方式来简化JDBC编程，这三种方式就是Spring JDBC的工作模式：</p>
+<ul>
+<li><strong>JDBC模板方式：</strong>Spring JDBC 框架提供以下几种模板类来简化JDBC编程，实现GoF模板设计模式，将可变部分和非可变部分分离，可变部分采用回调接口方式由用户来实现：如Jdbc Template、NamedParameterJdbcTemplate、SimpleJdbcTemplate。 </li>
+<li><strong>关系数据库对象化方式：</strong>Spring JDBC 框架提供了将关系数据库操作对象化的表示形式，从而使用户可以采用面向对象编程来完成对数据库的访问；如MappingSqlQuery、SqlUpdate、SqlCall、SqlFunction、StoreProcedure等类。这些类的实现一旦建立即可重用并且是线程安全的。</li>
+<li><strong>SimpleJdbc 方式</strong>：Spring JDBC框架还提供了<strong>SimpleJdbc 方式</strong>来简化JDBC编程，SimpleJdbcInsert、SimpleJdbcCall用来简化数据库表插入、存储过程或函数访问；</li>
+</ul>
+<p>Spring JDBC还提供了一些强大的工具类，如DataSourceUtils来在必要的时候手工获取数据库连接等。</p>
+<h4 id="Spring的JDBC架构"><a href="#Spring的JDBC架构" class="headerlink" title="Spring的JDBC架构"></a>Spring的JDBC架构</h4><p>Spring JDBC抽象框架由四部分组成：datasource、support、core、object。如图7-2所示。</p>
+<p> <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Spring/Spring%20JDBC%20%E6%9E%B6%E6%9E%84%E5%9B%BE.JPG?raw=true" alt=""></p>
+<p>图7-2 Spring JDBC架构图</p>
+<pre><code>**support包：**提供将JDBC异常转化为DAO非检查异常转换类、一些工具类如JdbcUtils等。
+</code></pre><p>​    <strong>dataSource包：</strong>提供简化访问JDBC数据源(javax.sql.DataSource实现)工具类，并提供了一些    DataSource简单实现类从而能使从这些DataSource获取的连接能自动得到Spring管理事务支持。</p>
+<p>​    <strong>coe包：</strong>提供JDBC模板类实现及可变部分的回调接口，还提供SimpleJdbcInsert等辅助类。</p>
+<p>​    <strong>object包：</strong>提供关系数据库的对象表示形式，如MappingSqlQuery、SqlUpdate、SqlCall、SqlFunction、StoredProcedure等类，该包是基于core包JDBC模板类实现。</p>
+<h3 id="JDBC模板类"><a href="#JDBC模板类" class="headerlink" title="JDBC模板类"></a>JDBC模板类</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>​       Spring JDBC抽象框架core包提供了JDBC模板类，其中JdbcTemplate是core包的核心类，所以其他模板类都是基于它封装完成的，JDBC模板类是第一种工作模式。</p>
+<p>​        JdbcTemplate类通过模板设计模式帮助我们消除了冗长的代码，只做需要做的事情（即可变部分），并且帮我们做哪些固定部分，如连接的创建及关闭。</p>
+<p>​        JdbcTemplate类对可变部分采用回调接口方式实现，如ConnectionCallback通过回调接口返回给用户一个连接，从而可以使用该连接做任何事情、StatementCallback通过回调接口返回给用户一个Statement，从而可以使用该Statement做任何事情等等，还有其他一些回调接口如图7-3所示。</p>
+<p> <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Spring/JdbcTemplate%E6%94%AF%E6%8C%81%E7%9A%84%E5%9B%9E%E8%B0%83%E6%8E%A5%E5%8F%A3.JPG?raw=true" alt=""></p>
+<p>图7-3 JdbcTemplate支持的回调接口</p>
+<p> Spring除了提供JdbcTemplate核心类，还提供了基于JdbcTemplate实现的NamedParameterJdbcTemplate类用于支持命名参数绑定、 SimpleJdbcTemplate类用于支持Java5+的可变参数及自动装箱拆箱等特性。</p>
+<h4 id="传统JDBC编程替代方案"><a href="#传统JDBC编程替代方案" class="headerlink" title="传统JDBC编程替代方案"></a>传统JDBC编程替代方案</h4><p>前边我们已经使用过传统JDBC编程方式，接下来让我们看下Spring JDBC框架提供的更好的解决方案。</p>
+<p> 1）准备需要的jar包并添加到类路径中：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>org.springframework.jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hsqldb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2）传统JDBC编程替代方案：</p>
+<p> 在使用JdbcTemplate模板类时必须通过DataSource获取数据库连接，Spring JDBC提供了DriverManagerDataSource实现，它通过包装“DriverManager.getConnection”获取数据库连接，具体DataSource相关请参考【7.5.1控制数据库连接】。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcTemplateTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> JdbcTemplate jdbcTemplate;</span><br><span class="line">    <span class="meta">@BeforeClass</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setUpClass</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String url=<span class="string">"jdbc:hsqldb:mem:test"</span>;</span><br><span class="line">        String username = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">"123"</span>;</span><br><span class="line">        DriverManagerDataSource dataSource = <span class="keyword">new</span> DriverManagerDataSource(url,username,password);</span><br><span class="line">        dataSource.setDriverClassName(<span class="string">"org.hsqldb.jdbcDriver"</span>);</span><br><span class="line">        jdbcTemplate = <span class="keyword">new</span> JdbcTemplate(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1、声明SQL</span></span><br><span class="line">        String sql=<span class="string">"select * from INFORMATION_SCHEMA.SYSTEM_TABLES"</span>;</span><br><span class="line">        jdbcTemplate.query(sql, <span class="keyword">new</span> RowCallbackHandler() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">processRow</span><span class="params">(ResultSet rs)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">                <span class="comment">//2.处理结果集</span></span><br><span class="line">                String value = rs.getString(<span class="string">"TABLE_NAME"</span>);</span><br><span class="line">                System.out.println(<span class="string">"Column TABLENAME:"</span> + value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来让我们具体分析一下：</p>
+<p>1）  <strong>jdbc:hsqldb:mem:test：</strong>表示使用hsqldb内存数据库，数据库名为“test”。</p>
+<p>2）  <strong>public static void setUpClass()：</strong>使用junit的@BeforeClass注解，表示在所以测试方法之前执行，且只执行一次。在此方法中定义了DataSource并使用DataSource对象创建了JdbcTemplate对象。JdbcTemplate对象是线程安全的。</p>
+<p>3）  <strong>JdbcTemplate执行流程：</strong>首先定义SQL，其次调用JdbcTemplate方法执行SQL，最后通过RowCallbackHandler回调处理ResultSet结果集。</p>
+<p>Spring JDBC解决方法相比传统JDBC编程方式是不是简单多了，是不是只有可变部分需要我们来做，其他的都由Spring JDBC框架来实现了。</p>
+<p>接下来让我们深入JdbcTemplate及其扩展吧。</p>
+<h4 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h4><p>​       首先让我们来看下如何使用JdbcTemplate来实现增删改查。</p>
+<p> 一、首先创建表结构：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String createTableSql = <span class="string">"create memory table test"</span> + <span class="string">"(id int GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, "</span> + <span class="string">"name varchar(100))"</span>;</span><br><span class="line">    jdbcTemplate.update(createTableSql);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@After</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String dropTableSql = <span class="string">"drop table test"</span>;</span><br><span class="line">    jdbcTemplate.execute(dropTableSql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1）  org.junit包下的<strong>@Before和@After</strong>分别表示在测试方法之前和之后执行的方法，对于每个测试方法都将执行一次； </p>
+<p>2）  <strong>create memory table test</strong>表示创建hsqldb内存表，包含两个字段id和name，其中id是具有自增功能的主键，如果有朋友对此不熟悉hsqldb可以换成熟悉的数据库。 </p>
+<p>二、定义测试骨架，该测试方法将用于实现增删改查测试：</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Spring-AOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/Spring-AOP/" itemprop="url">Spring--AOP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T16:21:43+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://github.com/whyathere/tuchuang/blob/master/%E7%BE%8E%E5%9B%BE/4.jpg?raw=true" alt=""></p>
+<h2 id="AOP基础"><a href="#AOP基础" class="headerlink" title="AOP基础"></a>AOP基础</h2><h3 id="AOP的基本概念"><a href="#AOP的基本概念" class="headerlink" title="AOP的基本概念"></a>AOP的基本概念</h3><p>​       在进行AOP开发前，先熟悉几个概念：</p>
+<ul>
+<li><strong>连接点（Jointpoint）：</strong>表示需要在程序中插入横切关注点的扩展点，连接点可能是类初始化、方法执行、方法调用、字段调用或处理异常等等，Spring只支持方法执行连接点，<strong>在AOP中表示为“在哪里干”</strong>；</li>
+<li><strong>切入点（Pointcut）：</strong>选择一组相关连接点的模式，即可以认为连接点的集合，Spring支持perl5正则表达式和AspectJ切入点模式，Spring默认使用AspectJ语法，<strong>在AOP中表示为“在哪里干的集合”</strong>；</li>
+<li><strong>通知（Advice）：</strong>在连接点上执行的行为，通知提供了在AOP中需要在切入点所选择的连接点处进行扩展现有行为的手段；包括前置通知（before advice）、后置通知(after advice)、环绕通知（around advice），在Spring中通过代理模式实现AOP，并通过拦截器模式以环绕连接点的拦截器链织入通知；<strong>在AOP中表示为“干什么”；</strong></li>
+<li><strong>方面/切面（Aspect）：</strong>横切关注点的模块化，比如上边提到的日志组件。可以认为是通知、引入和切入点的组合；在Spring中可以使用Schema和@AspectJ方式进行组织实现；<strong>在AOP中表示为“在哪干和干什么集合”；</strong></li>
+<li><strong>引入（inter-type declaration）：</strong>也称为内部类型声明，为已有的类添加额外新的字段或方法，Spring允许引入新的接口（必须对应一个实现）到所有被代理对象（目标对象）, <strong>在AOP中表示为“干什么（引入什么）”</strong>；</li>
+<li><strong>目标对象（Target Object）：</strong>需要被织入横切关注点的对象，即该对象是切入点选择的对象，需要被通知的对象，从而也可称为“被通知对象”；由于Spring AOP 通过代理模式实现，从而这个对象永远是被代理对象，<strong>在AOP中表示为“对谁干”</strong>；</li>
+<li><strong>AOP代理（AOP Proxy）：</strong>AOP框架使用代理模式创建的对象，从而实现在连接点处插入通知（即应用切面），就是<strong>通过代理来对目标对象应用切面</strong>。在Spring中，AOP代理可以用JDK动态代理或CGLIB代理实现，而通过拦截器模型应用切面。</li>
+<li><p><strong>织入（Weaving）：</strong>织入是一个过程，是将切面应用到目标对象从而创建出AOP代理对象的过程，织入可以在编译期、类装载期、运行期进行。</p>
+<p>在AOP中，通过切入点选择目标对象的连接点，然后在目标对象的相应连接点处织入通知，而切入点和通知就是切面（横切关注点），而在目标对象连接点处应用切面的实现方式是通过AOP代理对象，如图6-2所示。</p>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Spring/AOP%E6%A6%82%E5%BF%B5%E5%85%B3%E7%B3%BB.JPG?raw=true" alt=""></p>
+</li>
+</ul>
+<p>图6-2 概念关系</p>
+<p> 接下来再让我们具体看看Spring有哪些通知类型：</p>
+<ul>
+<li><strong>前置通知（Before Advice）:</strong>在切入点选择的连接点处的方法之前执行的通知，该通知不影响正常程序执行流程（除非该通知抛出异常，该异常将中断当前方法链的执行而返回）。</li>
+<li><strong>后置通知（After Advice）:</strong>在切入点选择的连接点处的方法之后执行的通知，包括如下类型的后置通知：</li>
+<li><strong>后置返回通知(After returning Advice)：</strong>在切入点选择的连接点处的方法抛出异常返回时执行的通知，必须是连接点处的方法抛出任何异常返回时才调用异常通知。</li>
+<li><strong>后置异常通知(After throwing Advice):</strong>在切入点选择的连接点处的方法抛出异常返回时执行的通知，必须是连接点处的方法抛出任何异常返回时才调用异常通知。</li>
+<li><strong>后置最终通知(After finally Advice):</strong>在切入点选择的连接点处的方法返回时执行的通知，不管抛没抛出异常都执行，类似于Java的finally块。</li>
+<li><strong>环绕通知(Around Advice):</strong>环绕着在切入点选择的连接点处的方法所执行的通知，环绕通知可以在方法调用之前和之后自定义任何行为，并且可以决定是否执行连接点处的方法、替换返回值、抛出异常等等。</li>
+</ul>
+<p>各种通知类型在UML序列图中的位置如图6-3所示:<br>   <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Spring/%E9%80%9A%E7%9F%A5%E7%B1%BB%E5%9E%8B.JPG?raw=true" alt=""></p>
+<p>图6-3 通知类型</p>
+<h2 id="AOP代理"><a href="#AOP代理" class="headerlink" title="AOP代理"></a>AOP代理</h2><h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>​       AOP代理就是AOP框架通过代理模式创建的对象，Spring使用JDK动态代理或CGLIB代理来实现，Spring缺省使用JDK动态代理来实现，从而任何接口都可别代理，如果被代理的对象实现不是接口将默认使用CGLIB代理，不过CGLIB代理当然也可应用到接口。</p>
+<p>​        <strong>AOP代理的目的就是将切面织入到目标对象。</strong></p>
+<p>​        概念都将完了，接下来让我们看一下AOP的 HelloWorld!吧。</p>
+<h4 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h4><p>​       首先准备开发需要的jar包，请到spring-framework-3.0.5.RELEASE-dependencies.zip和spring-framework-3.0.5.RELEASE-with-docs中查找如下jar包：</p>
+<p>  org.springframework.aop-3.0.5.RELEASE.jar</p>
+<p>  com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar</p>
+<p>  com.springsource.org.aopalliance-1.0.0.jar</p>
+<p>   com.springsource.net.sf.cglib-2.2.0.jar </p>
+<h4 id="定义目标类"><a href="#定义目标类" class="headerlink" title="定义目标类"></a>定义目标类</h4><p>​       1）定义目标接口：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IHelloWorldService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       2）定义目标接口实现：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldService</span> <span class="keyword">implements</span> <span class="title">IHelloWorldService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"============Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       注：在日常开发中最后将业务逻辑定义在一个专门的service包下，而实现定义在service包下的impl包中，服务接口以IXXXService形式，而服务实现就是XXXService，这就是规约设计，见名知义。当然可以使用公司内部更好的形式，只要大家都好理解就可以了。</p>
+<h4 id="定义切面支持类"><a href="#定义切面支持类" class="headerlink" title="定义切面支持类"></a>定义切面支持类</h4><p>​       有了目标类，该定义切面了，切面就是通知和切入点的组合，而切面是通过配置方式定义的，因此这定义切面前，我们需要定义切面支持类，切面支持类提供了通知实现：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldAspect</span> </span>&#123;</span><br><span class="line">    <span class="comment">//前置通知</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===========before advice"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//后置最终通知</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterFinallyAdvice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===========after finally advice"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       此处HelloWorldAspect类不是真正的切面实现，只是定义了通知实现的类，在此我们可以把它看作就是缺少了切入点的切面。</p>
+<p>​        注：对于AOP相关类最后专门放到一个包下，如“aop”包，因为AOP是动态织入的，所以如果某个目标类被AOP拦截了并应用了通知，可能很难发现这个通知实现在哪个包里，因此推荐使用规约命名，方便以后维护人员查找相应的AOP实现。</p>
+<h4 id="在XML中进行配置"><a href="#在XML中进行配置" class="headerlink" title="在XML中进行配置"></a>在XML中进行配置</h4><p>有了通知实现，那就让我们来配置切面吧：</p>
+<p>​       1）首先配置AOP需要aop命名空间，配置头如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span>  <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​       2）配置目标类：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorldService"</span> <span class="attr">class</span>=<span class="string">"com.zero.aop.HelloWorldService"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​       3）配置切面：</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"helloWorldService"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.zero.aop.HelloWorldService"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=<span class="string">"aspect"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.zero.aop.HelloWorldAspect"</span>/&gt;</span><br><span class="line">&lt;aop:config&gt;</span><br><span class="line">    &lt;aop:pointcut id=<span class="string">"pointcut"</span> expression=<span class="string">"execution(* com.zero.aop.*.*(..))"</span>/&gt;</span><br><span class="line">    &lt;aop:aspect ref=<span class="string">"aspect"</span>&gt;</span><br><span class="line">        &lt;aop:before method=<span class="string">"beforeAdvice"</span> pointcut-ref=<span class="string">"pointcut"</span>/&gt;</span><br><span class="line">        &lt;aop:after pointcut=<span class="string">"execution(* com.zero.aop.*.*(..))"</span> method=<span class="string">"afterFinallyAdvice"</span>/&gt;</span><br><span class="line">    &lt;/aop:aspect&gt;</span><br><span class="line">&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
+<p>​       切入点使用<a href="aop:config" target="_blank" rel="noopener">aop:config</a>标签下的<a href="aop:pointcut" target="_blank" rel="noopener">aop:pointcut</a>配置，expression属性用于定义切入点模式，默认是AspectJ语法，“execution(<em> cn.javass..</em>.*(..))”表示匹配cn.javass包及子包下的任何方法执行。</p>
+<p> 切面使用<a href="aop:config" target="_blank" rel="noopener">aop:config</a>标签下的<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签配置，其中“ref”用来引用切面支持类的方法。</p>
+<p> 前置通知使用<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签下的<a href="aop:before" target="_blank" rel="noopener">aop:before</a>标签来定义，pointcut-ref属性用于引用切入点Bean，而method用来引用切面通知实现类中的方法，该方法就是通知实现，即在目标类方法执行之前调用的方法。</p>
+<p> 最终通知使用<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签下的&lt;aop:after &gt;标签来定义，切入点除了使用pointcut-ref属性来引用已经存在的切入点，也可以使用pointcut属性来定义，如pointcut=”execution(<em> cn.javass..</em>.*(..))”，method属性同样是指定通知实现，即在目标类方法执行之后调用的方法。</p>
+<h4 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h4><p>测试类非常简单，调用被代理Bean跟调用普通Bean完全一样，Spring AOP将为目标对象创建AOP代理，具体测试代码如下：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AopTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHelloworld</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ApplicationContext ctx =  <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"aop.xml"</span>);</span><br><span class="line">        IHelloWorldService helloworldService =</span><br><span class="line">                ctx.getBean(<span class="string">"helloWorldService"</span>, IHelloWorldService.class);</span><br><span class="line">        helloworldService.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       该测试将输出如下如下内容：</p>
+<p> ===========before advice<br>============Hello World!<br>===========after finally advice</p>
+<p>​        从输出我们可以看出：前置通知在切入点选择的连接点（方法）之前允许，而后置通知将在连接点（方法）之后执行，具体生成AOP代理及执行过程如图6-4所示。</p>
+<p> <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Spring/Spring%20AOP%E6%A1%86%E6%9E%B6%E7%94%9F%E6%88%90AOP%E4%BB%A3%E7%90%86%E8%BF%87%E7%A8%8B.JPG?raw=true" alt=""></p>
+<p> 图6-4 Spring AOP框架生成AOP代理过程</p>
+<h3 id="基于Schema的AOP"><a href="#基于Schema的AOP" class="headerlink" title="基于Schema的AOP"></a>基于Schema的AOP</h3><h4 id="基于Schema的AOP-1"><a href="#基于Schema的AOP-1" class="headerlink" title="基于Schema的AOP"></a>基于Schema的AOP</h4><p>​     基于Schema的AOP从Spring2.0之后通过“aop”命名空间来定义切面、切入点及声明通知。</p>
+<p> 在Spring配置文件中，所有AOP相关定义必须放在<a href="aop:config" target="_blank" rel="noopener">aop:config</a>标签下，该标签下可以有<a href="aop:pointcut" target="_blank" rel="noopener">aop:pointcut</a>、<a href="aop:advisor" target="_blank" rel="noopener">aop:advisor</a>、<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签，配置顺序不可变。 </p>
+<ul>
+<li><a href="aop:pointcut" target="_blank" rel="noopener">aop:pointcut</a>：用来定义切入点，该切入点可以重用；</li>
+<li><a href="aop:advisor" target="_blank" rel="noopener">aop:advisor</a>：用来定义只有一个通知和一个切入点的切面；</li>
+<li><p><a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>：用来定义切面，该切面可以包含多个切入点和通知，而且标签内部的通知和切入点定义是无序的；和advisor的区别就在此，advisor只包含一个通知和一个切入点。</p>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Spring/aop-schema.JPG?raw=true" alt=""></p>
+</li>
+</ul>
+<h4 id="声明切面"><a href="#声明切面" class="headerlink" title="声明切面"></a>声明切面</h4><p>​    切面就是包含切入点和通知的对象，在Spring容器中将被定义为一个Bean，Schema方式的切面需要一个切面支持Bean，该支持Bean的字段和方法提供了切面的状态和行为信息，并通过配置方式来指定切入点和通知实现。</p>
+<p>​      切面使用<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签指定，ref属性用来引用切面支持Bean。</p>
+<p>​     切面支持Bean“aspectSupportBean”跟普通Bean完全一样使用，切面使用“ref”属性引用它。</p>
+<h4 id="声明切入点"><a href="#声明切入点" class="headerlink" title="声明切入点"></a>声明切入点</h4><p>​    切入点在Spring中也是一个Bean，Bean定义方式可以有很三种方式：</p>
+<p>​     <strong>1）在<a href="aop:config" target="_blank" rel="noopener">aop:config</a>标签下使用<a href="aop:pointcut" target="_blank" rel="noopener">aop:pointcut</a>声明一个切入点Bean</strong>，该切入点可以被多个切面使用，对于需要共享使用的切入点最好使用该方式，该切入点使用id属性指定Bean名字，在通知定义时使用pointcut-ref属性通过该id引用切入点，expression属性指定切入点表达式：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pointcut"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.javass..*.*(..))"</span>/&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"aspectSupportBean"</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"pointcut"</span> <span class="attr">method</span>=<span class="string">"before"</span>/&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code>**2）在&lt;aop:aspect&gt;*标签下使用&lt;aop:pointcut&gt;声明一个切入点Bean**，该切入点可以被多个切面使用，但一般该切入点只被该切面使用，当然也可以被其他切面使用，但最好不要那样使用，该切入点使用id属性指定Bean名字，在通知定义时使用pointcut-ref属性通过该id引用切入点，expression属性指定切入点表达式： 
+</code></pre> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"aspectSupportBean"</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">" pointcut"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.javass..*.*(..))"</span>/&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"pointcut"</span> <span class="attr">method</span>=<span class="string">"before"</span>/&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​    <strong>3）匿名切入点Bean，</strong>可以在声明通知时通过pointcut属性指定切入点表达式，该切入点是匿名切入点，只被该通知使用：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"aspectSupportBean"</span>&gt;</span>  </span><br><span class="line">     <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut</span>=<span class="string">"execution(* cn.javass..*.*(..))"</span> <span class="attr">method</span>=<span class="string">"afterFinallyAdvice"</span>/&gt;</span> </span><br><span class="line"> <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="声明通知"><a href="#声明通知" class="headerlink" title="声明通知"></a>声明通知</h4><p> 基于Schema方式支持前边介绍的5中通知类型：</p>
+<p> <strong>一、前置通知：</strong>在切入点选择的方法之前执行，通过<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签下的<a href="aop:before" target="_blank" rel="noopener">aop:before</a>标签声明：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut</span>=<span class="string">"切入点表达式"</span>  <span class="attr">pointcut-ref</span>=<span class="string">"切入点Bean引用"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">method</span>=<span class="string">"前置通知实现方法名"</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">arg-names</span>=<span class="string">"前置通知实现方法参数列表参数名字"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p> <strong>pointcut和pointcut-ref：</strong>二者选一，指定切入点；</p>
+<p>​         <strong>method：</strong>指定前置通知实现方法名，如果是多态需要加上参数类型，多个用“，”隔开，如beforeAdvice(java.lang.String)；</p>
+<p>​         <strong>arg-names：</strong>指定通知实现方法的参数名字，多个用“，”分隔，可选，类似于【3.1.2 构造器注入】中的参数名注入限制：<strong>在class文件中没生成变量调试信息是获取不到方法参数名字的，因此只有在类没生成变量调试信息时才需要使用arg-names属性来指定参数名，如</strong>arg-names=”param”表示通知实现方法的参数列表的第一个参数名字为“param”。</p>
+<p>首先在cn.javass.spring.chapter6.service.IhelloWorldService定义一个测试方法：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayBefore</span><span class="params">(String param)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其次在cn.javass.spring.chapter6.service.impl. HelloWorldService定义实现</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayBefore</span><span class="params">(String param)</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"============say "</span> + param);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三在cn.javass.spring.chapter6.aop. HelloWorldAspect定义通知实现：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">(String param)</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"===========before advice param:"</span> + param);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后在chapter6/advice.xml配置文件中进行如下配置：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorldService"</span> <span class="attr">class</span>=<span class="string">"cn.javass.spring.chapter6.service.impl.HelloWorldService"</span>/&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aspect"</span> <span class="attr">class</span>=<span class="string">"cn.javass.spring.chapter6.aop.HelloWorldAspect"</span>/&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"aspect"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut</span>=<span class="string">"execution(* cn.javass..*.sayBefore(..)) and args(param)"</span>   </span></span><br><span class="line"><span class="tag">                           <span class="attr">method</span>=<span class="string">"beforeAdvice(java.lang.String)"</span>   </span></span><br><span class="line"><span class="tag">                           <span class="attr">arg-names</span>=<span class="string">"param"</span>/&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>测试代码cn.javass.spring.chapter6.AopTest:</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSchemaBeforeAdvice</span><span class="params">()</span></span>&#123;  </span><br><span class="line">     System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">     ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"chapter6/advice.xml"</span>);  </span><br><span class="line">     IHelloWorldService helloworldService = ctx.getBean(<span class="string">"helloWorldService"</span>, IHelloWorldService.class);  </span><br><span class="line">     helloworldService.sayBefore(<span class="string">"before"</span>);  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将输入：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>=====================================================before advice param:before============say before==========================================</td>
+</tr>
+</tbody>
+</table>
+<p>分析一下吧：</p>
+<p><strong>1）切入点匹配：</strong>在配置中使用“execution(<em> cn.javass..</em>.sayBefore(..)) ”匹配目标方法sayBefore，且使用“args(param)”匹配目标方法只有一个参数且传入的参数类型为通知实现方法中同名的参数类型；</p>
+<p><strong>2）目标方法定义：</strong>使用method=” beforeAdvice(java.lang.String) “指定前置通知实现方法，且该通知有一个参数类型为java.lang.String参数；</p>
+<p><strong>3）目标方法参数命名：</strong>其中使用arg-names=” param “指定通知实现方法参数名为“param”，切入点中使用“args(param)”匹配的目标方法参数将自动传递给通知实现方法同名参数。</p>
+<p>   <strong>二、后置返回通知：</strong>在切入点选择的方法正常返回时执行，通过<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签下的<a href="aop:after-returning" target="_blank" rel="noopener">aop:after-returning</a>标签声明：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">pointcut</span>=<span class="string">"切入点表达式"</span>  <span class="attr">pointcut-ref</span>=<span class="string">"切入点Bean引用"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">method</span>=<span class="string">"后置返回通知实现方法名"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">arg-names</span>=<span class="string">"后置返回通知实现方法参数列表参数名字"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">returning</span>=<span class="string">"返回值对应的后置返回通知实现方法参数名"</span>  </span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p> <strong>pointcut和pointcut-ref：</strong>同前置通知同义；</p>
+<p>​         <strong>method：</strong>同前置通知同义；</p>
+<p>​         <strong>arg-names：</strong>同前置通知同义；</p>
+<p>​         <strong>returning：</strong>定义一个名字，该名字用于匹配通知实现方法的一个参数名，当目标方法执行正常返回后，将把目标方法返回值传给通知方法；returning限定了只有目标方法返回值匹配与通知方法相应参数类型时才能执行后置返回通知，否则不执行，对于returning对应的通知方法参数为Object类型将匹配任何目标返回值。</p>
+<p>首先在cn.javass.spring.chapter6.service.IhelloWorldService定义一个测试方法：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">sayAfterReturning</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其次在cn.javass.spring.chapter6.service.impl. HelloWorldService定义实现</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">sayAfterReturning</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"============after returning"</span>);  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三在cn.javass.spring.chapter6.aop. HelloWorldAspect定义通知实现：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningAdvice</span><span class="params">(Object retVal)</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"===========after returning advice retVal:"</span> + retVal);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后在chapter6/advice.xml配置文件中接着前置通知配置的例子添加如下配置：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">pointcut</span>=<span class="string">"execution(* cn.javass..*.sayAfterReturning(..))"</span>  </span></span><br><span class="line"><span class="tag">                                <span class="attr">method</span>=<span class="string">"afterReturningAdvice"</span>  </span></span><br><span class="line"><span class="tag">                               <span class="attr">arg-names</span>=<span class="string">"retVal"</span>    </span></span><br><span class="line"><span class="tag">                               <span class="attr">returning</span>=<span class="string">"retVal"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>测试代码cn.javass.spring.chapter6.AopTest:</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSchemaAfterReturningAdvice</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">    ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"chapter6/advice.xml"</span>);  </span><br><span class="line">    IHelloWorldService helloworldService = ctx.getBean(<span class="string">"helloWorldService"</span>, IHelloWorldService.class);  </span><br><span class="line">    helloworldService.sayAfterReturning();      </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将输入：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>==================================================after returning===========after returning advice retVal:true======================================</td>
+</tr>
+</tbody>
+</table>
+<p>分析一下吧：</p>
+<p><strong>1）切入点匹配：</strong>在配置中使用“execution(<em> cn.javass..</em>.sayAfterReturning(..)) ”匹配目标方法sayAfterReturning，该方法返回true；</p>
+<p><strong>2）目标方法定义：</strong>使用method=”afterReturningAdvice”指定后置返回通知实现方法；</p>
+<p><strong>3）目标方法参数命名：</strong>其中使用arg-names=”retVal”指定通知实现方法参数名为“retVal”；</p>
+<p><strong>4）返回值命名：</strong>returning=”retVal”用于将目标返回值赋值给通知实现方法参数名为“retVal”的参数上。</p>
+<p> <strong>三、后置异常通知：</strong>在切入点选择的方法抛出异常时执行，通过<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签下的<a href="aop:after-throwing" target="_blank" rel="noopener">aop:after-throwing</a>标签声明：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">pointcut</span>=<span class="string">"切入点表达式"</span>  <span class="attr">pointcut-ref</span>=<span class="string">"切入点Bean引用"</span>  </span></span><br><span class="line"><span class="tag">                                <span class="attr">method</span>=<span class="string">"后置异常通知实现方法名"</span>  </span></span><br><span class="line"><span class="tag">                                <span class="attr">arg-names</span>=<span class="string">"后置异常通知实现方法参数列表参数名字"</span>  </span></span><br><span class="line"><span class="tag">                                <span class="attr">throwing</span>=<span class="string">"将抛出的异常赋值给的通知实现方法参数名"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>   <strong>pointcut和pointcut-ref：</strong>同前置通知同义；</p>
+<p>​         <strong>method：</strong>同前置通知同义；</p>
+<p>​         <strong>arg-names：</strong>同前置通知同义；</p>
+<p>​         <strong>throwing：</strong>定义一个名字，该名字用于匹配通知实现方法的一个参数名，当目标方法抛出异常返回后，将把目标方法抛出的异常传给通知方法；throwing限定了只有目标方法抛出的异常匹配与通知方法相应参数异常类型时才能执行后置异常通知，否则不执行，对于throwing对应的通知方法参数为Throwable类型将匹配任何异常。</p>
+<p>首先在cn.javass.spring.chapter6.service.IhelloWorldService定义一个测试方法：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayAfterThrowing</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其次在cn.javass.spring.chapter6.service.impl. HelloWorldService定义实现</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayAfterThrowing</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"============before throwing"</span>);  </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三在cn.javass.spring.chapter6.aop. HelloWorldAspect定义通知实现：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowingAdvice</span><span class="params">(Exception exception)</span> </span>&#123;  </span><br><span class="line">  System.out.println(<span class="string">"===========after throwing advice exception:"</span> + exception);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后在chapter6/advice.xml配置文件中接着前置通知配置的例子添加如下配置：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">pointcut</span>=<span class="string">"execution(* cn.javass..*.sayAfterThrowing(..))"</span>  </span></span><br><span class="line"><span class="tag">                                <span class="attr">method</span>=<span class="string">"afterThrowingAdvice"</span>  </span></span><br><span class="line"><span class="tag">                                <span class="attr">arg-names</span>=<span class="string">"exception"</span>  </span></span><br><span class="line"><span class="tag">                                <span class="attr">throwing</span>=<span class="string">"exception"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>测试代码cn.javass.spring.chapter6.AopTest:</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>(expected = RuntimeException.class)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSchemaAfterThrowingAdvice</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">    ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"chapter6/advice.xml"</span>);  </span><br><span class="line">    IHelloWorldService helloworldService = ctx.getBean(<span class="string">"helloWorldService"</span>, IHelloWorldService.class);  </span><br><span class="line">    helloworldService.sayAfterThrowing();  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将输入：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>==================================================before throwing===========after throwing advice exception:java.lang.RuntimeException======================================</td>
+</tr>
+</tbody>
+</table>
+<p> 分析一下吧：</p>
+<p><strong>1）切入点匹配：</strong>在配置中使用“execution(<em> cn.javass..</em>.sayAfterThrowing(..))”匹配目标方法sayAfterThrowing，该方法将抛出RuntimeException异常；</p>
+<p><strong>2）目标方法定义：</strong>使用method=”afterThrowingAdvice”指定后置异常通知实现方法；</p>
+<p><strong>3）目标方法参数命名：</strong>其中使用arg-names=”exception”指定通知实现方法参数名为“exception”；</p>
+<p><strong>4）异常命名：</strong>returning=”exception”用于将目标方法抛出的异常赋值给通知实现方法参数名为“exception”的参数上。</p>
+<p> <strong>四、后置最终通知：</strong>在切入点选择的方法返回时执行，不管是正常返回还是抛出异常都执行，通过<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签下的&lt;aop:after &gt;标签声明：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut</span>=<span class="string">"切入点表达式"</span>  <span class="attr">pointcut-ref</span>=<span class="string">"切入点Bean引用"</span>  </span></span><br><span class="line"><span class="tag">                  <span class="attr">method</span>=<span class="string">"后置最终通知实现方法名"</span>  </span></span><br><span class="line"><span class="tag">                  <span class="attr">arg-names</span>=<span class="string">"后置最终通知实现方法参数列表参数名字"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​         <strong>pointcut和pointcut-ref：</strong>同前置通知同义；</p>
+<p>​         <strong>method：</strong>同前置通知同义；</p>
+<p>​         <strong>arg-names：</strong>同前置通知同义；</p>
+<p> 首先在cn.javass.spring.chapter6.service.IhelloWorldService定义一个测试方法：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">sayAfterFinally</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其次在cn.javass.spring.chapter6.service.impl. HelloWorldService定义实现</p>
+<p> 分析一下吧：</p>
+<p><strong>1）切入点匹配：</strong>在配置中使用“execution(<em> cn.javass..</em>.sayAfterFinally(..))”匹配目标方法sayAfterFinally，该方法将抛出RuntimeException异常；</p>
+<p><strong>2）目标方法定义：</strong>使用method=” afterFinallyAdvice “指定后置最终通知实现方法。</p>
+<p> <strong>五、环绕通知：</strong>环绕着在切入点选择的连接点处的方法所执行的通知，环绕通知非常强大，可以决定目标方法是否执行，什么时候执行，执行时是否需要替换方法参数，执行完毕是否需要替换返回值，可通过<a href="aop:aspect" target="_blank" rel="noopener">aop:aspect</a>标签下的&lt;aop:around &gt;标签声明：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut</span>=<span class="string">"切入点表达式"</span>  <span class="attr">pointcut-ref</span>=<span class="string">"切入点Bean引用"</span>  </span></span><br><span class="line"><span class="tag">                     <span class="attr">method</span>=<span class="string">"后置最终通知实现方法名"</span>  </span></span><br><span class="line"><span class="tag">                     <span class="attr">arg-names</span>=<span class="string">"后置最终通知实现方法参数列表参数名字"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​         <strong>pointcut和pointcut-ref**</strong>：**同前置通知同义；</p>
+<p>​         <strong>method：</strong>同前置通知同义；</p>
+<p>​         <strong>arg-names：</strong>同前置通知同义；</p>
+<p> 环绕通知第一个参数必须是org.aspectj.lang.ProceedingJoinPoint类型，在通知实现方法内部使用ProceedingJoinPoint的proceed()方法使目标方法执行，proceed 方法可以传入可选的Object[]数组，该数组的值将被作为目标方法执行时的参数。</p>
+<p> 首先在cn.javass.spring.chapter6.service.IhelloWorldService定义一个测试方法：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayAround</span><span class="params">(String param)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其次在cn.javass.spring.chapter6.service.impl. HelloWorldService定义实现</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayAround</span><span class="params">(String param)</span> </span>&#123;  </span><br><span class="line">   System.out.println(<span class="string">"============around param:"</span> + param);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三在cn.javass.spring.chapter6.aop. HelloWorldAspect定义通知实现：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">aroundAdvice</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"===========around before advice"</span>);  </span><br><span class="line">    Object retVal = pjp.proceed(<span class="keyword">new</span> Object[] &#123;<span class="string">"replace"</span>&#125;);  </span><br><span class="line">    System.out.println(<span class="string">"===========around after advice"</span>);  </span><br><span class="line">    <span class="keyword">return</span> retVal;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后在chapter6/advice.xml配置文件中接着前置通知配置的例子添加如下配置：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut</span>=<span class="string">"execution(* com.zero..*.sayAround(..))"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">method</span>=<span class="string">"aroundAdvice"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>测试代码cn.javass.spring.chapter6.AopTest:</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSchemaAroundAdvice</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">    ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"chapter6/advice.xml"</span>);  </span><br><span class="line">    IHelloWorldService helloworldService =  </span><br><span class="line">    ctx.getBean(<span class="string">"helloWorldService"</span>, IHelloWorldService.class);  </span><br><span class="line">    helloworldService.sayAround(<span class="string">"haha"</span>);  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> ===========================</p>
+<p>======================around before advice</p>
+<p>============around param:replace</p>
+<p>===========around after advice</p>
+<p>====================================== </p>
+<p> 分析一下吧：</p>
+<p><strong>1）切入点匹配：</strong>在配置中使用“execution(<em> cn.javass..</em>.sayAround(..))”匹配目标方法sayAround；</p>
+<p><strong>2）目标方法定义：</strong>使用method=”aroundAdvice”指定环绕通知实现方法，在该实现中，第一个方法参数为pjp，类型为ProceedingJoinPoint，其中“Object retVal = pjp.proceed(new Object[] {“replace”});”，用于执行目标方法，且目标方法参数被“new Object[] {“replace”}”替换，最后返回“retVal ”返回值。</p>
+<p><strong>3）测试：</strong>我们使用“helloworldService.sayAround(“haha”);”传入参数为“haha”，但最终输出为“replace”，说明参数被替换了</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">aroundAdvice</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"===========around before advice"</span>);</span><br><span class="line">    Object retVal = pjp.proceed(<span class="keyword">new</span> Object[] &#123;<span class="string">"replace"</span>&#125;);</span><br><span class="line">    System.out.println(<span class="string">"===========around after advice"</span>);</span><br><span class="line">    <span class="keyword">return</span> retVal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p>​     Spring引入允许为目标对象引入新的接口，通过在&lt; aop:aspect&gt;标签内使用&lt; aop:declare-parents&gt;标签进行引入，定义方式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:declare-parents</span>  </span></span><br><span class="line"><span class="tag">          <span class="attr">types-matching</span>=<span class="string">"AspectJ语法类型表达式"</span>  </span></span><br><span class="line"><span class="tag">          <span class="attr">implement-interface</span>=<span class="string">引入的接口</span>"               </span></span><br><span class="line"><span class="tag">          <span class="attr">default-impl</span>=<span class="string">"引入接口的默认实现"</span>  </span></span><br><span class="line"><span class="tag">          <span class="attr">delegate-ref</span>=<span class="string">"引入接口的默认实现Bean引用"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​         <strong>types-matching：</strong>匹配需要引入接口的目标对象的AspectJ语法类型表达式；</p>
+<p>​         <strong>implement-interface：</strong>定义需要引入的接口；</p>
+<p>​         <strong>default-impl和delegate-ref：</strong>定义引入接口的默认实现，二者选一，default-impl是接口的默认实现类全限定名，而delegate-ref是默认的实现的委托Bean名；</p>
+<p>接下来让我们练习一下吧：</p>
+<p>​    首先定义引入的接口及默认实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IIntroductionService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">induct</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntroductiondService</span> <span class="keyword">implements</span> <span class="title">IIntroductionService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">induct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"=========introduction"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其次在chapter6/advice.xml配置文件中接着前置通知配置的例子添加如下配置：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:declare-parents</span></span></span><br><span class="line"><span class="tag">        <span class="attr">types-matching</span>=<span class="string">"com.zero..*.IHelloWorldService+"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">implement-interface</span>=<span class="string">"com.zero.iin.IIntroductionService"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">default-impl</span>=<span class="string">"com.zero.iin.IntroductiondService"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后测试一下吧，测试代码cn.javass.spring.chapter6.AopTest：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSchemaIntroduction</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">    ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"chapter6/advice.xml"</span>);  </span><br><span class="line">    IIntroductionService introductionService =  </span><br><span class="line">    ctx.getBean(<span class="string">"helloWorldService"</span>, IIntroductionService.class);  </span><br><span class="line">    introductionService.induct();  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将输入：</p>
+<p> ======================================</p>
+<p> =========introduction</p>
+<p> ======================================  </p>
+<p> 分析一下吧：</p>
+<p><strong>1）目标对象类型匹配：</strong>使用types-matching=”cn.javass..*.IHelloWorldService+”匹配IHelloWorldService接口的子类型，如HelloWorldService实现；</p>
+<p><strong>2）引入接口定义：</strong>通过implement-interface属性表示引入的接口，如“cn.javass.spring.chapter6.service.IIntroductionService”。</p>
+<p><strong>3）引入接口的实现：</strong>通过default-impl属性指定，如“cn.javass.spring.chapter6.service.impl.IntroductiondService”，也可以使用“delegate-ref”来指定实现的Bean。</p>
+<p><strong>4）获取引入接口：</strong>如使用“ctx.getBean(“helloWorldService”, IIntroductionService.class);”可直接获取到引入的接口。</p>
+<h4 id="Advisor"><a href="#Advisor" class="headerlink" title="Advisor"></a>Advisor</h4><p> Advisor表示只有一个通知和一个切入点的切面，由于Spring AOP都是基于AOP联盟的拦截器模型的环绕通知的，所以引入Advisor来支持各种通知类型（如前置通知等5种），Advisor概念来自于Spring1.2对AOP的支持，在AspectJ中没有相应的概念对应。</p>
+<p> Advisor可以使用<a href="aop:config" target="_blank" rel="noopener">aop:config</a>标签下的<a href="aop:advisor" target="_blank" rel="noopener">aop:advisor</a>标签定义：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">pointcut</span>=<span class="string">"切入点表达式"</span> <span class="attr">pointcut-ref</span>=<span class="string">"切入点Bean引用"</span>  </span></span><br><span class="line"><span class="tag">                     <span class="attr">advice-ref</span>=<span class="string">"通知API实现引用"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​         <strong>pointcut和pointcut-ref**</strong>：**二者选一，指定切入点表达式；</p>
+<p>​         <strong>advice-ref：</strong>引用通知API实现Bean，如前置通知接口为MethodBeforeAdvice；</p>
+<p> 接下来让我们看一下示例吧：</p>
+<p> 首先在cn.javass.spring.chapter6.service.IhelloWorldService定义一个测试方法：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayAdvisorBefore</span><span class="params">(String param)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其次在cn.javass.spring.chapter6.service.impl. HelloWorldService定义实现</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayAdvisorBefore</span><span class="params">(String param)</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"============say "</span> + param);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三定义前置通知API实现：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.javass.spring.chapter6.aop;  </span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;  </span><br><span class="line"><span class="keyword">import</span> org.springframework.aop.MethodBeforeAdvice;  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BeforeAdviceImpl</span> <span class="keyword">implements</span> <span class="title">MethodBeforeAdvice</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(Method method, Object[] args, Object target)</span> <span class="keyword">throws</span> Throwable </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"===========before advice"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在chapter6/advice.xml配置文件中先添加通知实现Bean定义：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"beforeAdvice"</span> <span class="attr">class</span>=<span class="string">"cn.javass.spring.chapter6.aop.BeforeAdviceImpl"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在<a href="aop:config" target="_blank" rel="noopener">aop:config</a>标签下，添加Advisor定义，添加时注意顺序：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">pointcut</span>=<span class="string">"execution(* cn.javass..*.sayAdvisorBefore(..))"</span>  </span></span><br><span class="line"><span class="tag">                     <span class="attr">advice-ref</span>=<span class="string">"beforeAdvice"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>测试代码cn.javass.spring.chapter6.AopTest:</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSchemaAdvisor</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">   System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">   ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"chapter6/advice.xml"</span>);  </span><br><span class="line">   IHelloWorldService helloworldService =  </span><br><span class="line">   ctx.getBean(<span class="string">"helloWorldService"</span>, IHelloWorldService.class);  </span><br><span class="line">   helloworldService.sayAdvisorBefore(<span class="string">"haha"</span>);  </span><br><span class="line">   System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将输入：</p>
+<p> ======================================</p>
+<p> ===========before advice</p>
+<p> ============say haha</p>
+<p> ======================================  </p>
+<h3 id="基于-AspectJ的AOP"><a href="#基于-AspectJ的AOP" class="headerlink" title="基于@AspectJ的AOP"></a>基于@AspectJ的AOP</h3><p>​       Spring除了支持Schema方式配置AOP，还支持注解方式：使用@AspectJ风格的切面声明。</p>
+<h4 id="启用对-AspectJ的支持"><a href="#启用对-AspectJ的支持" class="headerlink" title="启用对@AspectJ的支持"></a>启用对@AspectJ的支持</h4><p>Spring默认不支持@AspectJ风格的切面声明，为了支持需要使用如下配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样Spring就能发现@AspectJ风格的切面并且将切面应用到目标对象。</p>
+<h4 id="声明切面-1"><a href="#声明切面-1" class="headerlink" title="声明切面"></a>声明切面</h4><p>​       @AspectJ风格的声明切面非常简单，使用@Aspect注解进行声明：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span>()  </span><br><span class="line">Public <span class="class"><span class="keyword">class</span> <span class="title">Aspect</span></span>&#123;  </span><br><span class="line">……  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​       然后将该切面在配置文件中声明为Bean后，Spring就能自动识别并进行AOP方面的配置：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aspect"</span> <span class="attr">class</span>=<span class="string">"……Aspect"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​       该切面就是一个POJO，可以在该切面中进行切入点及通知定义，接着往下看吧。</p>
+<h4 id="声明切入点-1"><a href="#声明切入点-1" class="headerlink" title="声明切入点"></a>声明切入点</h4><p>​       @AspectJ风格的命名切入点使用org.aspectj.lang.annotation包下的@Pointcut+方法（方法必须是返回void类型）实现。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Pointcut</span>(value=<span class="string">"切入点表达式"</span>, argNames = <span class="string">"参数名列表"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pointcutName</span><span class="params">(……)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>value：</strong>指定切入点表达式；</p>
+<p>​       <strong>argNames：</strong>指定命名切入点方法参数列表参数名字，可以有多个用“，”分隔，这些参数将传递给通知方法同名的参数，同时比如切入点表达式“args(param)”将匹配参数类型为命名切入点方法同名参数指定的参数类型。</p>
+<p>​       <strong>pointcutName：</strong>切入点名字，可以使用该名字进行引用该切入点表达式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Pointcut</span>(value=<span class="string">"execution(* cn.javass..*.sayAdvisorBefore(..)) &amp;&amp; args(param)"</span>, argNames = <span class="string">"param"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforePointcut</span><span class="params">(String param)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>定义了一个切入点，名字为“beforePointcut”，该切入点将匹配目标方法的第一个参数类型为通知方法实现中参数名为“param”的参数类型。</p>
+<h4 id="声明通知-1"><a href="#声明通知-1" class="headerlink" title="声明通知"></a>声明通知</h4><p>​       @AspectJ风格的声明通知也支持5种通知类型：</p>
+<p> <strong>一、前置通知：</strong>使用org.aspectj.lang.annotation 包下的@Before注解声明；</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(value = <span class="string">"切入点表达式或命名切入点"</span>, argNames = <span class="string">"参数列表参数名"</span>)</span><br></pre></td></tr></table></figure>
+<p>​    <strong>value：</strong>指定切入点表达式或命名切入点；</p>
+<p>​       <strong>argNames：</strong>与Schema方式配置中的同义。</p>
+<p>接下来示例一下吧：</p>
+<p>1、定义接口和实现，在此我们就使用Schema风格时的定义；</p>
+<p>2、定义切面：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.javass.spring.chapter6.aop;  </span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;  </span><br><span class="line"><span class="meta">@Aspect</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldAspect2</span> </span>&#123;  </span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、定义切入点：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Pointcut</span>(value=<span class="string">"execution(* cn.javass..*.sayAdvisorBefore(..)) &amp;&amp; args(param)"</span>, argNames = <span class="string">"param"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforePointcut</span><span class="params">(String param)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>4、定义通知：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(value = <span class="string">"beforePointcut(param)"</span>, argNames = <span class="string">"param"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">(String param)</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"===========before advice param:"</span> + param);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、在chapter6/advice2.xml配置文件中进行如下配置：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  </span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span>  <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span>  </span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span>  </span></span><br><span class="line"><span class="tag">        <span class="attr">xsi:schemaLocation</span>=<span class="string">"  </span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/beans  </span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  </span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/aop  </span></span></span><br><span class="line"><span class="tag"><span class="string">           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"</span>&gt;</span>  </span><br><span class="line">            </span><br><span class="line">  <span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorldService"</span>  </span></span><br><span class="line"><span class="tag">            <span class="attr">class</span>=<span class="string">"cn.javass.spring.chapter6.service.impl.HelloWorldService"</span>/&gt;</span>  </span><br><span class="line">   </span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aspect"</span>  </span></span><br><span class="line"><span class="tag">             <span class="attr">class</span>=<span class="string">"cn.javass.spring.chapter6.aop.HelloWorldAspect2"</span>/&gt;</span>  </span><br><span class="line">   </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>6、测试代码cn.javass.spring.chapter6.AopTest:</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAnnotationBeforeAdvice</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">    ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"chapter6/advice2.xml"</span>);  </span><br><span class="line">    IHelloWorldService helloworldService = ctx.getBean(<span class="string">"helloWorldService"</span>, IHelloWorldService.class);  </span><br><span class="line">    helloworldService.sayBefore(<span class="string">"before"</span>);  </span><br><span class="line">    System.out.println(<span class="string">"======================================"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将输出：</p>
+<p> ==========================================</p>
+<p> ===========before advice param:before</p>
+<p> ============say before</p>
+<p> ==========================================  </p>
+<p>切面、切入点、通知全部使用注解完成：</p>
+<p>​       1）使用@Aspect将POJO声明为切面；</p>
+<p>​       2）使用@Pointcut进行命名切入点声明，同时指定目标方法第一个参数类型必须是java.lang.String，对于其他匹配的方法但参数类型不一致的将也是不匹配的，通过argNames = “param”指定了将把该匹配的目标方法参数传递给通知同名的参数上；</p>
+<p>​       3）使用@Before进行前置通知声明，其中value用于定义切入点表达式或引用命名切入点；</p>
+<p>​       4）配置文件需要使用<a href="aop:aspectj-autoproxy/" target="_blank" rel="noopener">aop:aspectj-autoproxy/</a>来开启注解风格的@AspectJ支持；</p>
+<p>​       5）需要将切面注册为Bean，如“aspect”Bean；</p>
+<p>​       6）测试代码完全一样。</p>
+<p><strong>二、后置返回通知：</strong>使用org.aspectj.lang.annotation 包下的@AfterReturning注解声明；</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterReturning</span>(  </span><br><span class="line">value=<span class="string">"切入点表达式或命名切入点"</span>,  </span><br><span class="line">pointcut=<span class="string">"切入点表达式或命名切入点"</span>,  </span><br><span class="line">argNames=<span class="string">"参数列表参数名"</span>,  </span><br><span class="line">returning=<span class="string">"返回值对应参数名"</span>)</span><br></pre></td></tr></table></figure>
+<p>​       <strong>value：</strong>指定切入点表达式或命名切入点；</p>
+<p>​       <strong>pointcut：</strong>同样是指定切入点表达式或命名切入点，如果指定了将覆盖value属性指定的，pointcut具有高优先级；</p>
+<p>​       <strong>argName：</strong>与Schema方式配置中的同义；</p>
+<p>​       <strong>returning：</strong>与Schema方式配置中的同义。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterReturning</span>(  </span><br><span class="line">    value=<span class="string">"execution(* cn.javass..*.sayBefore(..))"</span>,  </span><br><span class="line">    pointcut=<span class="string">"execution(* cn.javass..*.sayAfterReturning(..))"</span>,  </span><br><span class="line">    argNames=<span class="string">"retVal"</span>, returning=<span class="string">"retVal"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningAdvice</span><span class="params">(Object retVal)</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"===========after returning advice retVal:"</span> + retVal);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中测试代码与Schema方式几乎一样，在此就不演示了，如果需要请参考AopTest.java中的testAnnotationAfterReturningAdvice测试方法。</p>
+<p> <strong>三、后置异常通知：</strong>使用org.aspectj.lang.annotation 包下的@AfterThrowing注解声明；</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterThrowing</span> (  </span><br><span class="line">value=<span class="string">"切入点表达式或命名切入点"</span>,  </span><br><span class="line">pointcut=<span class="string">"切入点表达式或命名切入点"</span>,  </span><br><span class="line">argNames=<span class="string">"参数列表参数名"</span>,  </span><br><span class="line">throwing=<span class="string">"异常对应参数名"</span>)</span><br></pre></td></tr></table></figure>
+<p>​       <strong>value：</strong>指定切入点表达式或命名切入点；</p>
+<p>​       <strong>pointcut：</strong>同样是指定切入点表达式或命名切入点，如果指定了将覆盖value属性指定的，pointcut具有高优先级；</p>
+<p>​       <strong>argNames：</strong>与Schema方式配置中的同义；</p>
+<p>​       <strong>throwing：</strong>与Schema方式配置中的同义。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterThrowing</span>(  </span><br><span class="line">    value=<span class="string">"execution(* cn.javass..*.sayAfterThrowing(..))"</span>,  </span><br><span class="line">    argNames=<span class="string">"exception"</span>, throwing=<span class="string">"exception"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowingAdvice</span><span class="params">(Exception exception)</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"===========after throwing advice exception:"</span> + exception);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中测试代码与Schema方式几乎一样，在此就不演示了，如果需要请参考AopTest.java中的testAnnotationAfterThrowingAdvice测试方法。</p>
+<p> <strong>四、后置最终通知：</strong>使用org.aspectj.lang.annotation 包下的@After注解声明；</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@After</span> (  </span><br><span class="line">value=<span class="string">"切入点表达式或命名切入点"</span>,  </span><br><span class="line">argNames=<span class="string">"参数列表参数名"</span>)</span><br></pre></td></tr></table></figure>
+<p>​       <strong>value：</strong>指定切入点表达式或命名切入点；</p>
+<p>​       <strong>argNames：</strong>与Schema方式配置中的同义；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@After</span>(value=<span class="string">"execution(* cn.javass..*.sayAfterFinally(..))"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterFinallyAdvice</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"===========after finally advice"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中测试代码与Schema方式几乎一样，在此就不演示了，如果需要请参考AopTest.java中的testAnnotationAfterFinallyAdvice测试方法。 </p>
+<p><strong>五、环绕通知：</strong>使用org.aspectj.lang.annotation 包下的@Around注解声明；</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around</span> (  </span><br><span class="line">value=<span class="string">"切入点表达式或命名切入点"</span>,  </span><br><span class="line">argNames=<span class="string">"参数列表参数名"</span>)</span><br></pre></td></tr></table></figure>
+<p>​       <strong>value：</strong>指定切入点表达式或命名切入点；</p>
+<p>​       <strong>argNames：</strong>与Schema方式配置中的同义；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around</span>(value=<span class="string">"execution(* cn.javass..*.sayAround(..))"</span>)  </span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">aroundAdvice</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable </span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">"===========around before advice"</span>);  </span><br><span class="line">    Object retVal = pjp.proceed(<span class="keyword">new</span> Object[] &#123;<span class="string">"replace"</span>&#125;);  </span><br><span class="line">    System.out.println(<span class="string">"===========around after advice"</span>);  </span><br><span class="line">    <span class="keyword">return</span> retVal;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中测试代码与Schema方式几乎一样，在此就不演示了，如果需要请参考AopTest.java中的annotationAroundAdviceTest测试方法。 </p>
+<h4 id="引入-1"><a href="#引入-1" class="headerlink" title="引入"></a>引入</h4><p>​       @AspectJ风格的引入声明在切面中使用org.aspectj.lang.annotation包下的@DeclareParents声明：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeclareParents</span>(  </span><br><span class="line">value=<span class="string">" AspectJ语法类型表达式"</span>,  </span><br><span class="line">defaultImpl=引入接口的默认实现类)  </span><br><span class="line"><span class="keyword">private</span> Interface <span class="class"><span class="keyword">interface</span></span>;</span><br></pre></td></tr></table></figure>
+<p> <strong>value：</strong>匹配需要引入接口的目标对象的AspectJ语法类型表达式；与Schema方式中的types-matching属性同义；</p>
+<p>​       private Interface interface<strong>：</strong>指定需要引入的接口；</p>
+<p>​       defaultImpl<strong>：</strong>指定引入接口的默认实现类，没有与Schema方式中的delegate-ref属性同义的定义方式；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeclareParents</span>(  </span><br><span class="line">    value=<span class="string">"cn.javass..*.IHelloWorldService+"</span>, defaultImpl=cn.javass.spring.chapter6.service.impl.IntroductiondService.class)  </span><br><span class="line"><span class="keyword">private</span> IIntroductionService introductionService;</span><br></pre></td></tr></table></figure>
+<p>其中测试代码与Schema方式几乎一样，在此就不演示了，如果需要请参考AopTest.java中的testAnnotationIntroduction测试方法。 </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Spring之资源与表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -690,289 +1370,6 @@
 <p>　　commons-logging存在osgi问题，但早期项目多使用其作为日志门面，为保证兼容仍使用其作为日志门面，但通过slf4j的静态绑定技术来加载具体的日志库log4j，需要的jar包为commons-logging.jar、jcl-over-slf4j.jar、slf4j-api.jar、slf4j-log4j12.jar、log4j.jar，其中jcl-over-slf4j.jar将日志的接口重定向到slf4j。</p>
 <pre><code> 　　使用log4j需先将日志的相关信息在属性文件properties或xml文件配置好，剩下的事情就是在项目中的适当位置打日志。
 </code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/单元测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/21/单元测试/" itemprop="url">Junit</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T19:37:39+08:00">
-                2018-05-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/单元测试/" itemprop="url" rel="index">
-                    <span itemprop="name">单元测试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h4 id="什么是单元测试？"><a href="#什么是单元测试？" class="headerlink" title="什么是单元测试？"></a>什么是单元测试？</h4><ul>
-<li>单元测试是<strong>开发人员</strong>编写的一小段代码，用于检验被测代码的一个有明确功能的小模块是否正确<ul>
-<li>通常是用来判断某个类和函数的行为</li>
-<li>白盒测试：开发人员已经很清楚的知道代码的内部实现。黑盒测试：不知道内部的实现是什么，只知道对外提供的接口，软件像黑盒一样，对外暴露了一些接口，要验证是否与自己所想的一样。</li>
-<li><strong>开发人员</strong>是最大的收益者</li>
-</ul>
-</li>
-</ul>
-<h4 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">testString</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">25</span>;</span><br><span class="line">    Assert.assertEquals(<span class="number">25</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>绿色表示通过。</p>
-<p>只要按照规律来写代码，框架能够找到我们的测试用例，如上所示。然后，执行这些测试用例，通过Assert来检查实际值和期待值是否一致。如果不一致就是bug。</p>
-<p> <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E6%88%90%E7%99%BE%E4%B8%8A%E5%8D%83%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AF%A5%E6%80%8E%E4%B9%88%E7%BB%84%E7%BB%87.jpg?raw=true" alt=""></p>
-<p>作为一个套件来执行，套件下有各种V*Tests。</p>
-<h4 id="JUnit常用的几种断言"><a href="#JUnit常用的几种断言" class="headerlink" title="JUnit常用的几种断言"></a>JUnit常用的几种断言</h4><p>Assert.assertEquals(expected,actual);   两个数值变量等是否一致</p>
-<p>Assert.assertTrue(condition);   是否为true</p>
-<p>Assert.assertNotNull(object);  是否为null</p>
-<p>Assert.assertArrayEquals(expecteds,actuals);   数组是否相等</p>
-<h4 id="如何对Exception进行测试"><a href="#如何对Exception进行测试" class="headerlink" title="如何对Exception进行测试"></a>如何对Exception进行测试</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E5%A6%82%E4%BD%95%E5%AF%B9Exception%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95.jpg?raw=true" alt=""></p>
-<h4 id="两个特殊的方法"><a href="#两个特殊的方法" class="headerlink" title="两个特殊的方法"></a>两个特殊的方法</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%B8%A4%E4%B8%AA%E7%89%B9%E6%AE%8A%E7%9A%84%E6%96%B9%E6%B3%95.jpg?raw=true" alt=""></p>
-<p>有多少个testCase就有多少个setUp()和tearDown()</p>
-<h4 id="两个更特殊的方法"><a href="#两个更特殊的方法" class="headerlink" title="两个更特殊的方法"></a>两个更特殊的方法</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%B8%A4%E4%B8%AA%E6%9B%B4%E7%89%B9%E6%AE%8A%E7%9A%84%E6%96%B9%E6%B3%95.jpg?raw=true" alt=""></p>
-<h3 id="单元测试的优点"><a href="#单元测试的优点" class="headerlink" title="单元测试的优点"></a>单元测试的优点</h3><ul>
-<li>验证行为<ul>
-<li>保证代码的正确性</li>
-<li>回归测试：即使到项目后期，我们仍然有勇气去增加新功能，修改程序结果，而不用担心破坏重要功能</li>
-<li>给重构带来保证</li>
-</ul>
-</li>
-<li>设计行为<ul>
-<li><strong>测试驱动</strong>迫使我们从调用者的角度去观察和思考问题，迫使我们把代码设计成可测试的，松耦合的。</li>
-</ul>
-</li>
-<li>文档行为<ul>
-<li>单元测试是一种无价的文档，精确的描述了代码的行为，是如何使用函数和类的最佳文档</li>
-</ul>
-</li>
-</ul>
-<h4 id="单元测试是个团队行为"><a href="#单元测试是个团队行为" class="headerlink" title="单元测试是个团队行为"></a>单元测试是个团队行为</h4><ul>
-<li>互相帮助 ，互相扶持，共同前进<ul>
-<li><strong>你运行别人的测试用例：验证你的代码修改</strong></li>
-<li><strong>别人运行你的测试用例：验证别人的代码修改</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="单元测试的原则"><a href="#单元测试的原则" class="headerlink" title="单元测试的原则"></a>单元测试的原则</h4><ul>
-<li><strong>测试代码和被测试是同等重要的，需要被同时维护</strong><ul>
-<li><strong>测试代码不是附属品</strong></li>
-<li><strong>不但要重构代码，也要重构单元测试！</strong></li>
-</ul>
-</li>
-<li><strong>单元测试一定是隔离的</strong><ul>
-<li><strong>一个测试用例的运行结果不能影响其他测试用例</strong></li>
-<li><strong>测试用例不能相互依赖，应该能够以任何次序执行</strong></li>
-</ul>
-</li>
-<li><strong>单元测试一定是可以重复执行的</strong><ul>
-<li><strong>不能依赖环境变化</strong></li>
-</ul>
-</li>
-<li><strong>保持单元测试的简单性和可读性</strong></li>
-<li><strong>尽量对接口进行测试</strong></li>
-<li><strong>单元测试应该可以迅速执行</strong>(不可能等待几十分钟，应该是秒级的)<ul>
-<li><strong>给程序员提供及时的反馈</strong></li>
-<li><strong>使用Mock对象对数据库，网络的依赖进行解耦</strong></li>
-</ul>
-</li>
-<li><strong>自动化单元测试</strong><ul>
-<li><strong>集成到build过程中去</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="使用Mock对象"><a href="#使用Mock对象" class="headerlink" title="使用Mock对象"></a>使用Mock对象</h4><ul>
-<li><strong>真实的对象不易构造</strong><ul>
-<li><strong>例如httpservlet必须在servlet容器中才能创建出来</strong></li>
-</ul>
-</li>
-<li><strong>真实的对象非常复杂</strong><ul>
-<li><strong>如jdbc中的Connection，ResultSet</strong></li>
-</ul>
-</li>
-<li><strong>真实的对象的行为具有不确定性，难于控制他们的输出或者返回结果</strong></li>
-<li><strong>真实的对象的有些行为难于触发，例如硬盘已满，网络连接断开</strong></li>
-<li><strong>真实的对象可能还不存在，例如依赖的另外一个模块还没开发完毕</strong></li>
-</ul>
-<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/Mock%20Object%E7%9A%84%E4%BE%8B%E5%AD%90.jpg?raw=true" alt=""></p>
-<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%BD%BF%E7%94%A8Mock%E5%AF%B9%E8%B1%A1.jpg?raw=true" alt=""></p>
-<p>录制和回放。</p>
-<h3 id="对遗留代码进行测试"><a href="#对遗留代码进行测试" class="headerlink" title="对遗留代码进行测试"></a>对遗留代码进行测试</h3><ul>
-<li>遗留代码不可避免<ul>
-<li><strong>虽然TDD是很有效的编程方法，但是我们的工作很少从第一行代码开始。</strong></li>
-</ul>
-</li>
-<li><strong>遗留代码不是坏代码</strong><ul>
-<li><strong>它是可以工作的软件/组件，但是</strong></li>
-<li><strong>在设计和开发时没有考虑“可测试性”</strong></li>
-</ul>
-</li>
-<li><strong>遗留代码难于测试</strong><ul>
-<li><strong>长久失修，导致业务逻辑难于理解</strong></li>
-<li><strong>依赖的资源太多，导致测试无从下手</strong></li>
-<li><strong>不敢修改，害怕牵一发而动全身</strong></li>
-</ul>
-</li>
-</ul>
-<p>如果代码去访问数据库和访问网络如何测试。</p>
-<h4 id="处理遗留代码的策略"><a href="#处理遗留代码的策略" class="headerlink" title="处理遗留代码的策略"></a>处理遗留代码的策略</h4><ul>
-<li><strong>重构代码，提高可测试性</strong></li>
-<li><strong>使用Mock Object接触依赖</strong></li>
-<li><strong>测试分解</strong><ul>
-<li><strong>先写粗粒度的测试代码，然后编写细粒度的代码</strong></li>
-<li><strong>Package-&gt;Class-&gt;method</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="处理遗留代码的步骤"><a href="#处理遗留代码的步骤" class="headerlink" title="处理遗留代码的步骤"></a>处理遗留代码的步骤</h4><ul>
-<li><strong>确定要测试的类和函数</strong></li>
-<li><strong>解除依赖</strong>(最重要，解除依赖的时候可能破坏掉代码，但是必须要做，所以尽可能的不要破坏老的功能)</li>
-<li><strong>编写测试用例</strong></li>
-<li><strong>重构代码</strong></li>
-</ul>
-<p><strong>重构的例子‘</strong></p>
-<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E9%87%8D%E6%9E%84%E7%9A%84%E4%BE%8B%E5%AD%90.jpg?raw=true" alt=""></p>
-<h4 id="好的单元测试"><a href="#好的单元测试" class="headerlink" title="好的单元测试"></a>好的单元测试</h4><ul>
-<li>简单<ul>
-<li>防止多度的Steup，否则不知道是单元测用例的错误，还是业务逻辑的错误</li>
-</ul>
-</li>
-<li>隔离</li>
-<li>可重复<ul>
-<li>防止在一台机器上可以运行，在另外一台机器上失败</li>
-<li>防止今天成功，明天失败</li>
-</ul>
-</li>
-<li>运行快<ul>
-<li>防止长时间的运行</li>
-</ul>
-</li>
-<li>代码覆盖面广<ul>
-<li>防止测试通过，但是没测到什么代码</li>
-</ul>
-</li>
-</ul>
-
           
         
       
@@ -1676,6 +2073,289 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/单元测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/21/单元测试/" itemprop="url">Junit</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T19:37:39+08:00">
+                2018-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/单元测试/" itemprop="url" rel="index">
+                    <span itemprop="name">单元测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h4 id="什么是单元测试？"><a href="#什么是单元测试？" class="headerlink" title="什么是单元测试？"></a>什么是单元测试？</h4><ul>
+<li>单元测试是<strong>开发人员</strong>编写的一小段代码，用于检验被测代码的一个有明确功能的小模块是否正确<ul>
+<li>通常是用来判断某个类和函数的行为</li>
+<li>白盒测试：开发人员已经很清楚的知道代码的内部实现。黑盒测试：不知道内部的实现是什么，只知道对外提供的接口，软件像黑盒一样，对外暴露了一些接口，要验证是否与自己所想的一样。</li>
+<li><strong>开发人员</strong>是最大的收益者</li>
+</ul>
+</li>
+</ul>
+<h4 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">testString</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">25</span>;</span><br><span class="line">    Assert.assertEquals(<span class="number">25</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>绿色表示通过。</p>
+<p>只要按照规律来写代码，框架能够找到我们的测试用例，如上所示。然后，执行这些测试用例，通过Assert来检查实际值和期待值是否一致。如果不一致就是bug。</p>
+<p> <img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E6%88%90%E7%99%BE%E4%B8%8A%E5%8D%83%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AF%A5%E6%80%8E%E4%B9%88%E7%BB%84%E7%BB%87.jpg?raw=true" alt=""></p>
+<p>作为一个套件来执行，套件下有各种V*Tests。</p>
+<h4 id="JUnit常用的几种断言"><a href="#JUnit常用的几种断言" class="headerlink" title="JUnit常用的几种断言"></a>JUnit常用的几种断言</h4><p>Assert.assertEquals(expected,actual);   两个数值变量等是否一致</p>
+<p>Assert.assertTrue(condition);   是否为true</p>
+<p>Assert.assertNotNull(object);  是否为null</p>
+<p>Assert.assertArrayEquals(expecteds,actuals);   数组是否相等</p>
+<h4 id="如何对Exception进行测试"><a href="#如何对Exception进行测试" class="headerlink" title="如何对Exception进行测试"></a>如何对Exception进行测试</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E5%A6%82%E4%BD%95%E5%AF%B9Exception%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95.jpg?raw=true" alt=""></p>
+<h4 id="两个特殊的方法"><a href="#两个特殊的方法" class="headerlink" title="两个特殊的方法"></a>两个特殊的方法</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%B8%A4%E4%B8%AA%E7%89%B9%E6%AE%8A%E7%9A%84%E6%96%B9%E6%B3%95.jpg?raw=true" alt=""></p>
+<p>有多少个testCase就有多少个setUp()和tearDown()</p>
+<h4 id="两个更特殊的方法"><a href="#两个更特殊的方法" class="headerlink" title="两个更特殊的方法"></a>两个更特殊的方法</h4><p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%B8%A4%E4%B8%AA%E6%9B%B4%E7%89%B9%E6%AE%8A%E7%9A%84%E6%96%B9%E6%B3%95.jpg?raw=true" alt=""></p>
+<h3 id="单元测试的优点"><a href="#单元测试的优点" class="headerlink" title="单元测试的优点"></a>单元测试的优点</h3><ul>
+<li>验证行为<ul>
+<li>保证代码的正确性</li>
+<li>回归测试：即使到项目后期，我们仍然有勇气去增加新功能，修改程序结果，而不用担心破坏重要功能</li>
+<li>给重构带来保证</li>
+</ul>
+</li>
+<li>设计行为<ul>
+<li><strong>测试驱动</strong>迫使我们从调用者的角度去观察和思考问题，迫使我们把代码设计成可测试的，松耦合的。</li>
+</ul>
+</li>
+<li>文档行为<ul>
+<li>单元测试是一种无价的文档，精确的描述了代码的行为，是如何使用函数和类的最佳文档</li>
+</ul>
+</li>
+</ul>
+<h4 id="单元测试是个团队行为"><a href="#单元测试是个团队行为" class="headerlink" title="单元测试是个团队行为"></a>单元测试是个团队行为</h4><ul>
+<li>互相帮助 ，互相扶持，共同前进<ul>
+<li><strong>你运行别人的测试用例：验证你的代码修改</strong></li>
+<li><strong>别人运行你的测试用例：验证别人的代码修改</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="单元测试的原则"><a href="#单元测试的原则" class="headerlink" title="单元测试的原则"></a>单元测试的原则</h4><ul>
+<li><strong>测试代码和被测试是同等重要的，需要被同时维护</strong><ul>
+<li><strong>测试代码不是附属品</strong></li>
+<li><strong>不但要重构代码，也要重构单元测试！</strong></li>
+</ul>
+</li>
+<li><strong>单元测试一定是隔离的</strong><ul>
+<li><strong>一个测试用例的运行结果不能影响其他测试用例</strong></li>
+<li><strong>测试用例不能相互依赖，应该能够以任何次序执行</strong></li>
+</ul>
+</li>
+<li><strong>单元测试一定是可以重复执行的</strong><ul>
+<li><strong>不能依赖环境变化</strong></li>
+</ul>
+</li>
+<li><strong>保持单元测试的简单性和可读性</strong></li>
+<li><strong>尽量对接口进行测试</strong></li>
+<li><strong>单元测试应该可以迅速执行</strong>(不可能等待几十分钟，应该是秒级的)<ul>
+<li><strong>给程序员提供及时的反馈</strong></li>
+<li><strong>使用Mock对象对数据库，网络的依赖进行解耦</strong></li>
+</ul>
+</li>
+<li><strong>自动化单元测试</strong><ul>
+<li><strong>集成到build过程中去</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="使用Mock对象"><a href="#使用Mock对象" class="headerlink" title="使用Mock对象"></a>使用Mock对象</h4><ul>
+<li><strong>真实的对象不易构造</strong><ul>
+<li><strong>例如httpservlet必须在servlet容器中才能创建出来</strong></li>
+</ul>
+</li>
+<li><strong>真实的对象非常复杂</strong><ul>
+<li><strong>如jdbc中的Connection，ResultSet</strong></li>
+</ul>
+</li>
+<li><strong>真实的对象的行为具有不确定性，难于控制他们的输出或者返回结果</strong></li>
+<li><strong>真实的对象的有些行为难于触发，例如硬盘已满，网络连接断开</strong></li>
+<li><strong>真实的对象可能还不存在，例如依赖的另外一个模块还没开发完毕</strong></li>
+</ul>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/Mock%20Object%E7%9A%84%E4%BE%8B%E5%AD%90.jpg?raw=true" alt=""></p>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E4%BD%BF%E7%94%A8Mock%E5%AF%B9%E8%B1%A1.jpg?raw=true" alt=""></p>
+<p>录制和回放。</p>
+<h3 id="对遗留代码进行测试"><a href="#对遗留代码进行测试" class="headerlink" title="对遗留代码进行测试"></a>对遗留代码进行测试</h3><ul>
+<li>遗留代码不可避免<ul>
+<li><strong>虽然TDD是很有效的编程方法，但是我们的工作很少从第一行代码开始。</strong></li>
+</ul>
+</li>
+<li><strong>遗留代码不是坏代码</strong><ul>
+<li><strong>它是可以工作的软件/组件，但是</strong></li>
+<li><strong>在设计和开发时没有考虑“可测试性”</strong></li>
+</ul>
+</li>
+<li><strong>遗留代码难于测试</strong><ul>
+<li><strong>长久失修，导致业务逻辑难于理解</strong></li>
+<li><strong>依赖的资源太多，导致测试无从下手</strong></li>
+<li><strong>不敢修改，害怕牵一发而动全身</strong></li>
+</ul>
+</li>
+</ul>
+<p>如果代码去访问数据库和访问网络如何测试。</p>
+<h4 id="处理遗留代码的策略"><a href="#处理遗留代码的策略" class="headerlink" title="处理遗留代码的策略"></a>处理遗留代码的策略</h4><ul>
+<li><strong>重构代码，提高可测试性</strong></li>
+<li><strong>使用Mock Object接触依赖</strong></li>
+<li><strong>测试分解</strong><ul>
+<li><strong>先写粗粒度的测试代码，然后编写细粒度的代码</strong></li>
+<li><strong>Package-&gt;Class-&gt;method</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="处理遗留代码的步骤"><a href="#处理遗留代码的步骤" class="headerlink" title="处理遗留代码的步骤"></a>处理遗留代码的步骤</h4><ul>
+<li><strong>确定要测试的类和函数</strong></li>
+<li><strong>解除依赖</strong>(最重要，解除依赖的时候可能破坏掉代码，但是必须要做，所以尽可能的不要破坏老的功能)</li>
+<li><strong>编写测试用例</strong></li>
+<li><strong>重构代码</strong></li>
+</ul>
+<p><strong>重构的例子‘</strong></p>
+<p><img src="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/Junit/%E9%87%8D%E6%9E%84%E7%9A%84%E4%BE%8B%E5%AD%90.jpg?raw=true" alt=""></p>
+<h4 id="好的单元测试"><a href="#好的单元测试" class="headerlink" title="好的单元测试"></a>好的单元测试</h4><ul>
+<li>简单<ul>
+<li>防止多度的Steup，否则不知道是单元测用例的错误，还是业务逻辑的错误</li>
+</ul>
+</li>
+<li>隔离</li>
+<li>可重复<ul>
+<li>防止在一台机器上可以运行，在另外一台机器上失败</li>
+<li>防止今天成功，明天失败</li>
+</ul>
+</li>
+<li>运行快<ul>
+<li>防止长时间的运行</li>
+</ul>
+</li>
+<li>代码覆盖面广<ul>
+<li>防止测试通过，但是没测到什么代码</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/Python之爬虫/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2165,7 +2845,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2187,7 +2867,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

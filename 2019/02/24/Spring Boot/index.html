@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="Spring Boot简介因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。 Spring Boot的功能​    Spring Boot实现了自动配置，降低了项目搭建的复杂度。 ​    Spring框架需要进行大量的配置，Spring B">
+<meta name="description" content="Spring Boot简介Spring Boot:名字字面意思就是spring的引导，就是用于启动spring，使得spring的学习和使用变得快速无痛。 内嵌web容器，由应用启动tomcat，而不是tomcat启动应用，来解决部署运行问题。 因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring">
 <meta name="keywords" content="Spring Boot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Boot">
 <meta property="og:url" content="http://yoursite.com/2019/02/24/Spring Boot/index.html">
 <meta property="og:site_name" content="Bill">
-<meta property="og:description" content="Spring Boot简介因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。 Spring Boot的功能​    Spring Boot实现了自动配置，降低了项目搭建的复杂度。 ​    Spring框架需要进行大量的配置，Spring B">
+<meta property="og:description" content="Spring Boot简介Spring Boot:名字字面意思就是spring的引导，就是用于启动spring，使得spring的学习和使用变得快速无痛。 内嵌web容器，由应用启动tomcat，而不是tomcat启动应用，来解决部署运行问题。 因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/springboot/1.png?raw=true">
 <meta property="og:image" content="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/springboot/%E8%A3%85%E6%A8%A1%E5%9D%97%E7%A4%BA%E4%BE%8B.png?raw=true">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/53216720-7bb28b80-3690-11e9-8bb8-a2238fc9da65.png">
 <meta property="og:image" content="http://blog.didispace.com/content/images/2016/04/swagger2_1.png">
-<meta property="og:updated_time" content="2019-04-22T06:22:42.568Z">
+<meta property="og:updated_time" content="2019-05-14T08:22:28.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot">
-<meta name="twitter:description" content="Spring Boot简介因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。 Spring Boot的功能​    Spring Boot实现了自动配置，降低了项目搭建的复杂度。 ​    Spring框架需要进行大量的配置，Spring B">
+<meta name="twitter:description" content="Spring Boot简介Spring Boot:名字字面意思就是spring的引导，就是用于启动spring，使得spring的学习和使用变得快速无痛。 内嵌web容器，由应用启动tomcat，而不是tomcat启动应用，来解决部署运行问题。 因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring">
 <meta name="twitter:image" content="https://github.com/whyathere/tuchuang/blob/master/%E6%A1%86%E6%9E%B6/springboot/1.png?raw=true">
 
 
@@ -347,7 +347,9 @@
       
 
       
-        <h2 id="Spring-Boot简介"><a href="#Spring-Boot简介" class="headerlink" title="Spring Boot简介"></a>Spring Boot简介</h2><p>因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。</p>
+        <h2 id="Spring-Boot简介"><a href="#Spring-Boot简介" class="headerlink" title="Spring Boot简介"></a>Spring Boot简介</h2><p>Spring Boot:名字字面意思就是spring的引导，就是用于启动spring，使得spring的学习和使用变得快速无痛。</p>
+<p>内嵌web容器，由应用启动tomcat，而不是tomcat启动应用，来解决部署运行问题。</p>
+<p>因为 Spring 的配置非常复杂，各种XML、 JavaConfig、hin处理起来比较繁琐。于是为了简化开发者的使用，从而创造性地推出了Spring boot，约定优于配置，简化了spring的配置流程。</p>
 <h3 id="Spring-Boot的功能"><a href="#Spring-Boot的功能" class="headerlink" title="Spring Boot的功能"></a>Spring Boot的功能</h3><p>​    Spring Boot实现了自动配置，降低了项目搭建的复杂度。</p>
 <p>​    Spring框架需要进行大量的配置，Spring Boot引入自动配置的概念，让项目设置变得很容易。它并不是用来替代Spring的解决方案，而是和Spring框架紧密结合用于提升Spring开发者体验的工具。同时它集成了大量常用的第三方库配置(例如Jackson, JDBC, Mongo, Redis, Mail等等)，Spring Boot应用中这些第三方库几乎可以零配置的开箱即用(out-of-the-box)，大部分的Spring Boot应用都只需要非常少量的配置代码，开发者能够更加专注于业务逻辑。</p>
 <p>​    Spring Boot只是承载者，辅助你简化项目搭建过程的。如果承载的是WEB项目，使用Spring MVC作为MVC框架，那么工作流程和你上面描述的是完全一样的，因为这部分工作是Spring MVC做的而不是Spring Boot。</p>
@@ -674,8 +676,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/11/关于学习/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/24/Spring Cloud/" rel="prev" title="Spring Cloud">
+                Spring Cloud <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -753,7 +755,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -775,7 +777,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

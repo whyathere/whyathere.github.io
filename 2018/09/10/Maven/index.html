@@ -88,7 +88,7 @@
 <meta property="og:description" content="MavenMaven简介​    Apache Maven是一个软件项目管理工具。基于项目对象模型(Project Object Model,POM)的概念，Maven可用来管理项目的依赖、编译、文档等信息。 ​    使用Maven管理项目时，项目依赖的jar包将不再包含在项目内，而是集中放置在用户目录下的.m2文件夹下。 Maven的pom.xml​    Maven是基于项目对象模型的概念运">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/54276414-4252a900-45c8-11e9-8f87-4b389419bbcc.png">
-<meta property="og:updated_time" content="2019-03-18T03:21:28.697Z">
+<meta property="og:updated_time" content="2019-05-16T06:25:56.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven">
 <meta name="twitter:description" content="MavenMaven简介​    Apache Maven是一个软件项目管理工具。基于项目对象模型(Project Object Model,POM)的概念，Maven可用来管理项目的依赖、编译、文档等信息。 ​    使用Maven管理项目时，项目依赖的jar包将不再包含在项目内，而是集中放置在用户目录下的.m2文件夹下。 Maven的pom.xml​    Maven是基于项目对象模型的概念运">
@@ -347,23 +347,19 @@
         <h2 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h2><h3 id="Maven简介"><a href="#Maven简介" class="headerlink" title="Maven简介"></a>Maven简介</h3><p>​    Apache Maven是一个软件项目管理工具。基于项目对象模型(Project Object Model,POM)的概念，Maven可用来管理项目的依赖、编译、文档等信息。</p>
 <p>​    使用Maven管理项目时，项目依赖的jar包将不再包含在项目内，而是集中放置在用户目录下的.m2文件夹下。</p>
 <h3 id="Maven的pom-xml"><a href="#Maven的pom-xml" class="headerlink" title="Maven的pom.xml"></a>Maven的pom.xml</h3><p>​    Maven是基于项目对象模型的概念运作的，所以Maven的项目都有一个pom.xml用来管理项目的依赖以及项目的编译等功能。</p>
-<p>​    1、dependencies元素</p>
-<p><code>&lt;dependencies&gt;&lt;/dependencies&gt;</code>，此元素包含了多个项目依赖需要使用的<code>&lt;dependency&gt;&lt;/dpendency&gt;</code></p>
-<p>​    2、dependency元素</p>
-<p><code>&lt;dependency&gt;&lt;/dpendency&gt;</code>    内部通过groupId、artifactId、以及version确定唯一的依赖，有人称这三个为坐标，代码如下。</p>
-<p>​    groupId：组织的唯一标识</p>
-<p>​    artifactId： 项目的唯一标识</p>
+<h4 id="1、dependencies元素"><a href="#1、dependencies元素" class="headerlink" title="1、dependencies元素"></a>1、dependencies元素</h4><p><code>&lt;dependencies&gt;&lt;/dependencies&gt;</code>，此元素包含了多个项目依赖需要使用的<code>&lt;dependency&gt;&lt;/dpendency&gt;</code></p>
+<h4 id="2、dependency元素"><a href="#2、dependency元素" class="headerlink" title="2、dependency元素"></a>2、dependency元素</h4><p><code>&lt;dependency&gt;&lt;/dpendency&gt;</code>    内部通过groupId、artifactId、以及version确定唯一的依赖，有人称这三个为坐标，代码如下。</p>
+<p>​    groupId：组织的唯一标识    (可以理解为域，cn/中国。 com/商业    com.zero)</p>
+<p>​    artifactId： 项目的唯一标识    (中国的河南省    brh-client)</p>
 <p>​    version： 项目的版本</p>
-<p>​    3、变量定义</p>
-<p>​    <code>&lt;properties&gt;&lt;/properties&gt;</code>    可定义变量在dependency中引用，代码如下。</p>
+<p>groupId和artifactid就可以组成项目的唯一标示，把项目放到maven本地仓库去，就需要这两个id来查找。</p>
+<h4 id="3、变量定义"><a href="#3、变量定义" class="headerlink" title="3、变量定义"></a>3、变量定义</h4><p>​    <code>&lt;properties&gt;&lt;/properties&gt;</code>    可定义变量在dependency中引用，代码如下。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>​    4、编译插件</p>
-<p>​    Maven提供了编译插件，可在编译插件中涉及Java的编译级别，代码如下：</p>
+<h4 id="4、编译插件"><a href="#4、编译插件" class="headerlink" title="4、编译插件"></a>4、编译插件</h4><p>​    Maven提供了编译插件，可在编译插件中涉及Java的编译级别，代码如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>​    5、Maven运作方式</p>
-<p>​    Maven会自动根据dependency中的依赖配置，直接通过互联网在Maven中心库下载相关依赖包到.m2目录下，.m2目录下是你本地Maven库。</p>
+<h4 id="5、Maven运作方式"><a href="#5、Maven运作方式" class="headerlink" title="5、Maven运作方式"></a>5、Maven运作方式</h4><p>​    Maven会自动根据dependency中的依赖配置，直接通过互联网在Maven中心库下载相关依赖包到.m2目录下，.m2目录下是你本地Maven库。</p>
 <p>​    </p>
-<h2 id="Maven问题汇总"><a href="#Maven问题汇总" class="headerlink" title="Maven问题汇总"></a>Maven问题汇总</h2><h3 id="依赖问题"><a href="#依赖问题" class="headerlink" title="依赖问题"></a>依赖问题</h3><p>报错信息如下：由于两个日志文件jar包冲突导致项目无法启动，卡住</p>
+<h2 id="Maven问题汇总"><a href="#Maven问题汇总" class="headerlink" title="Maven问题汇总"></a>Maven问题汇总</h2><h3 id="依赖问题（jar包冲突）"><a href="#依赖问题（jar包冲突）" class="headerlink" title="依赖问题（jar包冲突）"></a>依赖问题（jar包冲突）</h3><p>报错信息如下：由于两个日志文件jar包冲突导致项目无法启动，卡住</p>
 <p><img src="https://user-images.githubusercontent.com/24977343/54276414-4252a900-45c8-11e9-8f87-4b389419bbcc.png" alt=""></p>
 <p>解决方法：根据提示来查找是那个依赖引出的这个jar包。</p>
 <p>slf4j-log4j12-1.6.1.jar</p>
@@ -372,7 +368,7 @@
 <p>使用</p>
 <p><exclusions>排除这个依赖的传递。</exclusions></p>
 <p>在mavenB项目中引入mavenA项目依赖，通过依赖传递，会将mavenA中的jar包传递进来</p>
-<p>如果B中不需要A中的某个jar包就可以使用此标签</p>
+<p>如果B中不需要A中的某个jar包就可以使用此标签，这里是不使用slf4j的依赖</p>
 
       
     </div>
@@ -403,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/10/2019年书单/" rel="next" title="读过的书">
-                <i class="fa fa-chevron-left"></i> 读过的书
+              <a href="/2018/09/10/Mybatis/" rel="next" title="Mybatis">
+                <i class="fa fa-chevron-left"></i> Mybatis
               </a>
             
           </div>
@@ -413,8 +409,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/11/Git使用学习/" rel="prev" title="Git使用学习">
-                Git使用学习 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/10/Nginx/" rel="prev" title="Nginx">
+                Nginx <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -492,7 +488,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -514,7 +510,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -547,7 +543,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven"><span class="nav-number">1.</span> <span class="nav-text">Maven</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven简介"><span class="nav-number">1.1.</span> <span class="nav-text">Maven简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven的pom-xml"><span class="nav-number">1.2.</span> <span class="nav-text">Maven的pom.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven问题汇总"><span class="nav-number">2.</span> <span class="nav-text">Maven问题汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖问题"><span class="nav-number">2.1.</span> <span class="nav-text">依赖问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven"><span class="nav-number">1.</span> <span class="nav-text">Maven</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven简介"><span class="nav-number">1.1.</span> <span class="nav-text">Maven简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven的pom-xml"><span class="nav-number">1.2.</span> <span class="nav-text">Maven的pom.xml</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、dependencies元素"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、dependencies元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、dependency元素"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、dependency元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、变量定义"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、变量定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、编译插件"><span class="nav-number">1.2.4.</span> <span class="nav-text">4、编译插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、Maven运作方式"><span class="nav-number">1.2.5.</span> <span class="nav-text">5、Maven运作方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven问题汇总"><span class="nav-number">2.</span> <span class="nav-text">Maven问题汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖问题（jar包冲突）"><span class="nav-number">2.1.</span> <span class="nav-text">依赖问题（jar包冲突）</span></a></li></ol></li></ol></div>
             
 
           </div>
