@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/57746971-207bbc80-7706-11e9-84a7-6474c8bf9d92.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/57746996-36897d00-7706-11e9-83ed-7bdfd372cb35.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/57752660-7ce9d680-771c-11e9-9b75-06e8bd9a8342.png">
-<meta property="og:updated_time" content="2019-05-17T03:40:20.927Z">
+<meta property="og:updated_time" content="2019-05-23T23:49:56.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Cloud">
 <meta name="twitter:description" content="Spring Cloud简介 Spring Cloud是基于Spring Boot的 为维服务体系开发中的架构问题，提供了一整套的解决方案——服务注册与发现，服务消费，服务保护与熔断，网关，分布式调用追踪，分布式配置管理等。 Spring Cloud是关注全局的服务治理框架 Spring Cloud是关注全局的服务治理框架 Spring Cloud是关注全局的服务治理框架 完整的应用从数据存储开始">
@@ -399,7 +399,10 @@
 <h4 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h4><p>Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，</p>
 <h2 id="Spring-Cloud-GateWay"><a href="#Spring-Cloud-GateWay" class="headerlink" title="Spring Cloud GateWay"></a>Spring Cloud GateWay</h2><h3 id="初体验"><a href="#初体验" class="headerlink" title="初体验"></a>初体验</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>Spring Cloud GateWay是Spring Cloud官方推出的第二代网关框架，取代Zuul网关。网关作为流量的，在微服务系统中有着非常重要的作用，网关常见的功能有路由转发、权限校验、限流控制等作用。</p>
 <h4 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h4><h2 id="分布式配置中心-Spring-Cloud-Config"><a href="#分布式配置中心-Spring-Cloud-Config" class="headerlink" title="分布式配置中心(Spring Cloud Config)"></a>分布式配置中心(Spring Cloud Config)</h2><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>在分布式系统中，由于服务数量巨多，为了方便服务器配置文件统一管理，实时更新，所以需要分布式配置中心组件。在Spring Cloud中，有分布式配置中心组件spring cloud config，它支持配置服务放在配置服务的内存中(即本地)，也支持放到远程Git仓库。在spring cloud config组件中，分两个角色，一个上config server，二是config client</p>
-<h3 id="二、构建Config-Server"><a href="#二、构建Config-Server" class="headerlink" title="二、构建Config Server"></a>二、构建Config Server</h3>
+<h3 id="二、构建Config-Server"><a href="#二、构建Config-Server" class="headerlink" title="二、构建Config Server"></a>二、构建Config Server</h3><h2 id="Spring-Cloud-Ribbon"><a href="#Spring-Cloud-Ribbon" class="headerlink" title="Spring Cloud Ribbon"></a>Spring Cloud Ribbon</h2><ul>
+<li>通过RestTemplate实现客户端负载均衡。</li>
+</ul>
+
       
     </div>
     
@@ -518,7 +521,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -540,7 +543,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -573,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud简介"><span class="nav-number">1.</span> <span class="nav-text">Spring Cloud简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速简化版本"><span class="nav-number">2.</span> <span class="nav-text">快速简化版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务注册与发现"><span class="nav-number">2.1.</span> <span class="nav-text">服务注册与发现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建服务注册中心"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建服务注册中心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个服务提供者-eureka-client"><span class="nav-number">2.1.2.</span> <span class="nav-text">创建一个服务提供者 (eureka client)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务消费者Feign-Finchley版本"><span class="nav-number">2.2.</span> <span class="nav-text">服务消费者Feign(Finchley版本)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Feign简介"><span class="nav-number">2.2.1.</span> <span class="nav-text">Feign简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断路器（Hystrix）-Finchley版本"><span class="nav-number">2.3.</span> <span class="nav-text">断路器（Hystrix）(Finchley版本)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Feign中使用断路器"><span class="nav-number">2.3.1.</span> <span class="nav-text">Feign中使用断路器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由网关"><span class="nav-number">2.4.</span> <span class="nav-text">路由网关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Zuul简介"><span class="nav-number">2.4.1.</span> <span class="nav-text">Zuul简介</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-GateWay"><span class="nav-number">3.</span> <span class="nav-text">Spring Cloud GateWay</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初体验"><span class="nav-number">3.1.</span> <span class="nav-text">初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">3.1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建工程"><span class="nav-number">3.1.2.</span> <span class="nav-text">创建工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式配置中心-Spring-Cloud-Config"><span class="nav-number">4.</span> <span class="nav-text">分布式配置中心(Spring Cloud Config)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、简介"><span class="nav-number">4.1.</span> <span class="nav-text">一、简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、构建Config-Server"><span class="nav-number">4.2.</span> <span class="nav-text">二、构建Config Server</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud简介"><span class="nav-number">1.</span> <span class="nav-text">Spring Cloud简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速简化版本"><span class="nav-number">2.</span> <span class="nav-text">快速简化版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务注册与发现"><span class="nav-number">2.1.</span> <span class="nav-text">服务注册与发现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建服务注册中心"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建服务注册中心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个服务提供者-eureka-client"><span class="nav-number">2.1.2.</span> <span class="nav-text">创建一个服务提供者 (eureka client)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务消费者Feign-Finchley版本"><span class="nav-number">2.2.</span> <span class="nav-text">服务消费者Feign(Finchley版本)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Feign简介"><span class="nav-number">2.2.1.</span> <span class="nav-text">Feign简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断路器（Hystrix）-Finchley版本"><span class="nav-number">2.3.</span> <span class="nav-text">断路器（Hystrix）(Finchley版本)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Feign中使用断路器"><span class="nav-number">2.3.1.</span> <span class="nav-text">Feign中使用断路器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由网关"><span class="nav-number">2.4.</span> <span class="nav-text">路由网关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Zuul简介"><span class="nav-number">2.4.1.</span> <span class="nav-text">Zuul简介</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-GateWay"><span class="nav-number">3.</span> <span class="nav-text">Spring Cloud GateWay</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初体验"><span class="nav-number">3.1.</span> <span class="nav-text">初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">3.1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建工程"><span class="nav-number">3.1.2.</span> <span class="nav-text">创建工程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式配置中心-Spring-Cloud-Config"><span class="nav-number">4.</span> <span class="nav-text">分布式配置中心(Spring Cloud Config)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、简介"><span class="nav-number">4.1.</span> <span class="nav-text">一、简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、构建Config-Server"><span class="nav-number">4.2.</span> <span class="nav-text">二、构建Config Server</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-Ribbon"><span class="nav-number">5.</span> <span class="nav-text">Spring Cloud Ribbon</span></a></li></ol></div>
             
 
           </div>

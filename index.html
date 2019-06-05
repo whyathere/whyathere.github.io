@@ -320,7 +320,10 @@
       
         
           
-            <h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>206，141，21，19，876</p>
+            <h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><ul>
+<li>206    反向链表</li>
+</ul>
+<p>141，21，19，876</p>
 
           
         
@@ -762,7 +765,10 @@
 <h4 id="Zuul简介"><a href="#Zuul简介" class="headerlink" title="Zuul简介"></a>Zuul简介</h4><p>Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，</p>
 <h2 id="Spring-Cloud-GateWay"><a href="#Spring-Cloud-GateWay" class="headerlink" title="Spring Cloud GateWay"></a>Spring Cloud GateWay</h2><h3 id="初体验"><a href="#初体验" class="headerlink" title="初体验"></a>初体验</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>Spring Cloud GateWay是Spring Cloud官方推出的第二代网关框架，取代Zuul网关。网关作为流量的，在微服务系统中有着非常重要的作用，网关常见的功能有路由转发、权限校验、限流控制等作用。</p>
 <h4 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h4><h2 id="分布式配置中心-Spring-Cloud-Config"><a href="#分布式配置中心-Spring-Cloud-Config" class="headerlink" title="分布式配置中心(Spring Cloud Config)"></a>分布式配置中心(Spring Cloud Config)</h2><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>在分布式系统中，由于服务数量巨多，为了方便服务器配置文件统一管理，实时更新，所以需要分布式配置中心组件。在Spring Cloud中，有分布式配置中心组件spring cloud config，它支持配置服务放在配置服务的内存中(即本地)，也支持放到远程Git仓库。在spring cloud config组件中，分两个角色，一个上config server，二是config client</p>
-<h3 id="二、构建Config-Server"><a href="#二、构建Config-Server" class="headerlink" title="二、构建Config Server"></a>二、构建Config Server</h3>
+<h3 id="二、构建Config-Server"><a href="#二、构建Config-Server" class="headerlink" title="二、构建Config Server"></a>二、构建Config Server</h3><h2 id="Spring-Cloud-Ribbon"><a href="#Spring-Cloud-Ribbon" class="headerlink" title="Spring Cloud Ribbon"></a>Spring Cloud Ribbon</h2><ul>
+<li>通过RestTemplate实现客户端负载均衡。</li>
+</ul>
+
           
         
       
@@ -911,7 +917,12 @@
 <p>​    Spring Boot只是承载者，辅助你简化项目搭建过程的。如果承载的是WEB项目，使用Spring MVC作为MVC框架，那么工作流程和你上面描述的是完全一样的，因为这部分工作是Spring MVC做的而不是Spring Boot。</p>
 <p>​    对使用者来说，换用Spring Boot以后，项目初始化方法变了，配置文件变了，另外就是不需要单独安装Tomcat这类容器服务器了，maven打出jar包直接跑起来就是个网站，但你最核心的业务逻辑实现与业务流程实现没有任何变化。</p>
 <p>​    Spring Boot 是基于Spring4的条件注册的一套快速开发整合包。</p>
-<h3 id="Spring-boot-热部署"><a href="#Spring-boot-热部署" class="headerlink" title="Spring boot 热部署"></a>Spring boot 热部署</h3><p>在pom中加入devtools</p>
+<h3 id="依赖包简单说明"><a href="#依赖包简单说明" class="headerlink" title="依赖包简单说明"></a>依赖包简单说明</h3><ul>
+<li>spring-boot-starter-web：全站Web开发模块，包含嵌入式Tomcat、Spring MVC</li>
+<li>spring-boot-starter-test:通用测试模块，包含JUnit、Hamcrest、Mockito</li>
+</ul>
+<p>Starter POMs：一系列轻便的依赖包，是一套一站式的Spring相关技术的解决方案。开发者在使用和整合模块时，不必再去寻找样例代码中的依赖配置来复制使用，只需要引入对对应的模块包即可。</p>
+<h3 id="YAML文件"><a href="#YAML文件" class="headerlink" title="YAML文件"></a>YAML文件</h3><h3 id="Spring-boot-热部署"><a href="#Spring-boot-热部署" class="headerlink" title="Spring boot 热部署"></a>Spring boot 热部署</h3><p>在pom中加入devtools</p>
 <h2 id="记录日志"><a href="#记录日志" class="headerlink" title="记录日志"></a>记录日志</h2><ul>
 <li>Commons-logging or SLF4j</li>
 </ul>
@@ -2073,7 +2084,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2084,7 +2095,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2095,7 +2106,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
