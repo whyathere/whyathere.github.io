@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/58958544-ba9ac600-87d5-11e9-9473-ea75ecb5077f.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/58958730-25e49800-87d6-11e9-9619-7774468f4e20.png">
-<meta property="og:updated_time" content="2019-06-06T02:00:06.927Z">
+<meta property="og:updated_time" content="2019-09-18T10:49:35.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Base">
 <meta name="twitter:description" content="Java中的参数泛型泛型类在实例化类的时候指明泛型的具体类型 类型的参数化，可以把类型像方法的参数那样传递。 优点：泛型使编译器可以在编译期间对类型进行检查以提高类型安全，减少运行时由于对象类型不匹配引发的异常。如果我们在对一个对象赋值不符合其泛型的规范，就会编译报错 1、代码重用：我们可以编写一个方法/类/接口，并用于我们想要的任何类型。 2、类型安全：泛型使错误显示在编译时而不是在运行时 例如">
@@ -377,6 +377,28 @@
 <p>​       泛型方法要求的参数是Class<t>类型，而Class.forName()方法的返回值也是Class<t>，因此可以用Class.forName()作为参数。其中，forName()方法中的参数是何种类型，返回的Class<t>就是何种类型。在本例中，forName()方法中传入的是User类的完整路径，因此返回的是Class<user>类型的对象，因此调用泛型方法时，变量c的类型就是Class<user>，因此泛型方法中的泛型T就被指明为User，因此变量obj的类型为User。</user></user></t></t></t></p>
 <p>​       当然，泛型方法不是仅仅可以有一个参数Class<t>，可以根据需要添加其他参数。</t></p>
 <p>​       为什么要使用泛型方法呢？因为泛型类要在实例化的时候就指明类型，如果想换一种类型，不得不重新new一次，可能不够灵活；而泛型方法可以在调用的时候指明类型，更加灵活。</p>
+<h2 id="Java数据结构应用"><a href="#Java数据结构应用" class="headerlink" title="Java数据结构应用"></a>Java数据结构应用</h2><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h4 id="subList-方法"><a href="#subList-方法" class="headerlink" title="subList()方法"></a>subList()方法</h4><p>截取list的一段，但是如果对这一段做了修改，那么原来的list也会发生相应的变化。</p>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p><strong>定义：</strong>在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。</p>
+<p><strong>简单定义：</strong>有一个或多个抽象方法的类，必须声明为抽象类。不能创建实例</p>
+<p>抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。</p>
+<p>由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。</p>
+<p>父类包含了子类集合的常见的方法，但是由于父类本身是抽象的，所以不能使用这些方法。</p>
+<p>在Java中抽象类表示的是一种继承关系，一个类只能继承一个抽象类，而一个类却可以实现多个接口。</p>
+<h3 id="为啥用抽象类"><a href="#为啥用抽象类" class="headerlink" title="为啥用抽象类"></a>为啥用抽象类</h3><ol>
+<li>父类中的方法确实没有必要写(通用方法)，当然可以用类的覆盖，但是没有必要</li>
+<li>各个子类中的这个方法肯定会不同</li>
+<li>抽象方法有提示作用</li>
+</ol>
+<p>总结：</p>
+<ol>
+<li>抽象类不能被实例化</li>
+<li>抽象类中不一定包含抽象方法，但是有抽象方法的类必定是抽象类</li>
+<li>抽象类中的抽象方法只是声明，不包含方法体，就是不给出方法的具体实现也就是方法的具体功能。</li>
+<li>构造方法，类方法(用static修饰的方法)不能声明为抽象方法</li>
+<li>抽象类的子类必须给出抽象类中的抽象方法的具体实现，除非该子类也是抽象类</li>
+<li>具体派生类必须覆盖基类的抽象方法</li>
+<li>抽象派生类可以覆盖基类的抽象方法，也可以不覆盖。如果不覆盖，则其具体派生类必须覆盖它们</li>
+</ol>
 
       
     </div>
@@ -407,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/31/FastDfs分布式文件系统/" rel="next" title="FastDFS 分布式文件系统">
-                <i class="fa fa-chevron-left"></i> FastDFS 分布式文件系统
+              <a href="/2018/06/05/Spring-MVC/" rel="next" title="Spring MVC">
+                <i class="fa fa-chevron-left"></i> Spring MVC
               </a>
             
           </div>
@@ -496,7 +518,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -518,7 +540,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -551,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的参数"><span class="nav-number">1.</span> <span class="nav-text">Java中的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.1.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型类"><span class="nav-number">1.1.1.</span> <span class="nav-text">泛型类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">泛型方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的参数"><span class="nav-number">1.</span> <span class="nav-text">Java中的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.1.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型类"><span class="nav-number">1.1.1.</span> <span class="nav-text">泛型类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">泛型方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java数据结构应用"><span class="nav-number">2.</span> <span class="nav-text">Java数据结构应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">2.1.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#subList-方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">subList()方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类"><span class="nav-number">3.</span> <span class="nav-text">抽象类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为啥用抽象类"><span class="nav-number">3.1.</span> <span class="nav-text">为啥用抽象类</span></a></li></ol></li></ol></div>
             
 
           </div>
