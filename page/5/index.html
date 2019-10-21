@@ -544,6 +544,51 @@
 <li>具体派生类必须覆盖基类的抽象方法</li>
 <li>抽象派生类可以覆盖基类的抽象方法，也可以不覆盖。如果不覆盖，则其具体派生类必须覆盖它们</li>
 </ol>
+<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
+<li><p>线程不安全就意味着线程的调度顺序会影响最终结果</p>
+</li>
+<li><p>线程安全的优先级高于性能</p>
+</li>
+<li>进程是程序向操作系统申请资源的基本单位。线程(Thread)是进程中可独立执行的最小单位。</li>
+<li>一个进程可以包含多个线程。同一个进程中的所有线程共享该进程中的资源，如内存空间、文件句柄等。进程与线程之间的关系，好比一个营业中的饭店与其正在工作的员工之间的关系。</li>
+</ul>
+<p><strong>总结涉及到多线程的内容：</strong></p>
+<ul>
+<li>扎好马步：线程的状态</li>
+<li>内功心法：每个对象都有的方法（机制）</li>
+<li>太祖长拳：基本线程类</li>
+<li>九阴真经：高级多线程控制类</li>
+</ul>
+<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p><img src="https://user-images.githubusercontent.com/24977343/65651829-3b5e2600-e042-11e9-9cd3-b3c98492a75b.png" alt=""></p>
+<p><img src="https://user-images.githubusercontent.com/24977343/65651887-634d8980-e042-11e9-94d0-7170924c22e0.png" alt=""></p>
+<ul>
+<li>Runnable :可运行</li>
+<li>Running：运行中</li>
+<li>Blocked ： 阻塞</li>
+<li>Dead ： 结束</li>
+</ul>
+<p>实现多线程的三种方式：</p>
+<ul>
+<li>继承Thread类</li>
+<li>实现Runable接口</li>
+<li>实现Callable接口</li>
+</ul>
+<h2 id="Java中的线程"><a href="#Java中的线程" class="headerlink" title="Java中的线程"></a>Java中的线程</h2><h3 id="进程、线程与任务"><a href="#进程、线程与任务" class="headerlink" title="进程、线程与任务"></a>进程、线程与任务</h3><ul>
+<li>进程是程序向操作系统申请资源(如内存空间和文件句柄)的基本单位，是程序运行的实例。线程(Thread)是进程中可独立执行的最小单位。运行一个Java程序的实质是启动一个Java虚拟机进程，也就是说一个运行的Java程序的实质是启动一个Java虚拟机进程。</li>
+<li>可以运行一个以上线程的程序称为多线程程序(multithreaded)</li>
+<li>多进程和多线程的本质区别：每个进程拥有自己的一整套变量，而线程则共享数据。有风险，但是线程通信比进程更有效、容易、更轻量级；创建、撤销一个线程比启动新进程的开销要小得多。</li>
+</ul>
+<h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><p>使用线程给其他任务提供机会</p>
+<p>Java标准库类java.lang.Thread就是Java平台对线程的实现。Thread类或</p>
+<h4 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><ul>
+<li>一个线程是否是一个守护线程默认取决于其父线程；默认父线程是守护线程，则子线程也是守护线程。父线程在创建子线程后启动子线程之前可以调用该线程的setDaemon方法，将相应的线程设置为守护线程(或者用户线程)。</li>
+<li>程序运行完毕，jvm会等待非守护线程完成后关闭，但是jvm不会等待守护线程。</li>
+<li>如果没有设置一个线程的优先级，那么这个线程优先级默认与父线程的优先级值相等。</li>
+<li>Java平台中并没有API用于获取一个线程的父线程或者一个线程的所有子线程。</li>
+<li>父线程与子线程的生命周期没有必然联系。</li>
+</ul>
+<h4 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h4><p>​    一个线程从</p>
+<p><img src="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png" alt=""></p>
 
           
         
