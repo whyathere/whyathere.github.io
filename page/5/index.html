@@ -589,7 +589,51 @@
 </ul>
 <h4 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h4><p>​    一个线程从</p>
 <p><img src="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png" alt=""></p>
-
+<h2 id="多线程编程的目标与挑战"><a href="#多线程编程的目标与挑战" class="headerlink" title="多线程编程的目标与挑战"></a>多线程编程的目标与挑战</h2><h4 id="串行、并发与并行"><a href="#串行、并发与并行" class="headerlink" title="串行、并发与并行"></a>串行、并发与并行</h4><p>三个任务：</p>
+<ul>
+<li>A：实际执行5分钟，等待完成10分钟</li>
+<li>B：实际执行2分钟，等待完成8分钟</li>
+<li>C：实际执行10分钟，无等待时间</li>
+</ul>
+<p>串行：一个任务接一个任务的来完成(一个人完成)。15+10+10=35分钟。一个处理器就可以完成</p>
+<p>并发：在任务的等待时间来执行其他任务(一个人完成)；5+2+10=17分钟。一个处理器就可以完成</p>
+<p>并行：同时执行三个任务(三个人完成)；15分钟(以耗时时间最长的任务为准)。需要多个处理器</p>
+<p>​    多线程编程的实质就是将任务的处理方式由串行改为并发，称为可并发化。但是有的任务处理方式必须是串行的，例如Java中的读取文件就是串行。</p>
+<h4 id="竟态"><a href="#竟态" class="headerlink" title="竟态"></a>竟态</h4><p>​        多线程编程中经常遇到的问题就是同样的输入，程序的输出有时候是正确的而有时候确实错误的。这种一个计算结果的正确性与时间有关的现象称为<code>竟态</code>(Race Condition);</p>
+<p>​        <code>synchronized</code>关键字会使其修饰的方法在任一时刻只能够被一个线程执行，这使得该方法涉及的共享变量在任一时刻只能够有一个线程访问(读、写)，从而避免了这个方法的交错执行而导致的干扰，这样就消除了竟态。</p>
+<h4 id="线程安全性"><a href="#线程安全性" class="headerlink" title="线程安全性"></a>线程安全性</h4><p>​        如果一个类在单线程环境下能够运作正常，并且在多线程环境下，在其使用方不必为其做任何改变的情况下也能运作正常，那么我们就称其是线程安全(Thread-safe)的，相应地问们称这个类具有线程安全性(Thread Safety)。反之，如果一个类在单线程环境下运作正常而在多线程环境下则无法正常运作，那么这个类就是非线程安全的。因此，如果一个类如果能够导致竟态，那么它就是非线程安全的；而一个类如果是线程安全的，那么它就不会导致竟态。        </p>
+<p>​        使用一个类的时候我们必须先弄清楚这个类是否是线程安全的。因为这关系到我们如何正确使用这些类。这好比微波炉加热食物前我们必须先弄清所用的容器是否适宜进行微波加热。Java标准库种的一些类如ArrayList、HashMap和SimpleDateFormat，都是非线程安全的，在多线程环境下直接使用它们可能导致一些非预期的结果，甚至是一些灾难性的结果。</p>
+<p>​        把一个类做成线程安全的往往是有额外代价的。</p>
+<p>​        一个类如果不是线程安全的，我们就说它在多线程环境下直接使用存在线程安全问题。线程安全问题概括来说表现为3个方面:原子性、可见性和有序性。</p>
+<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>​        原子(Atomic)的字面意思是不可分割的(Indivisible)。    对于涉及共享变量访问的操作，若操作从执行线程以外的任意线程来看是不可分割的，那么该操作就是原子操作，相应地我们称该操作具有原子性。</p>
+<p>​        所谓<code>不可分割</code>，其中一个含义是指访问(读、写)某个共享变量的操作从其执行线程以外的任何线程来看，该操作要么已经执行结束要么尚未发生，即其他线程不会<code>看到</code>该操作执行了部分中间效果。</p>
+<p>​        访问同一组共享变量(一个方法中的)的原子操作是不能够<strong>被交错的</strong>，这就排除了一个线程执行一个操作期间另外一个线程读取或者更新该操作所访问的共享变量而导致的干扰(读脏数据)和冲突(丢失更新)的可能性。</p>
+<p>​        例子:        </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateHostInfo</span><span class="params">(String ip,<span class="keyword">int</span> port)</span></span>&#123;</span><br><span class="line">      <span class="comment">//以下操作不是原子操作</span></span><br><span class="line">    hostInfo.setIp(ip);<span class="comment">//语句1</span></span><br><span class="line">    hostInfo.setPort(port);<span class="comment">//语句2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​     A线程执行了语句1,还未执行语句2，B线程读取了hostInfo。</p>
+<ul>
+<li>原子操作是针对共享变量的操作而言的。也就是说，仅涉及局部变量访问的操作无所谓是否是原子的，或者干脆把这一类操作都看出原子操作。</li>
+<li>原子操作是从该操作的执行线程以外的线程来描述的，也就是说它只有在多线程环境下有意义。单线程无所谓是否具有原子性。</li>
+</ul>
+<p><strong>提示</strong></p>
+<p>​        原子操作是多线程环境下的一个概念，它是针对访问共享变量的操作而言的。原子操作不可分割包含以下两层含义。</p>
+<ul>
+<li><p>访问(读、写)某个共享变量的操作从其执行线程以外的任何线程来看，该操作要么已经执行结束要么尚未发生，即其他线程不会 <strong>看到</strong>该操作执行了部分的中间效果。</p>
+</li>
+<li><p>访问同一组共享变量的原子操作是不能够被交错的。</p>
+<p>​    总的来说，Java中有两种方式来实现原子性。一种是使用锁(Lock)。锁具有排他性，即它能保证一个共享变量在任意一个时刻只能够被一个线程访问。这就排除了多个线程同一时刻访问同一个共享变量而导致干扰与冲突的可能，即消除了竞态。另一种是利用处理器提供的CAS(Compare-and-Swap)指令，CAS指令实现原子性的方式与锁实现原子性的方式实质上是相同的，差别是一个是软件层实现一个是硬件层(处理器和内存)，它可以被看作是硬件锁。</p>
+<p>​        在Java语言中，long/double除外，仅包含byte、boolean、short、char、float、和int的变量和引用型变量的写操作都是原子的。这点由Java语言规范规定，由Java虚拟机具体实现。</p>
+<p>​        long/double型变量会占用64位(8字节)的存储空间，而32位的java虚拟机对这种变量的写操作可能会被分解为两个步骤来实施，比如先写低32位再写高32位。那么多个线程试图共享一个这样的变量就可能出现一个线程在写高32位的时候，另外一个线程正在写低32位的情形。</p>
+<p>​        volatile关键仅能够保障变量写操作的原子性，它并不能保障其他操作(比如 read-modify-write操作和check-then-act操作)的原子性。</p>
+</li>
+</ul>
+<p>原子操作+原子操作 !=原子操作</p>
+<p>例如：</p>
+<p>​        共享型变量 int a、b</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>; <span class="comment">//语句1</span></span><br><span class="line">b = <span class="number">2</span>; <span class="comment">//语句2</span></span><br></pre></td></tr></table></figure>
+<p>​    线程A执行完语句1之后再执行语句2之前的这一刻，另外一个线程B可以读取变量a和变量b的值。那么B读到的变量a和b的值分别为1和0，也就是说它读到了A所执行操作的中间结果，这有悖于原子操作不可分割的特性。</p>
+<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>b=2;</p>
+<h4 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h4>
           
         
       
