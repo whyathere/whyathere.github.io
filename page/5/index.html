@@ -502,7 +502,7 @@
       
         
           
-            <h2 id="Java中的参数"><a href="#Java中的参数" class="headerlink" title="Java中的参数"></a>Java中的参数</h2><h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4><p><strong>在实例化类的时候指明泛型的具体类型</strong></p>
+            <h2 id="Java中的类型"><a href="#Java中的类型" class="headerlink" title="Java中的类型"></a>Java中的类型</h2><h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p><strong>在实例化类的时候指明泛型的具体类型</strong></p>
 <p><strong><code>类型的参数化，可以把类型像方法的参数那样传递。</code></strong></p>
 <p>优点：<strong><code>泛型使编译器可以在编译期间对类型进行检查以提高类型安全，减少运行时由于对象类型不匹配引发的异常。如果我们在对一个对象赋值不符合其泛型的规范，就会编译报错</code></strong></p>
 <p>1、代码重用：我们可以编写一个方法/类/接口，并用于我们想要的任何类型。</p>
@@ -591,16 +591,16 @@
 <li>可以运行一个以上线程的程序称为多线程程序(multithreaded)</li>
 <li>多进程和多线程的本质区别：每个进程拥有自己的一整套变量，而线程则共享数据。有风险，但是线程通信比进程更有效、容易、更轻量级；创建、撤销一个线程比启动新进程的开销要小得多。</li>
 </ul>
-<h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><p>使用线程给其他任务提供机会</p>
+<h3 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h3><p>使用线程给其他任务提供机会</p>
 <p>Java标准库类java.lang.Thread就是Java平台对线程的实现。Thread类或</p>
-<h4 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><ul>
+<h3 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h3><ul>
 <li>一个线程是否是一个守护线程默认取决于其父线程；默认父线程是守护线程，则子线程也是守护线程。父线程在创建子线程后启动子线程之前可以调用该线程的setDaemon方法，将相应的线程设置为守护线程(或者用户线程)。</li>
 <li>程序运行完毕，jvm会等待非守护线程完成后关闭，但是jvm不会等待守护线程。</li>
 <li>如果没有设置一个线程的优先级，那么这个线程优先级默认与父线程的优先级值相等。</li>
 <li>Java平台中并没有API用于获取一个线程的父线程或者一个线程的所有子线程。</li>
 <li>父线程与子线程的生命周期没有必然联系。</li>
 </ul>
-<h4 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h4><p>​    一个线程从</p>
+<h3 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h3><p>​    一个线程从</p>
 <p><img src="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png" alt=""></p>
 <h2 id="多线程编程的目标与挑战"><a href="#多线程编程的目标与挑战" class="headerlink" title="多线程编程的目标与挑战"></a>多线程编程的目标与挑战</h2><h4 id="串行、并发与并行"><a href="#串行、并发与并行" class="headerlink" title="串行、并发与并行"></a>串行、并发与并行</h4><p>三个任务：</p>
 <ul>
