@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/数据类型问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -268,7 +268,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/10/数据类型问题/" itemprop="url">数据类型相关</a></h1>
+                <a class="post-title-link" href="/2018/09/10/hello-world/" itemprop="url">Hello World</a></h1>
         
 
         <div class="post-meta">
@@ -290,28 +290,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -342,11 +320,15 @@
       
         
           
-            <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><hr>
-<h3 id="long类型："><a href="#long类型：" class="headerlink" title="long类型："></a>long类型：</h3><p>（1）例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        long l1=1000*60*60*24*365*10L;</span><br><span class="line">        long l2=1000*60*60*24*3650L;</span><br><span class="line">        System.out.println(l1);</span><br><span class="line">        System.out.println(l2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out:</span><br><span class="line">14712289280</span><br><span class="line">315360000000</span><br></pre></td></tr></table></figure></p>
-<p>两次输出不一致。原因：在运算的时候是按照int类型计算的，只有当与带L的数运算的时候才开始按Long运算。<br>所以这里可以尽量把L数据类型提前到int类型异常之前。</p>
-<hr>
-<h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><p>String s1=”dfd”; 相当于在堆内存的常量池中创建了一个对象。<br>如果再有<br>String s2=”dfd”; 就会先检查常量池中是否有这个值，如果有就不会再创建，而是把值给s2;<br>new String（”dfd”）； 就是在内存中<br>==比较的是内存地址。<br>所以在比较内容的时候最好使用equals</p>
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -2208,6 +2190,152 @@ else：
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/开发过程中遇到的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/10/开发过程中遇到的问题/" itemprop="url">开发问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T16:30:00+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发问题/" itemprop="url" rel="index">
+                    <span itemprop="name">开发问题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>找不到对应的mapper文件</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException:Mapped Statements collection does not contain value <span class="keyword">for</span></span><br></pre></td></tr></table></figure>
+<p>原因：创建的文件目录问题。country.dao这个不可以手动加.来创建下一层目录。这里country.dao只是一个文件名，而不是country/dao</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/MySQL主主说明/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3180,166 +3308,6 @@ textField：下拉框显示的内容。是id=&apos;id&apos;的name的值
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/06/Eclipse/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/06/Eclipse/" itemprop="url">Eclipse</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T18:23:46+08:00">
-                2018-06-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Eclipse-ini文件"><a href="#Eclipse-ini文件" class="headerlink" title="Eclipse.ini文件"></a>Eclipse.ini文件</h3><p>该文档中提及的以下警告信息需要重点注意。</p>
-<ul>
-<li>-vmargs 之后的所有行都被作为参数传递给JVM；Eclipse的所有参数和选项必须在 -vmargs之前指定(正如在命令行上使用参数一样)。</li>
-</ul>
-<p>这就是为什么要在文件开始处插入 -vm 选项的原因。</p>
-<ul>
-<li>在命令行中使用 -vmargs将覆盖所有在 .ini文件中的 -vmargs设置，除非在.ini文件中或命令行中指定了 –auncher.appendVmargs。</li>
-</ul>
-<p><strong>设置 -vm选项</strong></p>
-<p>设置 -vm 选项用于确定Eclipse使用那个JVM实现。你可能会注意到我们已经选定了JVM作为一个库(<em>.dll /</em>.so)，这在启动时能提供更好的性能，还支持程序作为Eclipse可执行文件运行而并不是作为Java可执行文件。</p>
-<p>如果没有设置-vm 选项时，Eclipse 使用那个JVM，请注意Eclipse不查询JAVA_HOME 环境变量(Eclipse wiki)。相反，Eclipse执行解析path环境变量的Java命令。</p>
-<p><strong>自定义JVM参数</strong></p>
-<p>推荐的JVM参数列表来自于Piotr Gabryanczyk 在Java内存管理模型方面的研究成果。最初用于JetBRAINS Intellij设置，这种配置对Eclipse环境也有用的。在一下场合中有帮助；</p>
-<ul>
-<li>防止垃圾回收器中断程序的运行超过10ms(-XX:MaxGCPauseMillis=10)</li>
-<li>降低垃圾回收器启动的级别到30%的所占用内存(-XX:MaxHeapFreeRatio=70)</li>
-<li>强制垃圾回收器作为一个并行线程运行，降低对应用程序的干扰(-XX:+UseConcMarkSweepGC)</li>
-<li>为垃圾回收器选择增量模式，可以在GC工作中生成中断让应用程序明确地停止冻结(-XX:+CMSIncrementalPacing)</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3390,7 +3358,7 @@ textField：下拉框显示的内容。是id=&apos;id&apos;的name的值
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3401,7 +3369,7 @@ textField：下拉框显示的内容。是id=&apos;id&apos;的name的值
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3412,7 +3380,7 @@ textField：下拉框显示的内容。是id=&apos;id&apos;的name的值
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

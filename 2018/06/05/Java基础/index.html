@@ -92,7 +92,9 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/65651829-3b5e2600-e042-11e9-9cd3-b3c98492a75b.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/65651887-634d8980-e042-11e9-94d0-7170924c22e0.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png">
-<meta property="og:updated_time" content="2019-10-29T10:09:40.502Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/24977343/68444179-08967880-0211-11ea-8d6d-62c534d51139.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/24977343/68633983-d8abe580-052e-11ea-9a25-581cada0201f.png">
+<meta property="og:updated_time" content="2019-11-19T02:30:17.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Base">
 <meta name="twitter:description" content="Java中的参数泛型泛型类在实例化类的时候指明泛型的具体类型 类型的参数化，可以把类型像方法的参数那样传递。 优点：泛型使编译器可以在编译期间对类型进行检查以提高类型安全，减少运行时由于对象类型不匹配引发的异常。如果我们在对一个对象赋值不符合其泛型的规范，就会编译报错 1、代码重用：我们可以编写一个方法/类/接口，并用于我们想要的任何类型。 2、类型安全：泛型使错误显示在编译时而不是在运行时 例如">
@@ -491,8 +493,73 @@
 <p>​        共享型变量 int a、b</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>; <span class="comment">//语句1</span></span><br><span class="line">b = <span class="number">2</span>; <span class="comment">//语句2</span></span><br></pre></td></tr></table></figure>
 <p>​    线程A执行完语句1之后再执行语句2之前的这一刻，另外一个线程B可以读取变量a和变量b的值。那么B读到的变量a和b的值分别为1和0，也就是说它读到了A所执行操作的中间结果，这有悖于原子操作不可分割的特性。</p>
-<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>b=2;</p>
-<h4 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h4>
+<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>​        在多线程环境下，一个线程对某个共享变量进行更新之后，后续访问该变量的线程可能无法立刻读取到这个更新到结果，甚至永远也无法读取到这个更新的结果。这就是线程安全问题的另外一个表现形式:可见性(Visibility)。</p>
+<p>​        如果一个线程对某个共享变量进行更新之后，后续访问该变量的线程可以读取到该更新的结果，那么我们就称这个线程对共享变量的更新对其他线程可见，否则我们就称这个线程对该共享变量的更新对其他线程不可见。可见性就是指一个线程对共享变量的更新的结果对于读取相应共享变量的线程而言是否可见的问题。多线程在可见性方面存在的问题意味着某些线程读取到了旧数据(Stale Data)，而这可能导致程序出现我们所不期望的结果。</p>
+<p>​                </p>
+<h4 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h4><p>上下文切换就是看那个线程获取到了时间片。上一个线程的一些信息保存到内存</p>
+<h2 id="Java线程同步机制"><a href="#Java线程同步机制" class="headerlink" title="Java线程同步机制"></a>Java线程同步机制</h2><p>Java线程同步机制是Java多线程编程的基础与核心内容。</p>
+<h3 id="线程同步机制简介"><a href="#线程同步机制简介" class="headerlink" title="线程同步机制简介"></a>线程同步机制简介</h3><p>​        导致线程安全问题的因素更多的是侧重其根源，包括硬件(如写缓冲器)和软件(编译器)。但是从应用程序的角度来看，线程安全问题的产生是由于多线程应用程序缺乏某种东西—-线程同步机制。</p>
+<p>​        线程同步机制是一套用于协调线程间的数据访问(Data acess)及活动(Activity)的机制，该机制用于保障线程安全以及实现这些线程的共同目标。如果把线程必做公路上行驶的汽车，那么线程同步机制就好比是任何车辆都需要遵循的交通规则。遵守才能够安全地到达目的地。</p>
+<p>​        从广义上讲，Java平台提供的线程同步机制包括锁、volatile关键字、final关键字、static关键字以及一些相关API，如Object.wait()/Object.notify()等。本章介绍的是Java平台中用于协调线程间共享数据访问的相关关键字和API。</p>
+<h3 id="锁概述"><a href="#锁概述" class="headerlink" title="锁概述"></a>锁概述</h3><p>​        锁的思路：将多个线程对共享数据的并发访问转换为串行访问，即一个共享数据一次只能被一个线程访问，该线程结束后其他线程才能对其进行访问。</p>
+<p>​        锁可以理解为对共享数据进行保护的许可证。对于同一个许可证所保护的共享数据而言，任何线程访问这些共享数据前必须先持有该许可证。</p>
+<p><strong>锁的特性</strong>：</p>
+<ul>
+<li>一个线程只有在持有许可证的情况下才能够对这些共享数据进行访问</li>
+<li>一个许可证一次只能够被一个线程持有</li>
+<li>许可证的持有线程在其结束对这些共享数据的访问后必须让出(释放)其持有的许可证，以便其他线程能够对这些共享数据进行访问。</li>
+<li>锁的持有线程在其获得锁之后和释放锁之前这段时间内所执行的代码被称为临界区(Critical Section)。因此，共享数据只允许在临界区内进行访问，临界区一次只能被一个线程执行。</li>
+</ul>
+<p><strong>约定</strong></p>
+<p>​        如果有多个线程访问同一个锁锁保护的共享数据，那么我们就称这些线程同步在这个锁上，或者称为们对这些线程锁锁进行的共享数据访问进行加锁；相应地，这些线程所执行的临界区就被称为这个锁所引导的临界区。</p>
+<p>​    <code>锁具有排他性</code>(Exclusive)，即一个锁一次只能被一个线程持有。因此，这种锁被称为排他锁或者互斥锁(Mutex)。这种锁的实现方式代表了锁的基本原理。读写锁—排他锁的一种相对改进。</p>
+<p>​        按照Java虚拟机对锁的实现方式划分，Java平台中的锁包含内部锁(Intrinsic Lock)和显式锁(Explicit Lock)。内部锁是通过synchronized关键字实现的。</p>
+<p>​                <img src="https://user-images.githubusercontent.com/24977343/68444179-08967880-0211-11ea-8d6d-62c534d51139.png" alt=""></p>
+<h4 id="锁的粒度"><a href="#锁的粒度" class="headerlink" title="锁的粒度"></a>锁的粒度</h4><p>​        一个锁实例可以保护一个或者多个共享数据。一个锁实例所保护的共享数据的数量大小就被称为该锁的粒度(Granularity)。一个锁实例保护的共享数据的数量大，就称该锁的粒度粗，否则就称该锁的粒度细。锁的粒度的粗细是相对的。</p>
+<h5 id="锁的开销及可能导致的问题"><a href="#锁的开销及可能导致的问题" class="headerlink" title="锁的开销及可能导致的问题"></a>锁的开销及可能导致的问题</h5><p>​    锁的开销包括锁的申请和释放所产生的开销，以及锁可能导致的上下文切换的开销。这些开销主要是处理器时间。</p>
+<p>​    锁可能导致上下文切换。多个线程争用排他性资源可能导致上下文切换。一旦锁被争用就可能导致上下文切换，而没有被争用的锁则可能不会导致上下文切换，</p>
+<p>​        锁的不正确使用也会导致如下一些活性故障：</p>
+<ul>
+<li>锁泄漏(Lock Leak)。指一个线程获得某个锁之后，由于程序的错误缺陷致使该锁一直无法被释放而导致其他线程一直无法获得该锁的现象。</li>
+<li>死锁、锁死等活性故障。</li>
+</ul>
+<h3 id="内部锁：synchronized关键字"><a href="#内部锁：synchronized关键字" class="headerlink" title="内部锁：synchronized关键字"></a>内部锁：synchronized关键字</h3><p>​        Java平台中的任何一个对象都有唯一一个与之关联的锁。这种锁被称为监视器(Monitor)或者<code>内部锁</code>(Intrinsic Lock)。内部锁是一种排他锁，它能够保障原子性、可见性和有序性。</p>
+<p>​        synchronized关键字修饰的方法就被称为<code>同步方法</code>(Synchronized Method)。</p>
+<p>​        synchronized关键字修饰的代码块被称为同步块。引导的代码块就是临界区。        </p>
+<p>​        synchronized会保证修饰的方法里面一次只能被一个方法执行，变成串行，整体并发中的局部串行。        </p>
+<p>​        synchronized修饰的代码块被称为同步块。</p>
+<p>​        synchronized也被称为内部锁。</p>
+<p>​                synchronized(锁句柄){</p>
+<p>​            //在此代码块中访问共享数据</p>
+<p>​                }</p>
+<p>​        synchronized关键字所引导的代码块就是临界区。<code>锁句柄</code>是一个对象的引用(或者能够返回对象的表达式)。习惯上我称锁句柄为锁。锁句柄对应的监视器就被称为相应同步块的引导锁。相应地，我们称呼相应地同步块为该锁引导的同步块。</p>
+<p>​        同步实例方法相当于以”this”为引导锁的同步块。</p>
+<p>​        作为锁句柄的变量通常采用final修饰。这是因为句柄锁变量的值一旦改变，会导致执行同一个同步块的多个线程实际上使用不同的锁，从而导致竞态。有鉴于此，通常使用private修饰作为锁句柄的变量。</p>
+<p>​        作为锁句柄的变量通常采用private final修饰。例如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Object lock = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
+<p>​        同步静态方法相当于以当前类对象(Java中的类本身也是一个对象)为引导锁的同步块。</p>
+<p>​        线程在执行临界区代码的时候必须持有该临界区的引导锁。一个线程执行到同步代码块(同步方法也可看作同步块)时必须先申请该同步块的引导锁，只有申请成功(获得)该锁的线程才能够执行相应的临界区。一个线程执行完临界区代码后引导该临界区的锁就会被自动释放。在这个过程中，<strong>线程对内部锁的申请与释放的动作由java虚拟机负责代为实施，这也正是synchronized实现的锁被称为内部锁的原因。</strong></p>
+<p>​        内部锁并不会导致锁泄漏。这是因为Java编译器(javac)在将同步块代码编译为字节码的时候，对临界区中可能抛出的而程序没代码中又未捕获的异常进行了特殊(代为)处理，这使得临界区即使抛出异常也不会妨碍内部锁的释放。</p>
+<p>​        synchronized可以修饰几种类型：</p>
+<ul>
+<li>类：作用对象是这个类的所有对象</li>
+<li>方法：作用对象是调用这个方法的对象</li>
+<li>静态方法：作用对象是这个类的所有对象</li>
+<li>代码块：作用的对象是调用这个代码的对象</li>
+</ul>
+<h4 id="内部锁的调度"><a href="#内部锁的调度" class="headerlink" title="内部锁的调度"></a>内部锁的调度</h4><p>​        <img src="https://user-images.githubusercontent.com/24977343/68633983-d8abe580-052e-11ea-9a25-581cada0201f.png" alt=""></p>
+<p>Java虚拟机会为每个内部锁分配一个入口集(Entry Set)，用于记录等待获得相应内部锁的线程。多个线程申请一个锁的时候，只有一个能申请成功。申请失败的会被暂停(生命周期状态变为BLOCKED)并被存入相应锁的入口集中等待再次申请锁的机会。入口集中的线程就被称为相应内部锁的等待线程。<strong>由于Java虚拟机仅支持非公平调度</strong>，被唤醒的等待线程占用处理器运行时间可能还有其他新的活跃线程处于(RUNNABLE状态，且未进入过入口集)。</p>
+<p>​    Java选择线程是随机的，与Java虚拟机具体实现有关。可能是最长、最短或者随机的。</p>
+<p>​    synchronized是非公平锁。</p>
+<p>​    <strong>总结</strong></p>
+<p>缺点：</p>
+<ul>
+<li>synchronized是内部锁，线程对内部锁的申请与释放的动作由java虚拟机负责代为实施。而Java虚拟机仅支持非公平调度。所以有可能有的线程永远得不到调用。</li>
+<li>​                </li>
+</ul>
+<h3 id="显式锁：LOCK接口"><a href="#显式锁：LOCK接口" class="headerlink" title="显式锁：LOCK接口"></a>显式锁：LOCK接口</h3><p>​        显示锁是JDK开始引入的排他锁。作为一种线程同步机制，其作用与内部锁相同。它提供了一些内部锁锁不具备的特性，但并不是内部锁的替代品。</p>
+<p>​                </p>
+
       
     </div>
     
@@ -532,8 +599,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/05/LeetCode/" rel="prev" title="LeetCode">
-                LeetCode <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/06/Eclipse/" rel="prev" title="Eclipse">
+                Eclipse <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +678,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -622,7 +689,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -633,7 +700,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -666,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的参数"><span class="nav-number">1.</span> <span class="nav-text">Java中的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.1.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型类"><span class="nav-number">1.1.1.</span> <span class="nav-text">泛型类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">泛型方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java数据结构应用"><span class="nav-number">2.</span> <span class="nav-text">Java数据结构应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">2.1.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#subList-方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">subList()方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类"><span class="nav-number">3.</span> <span class="nav-text">抽象类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为啥用抽象类"><span class="nav-number">3.1.</span> <span class="nav-text">为啥用抽象类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程"><span class="nav-number"></span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的状态"><span class="nav-number">1.</span> <span class="nav-text">线程的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的线程"><span class="nav-number">2.</span> <span class="nav-text">Java中的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程、线程与任务"><span class="nav-number">2.1.</span> <span class="nav-text">进程、线程与任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是线程"><span class="nav-number">2.1.1.</span> <span class="nav-text">什么是线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的层次关系"><span class="nav-number">2.1.2.</span> <span class="nav-text">线程的层次关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的生命周期状态"><span class="nav-number">2.1.3.</span> <span class="nav-text">线程的生命周期状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程的目标与挑战"><span class="nav-number">3.</span> <span class="nav-text">多线程编程的目标与挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#串行、并发与并行"><span class="nav-number">3.0.1.</span> <span class="nav-text">串行、并发与并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#竟态"><span class="nav-number">3.0.2.</span> <span class="nav-text">竟态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全性"><span class="nav-number">3.0.3.</span> <span class="nav-text">线程安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原子性"><span class="nav-number">3.0.4.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可见性"><span class="nav-number">3.0.5.</span> <span class="nav-text">可见性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下文切换"><span class="nav-number">3.0.6.</span> <span class="nav-text">上下文切换</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的参数"><span class="nav-number">1.</span> <span class="nav-text">Java中的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">1.1.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型类"><span class="nav-number">1.1.1.</span> <span class="nav-text">泛型类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">泛型方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java数据结构应用"><span class="nav-number">2.</span> <span class="nav-text">Java数据结构应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">2.1.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#subList-方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">subList()方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类"><span class="nav-number">3.</span> <span class="nav-text">抽象类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为啥用抽象类"><span class="nav-number">3.1.</span> <span class="nav-text">为啥用抽象类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程"><span class="nav-number"></span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的状态"><span class="nav-number">1.</span> <span class="nav-text">线程的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的线程"><span class="nav-number">2.</span> <span class="nav-text">Java中的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程、线程与任务"><span class="nav-number">2.1.</span> <span class="nav-text">进程、线程与任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是线程"><span class="nav-number">2.1.1.</span> <span class="nav-text">什么是线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的层次关系"><span class="nav-number">2.1.2.</span> <span class="nav-text">线程的层次关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的生命周期状态"><span class="nav-number">2.1.3.</span> <span class="nav-text">线程的生命周期状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程编程的目标与挑战"><span class="nav-number">3.</span> <span class="nav-text">多线程编程的目标与挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#串行、并发与并行"><span class="nav-number">3.0.1.</span> <span class="nav-text">串行、并发与并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#竟态"><span class="nav-number">3.0.2.</span> <span class="nav-text">竟态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全性"><span class="nav-number">3.0.3.</span> <span class="nav-text">线程安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原子性"><span class="nav-number">3.0.4.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可见性"><span class="nav-number">3.0.5.</span> <span class="nav-text">可见性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下文切换"><span class="nav-number">3.0.6.</span> <span class="nav-text">上下文切换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java线程同步机制"><span class="nav-number">4.</span> <span class="nav-text">Java线程同步机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程同步机制简介"><span class="nav-number">4.1.</span> <span class="nav-text">线程同步机制简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁概述"><span class="nav-number">4.2.</span> <span class="nav-text">锁概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的粒度"><span class="nav-number">4.2.1.</span> <span class="nav-text">锁的粒度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#锁的开销及可能导致的问题"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">锁的开销及可能导致的问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部锁：synchronized关键字"><span class="nav-number">4.3.</span> <span class="nav-text">内部锁：synchronized关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内部锁的调度"><span class="nav-number">4.3.1.</span> <span class="nav-text">内部锁的调度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显式锁：LOCK接口"><span class="nav-number">4.4.</span> <span class="nav-text">显式锁：LOCK接口</span></a></li></ol></li></ol></div>
             
 
           </div>
