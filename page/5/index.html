@@ -557,7 +557,7 @@
 <li>具体派生类必须覆盖基类的抽象方法</li>
 <li>抽象派生类可以覆盖基类的抽象方法，也可以不覆盖。如果不覆盖，则其具体派生类必须覆盖它们</li>
 </ol>
-<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><ul>
 <li><p>线程不安全就意味着线程的调度顺序会影响最终结果</p>
 </li>
 <li><p>线程安全的优先级高于性能</p>
@@ -572,7 +572,7 @@
 <li>太祖长拳：基本线程类</li>
 <li>九阴真经：高级多线程控制类</li>
 </ul>
-<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p><img src="https://user-images.githubusercontent.com/24977343/65651829-3b5e2600-e042-11e9-9cd3-b3c98492a75b.png" alt=""></p>
+<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><p><img src="https://user-images.githubusercontent.com/24977343/65651829-3b5e2600-e042-11e9-9cd3-b3c98492a75b.png" alt=""></p>
 <p><img src="https://user-images.githubusercontent.com/24977343/65651887-634d8980-e042-11e9-94d0-7170924c22e0.png" alt=""></p>
 <ul>
 <li>Runnable :可运行</li>
@@ -586,23 +586,23 @@
 <li>实现Runable接口</li>
 <li>实现Callable接口</li>
 </ul>
-<h2 id="Java中的线程"><a href="#Java中的线程" class="headerlink" title="Java中的线程"></a>Java中的线程</h2><h3 id="进程、线程与任务"><a href="#进程、线程与任务" class="headerlink" title="进程、线程与任务"></a>进程、线程与任务</h3><ul>
+<h3 id="Java中的线程"><a href="#Java中的线程" class="headerlink" title="Java中的线程"></a>Java中的线程</h3><h4 id="进程、线程与任务"><a href="#进程、线程与任务" class="headerlink" title="进程、线程与任务"></a>进程、线程与任务</h4><ul>
 <li>进程是程序向操作系统申请资源(如内存空间和文件句柄)的基本单位，是程序运行的实例。线程(Thread)是进程中可独立执行的最小单位。运行一个Java程序的实质是启动一个Java虚拟机进程，也就是说一个运行的Java程序的实质是启动一个Java虚拟机进程。</li>
 <li>可以运行一个以上线程的程序称为多线程程序(multithreaded)</li>
 <li>多进程和多线程的本质区别：每个进程拥有自己的一整套变量，而线程则共享数据。有风险，但是线程通信比进程更有效、容易、更轻量级；创建、撤销一个线程比启动新进程的开销要小得多。</li>
 </ul>
-<h3 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h3><p>使用线程给其他任务提供机会</p>
+<h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><p>使用线程给其他任务提供机会</p>
 <p>Java标准库类java.lang.Thread就是Java平台对线程的实现。Thread类或</p>
-<h3 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h3><ul>
+<h4 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><ul>
 <li>一个线程是否是一个守护线程默认取决于其父线程；默认父线程是守护线程，则子线程也是守护线程。父线程在创建子线程后启动子线程之前可以调用该线程的setDaemon方法，将相应的线程设置为守护线程(或者用户线程)。</li>
 <li>程序运行完毕，jvm会等待非守护线程完成后关闭，但是jvm不会等待守护线程。</li>
 <li>如果没有设置一个线程的优先级，那么这个线程优先级默认与父线程的优先级值相等。</li>
 <li>Java平台中并没有API用于获取一个线程的父线程或者一个线程的所有子线程。</li>
 <li>父线程与子线程的生命周期没有必然联系。</li>
 </ul>
-<h3 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h3><p>​    一个线程从</p>
+<h4 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h4><p>​    一个线程从</p>
 <p><img src="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png" alt=""></p>
-<h2 id="多线程编程的目标与挑战"><a href="#多线程编程的目标与挑战" class="headerlink" title="多线程编程的目标与挑战"></a>多线程编程的目标与挑战</h2><h4 id="串行、并发与并行"><a href="#串行、并发与并行" class="headerlink" title="串行、并发与并行"></a>串行、并发与并行</h4><p>三个任务：</p>
+<h3 id="多线程编程的目标与挑战"><a href="#多线程编程的目标与挑战" class="headerlink" title="多线程编程的目标与挑战"></a>多线程编程的目标与挑战</h3><h4 id="串行、并发与并行"><a href="#串行、并发与并行" class="headerlink" title="串行、并发与并行"></a>串行、并发与并行</h4><p>三个任务：</p>
 <ul>
 <li>A：实际执行5分钟，等待完成10分钟</li>
 <li>B：实际执行2分钟，等待完成8分钟</li>
@@ -649,21 +649,19 @@
 <p>​        如果一个线程对某个共享变量进行更新之后，后续访问该变量的线程可以读取到该更新的结果，那么我们就称这个线程对共享变量的更新对其他线程可见，否则我们就称这个线程对该共享变量的更新对其他线程不可见。可见性就是指一个线程对共享变量的更新的结果对于读取相应共享变量的线程而言是否可见的问题。多线程在可见性方面存在的问题意味着某些线程读取到了旧数据(Stale Data)，而这可能导致程序出现我们所不期望的结果。</p>
 <p>​                </p>
 <h4 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h4><p>上下文切换就是看那个线程获取到了时间片。上一个线程的一些信息保存到内存</p>
-<h2 id="Java线程同步机制"><a href="#Java线程同步机制" class="headerlink" title="Java线程同步机制"></a>Java线程同步机制</h2><p>Java线程同步机制是Java多线程编程的基础与核心内容。</p>
-<h3 id="线程同步机制简介"><a href="#线程同步机制简介" class="headerlink" title="线程同步机制简介"></a>线程同步机制简介</h3><p>​        导致线程安全问题的因素更多的是侧重其根源，包括硬件(如写缓冲器)和软件(编译器)。但是从应用程序的角度来看，线程安全问题的产生是由于多线程应用程序缺乏某种东西—-线程同步机制。</p>
+<h3 id="Java线程同步机制"><a href="#Java线程同步机制" class="headerlink" title="Java线程同步机制"></a>Java线程同步机制</h3><p>Java线程同步机制是Java多线程编程的基础与核心内容。</p>
+<h4 id="线程同步机制简介"><a href="#线程同步机制简介" class="headerlink" title="线程同步机制简介"></a>线程同步机制简介</h4><p>​        导致线程安全问题的因素更多的是侧重其根源，包括硬件(如写缓冲器)和软件(编译器)。但是从应用程序的角度来看，线程安全问题的产生是由于多线程应用程序缺乏某种东西—-线程同步机制。</p>
 <p>​        线程同步机制是一套用于协调线程间的数据访问(Data acess)及活动(Activity)的机制，该机制用于保障线程安全以及实现这些线程的共同目标。如果把线程必做公路上行驶的汽车，那么线程同步机制就好比是任何车辆都需要遵循的交通规则。遵守才能够安全地到达目的地。</p>
 <p>​        从广义上讲，Java平台提供的线程同步机制包括锁、volatile关键字、final关键字、static关键字以及一些相关API，如Object.wait()/Object.notify()等。本章介绍的是Java平台中用于协调线程间共享数据访问的相关关键字和API。</p>
-<h3 id="锁概述"><a href="#锁概述" class="headerlink" title="锁概述"></a>锁概述</h3><p>​        锁的思路：将多个线程对共享数据的并发访问转换为串行访问，即一个共享数据一次只能被一个线程访问，该线程结束后其他线程才能对其进行访问。</p>
+<h4 id="锁概述"><a href="#锁概述" class="headerlink" title="锁概述"></a>锁概述</h4><p>​        锁的思路：将多个线程对共享数据的并发访问转换为串行访问，即一个共享数据一次只能被一个线程访问，该线程结束后其他线程才能对其进行访问。</p>
 <p>​        锁可以理解为对共享数据进行保护的许可证。对于同一个许可证所保护的共享数据而言，任何线程访问这些共享数据前必须先持有该许可证。</p>
-<p><strong>锁的特性</strong>：</p>
-<ul>
+<h4 id="锁的特性："><a href="#锁的特性：" class="headerlink" title="锁的特性："></a><strong>锁的特性</strong>：</h4><ul>
 <li>一个线程只有在持有许可证的情况下才能够对这些共享数据进行访问</li>
 <li>一个许可证一次只能够被一个线程持有</li>
 <li>许可证的持有线程在其结束对这些共享数据的访问后必须让出(释放)其持有的许可证，以便其他线程能够对这些共享数据进行访问。</li>
 <li>锁的持有线程在其获得锁之后和释放锁之前这段时间内所执行的代码被称为临界区(Critical Section)。因此，共享数据只允许在临界区内进行访问，临界区一次只能被一个线程执行。</li>
 </ul>
-<p><strong>约定</strong></p>
-<p>​        如果有多个线程访问同一个锁锁保护的共享数据，那么我们就称这些线程同步在这个锁上，或者称为们对这些线程锁锁进行的共享数据访问进行加锁；相应地，这些线程所执行的临界区就被称为这个锁所引导的临界区。</p>
+<h4 id="约定"><a href="#约定" class="headerlink" title="约定"></a><strong>约定</strong></h4><p>​        如果有多个线程访问同一个锁锁保护的共享数据，那么我们就称这些线程同步在这个锁上，或者称为们对这些线程锁锁进行的共享数据访问进行加锁；相应地，这些线程所执行的临界区就被称为这个锁所引导的临界区。</p>
 <p>​    <code>锁具有排他性</code>(Exclusive)，即一个锁一次只能被一个线程持有。因此，这种锁被称为排他锁或者互斥锁(Mutex)。这种锁的实现方式代表了锁的基本原理。读写锁—排他锁的一种相对改进。</p>
 <p>​        按照Java虚拟机对锁的实现方式划分，Java平台中的锁包含内部锁(Intrinsic Lock)和显式锁(Explicit Lock)。内部锁是通过synchronized关键字实现的。</p>
 <p>​                <img src="https://user-images.githubusercontent.com/24977343/68444179-08967880-0211-11ea-8d6d-62c534d51139.png" alt=""></p>
@@ -675,7 +673,7 @@
 <li>锁泄漏(Lock Leak)。指一个线程获得某个锁之后，由于程序的错误缺陷致使该锁一直无法被释放而导致其他线程一直无法获得该锁的现象。</li>
 <li>死锁、锁死等活性故障。</li>
 </ul>
-<h3 id="内部锁：synchronized关键字"><a href="#内部锁：synchronized关键字" class="headerlink" title="内部锁：synchronized关键字"></a>内部锁：synchronized关键字</h3><p>​        Java平台中的任何一个对象都有唯一一个与之关联的锁。这种锁被称为监视器(Monitor)或者<code>内部锁</code>(Intrinsic Lock)。内部锁是一种排他锁，它能够保障原子性、可见性和有序性。</p>
+<h4 id="内部锁：synchronized关键字"><a href="#内部锁：synchronized关键字" class="headerlink" title="内部锁：synchronized关键字"></a>内部锁：synchronized关键字</h4><p>​        Java平台中的任何一个对象都有唯一一个与之关联的锁。这种锁被称为监视器(Monitor)或者<code>内部锁</code>(Intrinsic Lock)。内部锁是一种排他锁，它能够保障原子性、可见性和有序性。</p>
 <p>​        synchronized关键字修饰的方法就被称为<code>同步方法</code>(Synchronized Method)。</p>
 <p>​        synchronized关键字修饰的代码块被称为同步块。引导的代码块就是临界区。        </p>
 <p>​        synchronized会保证修饰的方法里面一次只能被一个方法执行，变成串行，整体并发中的局部串行。        </p>
@@ -709,8 +707,28 @@
 <li>synchronized是内部锁，线程对内部锁的申请与释放的动作由java虚拟机负责代为实施。而Java虚拟机仅支持非公平调度。所以有可能有的线程永远得不到调用。</li>
 <li>​                </li>
 </ul>
-<h3 id="显式锁：LOCK接口"><a href="#显式锁：LOCK接口" class="headerlink" title="显式锁：LOCK接口"></a>显式锁：LOCK接口</h3><p>​        显示锁是JDK开始引入的排他锁。作为一种线程同步机制，其作用与内部锁相同。它提供了一些内部锁锁不具备的特性，但并不是内部锁的替代品。</p>
-<p>​                </p>
+<h4 id="显式锁：LOCK接口"><a href="#显式锁：LOCK接口" class="headerlink" title="显式锁：LOCK接口"></a>显式锁：LOCK接口</h4><p>​        显示锁是JDK开始引入的排他锁。作为一种线程同步机制，其作用与内部锁相同。它提供了一些内部锁锁不具备的特性，但并不是内部锁的替代品。</p>
+<h4 id="CAS与原子变量"><a href="#CAS与原子变量" class="headerlink" title="CAS与原子变量"></a>CAS与原子变量</h4><p>​        volatile无法保障(count++)这种自增操作的原子性。像自增这种比较简单的操作原子性我们有更好的选择–CAS。CAS能够将read-modify-write和check-and-act之类的操作转换为原子操作。</p>
+<p>​        count++实际上是一个read-modify-write操作，它可以由CAS转换为一种一般性的if-then-act的操作，并由处理器保障该操作的原子性。                    </p>
+<p>​        CAS就像一个代理人，多个线程共享一个V变量。客户想修改这个变量的时候会让代理人代为修改。同时提供给代理人V、目前看到的V的值A以及要期望的的值B。CAS是一个原子的if-then-act的操作，如果变量V的当前值与客户提供的A的值相等，就说明没有其他线程修改过V的值。那么最早申请的客户就会抢先将变量V的值更新为B，而其他客户(线程)的更新请求失败。这种更新机制是以CAS操作是一个原子操作为基础的，这一点直接由处理器来保障。</p>
+<ul>
+<li>CAS只保障了共享变量更新这个操作的原子性，它并不保障可见性。因此，上述代码中我们仍然采用volatile修饰共享变量count.        </li>
+</ul>
+<h5 id="原子操作工具：原子变量类"><a href="#原子操作工具：原子变量类" class="headerlink" title="原子操作工具：原子变量类"></a>原子操作工具：原子变量类</h5><h4 id="对象的发布与逸出"><a href="#对象的发布与逸出" class="headerlink" title="对象的发布与逸出"></a>对象的发布与逸出</h4><p>线程安全问题产生的前提条件是多个线程共享变量。即使是private变量，它也可能被多个线程共享。</p>
+<p>多个线程共享变量还有其他途径，它们被统称为对象发布(Publish)。<code>对象发布</code>是指能够被其他作用域之外的线程访问。</p>
+<h5 id="对象的初始化安全：重访final与static"><a href="#对象的初始化安全：重访final与static" class="headerlink" title="对象的初始化安全：重访final与static"></a>对象的初始化安全：重访final与static</h5><p>​        static关键字在多线程环境下有其特殊的涵义，它能够保障一个线程即使在未使用其他同步机制的情况下也总是可以读取到一个类的静态变量的初始值(而不是默认值)。但是这种可见性保障仅限于线程初次读取该变量。</p>
+<p>​        static关键字仅仅保障读取线程能够读取到相应字段的初始值，而不是相对新值。</p>
+<p>​        我们知道由于重排序的作用，一个线程读取到一个对象引用时，改对象可能尚未完成初始化，即这些线程可能读取到该对象字段的默认值而不是初始值(通过构造器或者初始化语句指定的值)。在多线程环境下final关键字有其特殊的作用：</p>
+<p>​        final关键字则确保了该字段所引用字段的默认值。</p>
+<p>​        JIT编译器不会将构造器中对final字段的赋值操作重排到子操作，并且还会禁止处理器做这种操作。Java语言规范还会保障其他线程看到包含该字段的对象时，这个字段所引用的对象必然是初始化完毕的。</p>
+<p>​        </p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>​        Java线程同步机制的幕后助手是内存屏障。不同同步机制的功能强弱不同，相应的开销以及可能导致的问题也不同。因此，我们需要根据实际情况选择一个功能适合且开销较小的同步机制。</p>
+<p>​        <img src="https://user-images.githubusercontent.com/24977343/69113013-bb41c300-0abc-11ea-915a-ced872397059.png" alt=""></p>
+<h3 id="线程间协作"><a href="#线程间协作" class="headerlink" title="线程间协作"></a>线程间协作</h3><h5 id="等待与通知-wait-notify"><a href="#等待与通知-wait-notify" class="headerlink" title="等待与通知:wait/notify"></a>等待与通知:wait/notify</h5><p>​        在单线程编程中，程序要执行的操作(目标动作)如果需要满足一定的条件(保护条件)才能执行，那么我们可以将该操作放在一个if语句体中，这使得目标动作只有在保护条件得以满足的时候才能被执行。在多线程编程中处理这种情形我们有另外一个选择—保护条件未满足可能只是暂时的，稍后其他线程可能更新了保护条件涉及的共享变量而使得其成立，因此我们可以将当前线程暂停，直到其所需的保护条件得已成立时再将其唤醒。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原子操作</span></span><br><span class="line">atomic&#123;</span><br><span class="line">    <span class="keyword">while</span> (保护条件不成立)&#123;</span><br><span class="line">        暂停当前线程；</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//执行目标动作</span></span><br><span class="line">    doAction();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​        显然上述操作必须具有原子性。这里，一个线程因其执行目标动作所需的保护条件未满足而被暂停的过程就称为<code>等待</code>(Wait)。一个线程更新了系统的状态，使得其他线程所需的保护条件得以满足的时候唤醒这些暂停的线程的过程就被称为通知(Notify);</p>
+<h5 id="wait-notify的作用与用法"><a href="#wait-notify的作用与用法" class="headerlink" title="wait/notify的作用与用法"></a>wait/notify的作用与用法</h5><p>​        在java平台中，Object.wait()/Object.wait(long)以及Object        </p>
+<p>​        Java虚拟机会为每个对象维护一个入口集(Entry Set)用于存储申请该对象内部锁的线程。此外，Java虚拟机还会为每个对象维护一个被称为等待集(Wait Set)的队列，该队列用于存储该对象上的等待线程。</p>
 
           
         
