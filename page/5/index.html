@@ -409,374 +409,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/Java基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/Java基础/" itemprop="url">Java Base</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T10:03:30+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Base/" itemprop="url" rel="index">
-                    <span itemprop="name">Base</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Java中的类型"><a href="#Java中的类型" class="headerlink" title="Java中的类型"></a>Java中的类型</h2><h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p><strong>在实例化类的时候指明泛型的具体类型</strong></p>
-<p><strong><code>类型的参数化，可以把类型像方法的参数那样传递。</code></strong></p>
-<p>优点：<strong><code>泛型使编译器可以在编译期间对类型进行检查以提高类型安全，减少运行时由于对象类型不匹配引发的异常。如果我们在对一个对象赋值不符合其泛型的规范，就会编译报错</code></strong></p>
-<p>1、代码重用：我们可以编写一个方法/类/接口，并用于我们想要的任何类型。</p>
-<p>2、类型安全：泛型使错误显示在编译时而不是在运行时</p>
-<p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A Simple Java program to demonstrate that NOT using </span></span><br><span class="line"><span class="comment">// generics can cause run time exceptions </span></span><br><span class="line"><span class="keyword">import</span> java.util.*; </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span></span><br><span class="line"><span class="class"></span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        <span class="comment">// Creatinga an ArrayList without any type specified </span></span><br><span class="line">        ArrayList al = <span class="keyword">new</span> ArrayList(); </span><br><span class="line">  </span><br><span class="line">        al.add(<span class="string">"Sachin"</span>); </span><br><span class="line">        al.add(<span class="string">"Rahul"</span>); </span><br><span class="line">        al.add(<span class="number">10</span>); <span class="comment">// Compiler allows this </span></span><br><span class="line">  </span><br><span class="line">        String s1 = (String)al.get(<span class="number">0</span>); </span><br><span class="line">        String s2 = (String)al.get(<span class="number">1</span>); </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// Causes Runtime Exception </span></span><br><span class="line">        String s3 = (String)al.get(<span class="number">2</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这段代码只有在运行时才会报错。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">"main"</span> java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String</span><br></pre></td></tr></table></figure>
-<p><strong>类型转换异常</strong></p>
-<p><strong>泛型如何解决这个问题？</strong></p>
-<p>在定义ArrayList时，我们可以指定此列表只能使用String对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*; </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span></span><br><span class="line"><span class="class"></span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        <span class="comment">// Creating a an ArrayList with String specified </span></span><br><span class="line">        ArrayList &lt;String&gt; al = <span class="keyword">new</span> ArrayList&lt;String&gt; (); </span><br><span class="line">  </span><br><span class="line">        al.add(<span class="string">"Sachin"</span>); </span><br><span class="line">        al.add(<span class="string">"Rahul"</span>); </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// Now Compiler doesn't allow this </span></span><br><span class="line">        al.add(<span class="number">10</span>);  </span><br><span class="line">  </span><br><span class="line">        String s1 = (String)al.get(<span class="number">0</span>); </span><br><span class="line">        String s2 = (String)al.get(<span class="number">1</span>); </span><br><span class="line">        String s3 = (String)al.get(<span class="number">2</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、不需要单独类型转换：如果我们不使用泛型，那么，在上面的例子中，每次我们从ArrayList检索数据时，我们必须对它进行强制类型转换，而且还要自己检查是否是String类型，否则就会报错，因为从List中取出元素时，其类型会默认为Object。在每次检索操作中进行类型转换都是一个令人头痛的问 如果我们已经知道我们的列表只包含字符串数据，那么我们不需要每次都对它进行类型转换。</p>
-<p>4、实现通用算法：通过使用泛型，我们可以实现适用于不同类型对象的算法，同时它们也是类型安全的。</p>
-<p>5、有界泛型</p>
-<p><strong><em>在使用泛型时，我们会有这种需求：需要指定泛型的类型范围。有界类型就是在类型参数部分指定extends或super关键字，这里的extends也含有implements的功能，分别用上限或下限来限制类型范围，从而限制泛型的类型边界。例如：</em></strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;T extends Animal&gt;<span class="comment">//限定T是Animal的子类</span></span><br><span class="line"></span><br><span class="line">&lt;T <span class="keyword">super</span> Dog &gt;<span class="comment">//限定T是Dog的超类</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">killAll</span><span class="params">(ArrayList&lt;T extends Animal&gt; animals)</span></span>&#123;...&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong><em>多个限定时我们可以使用&amp;来进行分割，这时关键词只能使用extends。与多重继承类似，这里只可以有一个类，其他都是接口。</em></strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;T extends Object&amp;Comparable&amp;Serializable&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4><p><strong>在调用方法的时候指明泛型的具体类型</strong></p>
-<p><code>定义泛型方法语法格式如下</code></p>
-<p><img src="https://user-images.githubusercontent.com/24977343/58958544-ba9ac600-87d5-11e9-9473-ea75ecb5077f.png" alt=""></p>
-<p><code>调用泛型方法语法格式如下</code></p>
-<p><img src="https://user-images.githubusercontent.com/24977343/58958730-25e49800-87d6-11e9-9619-7774468f4e20.png" alt=""></p>
-<p>​       <strong>说明一下，定义泛型方法时，必须在返回值前边加一个<t>，来声明这是一个泛型方法，持有一个泛型T，然后才可以用泛型T作为方法的返回值。</t></strong></p>
-<p>​       Class<t>的作用就是指明泛型的具体类型，而Class<t>类型的变量c，可以用来创建泛型类的对象。</t></t></p>
-<p>​       为什么要用变量c来创建对象呢？既然是泛型方法，就代表着我们不知道具体的类型是什么，也不知道构造方法如何，因此没有办法去new一个对象，但可以利用变量c的newInstance方法去创建对象，也就是利用反射创建对象。</p>
-<p>​       泛型方法要求的参数是Class<t>类型，而Class.forName()方法的返回值也是Class<t>，因此可以用Class.forName()作为参数。其中，forName()方法中的参数是何种类型，返回的Class<t>就是何种类型。在本例中，forName()方法中传入的是User类的完整路径，因此返回的是Class<user>类型的对象，因此调用泛型方法时，变量c的类型就是Class<user>，因此泛型方法中的泛型T就被指明为User，因此变量obj的类型为User。</user></user></t></t></t></p>
-<p>​       当然，泛型方法不是仅仅可以有一个参数Class<t>，可以根据需要添加其他参数。</t></p>
-<p>​       为什么要使用泛型方法呢？因为泛型类要在实例化的时候就指明类型，如果想换一种类型，不得不重新new一次，可能不够灵活；而泛型方法可以在调用的时候指明类型，更加灵活。</p>
-<h2 id="Java数据结构应用"><a href="#Java数据结构应用" class="headerlink" title="Java数据结构应用"></a>Java数据结构应用</h2><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h4 id="subList-方法"><a href="#subList-方法" class="headerlink" title="subList()方法"></a>subList()方法</h4><p>截取list的一段，但是如果对这一段做了修改，那么原来的list也会发生相应的变化。</p>
-<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p><strong>定义：</strong>在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。</p>
-<p><strong>简单定义：</strong>有一个或多个抽象方法的类，必须声明为抽象类。不能创建实例</p>
-<p>抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。</p>
-<p>由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。</p>
-<p>父类包含了子类集合的常见的方法，但是由于父类本身是抽象的，所以不能使用这些方法。</p>
-<p>在Java中抽象类表示的是一种继承关系，一个类只能继承一个抽象类，而一个类却可以实现多个接口。</p>
-<h3 id="为啥用抽象类"><a href="#为啥用抽象类" class="headerlink" title="为啥用抽象类"></a>为啥用抽象类</h3><ol>
-<li>父类中的方法确实没有必要写(通用方法)，当然可以用类的覆盖，但是没有必要</li>
-<li>各个子类中的这个方法肯定会不同</li>
-<li>抽象方法有提示作用</li>
-<li>发现共性，向上抽取。方法功能声明相同，但是方法功能主体不同。</li>
-</ol>
-<p>总结：</p>
-<ol>
-<li>抽象类不能被实例化</li>
-<li>抽象类中不一定包含抽象方法，但是有抽象方法的类必定是抽象类</li>
-<li>抽象类中的抽象方法只是声明，不包含方法体，就是不给出方法的具体实现也就是方法的具体功能。</li>
-<li>构造方法，类方法(用static修饰的方法)不能声明为抽象方法</li>
-<li>抽象类的子类必须给出抽象类中的抽象方法的具体实现，除非该子类也是抽象类</li>
-<li>具体派生类必须覆盖基类的抽象方法</li>
-<li>抽象派生类可以覆盖基类的抽象方法，也可以不覆盖。如果不覆盖，则其具体派生类必须覆盖它们</li>
-</ol>
-<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><ul>
-<li><p>线程不安全就意味着线程的调度顺序会影响最终结果</p>
-</li>
-<li><p>线程安全的优先级高于性能</p>
-</li>
-<li>进程是程序向操作系统申请资源的基本单位。线程(Thread)是进程中可独立执行的最小单位。</li>
-<li>一个进程可以包含多个线程。同一个进程中的所有线程共享该进程中的资源，如内存空间、文件句柄等。进程与线程之间的关系，好比一个营业中的饭店与其正在工作的员工之间的关系。</li>
-</ul>
-<p><strong>总结涉及到多线程的内容：</strong></p>
-<ul>
-<li>扎好马步：线程的状态</li>
-<li>内功心法：每个对象都有的方法（机制）</li>
-<li>太祖长拳：基本线程类</li>
-<li>九阴真经：高级多线程控制类</li>
-</ul>
-<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><p><img src="https://user-images.githubusercontent.com/24977343/65651829-3b5e2600-e042-11e9-9cd3-b3c98492a75b.png" alt=""></p>
-<p><img src="https://user-images.githubusercontent.com/24977343/65651887-634d8980-e042-11e9-94d0-7170924c22e0.png" alt=""></p>
-<ul>
-<li>Runnable :可运行</li>
-<li>Running：运行中</li>
-<li>Blocked ： 阻塞</li>
-<li>Dead ： 结束</li>
-</ul>
-<p>实现多线程的三种方式：</p>
-<ul>
-<li>继承Thread类</li>
-<li>实现Runable接口</li>
-<li>实现Callable接口</li>
-</ul>
-<h3 id="Java中的线程"><a href="#Java中的线程" class="headerlink" title="Java中的线程"></a>Java中的线程</h3><h4 id="进程、线程与任务"><a href="#进程、线程与任务" class="headerlink" title="进程、线程与任务"></a>进程、线程与任务</h4><ul>
-<li>进程是程序向操作系统申请资源(如内存空间和文件句柄)的基本单位，是程序运行的实例。线程(Thread)是进程中可独立执行的最小单位。运行一个Java程序的实质是启动一个Java虚拟机进程，也就是说一个运行的Java程序的实质是启动一个Java虚拟机进程。</li>
-<li>可以运行一个以上线程的程序称为多线程程序(multithreaded)</li>
-<li>多进程和多线程的本质区别：每个进程拥有自己的一整套变量，而线程则共享数据。有风险，但是线程通信比进程更有效、容易、更轻量级；创建、撤销一个线程比启动新进程的开销要小得多。</li>
-</ul>
-<h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><p>使用线程给其他任务提供机会</p>
-<p>Java标准库类java.lang.Thread就是Java平台对线程的实现。Thread类或</p>
-<h4 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><ul>
-<li>一个线程是否是一个守护线程默认取决于其父线程；默认父线程是守护线程，则子线程也是守护线程。父线程在创建子线程后启动子线程之前可以调用该线程的setDaemon方法，将相应的线程设置为守护线程(或者用户线程)。</li>
-<li>程序运行完毕，jvm会等待非守护线程完成后关闭，但是jvm不会等待守护线程。</li>
-<li>如果没有设置一个线程的优先级，那么这个线程优先级默认与父线程的优先级值相等。</li>
-<li>Java平台中并没有API用于获取一个线程的父线程或者一个线程的所有子线程。</li>
-<li>父线程与子线程的生命周期没有必然联系。</li>
-</ul>
-<h4 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h4><p>​    一个线程从</p>
-<p><img src="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png" alt=""></p>
-<h3 id="多线程编程的目标与挑战"><a href="#多线程编程的目标与挑战" class="headerlink" title="多线程编程的目标与挑战"></a>多线程编程的目标与挑战</h3><h4 id="串行、并发与并行"><a href="#串行、并发与并行" class="headerlink" title="串行、并发与并行"></a>串行、并发与并行</h4><p>三个任务：</p>
-<ul>
-<li>A：实际执行5分钟，等待完成10分钟</li>
-<li>B：实际执行2分钟，等待完成8分钟</li>
-<li>C：实际执行10分钟，无等待时间</li>
-</ul>
-<p>串行：一个任务接一个任务的来完成(一个人完成)。15+10+10=35分钟。一个处理器就可以完成</p>
-<p>并发：在任务的等待时间来执行其他任务(一个人完成)；5+2+10=17分钟。一个处理器就可以完成</p>
-<p>并行：同时执行三个任务(三个人完成)；15分钟(以耗时时间最长的任务为准)。需要多个处理器</p>
-<p>​    多线程编程的实质就是将任务的处理方式由串行改为并发，称为可并发化。但是有的任务处理方式必须是串行的，例如Java中的读取文件就是串行。</p>
-<h4 id="竟态"><a href="#竟态" class="headerlink" title="竟态"></a>竟态</h4><p>​        多线程编程中经常遇到的问题就是同样的输入，程序的输出有时候是正确的而有时候确实错误的。这种一个计算结果的正确性与时间有关的现象称为<code>竟态</code>(Race Condition);</p>
-<p>​        <code>synchronized</code>关键字会使其修饰的方法在任一时刻只能够被一个线程执行，这使得该方法涉及的共享变量在任一时刻只能够有一个线程访问(读、写)，从而避免了这个方法的交错执行而导致的干扰，这样就消除了竟态。</p>
-<h4 id="线程安全性"><a href="#线程安全性" class="headerlink" title="线程安全性"></a>线程安全性</h4><p>​        如果一个类在单线程环境下能够运作正常，并且在多线程环境下，在其使用方不必为其做任何改变的情况下也能运作正常，那么我们就称其是线程安全(Thread-safe)的，相应地问们称这个类具有线程安全性(Thread Safety)。反之，如果一个类在单线程环境下运作正常而在多线程环境下则无法正常运作，那么这个类就是非线程安全的。因此，如果一个类如果能够导致竟态，那么它就是非线程安全的；而一个类如果是线程安全的，那么它就不会导致竟态。        </p>
-<p>​        使用一个类的时候我们必须先弄清楚这个类是否是线程安全的。因为这关系到我们如何正确使用这些类。这好比微波炉加热食物前我们必须先弄清所用的容器是否适宜进行微波加热。Java标准库种的一些类如ArrayList、HashMap和SimpleDateFormat，都是非线程安全的，在多线程环境下直接使用它们可能导致一些非预期的结果，甚至是一些灾难性的结果。</p>
-<p>​        把一个类做成线程安全的往往是有额外代价的。</p>
-<p>​        一个类如果不是线程安全的，我们就说它在多线程环境下直接使用存在线程安全问题。线程安全问题概括来说表现为3个方面:原子性、可见性和有序性。</p>
-<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>​        原子(Atomic)的字面意思是不可分割的(Indivisible)。    对于涉及共享变量访问的操作，若操作从执行线程以外的任意线程来看是不可分割的，那么该操作就是原子操作，相应地我们称该操作具有原子性。</p>
-<p>​        所谓<code>不可分割</code>，其中一个含义是指访问(读、写)某个共享变量的操作从其执行线程以外的任何线程来看，该操作要么已经执行结束要么尚未发生，即其他线程不会<code>看到</code>该操作执行了部分中间效果。</p>
-<p>​        访问同一组共享变量(一个方法中的)的原子操作是不能够<strong>被交错的</strong>，这就排除了一个线程执行一个操作期间另外一个线程读取或者更新该操作所访问的共享变量而导致的干扰(读脏数据)和冲突(丢失更新)的可能性。</p>
-<p>​        例子:        </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateHostInfo</span><span class="params">(String ip,<span class="keyword">int</span> port)</span></span>&#123;</span><br><span class="line">      <span class="comment">//以下操作不是原子操作</span></span><br><span class="line">    hostInfo.setIp(ip);<span class="comment">//语句1</span></span><br><span class="line">    hostInfo.setPort(port);<span class="comment">//语句2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​     A线程执行了语句1,还未执行语句2，B线程读取了hostInfo。</p>
-<ul>
-<li>原子操作是针对共享变量的操作而言的。也就是说，仅涉及局部变量访问的操作无所谓是否是原子的，或者干脆把这一类操作都看出原子操作。</li>
-<li>原子操作是从该操作的执行线程以外的线程来描述的，也就是说它只有在多线程环境下有意义。单线程无所谓是否具有原子性。</li>
-</ul>
-<p><strong>提示</strong></p>
-<p>​        原子操作是多线程环境下的一个概念，它是针对访问共享变量的操作而言的。原子操作不可分割包含以下两层含义。</p>
-<ul>
-<li><p>访问(读、写)某个共享变量的操作从其执行线程以外的任何线程来看，该操作要么已经执行结束要么尚未发生，即其他线程不会 <strong>看到</strong>该操作执行了部分的中间效果。</p>
-</li>
-<li><p>访问同一组共享变量的原子操作是不能够被交错的。</p>
-<p>​    总的来说，Java中有两种方式来实现原子性。一种是使用锁(Lock)。锁具有排他性，即它能保证一个共享变量在任意一个时刻只能够被一个线程访问。这就排除了多个线程同一时刻访问同一个共享变量而导致干扰与冲突的可能，即消除了竞态。另一种是利用处理器提供的CAS(Compare-and-Swap)指令，CAS指令实现原子性的方式与锁实现原子性的方式实质上是相同的，差别是一个是软件层实现一个是硬件层(处理器和内存)，它可以被看作是硬件锁。</p>
-<p>​        在Java语言中，long/double除外，仅包含byte、boolean、short、char、float、和int的变量和引用型变量的写操作都是原子的。这点由Java语言规范规定，由Java虚拟机具体实现。</p>
-<p>​        long/double型变量会占用64位(8字节)的存储空间，而32位的java虚拟机对这种变量的写操作可能会被分解为两个步骤来实施，比如先写低32位再写高32位。那么多个线程试图共享一个这样的变量就可能出现一个线程在写高32位的时候，另外一个线程正在写低32位的情形。</p>
-<p>​        volatile关键仅能够保障变量写操作的原子性，它并不能保障其他操作(比如 read-modify-write操作和check-then-act操作)的原子性。</p>
-</li>
-</ul>
-<p>原子操作+原子操作 !=原子操作</p>
-<p>例如：</p>
-<p>​        共享型变量 int a、b</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>; <span class="comment">//语句1</span></span><br><span class="line">b = <span class="number">2</span>; <span class="comment">//语句2</span></span><br></pre></td></tr></table></figure>
-<p>​    线程A执行完语句1之后再执行语句2之前的这一刻，另外一个线程B可以读取变量a和变量b的值。那么B读到的变量a和b的值分别为1和0，也就是说它读到了A所执行操作的中间结果，这有悖于原子操作不可分割的特性。</p>
-<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>​        在多线程环境下，一个线程对某个共享变量进行更新之后，后续访问该变量的线程可能无法立刻读取到这个更新到结果，甚至永远也无法读取到这个更新的结果。这就是线程安全问题的另外一个表现形式:可见性(Visibility)。</p>
-<p>​        如果一个线程对某个共享变量进行更新之后，后续访问该变量的线程可以读取到该更新的结果，那么我们就称这个线程对共享变量的更新对其他线程可见，否则我们就称这个线程对该共享变量的更新对其他线程不可见。可见性就是指一个线程对共享变量的更新的结果对于读取相应共享变量的线程而言是否可见的问题。多线程在可见性方面存在的问题意味着某些线程读取到了旧数据(Stale Data)，而这可能导致程序出现我们所不期望的结果。</p>
-<p>​                </p>
-<h4 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h4><p>上下文切换就是看那个线程获取到了时间片。上一个线程的一些信息保存到内存</p>
-<h3 id="Java线程同步机制"><a href="#Java线程同步机制" class="headerlink" title="Java线程同步机制"></a>Java线程同步机制</h3><p>Java线程同步机制是Java多线程编程的基础与核心内容。</p>
-<h4 id="线程同步机制简介"><a href="#线程同步机制简介" class="headerlink" title="线程同步机制简介"></a>线程同步机制简介</h4><p>​        导致线程安全问题的因素更多的是侧重其根源，包括硬件(如写缓冲器)和软件(编译器)。但是从应用程序的角度来看，线程安全问题的产生是由于多线程应用程序缺乏某种东西—-线程同步机制。</p>
-<p>​        线程同步机制是一套用于协调线程间的数据访问(Data acess)及活动(Activity)的机制，该机制用于保障线程安全以及实现这些线程的共同目标。如果把线程必做公路上行驶的汽车，那么线程同步机制就好比是任何车辆都需要遵循的交通规则。遵守才能够安全地到达目的地。</p>
-<p>​        从广义上讲，Java平台提供的线程同步机制包括锁、volatile关键字、final关键字、static关键字以及一些相关API，如Object.wait()/Object.notify()等。本章介绍的是Java平台中用于协调线程间共享数据访问的相关关键字和API。</p>
-<h4 id="锁概述"><a href="#锁概述" class="headerlink" title="锁概述"></a>锁概述</h4><p>​        锁的思路：将多个线程对共享数据的并发访问转换为串行访问，即一个共享数据一次只能被一个线程访问，该线程结束后其他线程才能对其进行访问。</p>
-<p>​        锁可以理解为对共享数据进行保护的许可证。对于同一个许可证所保护的共享数据而言，任何线程访问这些共享数据前必须先持有该许可证。</p>
-<h4 id="锁的特性："><a href="#锁的特性：" class="headerlink" title="锁的特性："></a><strong>锁的特性</strong>：</h4><ul>
-<li>一个线程只有在持有许可证的情况下才能够对这些共享数据进行访问</li>
-<li>一个许可证一次只能够被一个线程持有</li>
-<li>许可证的持有线程在其结束对这些共享数据的访问后必须让出(释放)其持有的许可证，以便其他线程能够对这些共享数据进行访问。</li>
-<li>锁的持有线程在其获得锁之后和释放锁之前这段时间内所执行的代码被称为临界区(Critical Section)。因此，共享数据只允许在临界区内进行访问，临界区一次只能被一个线程执行。</li>
-</ul>
-<h4 id="约定"><a href="#约定" class="headerlink" title="约定"></a><strong>约定</strong></h4><p>​        如果有多个线程访问同一个锁锁保护的共享数据，那么我们就称这些线程同步在这个锁上，或者称为们对这些线程锁锁进行的共享数据访问进行加锁；相应地，这些线程所执行的临界区就被称为这个锁所引导的临界区。</p>
-<p>​    <code>锁具有排他性</code>(Exclusive)，即一个锁一次只能被一个线程持有。因此，这种锁被称为排他锁或者互斥锁(Mutex)。这种锁的实现方式代表了锁的基本原理。读写锁—排他锁的一种相对改进。</p>
-<p>​        按照Java虚拟机对锁的实现方式划分，Java平台中的锁包含内部锁(Intrinsic Lock)和显式锁(Explicit Lock)。内部锁是通过synchronized关键字实现的。</p>
-<p>​                <img src="https://user-images.githubusercontent.com/24977343/68444179-08967880-0211-11ea-8d6d-62c534d51139.png" alt=""></p>
-<h4 id="锁的粒度"><a href="#锁的粒度" class="headerlink" title="锁的粒度"></a>锁的粒度</h4><p>​        一个锁实例可以保护一个或者多个共享数据。一个锁实例所保护的共享数据的数量大小就被称为该锁的粒度(Granularity)。一个锁实例保护的共享数据的数量大，就称该锁的粒度粗，否则就称该锁的粒度细。锁的粒度的粗细是相对的。</p>
-<h5 id="锁的开销及可能导致的问题"><a href="#锁的开销及可能导致的问题" class="headerlink" title="锁的开销及可能导致的问题"></a>锁的开销及可能导致的问题</h5><p>​    锁的开销包括锁的申请和释放所产生的开销，以及锁可能导致的上下文切换的开销。这些开销主要是处理器时间。</p>
-<p>​    锁可能导致上下文切换。多个线程争用排他性资源可能导致上下文切换。一旦锁被争用就可能导致上下文切换，而没有被争用的锁则可能不会导致上下文切换，</p>
-<p>​        锁的不正确使用也会导致如下一些活性故障：</p>
-<ul>
-<li>锁泄漏(Lock Leak)。指一个线程获得某个锁之后，由于程序的错误缺陷致使该锁一直无法被释放而导致其他线程一直无法获得该锁的现象。</li>
-<li>死锁、锁死等活性故障。</li>
-</ul>
-<h4 id="内部锁：synchronized关键字"><a href="#内部锁：synchronized关键字" class="headerlink" title="内部锁：synchronized关键字"></a>内部锁：synchronized关键字</h4><p>​        Java平台中的任何一个对象都有唯一一个与之关联的锁。这种锁被称为监视器(Monitor)或者<code>内部锁</code>(Intrinsic Lock)。内部锁是一种排他锁，它能够保障原子性、可见性和有序性。</p>
-<p>​        synchronized关键字修饰的方法就被称为<code>同步方法</code>(Synchronized Method)。</p>
-<p>​        synchronized关键字修饰的代码块被称为同步块。引导的代码块就是临界区。        </p>
-<p>​        synchronized会保证修饰的方法里面一次只能被一个方法执行，变成串行，整体并发中的局部串行。        </p>
-<p>​        synchronized修饰的代码块被称为同步块。</p>
-<p>​        synchronized也被称为内部锁。</p>
-<p>​                synchronized(锁句柄){</p>
-<p>​            //在此代码块中访问共享数据</p>
-<p>​                }</p>
-<p>​        synchronized关键字所引导的代码块就是临界区。<code>锁句柄</code>是一个对象的引用(或者能够返回对象的表达式)。习惯上我称锁句柄为锁。锁句柄对应的监视器就被称为相应同步块的引导锁。相应地，我们称呼相应地同步块为该锁引导的同步块。</p>
-<p>​        同步实例方法相当于以”this”为引导锁的同步块。</p>
-<p>​        作为锁句柄的变量通常采用final修饰。这是因为句柄锁变量的值一旦改变，会导致执行同一个同步块的多个线程实际上使用不同的锁，从而导致竞态。有鉴于此，通常使用private修饰作为锁句柄的变量。</p>
-<p>​        作为锁句柄的变量通常采用private final修饰。例如</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Object lock = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
-<p>​        同步静态方法相当于以当前类对象(Java中的类本身也是一个对象)为引导锁的同步块。</p>
-<p>​        线程在执行临界区代码的时候必须持有该临界区的引导锁。一个线程执行到同步代码块(同步方法也可看作同步块)时必须先申请该同步块的引导锁，只有申请成功(获得)该锁的线程才能够执行相应的临界区。一个线程执行完临界区代码后引导该临界区的锁就会被自动释放。在这个过程中，<strong>线程对内部锁的申请与释放的动作由java虚拟机负责代为实施，这也正是synchronized实现的锁被称为内部锁的原因。</strong></p>
-<p>​        内部锁并不会导致锁泄漏。这是因为Java编译器(javac)在将同步块代码编译为字节码的时候，对临界区中可能抛出的而程序没代码中又未捕获的异常进行了特殊(代为)处理，这使得临界区即使抛出异常也不会妨碍内部锁的释放。</p>
-<p>​        synchronized可以修饰几种类型：</p>
-<ul>
-<li>类：作用对象是这个类的所有对象</li>
-<li>方法：作用对象是调用这个方法的对象</li>
-<li>静态方法：作用对象是这个类的所有对象</li>
-<li>代码块：作用的对象是调用这个代码的对象</li>
-</ul>
-<h4 id="内部锁的调度"><a href="#内部锁的调度" class="headerlink" title="内部锁的调度"></a>内部锁的调度</h4><p>​        <img src="https://user-images.githubusercontent.com/24977343/68633983-d8abe580-052e-11ea-9a25-581cada0201f.png" alt=""></p>
-<p>Java虚拟机会为每个内部锁分配一个入口集(Entry Set)，用于记录等待获得相应内部锁的线程。多个线程申请一个锁的时候，只有一个能申请成功。申请失败的会被暂停(生命周期状态变为BLOCKED)并被存入相应锁的入口集中等待再次申请锁的机会。入口集中的线程就被称为相应内部锁的等待线程。<strong>由于Java虚拟机仅支持非公平调度</strong>，被唤醒的等待线程占用处理器运行时间可能还有其他新的活跃线程处于(RUNNABLE状态，且未进入过入口集)。</p>
-<p>​    Java选择线程是随机的，与Java虚拟机具体实现有关。可能是最长、最短或者随机的。</p>
-<p>​    synchronized是非公平锁。</p>
-<p>​    <strong>总结</strong></p>
-<p>缺点：</p>
-<ul>
-<li>synchronized是内部锁，线程对内部锁的申请与释放的动作由java虚拟机负责代为实施。而Java虚拟机仅支持非公平调度。所以有可能有的线程永远得不到调用。</li>
-<li>​                </li>
-</ul>
-<h4 id="显式锁：LOCK接口"><a href="#显式锁：LOCK接口" class="headerlink" title="显式锁：LOCK接口"></a>显式锁：LOCK接口</h4><p>​        显示锁是JDK开始引入的排他锁。作为一种线程同步机制，其作用与内部锁相同。它提供了一些内部锁锁不具备的特性，但并不是内部锁的替代品。</p>
-<h4 id="CAS与原子变量"><a href="#CAS与原子变量" class="headerlink" title="CAS与原子变量"></a>CAS与原子变量</h4><p>​        volatile无法保障(count++)这种自增操作的原子性。像自增这种比较简单的操作原子性我们有更好的选择–CAS。CAS能够将read-modify-write和check-and-act之类的操作转换为原子操作。</p>
-<p>​        count++实际上是一个read-modify-write操作，它可以由CAS转换为一种一般性的if-then-act的操作，并由处理器保障该操作的原子性。                    </p>
-<p>​        CAS就像一个代理人，多个线程共享一个V变量。客户想修改这个变量的时候会让代理人代为修改。同时提供给代理人V、目前看到的V的值A以及要期望的的值B。CAS是一个原子的if-then-act的操作，如果变量V的当前值与客户提供的A的值相等，就说明没有其他线程修改过V的值。那么最早申请的客户就会抢先将变量V的值更新为B，而其他客户(线程)的更新请求失败。这种更新机制是以CAS操作是一个原子操作为基础的，这一点直接由处理器来保障。</p>
-<ul>
-<li>CAS只保障了共享变量更新这个操作的原子性，它并不保障可见性。因此，上述代码中我们仍然采用volatile修饰共享变量count.        </li>
-</ul>
-<h5 id="原子操作工具：原子变量类"><a href="#原子操作工具：原子变量类" class="headerlink" title="原子操作工具：原子变量类"></a>原子操作工具：原子变量类</h5><h4 id="对象的发布与逸出"><a href="#对象的发布与逸出" class="headerlink" title="对象的发布与逸出"></a>对象的发布与逸出</h4><p>线程安全问题产生的前提条件是多个线程共享变量。即使是private变量，它也可能被多个线程共享。</p>
-<p>多个线程共享变量还有其他途径，它们被统称为对象发布(Publish)。<code>对象发布</code>是指能够被其他作用域之外的线程访问。</p>
-<h5 id="对象的初始化安全：重访final与static"><a href="#对象的初始化安全：重访final与static" class="headerlink" title="对象的初始化安全：重访final与static"></a>对象的初始化安全：重访final与static</h5><p>​        static关键字在多线程环境下有其特殊的涵义，它能够保障一个线程即使在未使用其他同步机制的情况下也总是可以读取到一个类的静态变量的初始值(而不是默认值)。但是这种可见性保障仅限于线程初次读取该变量。</p>
-<p>​        static关键字仅仅保障读取线程能够读取到相应字段的初始值，而不是相对新值。</p>
-<p>​        我们知道由于重排序的作用，一个线程读取到一个对象引用时，改对象可能尚未完成初始化，即这些线程可能读取到该对象字段的默认值而不是初始值(通过构造器或者初始化语句指定的值)。在多线程环境下final关键字有其特殊的作用：</p>
-<p>​        final关键字则确保了该字段所引用字段的默认值。</p>
-<p>​        JIT编译器不会将构造器中对final字段的赋值操作重排到子操作，并且还会禁止处理器做这种操作。Java语言规范还会保障其他线程看到包含该字段的对象时，这个字段所引用的对象必然是初始化完毕的。</p>
-<p>​        </p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>​        Java线程同步机制的幕后助手是内存屏障。不同同步机制的功能强弱不同，相应的开销以及可能导致的问题也不同。因此，我们需要根据实际情况选择一个功能适合且开销较小的同步机制。</p>
-<p>​        <img src="https://user-images.githubusercontent.com/24977343/69113013-bb41c300-0abc-11ea-915a-ced872397059.png" alt=""></p>
-<h3 id="线程间协作"><a href="#线程间协作" class="headerlink" title="线程间协作"></a>线程间协作</h3><h5 id="等待与通知-wait-notify"><a href="#等待与通知-wait-notify" class="headerlink" title="等待与通知:wait/notify"></a>等待与通知:wait/notify</h5><p>​        在单线程编程中，程序要执行的操作(目标动作)如果需要满足一定的条件(保护条件)才能执行，那么我们可以将该操作放在一个if语句体中，这使得目标动作只有在保护条件得以满足的时候才能被执行。在多线程编程中处理这种情形我们有另外一个选择—保护条件未满足可能只是暂时的，稍后其他线程可能更新了保护条件涉及的共享变量而使得其成立，因此我们可以将当前线程暂停，直到其所需的保护条件得已成立时再将其唤醒。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原子操作</span></span><br><span class="line">atomic&#123;</span><br><span class="line">    <span class="keyword">while</span> (保护条件不成立)&#123;</span><br><span class="line">        暂停当前线程；</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//执行目标动作</span></span><br><span class="line">    doAction();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​        显然上述操作必须具有原子性。这里，一个线程因其执行目标动作所需的保护条件未满足而被暂停的过程就称为<code>等待</code>(Wait)。一个线程更新了系统的状态，使得其他线程所需的保护条件得以满足的时候唤醒这些暂停的线程的过程就被称为通知(Notify);</p>
-<h5 id="wait-notify的作用与用法"><a href="#wait-notify的作用与用法" class="headerlink" title="wait/notify的作用与用法"></a>wait/notify的作用与用法</h5><p>​        在java平台中，Object.wait()/Object.wait(long)以及Object        </p>
-<p>​        Java虚拟机会为每个对象维护一个入口集(Entry Set)用于存储申请该对象内部锁的线程。此外，Java虚拟机还会为每个对象维护一个被称为等待集(Wait Set)的队列，该队列用于存储该对象上的等待线程。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/Spring-MVC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1059,6 +691,598 @@
 </ul>
 <p>141，21，19，876</p>
 <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>20,155,232,844,224,682,496</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/Java多线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/05/Java多线程/" itemprop="url">Java 多线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T10:03:30+08:00">
+                2018-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 多线程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p><strong>注意事项：</strong></p>
+<ul>
+<li>线程不安全就意味着线程的调度顺序会影响最终结果</li>
+<li>线程安全的优先级高于性能</li>
+<li>当多个线程竞争同一资源时，如果对资源的访问顺序敏感，就称存在竞态条件。导致竞态条件发生的代码区称作临界区。</li>
+</ul>
+<p><strong>总结涉及到多线程的内容：</strong></p>
+<ul>
+<li>扎好马步：线程的状态</li>
+<li>内功心法：每个对象都有的方法（机制）</li>
+<li>太祖长拳：基本线程类</li>
+<li>九阴真经：高级多线程控制类</li>
+</ul>
+<p>线程的状态</p>
+<p><img src="https://user-images.githubusercontent.com/24977343/65651829-3b5e2600-e042-11e9-9cd3-b3c98492a75b.png" alt=""></p>
+<p><img src="https://user-images.githubusercontent.com/24977343/65651887-634d8980-e042-11e9-94d0-7170924c22e0.png" alt=""></p>
+<ul>
+<li>Runnable :可运行</li>
+<li>Running：运行中</li>
+<li>Blocked ： 阻塞</li>
+<li>Dead ： 结束</li>
+</ul>
+<p>实现多线程的三种方式：</p>
+<ul>
+<li>继承Thread类</li>
+<li>实现Runable接口</li>
+<li>实现Callable接口</li>
+</ul>
+<h3 id="Java中的线程"><a href="#Java中的线程" class="headerlink" title="Java中的线程"></a>Java中的线程</h3><h4 id="进程、线程与任务"><a href="#进程、线程与任务" class="headerlink" title="进程、线程与任务"></a>进程、线程与任务</h4><ul>
+<li><p>进程是程序向操作系统申请资源(如内存空间和文件句柄)的基本单位，是程序运行的实例。线程(Thread)是进程中可独立执行的最小单位。运行一个Java程序的实质是启动一个Java虚拟机进程，也就是说一个运行的Java程序的实质是启动一个Java虚拟机进程。</p>
+</li>
+<li><p>可以运行一个以上线程的程序称为多线程程序(multithreaded)</p>
+</li>
+<li><p>多进程和多线程的本质区别：每个进程拥有自己的一整套变量，而线程则共享数据。有风险，但是线程通信比进程更有效、容易、更轻量级；创建、撤销一个线程比启动新进程的开销要小得多。</p>
+</li>
+<li><p>进程和程序：好比播放中的电影和相应的视频文件；前者从动态的角度刻画事物而后者从静态的角度刻画事物。运行一个Java程序的实质就是启动了一个Java虚拟机进程，也就是一个运行的Java程序就是一个Java虚拟机进程。</p>
+</li>
+<li><p>一个进程可以包含多个线程。同一个进程中的所有线程共享该进程中的资源，如内存空间、文件句柄等。进程与线程之间的关系，好比一个营业中的饭店与其正在工作的员工之间的关系。</p>
+</li>
+<li><p>线程所要完成的计算就被称为任务，特定的线程总是在执行着特定的任务。这些任务也正是相应线程存在的理由。</p>
+</li>
+</ul>
+<h4 id="多线程编程简介"><a href="#多线程编程简介" class="headerlink" title="多线程编程简介"></a>多线程编程简介</h4><h5 id="什么是多线程编程"><a href="#什么是多线程编程" class="headerlink" title="什么是多线程编程"></a>什么是多线程编程</h5><p>​        函数式编程(Functional Programming)中的函数是基本抽象单位，面向对象编程中的类(Class)是基本抽象单位。类似地，多线程编程就是以线程为基本抽象单位的一种编程范式(Paradigm)。多线程编程自身又有需要解决的问题。Java平台中一个线程就是一个对象。</p>
+<h5 id="为什么使用多线程"><a href="#为什么使用多线程" class="headerlink" title="为什么使用多线程"></a>为什么使用多线程</h5><ul>
+<li>提高CPU使用效率</li>
+<li>防止阻塞</li>
+<li>任务分解</li>
+</ul>
+<h4 id="JAVA线程API简介"><a href="#JAVA线程API简介" class="headerlink" title="JAVA线程API简介"></a>JAVA线程API简介</h4><p>​    Java标准库类java.lang.Thread就是Java平台对线程的实现。Thread类或其子类的一个实例就是一个线程。</p>
+<h5 id="线程的创建、启动与运行"><a href="#线程的创建、启动与运行" class="headerlink" title="线程的创建、启动与运行"></a>线程的创建、启动与运行</h5><p>​        在Java平台中创建一个线程就是创建一个Thread类(或其子类)的实例。</p>
+<p>​        每个线程都有其要执行的任务。线程的任务处理逻辑可以在Thread类的run实例方法中直接实现或者通过该方法进行调用，因此run方法相当于线程任务处理逻辑的入口方法，它由Java虚拟机在运行相应线程时直接调用，而不是由应用代码进行调用。</p>
+<p>​        运行一个线程实际上就是让<code>Java虚拟机</code>执行该线程的run方法，从而使相应线程的任务处理逻辑代码得以执行。为此，我们首先要启动线程。Thread类的start方法的作用是启动相应的线程。启动一个线程的实质是请求Java虚拟机运行相应的线程，而这个线程具体何时运行是由线程调度器(Scheduler)决定的。因此，start方法调用结束并不意味着相应线程已经开始运行，这个线程可能稍后才被运行，甚至可能永远不会被运行。</p>
+<p>​        Thread类的两个常用构造器是：Thread()和Thread(Runnable target)。相应地，Java语言中创建线程有两种方式。</p>
+<ol>
+<li>定义Thread类的子类，在该类中覆盖run方法并在该方法中实现线程任务处理逻辑；</li>
+<li>创建一个java.lang.Runnable接口的实力，并在该实例的run方法中实现任务处理逻辑，然后以该Runnable接口实例作为构造器的参数直接创建(new)一个Thread类的实例。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WelcomeThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.printf(<span class="string">"2.Welcome I'm %s.%n"</span>, Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Thread welcomeThread = <span class="keyword">new</span> WelcomeThread();</span><br><span class="line">        welcomeThread.start();</span><br><span class="line">        System.out.printf(<span class="string">"1.Welcome I'm %s.%n"</span>, Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WelcomeThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.printf(<span class="string">"2.Welcome I'm %s.%n"</span>, Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread1</span>  </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      	<span class="comment">//创建线程，直接new一个实例作为构造参数</span></span><br><span class="line">        Thread welcomeThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> WelcomeThread());</span><br><span class="line">        welcomeThread.start();</span><br><span class="line">        System.out.printf(<span class="string">"1.Welcome I'm %s.%n"</span>, Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Runnable接口"><a href="#Runnable接口" class="headerlink" title="Runnable接口"></a>Runnable接口</h5><p><strong>线程两种创建方式的区别</strong></p>
+<p>​        从面相编程的角度看：第一种创建方式(创建Thread类的子类)是一种基于继承(Inheritance)的技术，第2种创建方式(以Runnable接口实例为构造器参数直接通过new创建Thread实例)是一种基于组合(Composition)的技术。由于组合技术相对继承来说，其类和类之间的耦合性(Coupline)更低，因此它也更加灵活。一般我们认为组合是优先选用的技术。</p>
+<p>​        从对象共享的角度来看；第2种创建方式意味着多个线程实例可以共享同一个Runnable实例。在某下情况下这可能导致程序的运行结果出乎我们的意料。</p>
+<p>​        从对象创建成本的角度看：Java中的线程实例是一个[特殊]的Runnable实例，因为在创建它的时候Java虚拟机会为其分配调用栈空间、内核线程等资源。因此，创建一个线程实例比起创建一个普通的Runnable实例来说，其成本要相对高昂一点。所以，如果创建Runnable实例再将其作为方法参数传递给其他对象使用(JDK标准库中有不少API都使用了Runnable接口)而不必利用它来创建相应的线程(即第2种线程创建方式)即可满足我们的计算需要，那么就不要创建线程实例。</p>
+<h5 id="1-3-3线程属性"><a href="#1-3-3线程属性" class="headerlink" title="1.3.3线程属性"></a>1.3.3线程属性</h5><p>​        线程的属性包括线程的编号(ID)、名称(Name)、线程列别(Daemon)和优先级(Priority)。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">属性类型及用途</th>
+<th style="text-align:center">只读属性</th>
+<th style="text-align:left">重要注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">编号(ID)</td>
+<td style="text-align:center">类型:long 。用于标识不同的线程。不同的线程拥有不同的编号。</td>
+<td style="text-align:center">是</td>
+<td style="text-align:left">某个编号的线程运行结束后，该编号可能会被后续创建的线程使用。</td>
+</tr>
+<tr>
+<td style="text-align:center">名称(Name)</td>
+<td style="text-align:center">类型：String。面向人(而非机器)的一个属性，用于区分不同的线程。默认值：Thread-线程编号</td>
+<td style="text-align:center">否</td>
+<td style="text-align:left">Java并不禁止我们将不同的线程名称属性设置为相同的值。</td>
+</tr>
+<tr>
+<td style="text-align:center">线程类型(Daemon)</td>
+<td style="text-align:center">类型:boolean 。true：守护线程。false:用户线程。默认值与相应线程的父线程的该属性的值相同</td>
+<td style="text-align:center">否</td>
+<td style="text-align:left">该属性必须在线程启动前设置，即start方法调用前。否则IllegalThradStateException。负责一些关键任务处理的线程不适宜设置为守护线程。</td>
+</tr>
+<tr>
+<td style="text-align:center">优先级（Priority）</td>
+<td style="text-align:center">类型:int。该属性本质是给线程调度器的提示，用于表示应用程序系统那个线程能够优先得以运行。Java定义了1-10.默认为5(普通)。具体线程的优先级默认与父线程的相同</td>
+<td style="text-align:center">否</td>
+<td style="text-align:left">一般使用默认优先级即可。不恰当地设置该属性值可能导致严重的问题(线程饥饿)</td>
+</tr>
+</tbody>
+</table>
+<p>​        通过名称属性，我们可以为每个线程设置一个便于区分不同线程的名称。虽然Java虚拟机并不要求每个线程的名称都不同，但是设置该属性有助于程序调试和问题定位。因此，我们建议为每个线程都设置一个简短而又能够体现其作用或其实现的功能的名称。</p>
+<p>​        线程的属性除了编号外，其他属性都是可读写的属性，即Thread类提供了相应的get方法和set方法用于读取或者设置相应的属性。</p>
+<p>​        Java线程的优先级属性本质上只是一个给线程调度器的提示信息，以便于线程调度器决定优先调度哪些线程运行。它并不能保证线程按照其优先级高低的顺序运行。一般情况默认即可。        </p>
+<h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><p>使用线程给其他任务提供机会</p>
+<p>Java标准库类java.lang.Thread就是Java平台对线程的实现。Thread类或</p>
+<h4 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><ul>
+<li>一个线程是否是一个守护线程默认取决于其父线程；默认父线程是守护线程，则子线程也是守护线程。父线程在创建子线程后启动子线程之前可以调用该线程的setDaemon方法，将相应的线程设置为守护线程(或者用户线程)。</li>
+<li>程序运行完毕，jvm会等待非守护线程完成后关闭，但是jvm不会等待守护线程。</li>
+<li>如果没有设置一个线程的优先级，那么这个线程优先级默认与父线程的优先级值相等。</li>
+<li>Java平台中并没有API用于获取一个线程的父线程或者一个线程的所有子线程。</li>
+<li>父线程与子线程的生命周期没有必然联系。</li>
+</ul>
+<h4 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h4><p>​    一个线程从</p>
+<p><img src="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png" alt=""></p>
+<h3 id="多线程编程的目标与挑战"><a href="#多线程编程的目标与挑战" class="headerlink" title="多线程编程的目标与挑战"></a>多线程编程的目标与挑战</h3><h4 id="串行、并发与并行"><a href="#串行、并发与并行" class="headerlink" title="串行、并发与并行"></a>串行、并发与并行</h4><p>三个任务：</p>
+<ul>
+<li>A：实际执行5分钟，等待完成10分钟</li>
+<li>B：实际执行2分钟，等待完成8分钟</li>
+<li>C：实际执行10分钟，无等待时间</li>
+</ul>
+<p>串行：一个任务接一个任务的来完成(一个人完成)。15+10+10=35分钟。一个处理器就可以完成</p>
+<p>并发：在任务的等待时间来执行其他任务(一个人完成)；5+2+10=17分钟。一个处理器就可以完成</p>
+<p>并行：同时执行三个任务(三个人完成)；15分钟(以耗时时间最长的任务为准)。需要多个处理器</p>
+<p>​    多线程编程的实质就是将任务的处理方式由串行改为并发，称为可并发化。但是有的任务处理方式必须是串行的，例如Java中的读取文件就是串行。</p>
+<h4 id="竟态"><a href="#竟态" class="headerlink" title="竟态"></a>竟态</h4><p>​        多线程编程中经常遇到的问题就是同样的输入，程序的输出有时候是正确的而有时候确实错误的。这种一个计算结果的正确性与时间有关的现象称为<code>竟态</code>(Race Condition);</p>
+<p>​        <code>synchronized</code>关键字会使其修饰的方法在任一时刻只能够被一个线程执行，这使得该方法涉及的共享变量在任一时刻只能够有一个线程访问(读、写)，从而避免了这个方法的交错执行而导致的干扰，这样就消除了竟态。</p>
+<h4 id="线程安全性"><a href="#线程安全性" class="headerlink" title="线程安全性"></a>线程安全性</h4><p>​        如果一个类在单线程环境下能够运作正常，并且在多线程环境下，在其使用方不必为其做任何改变的情况下也能运作正常，那么我们就称其是线程安全(Thread-safe)的，相应地问们称这个类具有线程安全性(Thread Safety)。反之，如果一个类在单线程环境下运作正常而在多线程环境下则无法正常运作，那么这个类就是非线程安全的。因此，如果一个类如果能够导致竟态，那么它就是非线程安全的；而一个类如果是线程安全的，那么它就不会导致竟态。        </p>
+<p>​        使用一个类的时候我们必须先弄清楚这个类是否是线程安全的。因为这关系到我们如何正确使用这些类。这好比微波炉加热食物前我们必须先弄清所用的容器是否适宜进行微波加热。Java标准库种的一些类如ArrayList、HashMap和SimpleDateFormat，都是非线程安全的，在多线程环境下直接使用它们可能导致一些非预期的结果，甚至是一些灾难性的结果。</p>
+<p>​        把一个类做成线程安全的往往是有额外代价的。</p>
+<p>​        一个类如果不是线程安全的，我们就说它在多线程环境下直接使用存在线程安全问题。线程安全问题概括来说表现为3个方面:原子性、可见性和有序性。</p>
+<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>​        原子(Atomic)的字面意思是不可分割的(Indivisible)。    对于涉及共享变量访问的操作，若操作从执行线程以外的任意线程来看是不可分割的，那么该操作就是原子操作，相应地我们称该操作具有原子性。</p>
+<p>​        所谓<code>不可分割</code>，其中一个含义是指访问(读、写)某个共享变量的操作从其执行线程以外的任何线程来看，该操作要么已经执行结束要么尚未发生，即其他线程不会<code>看到</code>该操作执行了部分中间效果。</p>
+<p>​        访问同一组共享变量(一个方法中的)的原子操作是不能够<strong>被交错的</strong>，这就排除了一个线程执行一个操作期间另外一个线程读取或者更新该操作所访问的共享变量而导致的干扰(读脏数据)和冲突(丢失更新)的可能性。</p>
+<p>​        例子:        </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateHostInfo</span><span class="params">(String ip,<span class="keyword">int</span> port)</span></span>&#123;</span><br><span class="line">      <span class="comment">//以下操作不是原子操作</span></span><br><span class="line">    hostInfo.setIp(ip);<span class="comment">//语句1</span></span><br><span class="line">    hostInfo.setPort(port);<span class="comment">//语句2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​     A线程执行了语句1,还未执行语句2，B线程读取了hostInfo。</p>
+<ul>
+<li>原子操作是针对共享变量的操作而言的。也就是说，仅涉及局部变量访问的操作无所谓是否是原子的，或者干脆把这一类操作都看出原子操作。</li>
+<li>原子操作是从该操作的执行线程以外的线程来描述的，也就是说它只有在多线程环境下有意义。单线程无所谓是否具有原子性。</li>
+</ul>
+<p><strong>提示</strong></p>
+<p>​        原子操作是多线程环境下的一个概念，它是针对访问共享变量的操作而言的。原子操作不可分割包含以下两层含义。</p>
+<ul>
+<li><p>访问(读、写)某个共享变量的操作从其执行线程以外的任何线程来看，该操作要么已经执行结束要么尚未发生，即其他线程不会 <strong>看到</strong>该操作执行了部分的中间效果。</p>
+</li>
+<li><p>访问同一组共享变量的原子操作是不能够被交错的。</p>
+<p>​    总的来说，Java中有两种方式来实现原子性。一种是使用锁(Lock)。锁具有排他性，即它能保证一个共享变量在任意一个时刻只能够被一个线程访问。这就排除了多个线程同一时刻访问同一个共享变量而导致干扰与冲突的可能，即消除了竞态。另一种是利用处理器提供的CAS(Compare-and-Swap)指令，CAS指令实现原子性的方式与锁实现原子性的方式实质上是相同的，差别是一个是软件层实现一个是硬件层(处理器和内存)，它可以被看作是硬件锁。</p>
+<p>​        在Java语言中，long/double除外，仅包含byte、boolean、short、char、float、和int的变量和引用型变量的写操作都是原子的。这点由Java语言规范规定，由Java虚拟机具体实现。</p>
+<p>​        long/double型变量会占用64位(8字节)的存储空间，而32位的java虚拟机对这种变量的写操作可能会被分解为两个步骤来实施，比如先写低32位再写高32位。那么多个线程试图共享一个这样的变量就可能出现一个线程在写高32位的时候，另外一个线程正在写低32位的情形。</p>
+<p>​        volatile关键仅能够保障变量写操作的原子性，它并不能保障其他操作(比如 read-modify-write操作和check-then-act操作)的原子性。</p>
+</li>
+</ul>
+<p>原子操作+原子操作 !=原子操作</p>
+<p>例如：</p>
+<p>​        共享型变量 int a、b</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>; <span class="comment">//语句1</span></span><br><span class="line">b = <span class="number">2</span>; <span class="comment">//语句2</span></span><br></pre></td></tr></table></figure>
+<p>​    线程A执行完语句1之后再执行语句2之前的这一刻，另外一个线程B可以读取变量a和变量b的值。那么B读到的变量a和b的值分别为1和0，也就是说它读到了A所执行操作的中间结果，这有悖于原子操作不可分割的特性。</p>
+<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>​        在多线程环境下，一个线程对某个共享变量进行更新之后，后续访问该变量的线程可能无法立刻读取到这个更新到结果，甚至永远也无法读取到这个更新的结果。这就是线程安全问题的另外一个表现形式:可见性(Visibility)。</p>
+<p>​        如果一个线程对某个共享变量进行更新之后，后续访问该变量的线程可以读取到该更新的结果，那么我们就称这个线程对共享变量的更新对其他线程可见，否则我们就称这个线程对该共享变量的更新对其他线程不可见。可见性就是指一个线程对共享变量的更新的结果对于读取相应共享变量的线程而言是否可见的问题。多线程在可见性方面存在的问题意味着某些线程读取到了旧数据(Stale Data)，而这可能导致程序出现我们所不期望的结果。</p>
+<p>​                </p>
+<h4 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h4><p>上下文切换就是看那个线程获取到了时间片。上一个线程的一些信息保存到内存</p>
+<h3 id="Java线程同步机制"><a href="#Java线程同步机制" class="headerlink" title="Java线程同步机制"></a>Java线程同步机制</h3><p>Java线程同步机制是Java多线程编程的基础与核心内容。</p>
+<h4 id="线程同步机制简介"><a href="#线程同步机制简介" class="headerlink" title="线程同步机制简介"></a>线程同步机制简介</h4><p>​        导致线程安全问题的因素更多的是侧重其根源，包括硬件(如写缓冲器)和软件(编译器)。但是从应用程序的角度来看，线程安全问题的产生是由于多线程应用程序缺乏某种东西—-线程同步机制。</p>
+<p>​        线程同步机制是一套用于协调线程间的数据访问(Data acess)及活动(Activity)的机制，该机制用于保障线程安全以及实现这些线程的共同目标。如果把线程必做公路上行驶的汽车，那么线程同步机制就好比是任何车辆都需要遵循的交通规则。遵守才能够安全地到达目的地。</p>
+<p>​        从广义上讲，Java平台提供的线程同步机制包括锁、volatile关键字、final关键字、static关键字以及一些相关API，如Object.wait()/Object.notify()等。本章介绍的是Java平台中用于协调线程间共享数据访问的相关关键字和API。</p>
+<h4 id="锁概述"><a href="#锁概述" class="headerlink" title="锁概述"></a>锁概述</h4><p>​        锁的思路：将多个线程对共享数据的并发访问转换为串行访问，即一个共享数据一次只能被一个线程访问，该线程结束后其他线程才能对其进行访问。</p>
+<p>​        锁可以理解为对共享数据进行保护的许可证。对于同一个许可证所保护的共享数据而言，任何线程访问这些共享数据前必须先持有该许可证。</p>
+<h4 id="锁的特性："><a href="#锁的特性：" class="headerlink" title="锁的特性："></a><strong>锁的特性</strong>：</h4><ul>
+<li>一个线程只有在持有许可证的情况下才能够对这些共享数据进行访问</li>
+<li>一个许可证一次只能够被一个线程持有</li>
+<li>许可证的持有线程在其结束对这些共享数据的访问后必须让出(释放)其持有的许可证，以便其他线程能够对这些共享数据进行访问。</li>
+<li>锁的持有线程在其获得锁之后和释放锁之前这段时间内所执行的代码被称为临界区(Critical Section)。因此，共享数据只允许在临界区内进行访问，临界区一次只能被一个线程执行。</li>
+</ul>
+<h4 id="约定"><a href="#约定" class="headerlink" title="约定"></a><strong>约定</strong></h4><p>​        如果有多个线程访问同一个锁锁保护的共享数据，那么我们就称这些线程同步在这个锁上，或者称为们对这些线程锁锁进行的共享数据访问进行加锁；相应地，这些线程所执行的临界区就被称为这个锁所引导的临界区。</p>
+<p>​    <code>锁具有排他性</code>(Exclusive)，即一个锁一次只能被一个线程持有。因此，这种锁被称为排他锁或者互斥锁(Mutex)。这种锁的实现方式代表了锁的基本原理。读写锁—排他锁的一种相对改进。</p>
+<p>​        按照Java虚拟机对锁的实现方式划分，Java平台中的锁包含内部锁(Intrinsic Lock)和显式锁(Explicit Lock)。内部锁是通过synchronized关键字实现的。</p>
+<p>​                <img src="https://user-images.githubusercontent.com/24977343/68444179-08967880-0211-11ea-8d6d-62c534d51139.png" alt=""></p>
+<h4 id="锁的粒度"><a href="#锁的粒度" class="headerlink" title="锁的粒度"></a>锁的粒度</h4><p>​        一个锁实例可以保护一个或者多个共享数据。一个锁实例所保护的共享数据的数量大小就被称为该锁的粒度(Granularity)。一个锁实例保护的共享数据的数量大，就称该锁的粒度粗，否则就称该锁的粒度细。锁的粒度的粗细是相对的。</p>
+<h5 id="锁的开销及可能导致的问题"><a href="#锁的开销及可能导致的问题" class="headerlink" title="锁的开销及可能导致的问题"></a>锁的开销及可能导致的问题</h5><p>​    锁的开销包括锁的申请和释放所产生的开销，以及锁可能导致的上下文切换的开销。这些开销主要是处理器时间。</p>
+<p>​    锁可能导致上下文切换。多个线程争用排他性资源可能导致上下文切换。一旦锁被争用就可能导致上下文切换，而没有被争用的锁则可能不会导致上下文切换，</p>
+<p>​        锁的不正确使用也会导致如下一些活性故障：</p>
+<ul>
+<li>锁泄漏(Lock Leak)。指一个线程获得某个锁之后，由于程序的错误缺陷致使该锁一直无法被释放而导致其他线程一直无法获得该锁的现象。</li>
+<li>死锁、锁死等活性故障。</li>
+</ul>
+<h4 id="内部锁：synchronized关键字"><a href="#内部锁：synchronized关键字" class="headerlink" title="内部锁：synchronized关键字"></a>内部锁：synchronized关键字</h4><p>​        Java平台中的任何一个对象都有唯一一个与之关联的锁。这种锁被称为监视器(Monitor)或者<code>内部锁</code>(Intrinsic Lock)。内部锁是一种排他锁，它能够保障原子性、可见性和有序性。</p>
+<p>​        synchronized关键字修饰的方法就被称为<code>同步方法</code>(Synchronized Method)。</p>
+<p>​        synchronized关键字修饰的代码块被称为同步块。引导的代码块就是临界区。        </p>
+<p>​        synchronized会保证修饰的方法里面一次只能被一个方法执行，变成串行，整体并发中的局部串行。        </p>
+<p>​        synchronized修饰的代码块被称为同步块。</p>
+<p>​        synchronized也被称为内部锁。</p>
+<p>​                synchronized(锁句柄){</p>
+<p>​            //在此代码块中访问共享数据</p>
+<p>​                }</p>
+<p>​        synchronized关键字所引导的代码块就是临界区。<code>锁句柄</code>是一个对象的引用(或者能够返回对象的表达式)。习惯上我称锁句柄为锁。锁句柄对应的监视器就被称为相应同步块的引导锁。相应地，我们称呼相应地同步块为该锁引导的同步块。</p>
+<p>​        同步实例方法相当于以”this”为引导锁的同步块。</p>
+<p>​        作为锁句柄的变量通常采用final修饰。这是因为句柄锁变量的值一旦改变，会导致执行同一个同步块的多个线程实际上使用不同的锁，从而导致竞态。有鉴于此，通常使用private修饰作为锁句柄的变量。</p>
+<p>​        作为锁句柄的变量通常采用private final修饰。例如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Object lock = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
+<p>​        同步静态方法相当于以当前类对象(Java中的类本身也是一个对象)为引导锁的同步块。</p>
+<p>​        线程在执行临界区代码的时候必须持有该临界区的引导锁。一个线程执行到同步代码块(同步方法也可看作同步块)时必须先申请该同步块的引导锁，只有申请成功(获得)该锁的线程才能够执行相应的临界区。一个线程执行完临界区代码后引导该临界区的锁就会被自动释放。在这个过程中，<strong>线程对内部锁的申请与释放的动作由java虚拟机负责代为实施，这也正是synchronized实现的锁被称为内部锁的原因。</strong></p>
+<p>​        内部锁并不会导致锁泄漏。这是因为Java编译器(javac)在将同步块代码编译为字节码的时候，对临界区中可能抛出的而程序没代码中又未捕获的异常进行了特殊(代为)处理，这使得临界区即使抛出异常也不会妨碍内部锁的释放。</p>
+<p>​        synchronized可以修饰几种类型：</p>
+<ul>
+<li>类：作用对象是这个类的所有对象</li>
+<li>方法：作用对象是调用这个方法的对象</li>
+<li>静态方法：作用对象是这个类的所有对象</li>
+<li>代码块：作用的对象是调用这个代码的对象</li>
+</ul>
+<h4 id="内部锁的调度"><a href="#内部锁的调度" class="headerlink" title="内部锁的调度"></a>内部锁的调度</h4><p>​        <img src="https://user-images.githubusercontent.com/24977343/68633983-d8abe580-052e-11ea-9a25-581cada0201f.png" alt=""></p>
+<p>Java虚拟机会为每个内部锁分配一个入口集(Entry Set)，用于记录等待获得相应内部锁的线程。多个线程申请一个锁的时候，只有一个能申请成功。申请失败的会被暂停(生命周期状态变为BLOCKED)并被存入相应锁的入口集中等待再次申请锁的机会。入口集中的线程就被称为相应内部锁的等待线程。<strong>由于Java虚拟机仅支持非公平调度</strong>，被唤醒的等待线程占用处理器运行时间可能还有其他新的活跃线程处于(RUNNABLE状态，且未进入过入口集)。</p>
+<p>​    Java选择线程是随机的，与Java虚拟机具体实现有关。可能是最长、最短或者随机的。</p>
+<p>​    synchronized是非公平锁。</p>
+<p>​    <strong>总结</strong></p>
+<p>缺点：</p>
+<ul>
+<li>synchronized是内部锁，线程对内部锁的申请与释放的动作由java虚拟机负责代为实施。而Java虚拟机仅支持非公平调度。所以有可能有的线程永远得不到调用。</li>
+<li>​                </li>
+</ul>
+<h4 id="显式锁：LOCK接口"><a href="#显式锁：LOCK接口" class="headerlink" title="显式锁：LOCK接口"></a>显式锁：LOCK接口</h4><p>​        显示锁是JDK开始引入的排他锁。作为一种线程同步机制，其作用与内部锁相同。它提供了一些内部锁锁不具备的特性，但并不是内部锁的替代品。</p>
+<h4 id="CAS与原子变量"><a href="#CAS与原子变量" class="headerlink" title="CAS与原子变量"></a>CAS与原子变量</h4><p>​        volatile无法保障(count++)这种自增操作的原子性。像自增这种比较简单的操作原子性我们有更好的选择–CAS。CAS能够将read-modify-write和check-and-act之类的操作转换为原子操作。</p>
+<p>​        count++实际上是一个read-modify-write操作，它可以由CAS转换为一种一般性的if-then-act的操作，并由处理器保障该操作的原子性。                    </p>
+<p>​        CAS就像一个代理人，多个线程共享一个V变量。客户想修改这个变量的时候会让代理人代为修改。同时提供给代理人V、目前看到的V的值A以及要期望的的值B。CAS是一个原子的if-then-act的操作，如果变量V的当前值与客户提供的A的值相等，就说明没有其他线程修改过V的值。那么最早申请的客户就会抢先将变量V的值更新为B，而其他客户(线程)的更新请求失败。这种更新机制是以CAS操作是一个原子操作为基础的，这一点直接由处理器来保障。</p>
+<ul>
+<li>CAS只保障了共享变量更新这个操作的原子性，它并不保障可见性。因此，上述代码中我们仍然采用volatile修饰共享变量count.        </li>
+</ul>
+<h5 id="原子操作工具：原子变量类"><a href="#原子操作工具：原子变量类" class="headerlink" title="原子操作工具：原子变量类"></a>原子操作工具：原子变量类</h5><h4 id="对象的发布与逸出"><a href="#对象的发布与逸出" class="headerlink" title="对象的发布与逸出"></a>对象的发布与逸出</h4><p>线程安全问题产生的前提条件是多个线程共享变量。即使是private变量，它也可能被多个线程共享。</p>
+<p>多个线程共享变量还有其他途径，它们被统称为对象发布(Publish)。<code>对象发布</code>是指能够被其他作用域之外的线程访问。</p>
+<h5 id="对象的初始化安全：重访final与static"><a href="#对象的初始化安全：重访final与static" class="headerlink" title="对象的初始化安全：重访final与static"></a>对象的初始化安全：重访final与static</h5><p>​        static关键字在多线程环境下有其特殊的涵义，它能够保障一个线程即使在未使用其他同步机制的情况下也总是可以读取到一个类的静态变量的初始值(而不是默认值)。但是这种可见性保障仅限于线程初次读取该变量。</p>
+<p>​        static关键字仅仅保障读取线程能够读取到相应字段的初始值，而不是相对新值。</p>
+<p>​        我们知道由于重排序的作用，一个线程读取到一个对象引用时，改对象可能尚未完成初始化，即这些线程可能读取到该对象字段的默认值而不是初始值(通过构造器或者初始化语句指定的值)。在多线程环境下final关键字有其特殊的作用：</p>
+<p>​        final关键字则确保了该字段所引用字段的默认值。</p>
+<p>​        JIT编译器不会将构造器中对final字段的赋值操作重排到子操作，并且还会禁止处理器做这种操作。Java语言规范还会保障其他线程看到包含该字段的对象时，这个字段所引用的对象必然是初始化完毕的。</p>
+<p>​        </p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>​        Java线程同步机制的幕后助手是内存屏障。不同同步机制的功能强弱不同，相应的开销以及可能导致的问题也不同。因此，我们需要根据实际情况选择一个功能适合且开销较小的同步机制。</p>
+<p>​        <img src="https://user-images.githubusercontent.com/24977343/69113013-bb41c300-0abc-11ea-915a-ced872397059.png" alt=""></p>
+<h3 id="线程间协作"><a href="#线程间协作" class="headerlink" title="线程间协作"></a>线程间协作</h3><h5 id="等待与通知-wait-notify"><a href="#等待与通知-wait-notify" class="headerlink" title="等待与通知:wait/notify"></a>等待与通知:wait/notify</h5><p>​        在单线程编程中，程序要执行的操作(目标动作)如果需要满足一定的条件(保护条件)才能执行，那么我们可以将该操作放在一个if语句体中，这使得目标动作只有在保护条件得以满足的时候才能被执行。在多线程编程中处理这种情形我们有另外一个选择—保护条件未满足可能只是暂时的，稍后其他线程可能更新了保护条件涉及的共享变量而使得其成立，因此我们可以将当前线程暂停，直到其所需的保护条件得已成立时再将其唤醒。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原子操作</span></span><br><span class="line">atomic&#123;</span><br><span class="line">    <span class="keyword">while</span> (保护条件不成立)&#123;</span><br><span class="line">        暂停当前线程；</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//执行目标动作</span></span><br><span class="line">    doAction();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​        显然上述操作必须具有原子性。这里，一个线程因其执行目标动作所需的保护条件未满足而被暂停的过程就称为<code>等待</code>(Wait)。一个线程更新了系统的状态，使得其他线程所需的保护条件得以满足的时候唤醒这些暂停的线程的过程就被称为通知(Notify);</p>
+<h5 id="wait-notify的作用与用法"><a href="#wait-notify的作用与用法" class="headerlink" title="wait/notify的作用与用法"></a>wait/notify的作用与用法</h5><p>​        在java平台中，Object.wait()/Object.wait(long)以及Object        </p>
+<p>​        Java虚拟机会为每个对象维护一个入口集(Entry Set)用于存储申请该对象内部锁的线程。此外，Java虚拟机还会为每个对象维护一个被称为等待集(Wait Set)的队列，该队列用于存储该对象上的等待线程。</p>
+<h3 id="实际小案例"><a href="#实际小案例" class="headerlink" title="实际小案例"></a>实际小案例</h3><h4 id="两个线程，一个线程只有字母，一个线程只有数字，交替输出"><a href="#两个线程，一个线程只有字母，一个线程只有数字，交替输出" class="headerlink" title="两个线程，一个线程只有字母，一个线程只有数字，交替输出"></a>两个线程，一个线程只有字母，一个线程只有数字，交替输出</h4><h5 id="使用LockSupport"><a href="#使用LockSupport" class="headerlink" title="使用LockSupport"></a>使用LockSupport</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockSupportDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Thread t1 = <span class="keyword">null</span>,t2 = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] aI = <span class="string">"1234567"</span>.toCharArray();</span><br><span class="line">        <span class="keyword">char</span>[] aC = <span class="string">"ABCDEFG"</span>.toCharArray();</span><br><span class="line"></span><br><span class="line">        t1 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : aI)&#123;</span><br><span class="line">                System.out.print(c);</span><br><span class="line">                LockSupport.unpark(t2); <span class="comment">//t2继续运行</span></span><br><span class="line">                LockSupport.park(); <span class="comment">//当前线程暂停</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="string">"t1"</span>);</span><br><span class="line"></span><br><span class="line">        t2 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : aC)&#123;</span><br><span class="line">                LockSupport.park(); <span class="comment">//t2阻塞</span></span><br><span class="line">                System.out.print(c);</span><br><span class="line">                LockSupport.unpark(t1);<span class="comment">// t1唤醒</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="string">"t2"</span>);</span><br><span class="line"></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>LockSupport.unpark(“线程1”);  此时LockSupport.park()就不再生效了，无法阻塞当前线程。因为unpark在前。</p>
+<p>此时需要数组相等</p>
+<h5 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadyToRun1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">enum</span> ReadyToRun &#123;T1, T2&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">volatile</span> ReadyToRun r = ReadyToRun.T1;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] aI = <span class="string">"1234567"</span>.toCharArray();</span><br><span class="line">        <span class="keyword">char</span>[] aC = <span class="string">"ABCDEFG"</span>.toCharArray();</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : aI) &#123;</span><br><span class="line">                <span class="keyword">while</span> (r !=ReadyToRun.T1)&#123;&#125;</span><br><span class="line">                System.out.print(c);</span><br><span class="line">                r = ReadyToRun.T2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="string">"t1"</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : aC) &#123;</span><br><span class="line">                <span class="keyword">while</span> (r !=ReadyToRun.T2)&#123;&#125;</span><br><span class="line">                System.out.print(c);</span><br><span class="line">                r = ReadyToRun.T1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="string">"t2"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自旋锁：是这个线程不放弃CPU，没有wait进入等待队列，现在仍然占用CPU。</p>
+<p>自旋锁一般应用在代码速度特别快，执行时间特别短的情况。</p>
+<p>好处：不经过操作系统。内核态和用户态，正常申请一把锁的时候，要从用户态向内核态申请锁，大多数情况下在用户态自旋不经过内核态，效率相对高一些。</p>
+<h3 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h3><ul>
+<li>继承Thread类创建线程对象</li>
+<li>实现Runnable接口类创建线程对象</li>
+</ul>
+<p><strong>注意：</strong></p>
+<p>在java中，每次程序运行至少启动2个线程。一个是main线程，一个是垃圾收集线程。因为每当使用java命令执行一个类的时候，实际上都会启动一个jvm，每一个jvm实际上就是在操作系统中启动一个进程。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/Java 基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/05/Java 基础/" itemprop="url">Java 基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T10:03:30+08:00">
+                2018-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p><strong>在实例化类的时候指明泛型的具体类型</strong></p>
+<p><strong><code>类型的参数化，可以把类型像方法的参数那样传递。</code></strong></p>
+<p>优点：<strong><code>泛型使编译器可以在编译期间对类型进行检查以提高类型安全，减少运行时由于对象类型不匹配引发的异常。如果我们在对一个对象赋值不符合其泛型的规范，就会编译报错</code></strong></p>
+<p>1、代码重用：我们可以编写一个方法/类/接口，并用于我们想要的任何类型。</p>
+<p>2、类型安全：泛型使错误显示在编译时而不是在运行时</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A Simple Java program to demonstrate that NOT using </span></span><br><span class="line"><span class="comment">// generics can cause run time exceptions </span></span><br><span class="line"><span class="keyword">import</span> java.util.*; </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span></span><br><span class="line"><span class="class"></span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        <span class="comment">// Creatinga an ArrayList without any type specified </span></span><br><span class="line">        ArrayList al = <span class="keyword">new</span> ArrayList(); </span><br><span class="line">  </span><br><span class="line">        al.add(<span class="string">"Sachin"</span>); </span><br><span class="line">        al.add(<span class="string">"Rahul"</span>); </span><br><span class="line">        al.add(<span class="number">10</span>); <span class="comment">// Compiler allows this </span></span><br><span class="line">  </span><br><span class="line">        String s1 = (String)al.get(<span class="number">0</span>); </span><br><span class="line">        String s2 = (String)al.get(<span class="number">1</span>); </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// Causes Runtime Exception </span></span><br><span class="line">        String s3 = (String)al.get(<span class="number">2</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码只有在运行时才会报错。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">"main"</span> java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String</span><br></pre></td></tr></table></figure>
+<p><strong>类型转换异常</strong></p>
+<p><strong>泛型如何解决这个问题？</strong></p>
+<p>在定义ArrayList时，我们可以指定此列表只能使用String对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*; </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span></span><br><span class="line"><span class="class"></span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123; </span><br><span class="line">        <span class="comment">// Creating a an ArrayList with String specified </span></span><br><span class="line">        ArrayList &lt;String&gt; al = <span class="keyword">new</span> ArrayList&lt;String&gt; (); </span><br><span class="line">  </span><br><span class="line">        al.add(<span class="string">"Sachin"</span>); </span><br><span class="line">        al.add(<span class="string">"Rahul"</span>); </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// Now Compiler doesn't allow this </span></span><br><span class="line">        al.add(<span class="number">10</span>);  </span><br><span class="line">  </span><br><span class="line">        String s1 = (String)al.get(<span class="number">0</span>); </span><br><span class="line">        String s2 = (String)al.get(<span class="number">1</span>); </span><br><span class="line">        String s3 = (String)al.get(<span class="number">2</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、不需要单独类型转换：如果我们不使用泛型，那么，在上面的例子中，每次我们从ArrayList检索数据时，我们必须对它进行强制类型转换，而且还要自己检查是否是String类型，否则就会报错，因为从List中取出元素时，其类型会默认为Object。在每次检索操作中进行类型转换都是一个令人头痛的问 如果我们已经知道我们的列表只包含字符串数据，那么我们不需要每次都对它进行类型转换。</p>
+<p>4、实现通用算法：通过使用泛型，我们可以实现适用于不同类型对象的算法，同时它们也是类型安全的。</p>
+<p>5、有界泛型</p>
+<p><strong><em>在使用泛型时，我们会有这种需求：需要指定泛型的类型范围。有界类型就是在类型参数部分指定extends或super关键字，这里的extends也含有implements的功能，分别用上限或下限来限制类型范围，从而限制泛型的类型边界。例如：</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;T extends Animal&gt;<span class="comment">//限定T是Animal的子类</span></span><br><span class="line"></span><br><span class="line">&lt;T <span class="keyword">super</span> Dog &gt;<span class="comment">//限定T是Dog的超类</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">killAll</span><span class="params">(ArrayList&lt;T extends Animal&gt; animals)</span></span>&#123;...&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong><em>多个限定时我们可以使用&amp;来进行分割，这时关键词只能使用extends。与多重继承类似，这里只可以有一个类，其他都是接口。</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;T extends Object&amp;Comparable&amp;Serializable&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4><p><strong>在调用方法的时候指明泛型的具体类型</strong></p>
+<p><code>定义泛型方法语法格式如下</code></p>
+<p><img src="https://user-images.githubusercontent.com/24977343/58958544-ba9ac600-87d5-11e9-9473-ea75ecb5077f.png" alt=""></p>
+<p><code>调用泛型方法语法格式如下</code></p>
+<p><img src="https://user-images.githubusercontent.com/24977343/58958730-25e49800-87d6-11e9-9619-7774468f4e20.png" alt=""></p>
+<p>​       <strong>说明一下，定义泛型方法时，必须在返回值前边加一个<t>，来声明这是一个泛型方法，持有一个泛型T，然后才可以用泛型T作为方法的返回值。</t></strong></p>
+<p>​       Class<t>的作用就是指明泛型的具体类型，而Class<t>类型的变量c，可以用来创建泛型类的对象。</t></t></p>
+<p>​       为什么要用变量c来创建对象呢？既然是泛型方法，就代表着我们不知道具体的类型是什么，也不知道构造方法如何，因此没有办法去new一个对象，但可以利用变量c的newInstance方法去创建对象，也就是利用反射创建对象。</p>
+<p>​       泛型方法要求的参数是Class<t>类型，而Class.forName()方法的返回值也是Class<t>，因此可以用Class.forName()作为参数。其中，forName()方法中的参数是何种类型，返回的Class<t>就是何种类型。在本例中，forName()方法中传入的是User类的完整路径，因此返回的是Class<user>类型的对象，因此调用泛型方法时，变量c的类型就是Class<user>，因此泛型方法中的泛型T就被指明为User，因此变量obj的类型为User。</user></user></t></t></t></p>
+<p>​       当然，泛型方法不是仅仅可以有一个参数Class<t>，可以根据需要添加其他参数。</t></p>
+<p>​       为什么要使用泛型方法呢？因为泛型类要在实例化的时候就指明类型，如果想换一种类型，不得不重新new一次，可能不够灵活；而泛型方法可以在调用的时候指明类型，更加灵活。</p>
+<h2 id="Java数据结构应用"><a href="#Java数据结构应用" class="headerlink" title="Java数据结构应用"></a>Java数据结构应用</h2><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h4 id="subList-方法"><a href="#subList-方法" class="headerlink" title="subList()方法"></a>subList()方法</h4><p>截取list的一段，但是如果对这一段做了修改，那么原来的list也会发生相应的变化。</p>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p><strong>定义：</strong>在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。</p>
+<p><strong>简单定义：</strong>有一个或多个抽象方法的类，必须声明为抽象类。不能创建实例</p>
+<p>抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。</p>
+<p>由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。</p>
+<p>父类包含了子类集合的常见的方法，但是由于父类本身是抽象的，所以不能使用这些方法。</p>
+<p>在Java中抽象类表示的是一种继承关系，一个类只能继承一个抽象类，而一个类却可以实现多个接口。</p>
+<h3 id="为啥用抽象类"><a href="#为啥用抽象类" class="headerlink" title="为啥用抽象类"></a>为啥用抽象类</h3><ol>
+<li>父类中的方法确实没有必要写(通用方法)，当然可以用类的覆盖，但是没有必要</li>
+<li>各个子类中的这个方法肯定会不同</li>
+<li>抽象方法有提示作用</li>
+<li>发现共性，向上抽取。方法功能声明相同，但是方法功能主体不同。</li>
+</ol>
+<p>总结：</p>
+<ol>
+<li>抽象类不能被实例化</li>
+<li>抽象类中不一定包含抽象方法，但是有抽象方法的类必定是抽象类</li>
+<li>抽象类中的抽象方法只是声明，不包含方法体，就是不给出方法的具体实现也就是方法的具体功能。</li>
+<li>构造方法，类方法(用static修饰的方法)不能声明为抽象方法</li>
+<li>抽象类的子类必须给出抽象类中的抽象方法的具体实现，除非该子类也是抽象类</li>
+<li>具体派生类必须覆盖基类的抽象方法</li>
+<li>抽象派生类可以覆盖基类的抽象方法，也可以不覆盖。如果不覆盖，则其具体派生类必须覆盖它们</li>
+</ol>
 
           
         
@@ -2597,179 +2821,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/日志相关/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bill">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/23/日志相关/" itemprop="url">日志相关</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T15:39:35+08:00">
-                2018-05-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/日志/" itemprop="url" rel="index">
-                    <span itemprop="name">日志</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="日志相关的类"><a href="#日志相关的类" class="headerlink" title="日志相关的类"></a>日志相关的类</h4><h4 id="Logger-getLogger和-LogFactory-getLog"><a href="#Logger-getLogger和-LogFactory-getLog" class="headerlink" title="Logger.getLogger和 LogFactory.getLog"></a>Logger.getLogger和 LogFactory.getLog</h4><p>Logger来自log4j自己的包。如果用Logger.getLogger，需要一个log4j的jar包，用此方式你只能依靠log4；</p>
-<p>而LogFactory来自common-logging包。如果用LogFactory.getLog，你可以用任何实现了通用日志接口的日志记录器替换log4j，而程序不受影响。apache的common-logging包是通用日志接口，通过这个中间层，你可以随便指定到底用哪个日志系统。增加系统的灵活性。若log4j它不存在, commons-logging 会另行选择其它的日志实现类。 这样保证了程序中不一定要使用log4j这个日志文件了 </p>
-<p>增强灵活性的理由：   </p>
-<ol>
-<li>首先在classpath下寻找自己的配置文件commons-logging.properties，如果找到，则使用其中定义的Log实现类；</li>
-<li>如果找不到commons-logging.properties  文件，则再查找是否已定义系统环境变量  org.apache.commons.logging.Log ，找到则使用其定义的 Log 实现类；  </li>
-<li>否则，查看 classpath 中是否有 Log4j 的包，如果发现，则自动使用 Log4j 作为日志实现类；  </li>
-<li>否则，使用 JDK 自身的日志实现类（ JDK1.4 以后才有日志实现类）；  </li>
-<li>否则，使用 commons-logging 自己提供的一个简单的日志实现类 SimpleLog ；  </li>
-</ol>
-<p>为了简化配置 commons-logging ，一般不使用 commons-logging 的配置文件，也不设置与 commons-logging 相关的系统环境变量，而只需将 Log4j 的 Jar 包放置到 classpash 中就可以了。这样就很简单地完成了 commons-logging 与 Log4j 的融合。   </p>
-<p>根据不同的性质，日志信息通常被分成不同的级别，从低到高依次是：“调试（ DEBUG ）”“信息（ INFO ）”“警告（ WARN ）”“错误（ERROR ）”“致命错误（ FATAL ）”。   </p>
-<p>commons-logging 仅仅对 Log4j( 当然还包括其它 LOG 实现 ) 作了一层包装，具体的日志输出还是在内部转交给身后的 Log4j 来处理，还有log4j会默认的去classes目录下去寻找log4j.properties 文件</p>
-<p>apache common logging是一种log的框架接口,它本身并不实现log记录的功能,而是在运行时动态查找目前存在的日志库,调用相关的日志函数,从而隐藏具体的日志实现  </p>
-<p>log4j是具体的日志实现,真正负责”写”日志的这个功能  </p>
-<p>common logging本身不是log,你可以把它看做是一个日志的接口  </p>
-<p>而log4j就是日志的实现  </p>
-<p>使用common logging方式实现日志,主要的原因在于可以忽略底层的日志实现,或者说为以后的日志实现库的更换提供透明界面  </p>
-<p>你可以考虑下,假设从log4j更换为logback,势必要重写所有原本使用log4j的源代码,而使用common logging的情况下,只需要更换jar包,而不需要对源代码做任何改动</p>
-<p>做日志的时候一般是两者一起用，commons-logging工作原理做接口，log4j做实现，应用起来比单独的使用log4j要简单  </p>
-<p>commons-logging工作原理:  </p>
-<ol>
-<li>首先在classpath下寻找自己的配置文件commons-logging.properties,如果找到,则使用其中定义的Log实现类  </li>
-<li>如果找不到commons-logging.properties文件,则在查找是否已定义系统环境变量org.apache.commons.logging.Log,找到则使用其定义的Log实现类 </li>
-<li>查看classpath中是否有Log4j的包,如果发现,则自动使用Log4j作为日志实现类 </li>
-<li>使用JDK自身的日志实现类(JDK1.4以后才有日志实现类) </li>
-<li>使用commons-logging自己提供的一个简单的日志实现类SimpleLog (以上顺序不保证完全准确,请参考官方文档) commons-logging总是能找到一个日志实现类,并且尽可能找到一个”最合适”的日志实现类. </li>
-</ol>
-<h3 id="日志门面"><a href="#日志门面" class="headerlink" title="日志门面"></a>日志门面</h3><h4 id="commons-logging和slf4j两种日志门面的使用"><a href="#commons-logging和slf4j两种日志门面的使用" class="headerlink" title="commons-logging和slf4j两种日志门面的使用"></a>commons-logging和slf4j两种日志门面的使用</h4><p>　　早期<a href="http://lib.csdn.net/base/javase" target="_blank" rel="noopener">Java</a>项目使用最多的日志门面是commons-logging，log4j是推荐的日志实现库，需要的jar包为commons-logging.jar、log4j.jar。   </p>
-<p>　　现今java项目推荐的日志门面是slf4j，log4j仍是推荐的日志实现库，需要的jar包为slf4j-api.jar、slf4j-log4j12.jar、log4j.jar，其中绑定包slf4j-log4j12.jar指定了要使用的实现库。   </p>
-<p>　　commons-logging存在osgi问题，但早期项目多使用其作为日志门面，为保证兼容仍使用其作为日志门面，但通过slf4j的静态绑定技术来加载具体的日志库log4j，需要的jar包为commons-logging.jar、jcl-over-slf4j.jar、slf4j-api.jar、slf4j-log4j12.jar、log4j.jar，其中jcl-over-slf4j.jar将日志的接口重定向到slf4j。</p>
-<pre><code> 　　使用log4j需先将日志的相关信息在属性文件properties或xml文件配置好，剩下的事情就是在项目中的适当位置打日志。
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2820,7 +2871,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2831,7 +2882,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2842,7 +2893,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
