@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/68444179-08967880-0211-11ea-8d6d-62c534d51139.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/68633983-d8abe580-052e-11ea-9a25-581cada0201f.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/69113013-bb41c300-0abc-11ea-915a-ced872397059.png">
-<meta property="og:updated_time" content="2019-12-11T11:02:20.538Z">
+<meta property="og:updated_time" content="2019-12-13T10:06:32.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 多线程">
 <meta name="twitter:description" content="多线程注意事项：  线程不安全就意味着线程的调度顺序会影响最终结果 线程安全的优先级高于性能 当多个线程竞争同一资源时，如果对资源的访问顺序敏感，就称存在竞态条件。导致竞态条件发生的代码区称作临界区。  总结涉及到多线程的内容：  扎好马步：线程的状态 内功心法：每个对象都有的方法（机制） 太祖长拳：基本线程类 九阴真经：高级多线程控制类  线程的状态    Runnable :可运行 Runni">
@@ -452,10 +452,63 @@
 </table>
 <p>​        通过名称属性，我们可以为每个线程设置一个便于区分不同线程的名称。虽然Java虚拟机并不要求每个线程的名称都不同，但是设置该属性有助于程序调试和问题定位。因此，我们建议为每个线程都设置一个简短而又能够体现其作用或其实现的功能的名称。</p>
 <p>​        线程的属性除了编号外，其他属性都是可读写的属性，即Thread类提供了相应的get方法和set方法用于读取或者设置相应的属性。</p>
-<p>​        Java线程的优先级属性本质上只是一个给线程调度器的提示信息，以便于线程调度器决定优先调度哪些线程运行。它并不能保证线程按照其优先级高低的顺序运行。一般情况默认即可。        </p>
+<p>​        Java线程的优先级属性本质上只是一个给线程调度器的提示信息，以便于线程调度器决定优先调度哪些线程运行。它并不能保证线程按照其优先级高低的顺序运行。一般情况默认即可。    </p>
+<p>​        按照线程是否会阻止Java虚拟机正常停止，我们可以将Java中的线程分为守护线程(Deemon Thread)和用户线程(User Thread,也称非守护线程)。用户线程会阻止Java虚拟机的正常停止，即一个Java虚拟机只有在其所有用户线程都运行结束(即Thread.run()调用未结束)的情况下才能正常停止。而守护线程则不会影响Java虚拟机的正常停止。因此，守护线程通常用于执行一些重要性不是很高的任务。例如用于监视其他线程的运行情况。</p>
+<p>​        如果kill 命令强制终止一个Java虚拟机进程，那么即使是用户线程也无法阻止Java虚拟机的停止。</p>
+<h5 id="1-3-4Thread类的常用方法"><a href="#1-3-4Thread类的常用方法" class="headerlink" title="1.3.4Thread类的常用方法"></a>1.3.4Thread类的常用方法</h5><p>​        </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">static Thread currentThread()</td>
+<td style="text-align:center">返回当前线程，即当前代码的执行线程(对象)</td>
+<td style="text-align:left">同一段代码对Thread.currentThread()对调用，其返回值可能对应着不同的线程(对象)</td>
+</tr>
+<tr>
+<td style="text-align:center">void run()</td>
+<td style="text-align:center">用于实现线程的任务处理逻辑</td>
+<td style="text-align:left">该方法是由Java虚拟机直接调用的，一般情况下应用程序不应该调用该方法</td>
+</tr>
+<tr>
+<td style="text-align:center">void start()</td>
+<td style="text-align:center">启动相应线程</td>
+<td style="text-align:left">该方法的返回并不代表相应线程已经被启动。一个Thread实例的start方法只能够被调用一次，否则会抛出异常</td>
+</tr>
+<tr>
+<td style="text-align:center">void join()</td>
+<td style="text-align:center">等待相应线程运行结束</td>
+<td style="text-align:left">若线程A调用线程B的join方法，那么线程A的运行会被暂停，直到线程B运行结束</td>
+</tr>
+<tr>
+<td style="text-align:center">static void yield()</td>
+<td style="text-align:center">使用当前线程主动放弃其对处理器的占用，这可能导致当前线程被暂停</td>
+<td style="text-align:left">这个方法是不可靠的。该方法被调用时当前线程可能仍然继续运行(视系统的运行情况而定)</td>
+</tr>
+<tr>
+<td style="text-align:center">static void sleep(long millis)</td>
+<td style="text-align:center">使当前线程休眠(暂停运行)指定的时间</td>
+</tr>
+</tbody>
+</table>
+<p>​            join方法的作用相当于执行该方法的线程和线程调度器说:我得先暂停一下，等到另外一个线程运行结束后我才能干活。</p>
+<p>​            yield静态方法：告诉线程调度器：我现在不急，如果别人需要处理器资源的话先给他用吧当然，如果没有其他人要用，我也不介意继续占用。</p>
+<p>​            sleep:我想睡一会儿，过段时间再叫醒我干活。</p>
+<h5 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h5><ul>
+<li>线程调度器说操作系统的一个部分。</li>
+<li>由操作系统内核直接进行管理和调度的线程，它与具体的操作系统平台有关。</li>
+</ul>
+<h4 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><p>​        一个线程是否是一个守护线程默认取决于其父线程。</p>
+<p>​        Java平台中没有API用于获取一个线程的父线程，或者获取一个线程的所有子线程。并且，父线程和子线程之间的生命周期也没有必然的联系。比如父线程运行结束后，子线程可以继续运行，子线程运行结束也不妨碍其父线程继续运行。</p>
+<p>​        </p>
 <h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><p>使用线程给其他任务提供机会</p>
 <p>Java标准库类java.lang.Thread就是Java平台对线程的实现。Thread类或</p>
-<h4 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><ul>
+<h4 id="线程的层次关系-1"><a href="#线程的层次关系-1" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><ul>
 <li>一个线程是否是一个守护线程默认取决于其父线程；默认父线程是守护线程，则子线程也是守护线程。父线程在创建子线程后启动子线程之前可以调用该线程的setDaemon方法，将相应的线程设置为守护线程(或者用户线程)。</li>
 <li>程序运行完毕，jvm会等待非守护线程完成后关闭，但是jvm不会等待守护线程。</li>
 <li>如果没有设置一个线程的优先级，那么这个线程优先级默认与父线程的优先级值相等。</li>
@@ -464,6 +517,20 @@
 </ul>
 <h4 id="线程的生命周期状态"><a href="#线程的生命周期状态" class="headerlink" title="线程的生命周期状态"></a>线程的生命周期状态</h4><p>​    一个线程从</p>
 <p><img src="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png" alt=""></p>
+<p>​        Java的线程状态可以使用监控工具查看，也可以通过Thread.getState()调用来获取。其返回值类型Thread.State是一个枚举类型(Enum)。Thread.State所定义的线程状态包括：</p>
+<p>​            NEW:一个创建而未启动的线程处于该状态。<code>Thread state for a thread which has not yet started.</code></p>
+<p>​            RUNNABLE：该状态可以被看成一个复合状态。它包含两个字状态：READY和RUNNING。前者表示处于该状态的线程可以被线程调度器(Scheduler)进行调度而使之处于RUNNING状态。后者表示处于该状态的线程正在运行，即线程对象的run方法所对应的指令正在由处理器执行。执行Thread.yield()的线程，其状态可能会由RUNNING转换为READY。处于READY子状态的线程也被称为活跃线程。</p>
+<p>​            BLOCKED：一个线程发起一个阻塞式I/O(Blocking I/O)操作后，或者申请一个由其他线程持有的独占资源(比如锁)时，相应的线程会处于该状态。处于BLOCKED状态的线程并不会占用处理器资源。当阻塞式I/O操作完成后，或者线程获得了其申请的资源，该线程的状态又可以转换为RUNNABLE。</p>
+<p>​            WAITING：一个线程执行了某些特定方法之后就会处于这种等待其他线程执行另外一些特定操作的状态。能够使其执行线程变更为WAITING状态的方法包括：Object.wait()、Thread.join()和LockSupport.park(Object)。能够使相应线程从WAITING变更为RUNNABLE的相应方法包括：Object.notify()/notifyAll()和LockSupport.unpark(Object)。</p>
+<p>​            TIMED_WAITING:该状态和WAITING类似，差别在于处于该状态的线程并非无限制地等待其他线程执行特定操作，而是处于带有时间限制的等待状态。当其他线程没有在指定时间内执行该线程所期望的特定操作时，该线程的状态自动转换为RUNNABLE。</p>
+<p>​            TERMINATED：已经执行结束的线程处于该状态。由于一个线程实例只能够被启动一次，因此一个线程也只可能有一次处于该状态。Thread.run()正常返回或者由于抛出异常而提前终止都会导致相应线程处于该状态。</p>
+<p>​            一个线程在其生命周期中，只可能有一次处于NEW状态和TERMINATED状态。</p>
+<h5 id="多线程的风险"><a href="#多线程的风险" class="headerlink" title="多线程的风险"></a>多线程的风险</h5><ul>
+<li>线程安全问题(Thread Safe)问题。多个线程共享数据的时候，如果没有采取相应的并发访问控制措施，那么就可能产生数据一致性的问题，如读取脏数据(过期的数据)、丢失更新(某些线程所做的更新被其他线程所做的更新覆盖)等。</li>
+<li>线程活性(Thread Liveness)问题。死锁、一直等待、无法获取时间片资源。</li>
+<li>上下文切换(Context Switch)：处理器从执行一个线程转向执行另外一个线程的时候操作系统所需要做的一个动作被称为上下文切换。增加了系统的消耗。</li>
+<li>可靠性：</li>
+</ul>
 <h3 id="多线程编程的目标与挑战"><a href="#多线程编程的目标与挑战" class="headerlink" title="多线程编程的目标与挑战"></a>多线程编程的目标与挑战</h3><h4 id="串行、并发与并行"><a href="#串行、并发与并行" class="headerlink" title="串行、并发与并行"></a>串行、并发与并行</h4><p>三个任务：</p>
 <ul>
 <li>A：实际执行5分钟，等待完成10分钟</li>
@@ -474,13 +541,21 @@
 <p>并发：在任务的等待时间来执行其他任务(一个人完成)；5+2+10=17分钟。一个处理器就可以完成</p>
 <p>并行：同时执行三个任务(三个人完成)；15分钟(以耗时时间最长的任务为准)。需要多个处理器</p>
 <p>​    多线程编程的实质就是将任务的处理方式由串行改为并发，称为可并发化。但是有的任务处理方式必须是串行的，例如Java中的读取文件就是串行。</p>
-<h4 id="竟态"><a href="#竟态" class="headerlink" title="竟态"></a>竟态</h4><p>​        多线程编程中经常遇到的问题就是同样的输入，程序的输出有时候是正确的而有时候确实错误的。这种一个计算结果的正确性与时间有关的现象称为<code>竟态</code>(Race Condition);</p>
+<h4 id="竟态"><a href="#竟态" class="headerlink" title="竟态"></a>竟态</h4><p>​        多线程编程中经常遇到的问题就是同样的输入，程序的输出有时候是正确的而有时候确是 错误的。这种一个计算结果的正确性与时间有关的现象称为<code>竟态</code>(Race Condition);</p>
 <p>​        <code>synchronized</code>关键字会使其修饰的方法在任一时刻只能够被一个线程执行，这使得该方法涉及的共享变量在任一时刻只能够有一个线程访问(读、写)，从而避免了这个方法的交错执行而导致的干扰，这样就消除了竟态。</p>
 <h4 id="线程安全性"><a href="#线程安全性" class="headerlink" title="线程安全性"></a>线程安全性</h4><p>​        如果一个类在单线程环境下能够运作正常，并且在多线程环境下，在其使用方不必为其做任何改变的情况下也能运作正常，那么我们就称其是线程安全(Thread-safe)的，相应地问们称这个类具有线程安全性(Thread Safety)。反之，如果一个类在单线程环境下运作正常而在多线程环境下则无法正常运作，那么这个类就是非线程安全的。因此，如果一个类如果能够导致竟态，那么它就是非线程安全的；而一个类如果是线程安全的，那么它就不会导致竟态。        </p>
 <p>​        使用一个类的时候我们必须先弄清楚这个类是否是线程安全的。因为这关系到我们如何正确使用这些类。这好比微波炉加热食物前我们必须先弄清所用的容器是否适宜进行微波加热。Java标准库种的一些类如ArrayList、HashMap和SimpleDateFormat，都是非线程安全的，在多线程环境下直接使用它们可能导致一些非预期的结果，甚至是一些灾难性的结果。</p>
 <p>​        把一个类做成线程安全的往往是有额外代价的。</p>
 <p>​        一个类如果不是线程安全的，我们就说它在多线程环境下直接使用存在线程安全问题。线程安全问题概括来说表现为3个方面:原子性、可见性和有序性。</p>
-<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>​        原子(Atomic)的字面意思是不可分割的(Indivisible)。    对于涉及共享变量访问的操作，若操作从执行线程以外的任意线程来看是不可分割的，那么该操作就是原子操作，相应地我们称该操作具有原子性。</p>
+<p>​        Java标准库中的一些类都是非线程安全的。如：ArrayList、HashMap和SimpleDateFormat。</p>
+<p>​        把一个类做成线程安全的往往是需要额外的代价的。</p>
+<p>​        </p>
+<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>​        </p>
+<p>​        </p>
+<ul>
+<li>不可分割</li>
+</ul>
+<p>​        原子(Atomic)的字面意思是不可分割的(Indivisible)。    对于涉及共享变量访问的操作，若操作从执行线程以外的任意线程来看是不可分割的，那么该操作就是原子操作，相应地我们称该操作具有原子性。</p>
 <p>​        所谓<code>不可分割</code>，其中一个含义是指访问(读、写)某个共享变量的操作从其执行线程以外的任何线程来看，该操作要么已经执行结束要么尚未发生，即其他线程不会<code>看到</code>该操作执行了部分中间效果。</p>
 <p>​        访问同一组共享变量(一个方法中的)的原子操作是不能够<strong>被交错的</strong>，这就排除了一个线程执行一个操作期间另外一个线程读取或者更新该操作所访问的共享变量而导致的干扰(读脏数据)和冲突(丢失更新)的可能性。</p>
 <p>​        例子:        </p>
@@ -491,7 +566,7 @@
 <li>原子操作是从该操作的执行线程以外的线程来描述的，也就是说它只有在多线程环境下有意义。单线程无所谓是否具有原子性。</li>
 </ul>
 <p><strong>提示</strong></p>
-<p>​        原子操作是多线程环境下的一个概念，它是针对访问共享变量的操作而言的。原子操作不可分割包含以下两层含义。</p>
+<p>​        原子操作是多线程环境下的一个概念，它是针对<code>访问共享变量的操作</code>而言的。原子操作不可分割包含以下两层含义。</p>
 <ul>
 <li><p>访问(读、写)某个共享变量的操作从其执行线程以外的任何线程来看，该操作要么已经执行结束要么尚未发生，即其他线程不会 <strong>看到</strong>该操作执行了部分的中间效果。</p>
 </li>
@@ -778,7 +853,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java中的线程"><span class="nav-number">1.1.</span> <span class="nav-text">Java中的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程、线程与任务"><span class="nav-number">1.1.1.</span> <span class="nav-text">进程、线程与任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程编程简介"><span class="nav-number">1.1.2.</span> <span class="nav-text">多线程编程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是多线程编程"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">什么是多线程编程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么使用多线程"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">为什么使用多线程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JAVA线程API简介"><span class="nav-number">1.1.3.</span> <span class="nav-text">JAVA线程API简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程的创建、启动与运行"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">线程的创建、启动与运行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Runnable接口"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Runnable接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3线程属性"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">1.3.3线程属性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是线程"><span class="nav-number">1.1.4.</span> <span class="nav-text">什么是线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的层次关系"><span class="nav-number">1.1.5.</span> <span class="nav-text">线程的层次关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的生命周期状态"><span class="nav-number">1.1.6.</span> <span class="nav-text">线程的生命周期状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程编程的目标与挑战"><span class="nav-number">1.2.</span> <span class="nav-text">多线程编程的目标与挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#串行、并发与并行"><span class="nav-number">1.2.1.</span> <span class="nav-text">串行、并发与并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#竟态"><span class="nav-number">1.2.2.</span> <span class="nav-text">竟态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全性"><span class="nav-number">1.2.3.</span> <span class="nav-text">线程安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原子性"><span class="nav-number">1.2.4.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可见性"><span class="nav-number">1.2.5.</span> <span class="nav-text">可见性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下文切换"><span class="nav-number">1.2.6.</span> <span class="nav-text">上下文切换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java线程同步机制"><span class="nav-number">1.3.</span> <span class="nav-text">Java线程同步机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程同步机制简介"><span class="nav-number">1.3.1.</span> <span class="nav-text">线程同步机制简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁概述"><span class="nav-number">1.3.2.</span> <span class="nav-text">锁概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的特性："><span class="nav-number">1.3.3.</span> <span class="nav-text">锁的特性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#约定"><span class="nav-number">1.3.4.</span> <span class="nav-text">约定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的粒度"><span class="nav-number">1.3.5.</span> <span class="nav-text">锁的粒度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#锁的开销及可能导致的问题"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">锁的开销及可能导致的问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内部锁：synchronized关键字"><span class="nav-number">1.3.6.</span> <span class="nav-text">内部锁：synchronized关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内部锁的调度"><span class="nav-number">1.3.7.</span> <span class="nav-text">内部锁的调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显式锁：LOCK接口"><span class="nav-number">1.3.8.</span> <span class="nav-text">显式锁：LOCK接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CAS与原子变量"><span class="nav-number">1.3.9.</span> <span class="nav-text">CAS与原子变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#原子操作工具：原子变量类"><span class="nav-number">1.3.9.1.</span> <span class="nav-text">原子操作工具：原子变量类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象的发布与逸出"><span class="nav-number">1.3.10.</span> <span class="nav-text">对象的发布与逸出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象的初始化安全：重访final与static"><span class="nav-number">1.3.10.1.</span> <span class="nav-text">对象的初始化安全：重访final与static</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.3.11.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程间协作"><span class="nav-number">1.4.</span> <span class="nav-text">线程间协作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#等待与通知-wait-notify"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">等待与通知:wait/notify</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#wait-notify的作用与用法"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">wait/notify的作用与用法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际小案例"><span class="nav-number">1.5.</span> <span class="nav-text">实际小案例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两个线程，一个线程只有字母，一个线程只有数字，交替输出"><span class="nav-number">1.5.1.</span> <span class="nav-text">两个线程，一个线程只有字母，一个线程只有数字，交替输出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用LockSupport"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">使用LockSupport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自旋锁"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">自旋锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程的创建"><span class="nav-number">1.6.</span> <span class="nav-text">线程的创建</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java中的线程"><span class="nav-number">1.1.</span> <span class="nav-text">Java中的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程、线程与任务"><span class="nav-number">1.1.1.</span> <span class="nav-text">进程、线程与任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程编程简介"><span class="nav-number">1.1.2.</span> <span class="nav-text">多线程编程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是多线程编程"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">什么是多线程编程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么使用多线程"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">为什么使用多线程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JAVA线程API简介"><span class="nav-number">1.1.3.</span> <span class="nav-text">JAVA线程API简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程的创建、启动与运行"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">线程的创建、启动与运行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Runnable接口"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Runnable接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3线程属性"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">1.3.3线程属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-4Thread类的常用方法"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">1.3.4Thread类的常用方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结："><span class="nav-number">1.1.3.5.</span> <span class="nav-text">总结：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的层次关系"><span class="nav-number">1.1.4.</span> <span class="nav-text">线程的层次关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是线程"><span class="nav-number">1.1.5.</span> <span class="nav-text">什么是线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的层次关系-1"><span class="nav-number">1.1.6.</span> <span class="nav-text">线程的层次关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的生命周期状态"><span class="nav-number">1.1.7.</span> <span class="nav-text">线程的生命周期状态</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多线程的风险"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">多线程的风险</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程编程的目标与挑战"><span class="nav-number">1.2.</span> <span class="nav-text">多线程编程的目标与挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#串行、并发与并行"><span class="nav-number">1.2.1.</span> <span class="nav-text">串行、并发与并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#竟态"><span class="nav-number">1.2.2.</span> <span class="nav-text">竟态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全性"><span class="nav-number">1.2.3.</span> <span class="nav-text">线程安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原子性"><span class="nav-number">1.2.4.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可见性"><span class="nav-number">1.2.5.</span> <span class="nav-text">可见性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下文切换"><span class="nav-number">1.2.6.</span> <span class="nav-text">上下文切换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java线程同步机制"><span class="nav-number">1.3.</span> <span class="nav-text">Java线程同步机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程同步机制简介"><span class="nav-number">1.3.1.</span> <span class="nav-text">线程同步机制简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁概述"><span class="nav-number">1.3.2.</span> <span class="nav-text">锁概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的特性："><span class="nav-number">1.3.3.</span> <span class="nav-text">锁的特性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#约定"><span class="nav-number">1.3.4.</span> <span class="nav-text">约定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的粒度"><span class="nav-number">1.3.5.</span> <span class="nav-text">锁的粒度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#锁的开销及可能导致的问题"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">锁的开销及可能导致的问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内部锁：synchronized关键字"><span class="nav-number">1.3.6.</span> <span class="nav-text">内部锁：synchronized关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内部锁的调度"><span class="nav-number">1.3.7.</span> <span class="nav-text">内部锁的调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显式锁：LOCK接口"><span class="nav-number">1.3.8.</span> <span class="nav-text">显式锁：LOCK接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CAS与原子变量"><span class="nav-number">1.3.9.</span> <span class="nav-text">CAS与原子变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#原子操作工具：原子变量类"><span class="nav-number">1.3.9.1.</span> <span class="nav-text">原子操作工具：原子变量类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象的发布与逸出"><span class="nav-number">1.3.10.</span> <span class="nav-text">对象的发布与逸出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象的初始化安全：重访final与static"><span class="nav-number">1.3.10.1.</span> <span class="nav-text">对象的初始化安全：重访final与static</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.3.11.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程间协作"><span class="nav-number">1.4.</span> <span class="nav-text">线程间协作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#等待与通知-wait-notify"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">等待与通知:wait/notify</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#wait-notify的作用与用法"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">wait/notify的作用与用法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际小案例"><span class="nav-number">1.5.</span> <span class="nav-text">实际小案例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两个线程，一个线程只有字母，一个线程只有数字，交替输出"><span class="nav-number">1.5.1.</span> <span class="nav-text">两个线程，一个线程只有字母，一个线程只有数字，交替输出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用LockSupport"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">使用LockSupport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自旋锁"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">自旋锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程的创建"><span class="nav-number">1.6.</span> <span class="nav-text">线程的创建</span></a></li></ol></li></ol></div>
             
 
           </div>
