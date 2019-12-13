@@ -90,10 +90,11 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/65651829-3b5e2600-e042-11e9-9cd3-b3c98492a75b.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/65651887-634d8980-e042-11e9-94d0-7170924c22e0.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/67002732-1b84c400-f10f-11e9-8606-f1dd7c05ad72.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/24977343/70794482-a8c75a80-1dd8-11ea-9589-8467d61db37b.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/68444179-08967880-0211-11ea-8d6d-62c534d51139.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/68633983-d8abe580-052e-11ea-9a25-581cada0201f.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/69113013-bb41c300-0abc-11ea-915a-ced872397059.png">
-<meta property="og:updated_time" content="2019-12-13T10:06:32.901Z">
+<meta property="og:updated_time" content="2019-12-13T10:45:20.672Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 多线程">
 <meta name="twitter:description" content="多线程注意事项：  线程不安全就意味着线程的调度顺序会影响最终结果 线程安全的优先级高于性能 当多个线程竞争同一资源时，如果对资源的访问顺序敏感，就称存在竞态条件。导致竞态条件发生的代码区称作临界区。  总结涉及到多线程的内容：  扎好马步：线程的状态 内功心法：每个对象都有的方法（机制） 太祖长拳：基本线程类 九阴真经：高级多线程控制类  线程的状态    Runnable :可运行 Runni">
@@ -584,7 +585,10 @@
 <p>​    线程A执行完语句1之后再执行语句2之前的这一刻，另外一个线程B可以读取变量a和变量b的值。那么B读到的变量a和b的值分别为1和0，也就是说它读到了A所执行操作的中间结果，这有悖于原子操作不可分割的特性。</p>
 <h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>​        在多线程环境下，一个线程对某个共享变量进行更新之后，后续访问该变量的线程可能无法立刻读取到这个更新到结果，甚至永远也无法读取到这个更新的结果。这就是线程安全问题的另外一个表现形式:可见性(Visibility)。</p>
 <p>​        如果一个线程对某个共享变量进行更新之后，后续访问该变量的线程可以读取到该更新的结果，那么我们就称这个线程对共享变量的更新对其他线程可见，否则我们就称这个线程对该共享变量的更新对其他线程不可见。可见性就是指一个线程对共享变量的更新的结果对于读取相应共享变量的线程而言是否可见的问题。多线程在可见性方面存在的问题意味着某些线程读取到了旧数据(Stale Data)，而这可能导致程序出现我们所不期望的结果。</p>
-<p>​                </p>
+<p>​        另一方面，可见性问题与计算机的存储系统有关。程序中的变量可能会被分配到寄存器(Register)而不是主内存中进行存储。每个处理器都有其寄存器，而一个处理器无法读取另外一个处理器上的寄存器的内容。因此，如果两个线程分别运行在不同的处理器上，而这两个线程所共享的变量却被分配到寄存器上进行存储，那么可见性问题就有可能产生(一个共享变量在两个处理器的寄存器上)。另外，即便某个共享变量被分配到主内存中进行存储到的，也不能保证该变量的可见性。这是因为处理器对主内存的访问并不是直接访问，而是通过其高速缓存(Cache)子系统进行的。一个处理器线程上运行的线程对变量的更新可能只是更新到该处理器的写缓冲器(Store Buffer)中，还没有到达该处理器的高速缓存中，更不用说主内存中了。而一个处理器的写缓冲器中的内容无法被另外一个处理器读取，因此运行在另外一个处理器上的线程无法看到这个线程对某个共享变量的更新。即便一个处理器上运行的线程对共享变量的更新结果被写入该处理器的高速缓存，由于该处理器将这个变量更新的结果通知给其他处理器的时候，其他处理器可能仅仅将这个更新通知的内容存入无效化队列(Invalidate Queue)中，而没有直接根据更新通知的内容更新其高速缓存的相应内容，这就导致了其他处理器上运行的其他线程后续再读取相应共享变量时，从相应处理器的高速缓存中读取到的变量值时一个过时的值。</p>
+<p>​        <img src="https://user-images.githubusercontent.com/24977343/70794482-a8c75a80-1dd8-11ea-9589-8467d61db37b.png" alt=""></p>
+<p>​        CPU-&gt;寄存器-&gt;写缓冲器-&gt;高速缓存-&gt;(可能是无效化队列：没有直接更新通知的内容到高速缓存的相应内容)-&gt;主内存</p>
+<p>​        处理器并不是直接与主内存(RAM)打交道而执行内存的读、写操作，而是通过寄存器(Register)、高速缓存(Cache)、写缓冲器(Store Buffer，也称Write Buffer)和无效化队列(Invalidate Queue)等部件执行内存的读、写操作的。从这个角度看，这些部件相当于主内存的副本。        </p>
 <h4 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h4><p>上下文切换就是看那个线程获取到了时间片。上一个线程的一些信息保存到内存</p>
 <h3 id="Java线程同步机制"><a href="#Java线程同步机制" class="headerlink" title="Java线程同步机制"></a>Java线程同步机制</h3><p>Java线程同步机制是Java多线程编程的基础与核心内容。</p>
 <h4 id="线程同步机制简介"><a href="#线程同步机制简介" class="headerlink" title="线程同步机制简介"></a>线程同步机制简介</h4><p>​        导致线程安全问题的因素更多的是侧重其根源，包括硬件(如写缓冲器)和软件(编译器)。但是从应用程序的角度来看，线程安全问题的产生是由于多线程应用程序缺乏某种东西—-线程同步机制。</p>
