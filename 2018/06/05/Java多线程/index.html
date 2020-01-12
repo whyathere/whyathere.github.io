@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/68444179-08967880-0211-11ea-8d6d-62c534d51139.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/68633983-d8abe580-052e-11ea-9a25-581cada0201f.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/24977343/69113013-bb41c300-0abc-11ea-915a-ced872397059.png">
-<meta property="og:updated_time" content="2019-12-24T10:35:33.532Z">
+<meta property="og:updated_time" content="2020-01-10T03:25:22.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 多线程">
 <meta name="twitter:description" content="多线程注意事项：  线程不安全就意味着线程的调度顺序会影响最终结果 线程安全的优先级高于性能 当多个线程竞争同一资源时，如果对资源的访问顺序敏感，就称存在竞态条件。导致竞态条件发生的代码区称作临界区。  总结涉及到多线程的内容：  扎好马步：线程的状态 内功心法：每个对象都有的方法（机制） 太祖长拳：基本线程类 九阴真经：高级多线程控制类  线程的状态    Runnable :可运行 Runni">
@@ -418,7 +418,7 @@
 <p>​        从面相编程的角度看：第一种创建方式(创建Thread类的子类)是一种基于继承(Inheritance)的技术，第2种创建方式(以Runnable接口实例为构造器参数直接通过new创建Thread实例)是一种基于组合(Composition)的技术。由于组合技术相对继承来说，其类和类之间的耦合性(Coupline)更低，因此它也更加灵活。一般我们认为组合是优先选用的技术。</p>
 <p>​        从对象共享的角度来看；第2种创建方式意味着多个线程实例可以共享同一个Runnable实例。在某下情况下这可能导致程序的运行结果出乎我们的意料。</p>
 <p>​        从对象创建成本的角度看：Java中的线程实例是一个[特殊]的Runnable实例，因为在创建它的时候Java虚拟机会为其分配调用栈空间、内核线程等资源。因此，创建一个线程实例比起创建一个普通的Runnable实例来说，其成本要相对高昂一点。所以，如果创建Runnable实例再将其作为方法参数传递给其他对象使用(JDK标准库中有不少API都使用了Runnable接口)而不必利用它来创建相应的线程(即第2种线程创建方式)即可满足我们的计算需要，那么就不要创建线程实例。</p>
-<h5 id="1-3-3线程属性"><a href="#1-3-3线程属性" class="headerlink" title="1.3.3线程属性"></a>1.3.3线程属性</h5><p>​        线程的属性包括线程的编号(ID)、名称(Name)、线程列别(Daemon)和优先级(Priority)。</p>
+<h5 id="1-3-3线程属性"><a href="#1-3-3线程属性" class="headerlink" title="1.3.3线程属性"></a>1.3.3线程属性</h5><p>​        线程的属性包括线程的编号(ID)、名称(Name)、线程类别(Daemon)和优先级(Priority)。</p>
 <table>
 <thead>
 <tr>
@@ -505,14 +505,14 @@
 <p>​            yield静态方法：告诉线程调度器：我现在不急，如果别人需要处理器资源的话先给他用吧当然，如果没有其他人要用，我也不介意继续占用。</p>
 <p>​            sleep:我想睡一会儿，过段时间再叫醒我干活。</p>
 <h5 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h5><ul>
-<li>线程调度器说操作系统的一个部分。</li>
+<li>线程调度器是操作系统的一个部分。</li>
 <li>由操作系统内核直接进行管理和调度的线程，它与具体的操作系统平台有关。</li>
 </ul>
 <h4 id="线程的层次关系"><a href="#线程的层次关系" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><p>​        一个线程是否是一个守护线程默认取决于其父线程。</p>
 <p>​        Java平台中没有API用于获取一个线程的父线程，或者获取一个线程的所有子线程。并且，父线程和子线程之间的生命周期也没有必然的联系。比如父线程运行结束后，子线程可以继续运行，子线程运行结束也不妨碍其父线程继续运行。</p>
 <p>​        </p>
 <h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><p>使用线程给其他任务提供机会</p>
-<p>Java标准库类java.lang.Thread就是Java平台对线程的实现。Thread类或</p>
+<p>Java标准库类java.lang.Thread就是Java平台对线程的实现。</p>
 <h4 id="线程的层次关系-1"><a href="#线程的层次关系-1" class="headerlink" title="线程的层次关系"></a>线程的层次关系</h4><ul>
 <li>一个线程是否是一个守护线程默认取决于其父线程；默认父线程是守护线程，则子线程也是守护线程。父线程在创建子线程后启动子线程之前可以调用该线程的setDaemon方法，将相应的线程设置为守护线程(或者用户线程)。</li>
 <li>程序运行完毕，jvm会等待非守护线程完成后关闭，但是jvm不会等待守护线程。</li>
@@ -777,15 +777,23 @@
 </ul>
 <h5 id="原子操作工具：原子变量类"><a href="#原子操作工具：原子变量类" class="headerlink" title="原子操作工具：原子变量类"></a>原子操作工具：原子变量类</h5><h4 id="对象的发布与逸出"><a href="#对象的发布与逸出" class="headerlink" title="对象的发布与逸出"></a>对象的发布与逸出</h4><p>线程安全问题产生的前提条件是多个线程共享变量。即使是private变量，它也可能被多个线程共享。</p>
 <p>多个线程共享变量还有其他途径，它们被统称为对象发布(Publish)。<code>对象发布</code>是指能够被其他作用域之外的线程访问。</p>
-<h5 id="对象的初始化安全：重访final与static"><a href="#对象的初始化安全：重访final与static" class="headerlink" title="对象的初始化安全：重访final与static"></a>对象的初始化安全：重访final与static</h5><p>​        static关键字在多线程环境下有其特殊的涵义，它能够保障一个线程即使在未使用其他同步机制的情况下也总是可以读取到一个类的静态变量的初始值(而不是默认值)。但是这种可见性保障仅限于线程初次读取该变量。</p>
+<h5 id="对象的初始化安全：重访final与static"><a href="#对象的初始化安全：重访final与static" class="headerlink" title="对象的初始化安全：重访final与static"></a>对象的初始化安全：重访final与static</h5><p>​        Java中类的初始化</p>
+<p>​        一个类被Java虚拟机加载之后，该类的所有静态变量的值都仍然是其默认值(引用型变量都默认值为null，boolean变量的默认值为false)，直到有个线程初次访问了该类的任意一个静态变量才使这个类被初始化—-类的静态初始化块(“static{}”)被执行，类的所有静态变量被赋予初始值。</p>
+<p>​        static关键字在多线程环境下有其特殊的涵义，它能够保障一个线程即使在未使用其他同步机制的情况下也总是可以读取到一个类的静态变量的初始值(而不是默认值)。但是这种可见性保障仅限于线程初次读取该变量。如果这个静态变量在相应类初始化完毕之后被其他线程更新过，那么一个线程要读取该变量的相对新值仍然需要借助锁、volatile关键字等同步机制。</p>
 <p>​        static关键字仅仅保障读取线程能够读取到相应字段的初始值，而不是相对新值。</p>
 <p>​        我们知道由于重排序的作用，一个线程读取到一个对象引用时，改对象可能尚未完成初始化，即这些线程可能读取到该对象字段的默认值而不是初始值(通过构造器或者初始化语句指定的值)。在多线程环境下final关键字有其特殊的作用：</p>
-<p>​        final关键字则确保了该字段所引用字段的默认值。</p>
-<p>​        JIT编译器不会将构造器中对final字段的赋值操作重排到子操作，并且还会禁止处理器做这种操作。Java语言规范还会保障其他线程看到包含该字段的对象时，这个字段所引用的对象必然是初始化完毕的。</p>
-<p>​        </p>
+<p>​        final关键字则确保了其他线程读取这些字段的时候所读取到的值都是相应字段的初始值(而不是默认值)，包括引用型final字段;</p>
+<p>​    例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> x;</span><br><span class="line"><span class="keyword">int</span> y;</span><br><span class="line">构造方法</span><br><span class="line">&#123;</span><br><span class="line">  x=<span class="number">1</span>;</span><br><span class="line">  y=<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">那么两个线程读取的时候 ，x一定为<span class="number">1</span>；但是y可能是<span class="number">2</span>也可能是<span class="number">0</span>(默认值)；</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objRef.x = <span class="number">1</span>;      (<span class="number">2</span>)<span class="keyword">final</span></span><br><span class="line">objRef.y=<span class="number">2</span>;      	 (<span class="number">3</span>)	</span><br><span class="line">instance=objRef;	 (<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>​    操作3(非final字段初始化)可能被JIT编译器、处理器重排序到子操作4(对象发布)之后。但是2不会。原因如下：</p>
+<p>​        Java虚拟机会将子操作2限定在子操作4前完成。这里所谓的限定是指JIT编译器不会将构造器中对final字段的赋值操作重排到子操作，并且还会禁止处理器做这种操作。Java语言规范还会保障其他线程看到包含该字段的对象时，这个字段所引用的对象必然是初始化完毕的。</p>
+<p>​    final关键字只能保障有序性。        </p>
 <h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>​        Java线程同步机制的幕后助手是内存屏障。不同同步机制的功能强弱不同，相应的开销以及可能导致的问题也不同。因此，我们需要根据实际情况选择一个功能适合且开销较小的同步机制。</p>
 <p>​        <img src="https://user-images.githubusercontent.com/24977343/69113013-bb41c300-0abc-11ea-915a-ced872397059.png" alt=""></p>
-<h3 id="线程间协作"><a href="#线程间协作" class="headerlink" title="线程间协作"></a>线程间协作</h3><h5 id="等待与通知-wait-notify"><a href="#等待与通知-wait-notify" class="headerlink" title="等待与通知:wait/notify"></a>等待与通知:wait/notify</h5><p>​        在单线程编程中，程序要执行的操作(目标动作)如果需要满足一定的条件(保护条件)才能执行，那么我们可以将该操作放在一个if语句体中，这使得目标动作只有在保护条件得以满足的时候才能被执行。在多线程编程中处理这种情形我们有另外一个选择—保护条件未满足可能只是暂时的，稍后其他线程可能更新了保护条件涉及的共享变量而使得其成立，因此我们可以将当前线程暂停，直到其所需的保护条件得已成立时再将其唤醒。</p>
+<h3 id="线程间协作"><a href="#线程间协作" class="headerlink" title="线程间协作"></a>线程间协作</h3><p>​        面向对象的时间中类不是孤立的，一个类往往需要借助其他类才能完成一个计算。同样，多线程时间中线程并不是孤立的，一个线程往往需要其他线程的协作才能够完成其待执行的任务。</p>
+<h5 id="等待与通知-wait-notify"><a href="#等待与通知-wait-notify" class="headerlink" title="等待与通知:wait/notify"></a>等待与通知:wait/notify</h5><p>​        在单线程编程中，程序要执行的操作(目标动作)如果需要满足一定的条件(保护条件)才能执行，那么我们可以将该操作放在一个if语句体中，这使得目标动作只有在保护条件得以满足的时候才能被执行。在多线程编程中处理这种情形我们有另外一个选择—保护条件未满足可能只是暂时的，稍后其他线程可能更新了保护条件涉及的共享变量而使得其成立，因此我们可以将当前线程暂停，直到其所需的保护条件得已成立时再将其唤醒。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原子操作</span></span><br><span class="line">atomic&#123;</span><br><span class="line">    <span class="keyword">while</span> (保护条件不成立)&#123;</span><br><span class="line">        暂停当前线程；</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//执行目标动作</span></span><br><span class="line">    doAction();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​        显然上述操作必须具有原子性。这里，一个线程因其执行目标动作所需的保护条件未满足而被暂停的过程就称为<code>等待</code>(Wait)。一个线程更新了系统的状态，使得其他线程所需的保护条件得以满足的时候唤醒这些暂停的线程的过程就被称为通知(Notify);</p>
 <h5 id="wait-notify的作用与用法"><a href="#wait-notify的作用与用法" class="headerlink" title="wait/notify的作用与用法"></a>wait/notify的作用与用法</h5><p>​        在java平台中，Object.wait()/Object.wait(long)以及Object        </p>
@@ -997,7 +1005,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
