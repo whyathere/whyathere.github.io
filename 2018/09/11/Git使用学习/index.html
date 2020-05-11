@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="branch 查看当前分支 查看本地和远端所有分支git branch -a 工作区    暂存区    版本库    三种状态 push.   push origin master  其中origin是指的远程仓库，master 是本地仓库默认名称 新建分支 master分支下  pull下最新的代码 git checkout -b  &amp;lt;分支名&amp;gt;    :在本地新建分支 git">
+<meta name="description" content="分支相关 branch 查看当前分支 查看本地和远端所有分支git branch -a 工作区    暂存区    版本库    三种状态 push.   push origin master  其中origin是指的远程仓库，master 是本地仓库默认名称 新建分支 master分支下  pull下最新的代码 git checkout -b  &amp;lt;分支名&amp;gt;    :在本地新建分支">
 <meta name="keywords" content="版本管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git使用学习">
 <meta property="og:url" content="http://yoursite.com/2018/09/11/Git使用学习/index.html">
 <meta property="og:site_name" content="Bill">
-<meta property="og:description" content="branch 查看当前分支 查看本地和远端所有分支git branch -a 工作区    暂存区    版本库    三种状态 push.   push origin master  其中origin是指的远程仓库，master 是本地仓库默认名称 新建分支 master分支下  pull下最新的代码 git checkout -b  &amp;lt;分支名&amp;gt;    :在本地新建分支 git">
+<meta property="og:description" content="分支相关 branch 查看当前分支 查看本地和远端所有分支git branch -a 工作区    暂存区    版本库    三种状态 push.   push origin master  其中origin是指的远程仓库，master 是本地仓库默认名称 新建分支 master分支下  pull下最新的代码 git checkout -b  &amp;lt;分支名&amp;gt;    :在本地新建分支">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fshrh2oexpj31kw0wkgsx.jpg">
-<meta property="og:updated_time" content="2019-08-21T01:53:13.475Z">
+<meta property="og:updated_time" content="2020-05-09T08:05:54.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用学习">
-<meta name="twitter:description" content="branch 查看当前分支 查看本地和远端所有分支git branch -a 工作区    暂存区    版本库    三种状态 push.   push origin master  其中origin是指的远程仓库，master 是本地仓库默认名称 新建分支 master分支下  pull下最新的代码 git checkout -b  &amp;lt;分支名&amp;gt;    :在本地新建分支 git">
+<meta name="twitter:description" content="分支相关 branch 查看当前分支 查看本地和远端所有分支git branch -a 工作区    暂存区    版本库    三种状态 push.   push origin master  其中origin是指的远程仓库，master 是本地仓库默认名称 新建分支 master分支下  pull下最新的代码 git checkout -b  &amp;lt;分支名&amp;gt;    :在本地新建分支">
 <meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fshrh2oexpj31kw0wkgsx.jpg">
 
 
@@ -323,27 +323,27 @@
 
       
         <p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fshrh2oexpj31kw0wkgsx.jpg" alt=""></p>
-<p> branch 查看当前分支</p>
-<h2 id="查看本地和远端所有分支"><a href="#查看本地和远端所有分支" class="headerlink" title="查看本地和远端所有分支"></a>查看本地和远端所有分支</h2><p>git branch -a</p>
+<h2 id="分支相关"><a href="#分支相关" class="headerlink" title="分支相关"></a>分支相关</h2><p> branch 查看当前分支</p>
+<h3 id="查看本地和远端所有分支"><a href="#查看本地和远端所有分支" class="headerlink" title="查看本地和远端所有分支"></a>查看本地和远端所有分支</h3><p>git branch -a</p>
 <p>工作区    暂存区    版本库    三种状态</p>
 <p>push.  </p>
 <p>push origin master </p>
 <p>其中origin是指的远程仓库，master 是本地仓库默认名称</p>
-<h2 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h2><ol>
+<h3 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h3><ol>
 <li>master分支下  pull下最新的代码</li>
 <li>git checkout -b  &lt;分支名&gt;    :在本地新建分支</li>
 <li>git push origin &lt;分支名&gt;   :向远端提交分支</li>
 <li>git branch –set-upstream-to=origin/&lt;分支名&gt;  &lt;分支名&gt;     ：设置head为远程仓库的master</li>
 <li>git status</li>
 </ol>
-<h2 id="提交代码到分支"><a href="#提交代码到分支" class="headerlink" title="提交代码到分支"></a>提交代码到分支</h2><ol>
+<h3 id="提交代码到分支"><a href="#提交代码到分支" class="headerlink" title="提交代码到分支"></a>提交代码到分支</h3><ol>
 <li>git checkout 分支名</li>
 <li>git    add 文件名                ：添加文件到缓存</li>
 <li>git rm —cached  :从缓存中去除文件</li>
 <li>git commit :提交</li>
 <li>git push :推送到远程分支</li>
 </ol>
-<h2 id="合并分支与master的代码"><a href="#合并分支与master的代码" class="headerlink" title="合并分支与master的代码"></a>合并分支与master的代码</h2><ol>
+<h3 id="合并分支与master的代码"><a href="#合并分支与master的代码" class="headerlink" title="合并分支与master的代码"></a>合并分支与master的代码</h3><ol>
 <li>git branch -vv :本地分支跟踪的远程分支</li>
 <li>git fetch origin –prune :GitLab更新远程分支信息</li>
 </ol>
@@ -356,15 +356,32 @@
 <li>手动指定了要fetch的remote。在不指定分支时通常默认为master；</li>
 </ul>
 <h4 id="对比git-pull"><a href="#对比git-pull" class="headerlink" title="对比git pull"></a>对比git pull</h4><p>与git pull相比git fetch相当于是从远程获取最新版本到本地，但不会自动merge。如果需要有选择的合并git fetch是更好的选择。效果相同时git pull将更为快捷;</p>
-<h2 id="回滚到指定commit，丢弃commit之后的提交记录"><a href="#回滚到指定commit，丢弃commit之后的提交记录" class="headerlink" title="回滚到指定commit，丢弃commit之后的提交记录"></a>回滚到指定commit，丢弃commit之后的提交记录</h2><p>查看历史提交：  git log | head -n 40</p>
+<h3 id="回滚到指定commit，丢弃commit之后的提交记录"><a href="#回滚到指定commit，丢弃commit之后的提交记录" class="headerlink" title="回滚到指定commit，丢弃commit之后的提交记录"></a>回滚到指定commit，丢弃commit之后的提交记录</h3><p>查看历史提交：  git log | head -n 40</p>
 <p>1、git reset –hard 139dcfaa558e3276b30b6b2e5cbbb9c00bbdca96   回滚到某个版本</p>
 <p>2、git push -f -u origin &lt;分支名&gt;   ：强制提交到分支，覆盖远程分支</p>
-<h2 id="git-add-添加了不需要的文件，想撤销上一步操作"><a href="#git-add-添加了不需要的文件，想撤销上一步操作" class="headerlink" title="git add 添加了不需要的文件，想撤销上一步操作"></a>git add 添加了不需要的文件，想撤销上一步操作</h2><p><code>git reset HEAD</code></p>
+<h3 id="git-add-添加了不需要的文件，想撤销上一步操作"><a href="#git-add-添加了不需要的文件，想撤销上一步操作" class="headerlink" title="git add 添加了不需要的文件，想撤销上一步操作"></a>git add 添加了不需要的文件，想撤销上一步操作</h3><p><code>git reset HEAD</code></p>
 <p>后面什么都不跟的话 就是上一次add里面的全部撤销掉</p>
 <p><code>git reset HEAD xxxx.java</code>就是对某个文件进行撤销</p>
-<h2 id="删除分支以及远程分支"><a href="#删除分支以及远程分支" class="headerlink" title="删除分支以及远程分支"></a>删除分支以及远程分支</h2><h3 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a><strong>删除远程分支</strong></h3><p>git push origin –delete  &lt;–分支名–&gt;</p>
+<h3 id="删除分支以及远程分支"><a href="#删除分支以及远程分支" class="headerlink" title="删除分支以及远程分支"></a>删除分支以及远程分支</h3><h3 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a><strong>删除远程分支</strong></h3><p>git push origin –delete  &lt;–分支名–&gt;</p>
 <p>git branch -a    //查看分支</p>
 <h3 id="删除本地分支"><a href="#删除本地分支" class="headerlink" title="删除本地分支"></a><strong>删除本地分支</strong></h3><p>git branch -D &lt;—分支名–&gt;</p>
+<h2 id="用户信息相关设置"><a href="#用户信息相关设置" class="headerlink" title="用户信息相关设置"></a>用户信息相关设置</h2><p>设置提交时显示的用户名称</p>
+<ul>
+<li>全局设置: git config –global user.name &lt;目标用户名&gt;</li>
+</ul>
+<p>​                 git config –global user.email &lt;目标邮箱名&gt;</p>
+<ul>
+<li><p>修改当前project </p>
+<p>git config user.name &lt;目标用户名&gt;</p>
+<p>git config user.email &lt;目标邮箱&gt;</p>
+</li>
+</ul>
+<h1 id="上传本地项目到码云"><a href="#上传本地项目到码云" class="headerlink" title="上传本地项目到码云"></a>上传本地项目到码云</h1><p>1、在本地项目目录中使用 git init 命令   —初始化一个git 本地仓库</p>
+<p>2、使用git remote add origin &lt;远程仓库地址&gt;</p>
+<p>3、使用 git pull origin master 命令，将远端仓库pull到本</p>
+<p>4、使用git add -A   –将所有文件保存到缓存区</p>
+<p>5、使用git commit -m ‘提交描述’  </p>
+<p>6、使用git push origin master ，将本地仓库推送到远程仓库</p>
 
       
     </div>
@@ -395,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/10/Mybatis/" rel="next" title="Mybatis">
-                <i class="fa fa-chevron-left"></i> Mybatis
+              <a href="/2018/09/10/Mac使用中遇到的问题/" rel="next" title="Mac使用中遇到的问题">
+                <i class="fa fa-chevron-left"></i> Mac使用中遇到的问题
               </a>
             
           </div>
@@ -539,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看本地和远端所有分支"><span class="nav-number">1.</span> <span class="nav-text">查看本地和远端所有分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建分支"><span class="nav-number">2.</span> <span class="nav-text">新建分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交代码到分支"><span class="nav-number">3.</span> <span class="nav-text">提交代码到分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并分支与master的代码"><span class="nav-number">4.</span> <span class="nav-text">合并分支与master的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-fetch"><span class="nav-number">4.1.</span> <span class="nav-text">git fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接使用-git-fetch-命令"><span class="nav-number">4.1.1.</span> <span class="nav-text">直接使用 git fetch 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-fetch-origin"><span class="nav-number">4.1.2.</span> <span class="nav-text">git fetch origin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比git-pull"><span class="nav-number">4.1.3.</span> <span class="nav-text">对比git pull</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回滚到指定commit，丢弃commit之后的提交记录"><span class="nav-number">5.</span> <span class="nav-text">回滚到指定commit，丢弃commit之后的提交记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-add-添加了不需要的文件，想撤销上一步操作"><span class="nav-number">6.</span> <span class="nav-text">git add 添加了不需要的文件，想撤销上一步操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除分支以及远程分支"><span class="nav-number">7.</span> <span class="nav-text">删除分支以及远程分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除远程分支"><span class="nav-number">7.1.</span> <span class="nav-text">删除远程分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除本地分支"><span class="nav-number">7.2.</span> <span class="nav-text">删除本地分支</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支相关"><span class="nav-number">1.</span> <span class="nav-text">分支相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看本地和远端所有分支"><span class="nav-number">1.1.</span> <span class="nav-text">查看本地和远端所有分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建分支"><span class="nav-number">1.2.</span> <span class="nav-text">新建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交代码到分支"><span class="nav-number">1.3.</span> <span class="nav-text">提交代码到分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并分支与master的代码"><span class="nav-number">1.4.</span> <span class="nav-text">合并分支与master的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-fetch"><span class="nav-number">1.5.</span> <span class="nav-text">git fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接使用-git-fetch-命令"><span class="nav-number">1.5.1.</span> <span class="nav-text">直接使用 git fetch 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-fetch-origin"><span class="nav-number">1.5.2.</span> <span class="nav-text">git fetch origin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比git-pull"><span class="nav-number">1.5.3.</span> <span class="nav-text">对比git pull</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回滚到指定commit，丢弃commit之后的提交记录"><span class="nav-number">1.6.</span> <span class="nav-text">回滚到指定commit，丢弃commit之后的提交记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-add-添加了不需要的文件，想撤销上一步操作"><span class="nav-number">1.7.</span> <span class="nav-text">git add 添加了不需要的文件，想撤销上一步操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除分支以及远程分支"><span class="nav-number">1.8.</span> <span class="nav-text">删除分支以及远程分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除远程分支"><span class="nav-number">1.9.</span> <span class="nav-text">删除远程分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除本地分支"><span class="nav-number">1.10.</span> <span class="nav-text">删除本地分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户信息相关设置"><span class="nav-number">2.</span> <span class="nav-text">用户信息相关设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上传本地项目到码云"><span class="nav-number"></span> <span class="nav-text">上传本地项目到码云</span></a></div>
             
 
           </div>
