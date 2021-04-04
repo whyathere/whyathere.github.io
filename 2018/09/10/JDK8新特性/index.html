@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Lambda," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Lambda表达式简介Lambda表达式可以替代只有一个抽象函数的接口实现，告别匿名内部类，代码看起来更简洁易懂。Lambda表达式同时还提升了对集合、框架的迭代、遍历、过滤数据的操作。 特点 函数式编程 参数类型自动推断 代码量少、简洁  应用场景任何有函数式接口的地方 函数式接口Supplier代表一个输出 Consumer代表一个输入 BiConsumer代表两个输入 Function代表一">
+<meta name="keywords" content="Lambda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lambda表达式">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/JDK8新特性/index.html">
+<meta property="og:site_name" content="Bill">
+<meta property="og:description" content="Lambda表达式简介Lambda表达式可以替代只有一个抽象函数的接口实现，告别匿名内部类，代码看起来更简洁易懂。Lambda表达式同时还提升了对集合、框架的迭代、遍历、过滤数据的操作。 特点 函数式编程 参数类型自动推断 代码量少、简洁  应用场景任何有函数式接口的地方 函数式接口Supplier代表一个输出 Consumer代表一个输入 BiConsumer代表两个输入 Function代表一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-13T06:35:51.336Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lambda表达式">
+<meta name="twitter:description" content="Lambda表达式简介Lambda表达式可以替代只有一个抽象函数的接口实现，告别匿名内部类，代码看起来更简洁易懂。Lambda表达式同时还提升了对集合、框架的迭代、遍历、过滤数据的操作。 特点 函数式编程 参数类型自动推断 代码量少、简洁  应用场景任何有函数式接口的地方 函数式接口Supplier代表一个输出 Consumer代表一个输入 BiConsumer代表两个输入 Function代表一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/10/JDK8新特性/"/>
+
+
+
+
+
+  <title>Lambda表达式 | Bill</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bill</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/JDK8新特性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Lambda表达式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T18:27:21+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Lambda表达式可以替代只有一个抽象函数的接口实现，告别匿名内部类，代码看起来更简洁易懂。Lambda表达式同时还提升了对集合、框架的迭代、遍历、过滤数据的操作。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>函数式编程</li>
+<li>参数类型自动推断</li>
+<li>代码量少、简洁</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>任何有函数式接口的地方</p>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>Supplier代表一个输出</p>
+<p>Consumer代表一个输入</p>
+<p>BiConsumer代表两个输入</p>
+<p>Function代表一个输入，一个输出(一般输入和输出是不同类型的)</p>
+<p>UnaryOperator代表一个输入，一个输入(输入和输出是相同类型的)</p>
+<p>BiFunction代表两个输入，一个输出(一般输入和输出是不同类型的)</p>
+<p>BinaryOperator代表两个输入，一个输出(输入和输出是相同类型的)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       TeacherDao teacherDao = <span class="keyword">new</span> TeacherDao() &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(Teacher teacher)</span> </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">       System.out.println(teacherDao.get(<span class="keyword">new</span> Teacher()));</span><br><span class="line"></span><br><span class="line">       TeacherDao td1 = (teacher)-&gt;&#123;<span class="keyword">return</span> <span class="number">2</span>;&#125;;</span><br><span class="line">       TeacherDao td2 = (Teacher teacher)-&gt;&#123;<span class="keyword">return</span> <span class="number">3</span>;&#125;;</span><br><span class="line">       TeacherDao td3 = (teacher)-&gt;<span class="number">4</span>;</span><br><span class="line">       TeacherDao td4 = (Teacher teacher)-&gt;<span class="number">5</span>;</span><br><span class="line">       System.out.println(td1.get(<span class="keyword">new</span> Teacher()));</span><br><span class="line">       System.out.println(td2.get(<span class="keyword">new</span> Teacher()));</span><br><span class="line">       System.out.println(td3.get(<span class="keyword">new</span> Teacher()));</span><br><span class="line">       System.out.println(td4.get(<span class="keyword">new</span> Teacher()));</span><br><span class="line"></span><br><span class="line">       <span class="comment">//Function必须有一个输入str一个输出Integer(str.length())</span></span><br><span class="line">       Function&lt;String,Integer&gt; f1 = (str)-&gt;&#123;<span class="keyword">return</span> str.length();&#125;;</span><br><span class="line">       Integer sdfasdfdads = f1.apply(<span class="string">"sdfasdfdads"</span>);</span><br><span class="line">       System.out.println(sdfasdfdads);</span><br><span class="line">       <span class="comment">//只有一个输出</span></span><br><span class="line">       Supplier&lt;String&gt; supplier = ()-&gt;&#123;<span class="keyword">return</span> <span class="string">"sdfasf"</span>;&#125;;</span><br><span class="line">       Supplier&lt;String&gt; supplier1 = ()-&gt;<span class="string">"sdf1212asf"</span>;</span><br><span class="line">       Supplier&lt;String&gt; supplier2 = ()-&gt;StreamDemo.gen1();</span><br><span class="line">       Supplier&lt;String&gt; supplier3 = StreamDemo::gen1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       <span class="comment">//只有一个输入</span></span><br><span class="line">       Consumer&lt;String&gt; consumer = (str)-&gt; System.out.println(str);</span><br><span class="line">       consumer.accept(<span class="string">"sdafasf"</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//两个输入一个输出，输入和输出是不同类型的</span></span><br><span class="line">       BiFunction&lt;String,String,Integer&gt; function = (str1,str2)-&gt;&#123;<span class="keyword">return</span> str1.length()+str2.length();&#125;;</span><br><span class="line">       Integer apply = function.apply(<span class="string">"123"</span>, <span class="string">"456"</span>);</span><br><span class="line">       System.out.println(apply);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//两个输入一个输出，输入和输出是相同类型的</span></span><br><span class="line">       BinaryOperator&lt;String&gt;  binaryOperator = (n1,n2)-&gt;n1+n2;</span><br><span class="line">       String apply1 = binaryOperator.apply(<span class="string">"121212"</span>, <span class="string">"1231232131"</span>);</span><br><span class="line">       System.out.println(apply1);</span><br><span class="line"></span><br><span class="line">       List&lt;String&gt; list = Arrays.asList(<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>);</span><br><span class="line">       list.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Function&lt;String,Integer&gt; f1 = (str)-&gt;{return str.length();};</li>
+</ul>
+<p>小括号里的是参数，后面的是返回。</p>
+<ul>
+<li>Supplier<string> supplier3 = StreamDemo::gen1;</string></li>
+</ul>
+<p>::相当于调用这个方法</p>
+<h3 id="方法引用的分类"><a href="#方法引用的分类" class="headerlink" title="方法引用的分类"></a>方法引用的分类</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">对应的lambda表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">静态方法引用</td>
+<td style="text-align:center">类名::staticMethod</td>
+<td style="text-align:center">(args)-&gt;类名.staticMethod(args)</td>
+</tr>
+<tr>
+<td style="text-align:center">实例方法引用</td>
+<td style="text-align:center">Inst::instMethod</td>
+<td style="text-align:center">(args)-&gt;inst.instMethod(args)</td>
+</tr>
+<tr>
+<td style="text-align:center">对象方法引用</td>
+<td style="text-align:center">类名::instMethod</td>
+<td style="text-align:center">(inst.args)-&gt;类名.instMethod(args)</td>
+</tr>
+<tr>
+<td style="text-align:center">构造方法引用</td>
+<td style="text-align:center">类名::new</td>
+<td style="text-align:center">(args)-&gt;new 类名(args)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><p>Stream是一组用来处理数组、集合的API，例如过滤、映射、规约、排序、查询记录</p>
+<ul>
+<li>Java8之所以引入函数式编程原因有：<ul>
+<li>代码简洁函数式编程写出的代码简洁且意图明确，使用stream接口让你从此告别for循环</li>
+<li>多核友好，Java函数式编程使得编写并行程序从未如此简单，你需要的全部就是调用一下parallel()方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
+<li>不是数据结构，没有内部存储</li>
+<li>不支持索引搜索</li>
+<li>延迟计算</li>
+<li>支持并行</li>
+<li>很容易生成数据或集合(List、Set)</li>
+<li>支持过滤、查找、转换、汇总、聚合等操作</li>
+</ol>
+<h4 id="Stream运行机制"><a href="#Stream运行机制" class="headerlink" title="Stream运行机制"></a>Stream运行机制</h4><p>Stream分为源source、中间操作、终止操作</p>
+<p>流的源可以是一个数组、一个集合、一个生成器方法、一个I/O通道等等。</p>
+<p>一个流可以有零个和或者多个中间操作，每一个中间操作都会返回一个新的流，供下一个操作使用。一个流只会有一个终止操作。</p>
+<p>Stream只会遇到终止操作，它的源才开始执行遍历操作。</p>
+<h4 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h4><p>终止操作：</p>
+<ul>
+<li>循环：forEach</li>
+<li>计算：min、max、count、average</li>
+<li>匹配：anyMatch、allMatch、noneMatch、findFirst、findAny</li>
+<li>汇聚：reduce</li>
+<li>收集器：toArray collect</li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><h5 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过数组来生成</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gen1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String[] strs=&#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>&#125;;</span><br><span class="line">    Stream&lt;String&gt; strs1 = Stream.of(strs);</span><br><span class="line">    strs1.forEach(System.out::println);</span><br><span class="line">    Arrays.stream(strs).forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//集合</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gen2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List&lt;String&gt; list = Arrays.asList(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>);</span><br><span class="line">    list.stream().forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] strs=&#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>&#125;;</span><br><span class="line">Arrays.stream(strs).filter((x)-&gt;!x.equals(<span class="string">"c"</span>)).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h5 id="元素个数"><a href="#元素个数" class="headerlink" title="元素个数"></a>元素个数</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> c = Arrays.stream(strs).filter((x) -&gt; !x.equals(<span class="string">"c"</span>)).count();</span><br><span class="line">System.out.println(c);</span><br></pre></td></tr></table></figure>
+<h5 id="转换求和"><a href="#转换求和" class="headerlink" title="转换求和"></a>转换求和</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).stream().mapToInt(x -&gt; x).sum();</span><br><span class="line">System.out.println(sum);</span><br></pre></td></tr></table></figure>
+<h5 id="求集合最大值"><a href="#求集合最大值" class="headerlink" title="求集合最大值"></a>求集合最大值</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OptionalInt max = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).stream().mapToInt(x -&gt; x).max();</span><br><span class="line">System.out.println(max.getAsInt());</span><br></pre></td></tr></table></figure>
+<h5 id="按照要求取值"><a href="#按照要求取值" class="headerlink" title="按照要求取值"></a>按照要求取值</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Optional&lt;Integer&gt; any = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).stream().filter(x -&gt; x % <span class="number">2</span> == <span class="number">0</span>).findAny();</span><br><span class="line">Optional&lt;Integer&gt; any1 = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).stream().filter(x -&gt; x % <span class="number">2</span> == <span class="number">0</span>).findFirst();</span><br></pre></td></tr></table></figure>
+<h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] strs=&#123;<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"a"</span>,&#125;;</span><br><span class="line">Arrays.stream(strs).sorted().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h5 id="获取最大最小值但是不使用min和max方法"><a href="#获取最大最小值但是不使用min和max方法" class="headerlink" title="获取最大最小值但是不使用min和max方法"></a>获取最大最小值但是不使用min和max方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Optional&lt;Integer&gt; first = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>).stream().sorted().findFirst();</span><br><span class="line">System.out.println(first.get());</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Optional&lt;Integer&gt; first = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>).stream().sorted((a, b) -&gt; b - a).findFirst();</span><br><span class="line">System.out.println(first.get());</span><br></pre></td></tr></table></figure>
+<h5 id="最终返回一个集合"><a href="#最终返回一个集合" class="headerlink" title="最终返回一个集合"></a>最终返回一个集合</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; collect = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>).stream().collect(Collectors.toList());</span><br><span class="line">System.out.println(collect);</span><br></pre></td></tr></table></figure>
+<h5 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>).stream().distinct();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>).stream().collect(Collectors.toSet()).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h5 id="打印20-30的集合数据"><a href="#打印20-30的集合数据" class="headerlink" title="打印20-30的集合数据"></a>打印20-30的集合数据</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream.iterate(<span class="number">1</span>,x-&gt;x+<span class="number">1</span>).limit(<span class="number">50</span>).skip(<span class="number">20</span>).limit(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream.of(str.split(<span class="string">","</span>)).mapToInt(x -&gt; Integer.valueOf(x)).sum()</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream.of(str.split(<span class="string">","</span>)).mapToInt(Integer::valueOf).sum();</span><br></pre></td></tr></table></figure>
+<h5 id="求和的过程中将每个数值都打印出来，同时算出最终的求和结果"><a href="#求和的过程中将每个数值都打印出来，同时算出最终的求和结果" class="headerlink" title="求和的过程中将每个数值都打印出来，同时算出最终的求和结果"></a>求和的过程中将每个数值都打印出来，同时算出最终的求和结果</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"11,22,33,44"</span>;</span><br><span class="line">System.out.println(Stream.of(str.split(<span class="string">","</span>)).peek(System.out::println).mapToInt(Integer::valueOf).sum());</span><br></pre></td></tr></table></figure>
+<h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><h2 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>Anontation是Java5开始引入的新特征，中文名叫注解。</li>
+<li>它提供了一种安全的类似注释的机制，用来将任何的信息或元数据(metadata)与程序元素(类、方法、成员变量等)进行关联。</li>
+<li>为程序的元素(类、方法、成员变量)加上更直观更明了的说明，这些说明信息是与程序的业务逻辑无关，并且提供指定的工具或框架使用。</li>
+<li>Anontation像一种修饰符一样，应用于包、类型、构造方法、方法、成员变量、参数及本地变量的声明语句中。</li>
+<li>Java注解是附加在代码中的一些元信息，用于一些工具在编译、运行时进行解析和使用，起到说明、配置的功能。</li>
+<li>注解不会也不影响代码的实际逻辑，仅仅起到辅助性的作用。包含在java.lang.annotation包中。</li>
+</ul>
+<h2 id="注解的作用"><a href="#注解的作用" class="headerlink" title="注解的作用"></a>注解的作用</h2><ul>
+<li>生成文档。</li>
+<li>跟踪代码依赖性，实现替代配置文件功能。</li>
+<li>在编译时进行格式检查。如@override放在方法前，如果你这个方法并不是覆盖了超类方法，则编译时就能检查出。</li>
+</ul>
+<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><ul>
+<li>元注解的作用是负责注解其他注解，java中定义了四个标准的meta-annotation类型，他们被用来提供对其他annotation类型作说明</li>
+<li>这些类型和它们所支持的类在java.lang.annotation包中<ul>
+<li>@Target：用来描述注解的使用范围(注解可以用在什么地方)</li>
+<li>@Retention：表示需要在什么级别保存该注解信息，描述注解的生命周期<ul>
+<li>Source&lt;Class&lt;Runtime</li>
+</ul>
+</li>
+<li>@Document：说明该注解将被包含在javadoc中</li>
+<li>@Inherited：说明子类可以继承父类中的该注解</li>
+</ul>
+</li>
+</ul>
+<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><h3 id="过时"><a href="#过时" class="headerlink" title="过时"></a>过时</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Myannotation</span>(name = <span class="string">"lisi"</span>,age = <span class="number">16</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Meta1Annotation</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用来声明当前自定义的注解适合用于什么地方，类、方法、变量、包等</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD,ElementType.TYPE&#125;)</span><br><span class="line"><span class="comment">//用来表示当前注解适用于什么环境，是源码级别还是类级别还是运行环境，一般都是运行时环境</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="comment">//是否显示在javadoc中</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="comment">//表示当前注解能否被继承</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@interface</span> Myannotation&#123;</span><br><span class="line"><span class="comment">//定义的方式看起来像是方法，但是实际上使用注解的时候填写的参数的名称,一般默认的名称是value</span></span><br><span class="line">    <span class="comment">//自定义注解中填写的所有方法都需要在使用注解的时候，添加值，很麻烦，因此包含默认值</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> "zhangsan"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 12</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>自定义注解的原理是反射</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Lambda/" rel="tag"># Lambda</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/10/Mybatis/" rel="next" title="Mybatis">
+                <i class="fa fa-chevron-left"></i> Mybatis
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/10/复制hexo/" rel="prev" title="复制hexo">
+                复制hexo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda表达式"><span class="nav-number">1.</span> <span class="nav-text">Lambda表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">1.3.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数式接口"><span class="nav-number">1.4.</span> <span class="nav-text">函数式接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法引用的分类"><span class="nav-number">1.5.</span> <span class="nav-text">方法引用的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stream"><span class="nav-number">1.6.</span> <span class="nav-text">Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特性"><span class="nav-number">1.6.2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stream运行机制"><span class="nav-number">1.6.3.</span> <span class="nav-text">Stream运行机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用API"><span class="nav-number">1.6.4.</span> <span class="nav-text">常用API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子"><span class="nav-number">1.6.5.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数组"><span class="nav-number">1.6.5.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#集合"><span class="nav-number">1.6.5.2.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#过滤"><span class="nav-number">1.6.5.3.</span> <span class="nav-text">过滤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元素个数"><span class="nav-number">1.6.5.4.</span> <span class="nav-text">元素个数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转换求和"><span class="nav-number">1.6.5.5.</span> <span class="nav-text">转换求和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#求集合最大值"><span class="nav-number">1.6.5.6.</span> <span class="nav-text">求集合最大值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#按照要求取值"><span class="nav-number">1.6.5.7.</span> <span class="nav-text">按照要求取值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排序"><span class="nav-number">1.6.5.8.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取最大最小值但是不使用min和max方法"><span class="nav-number">1.6.5.9.</span> <span class="nav-text">获取最大最小值但是不使用min和max方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最终返回一个集合"><span class="nav-number">1.6.5.10.</span> <span class="nav-text">最终返回一个集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#去重"><span class="nav-number">1.6.5.11.</span> <span class="nav-text">去重</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#打印20-30的集合数据"><span class="nav-number">1.6.5.12.</span> <span class="nav-text">打印20-30的集合数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#求和的过程中将每个数值都打印出来，同时算出最终的求和结果"><span class="nav-number">1.6.5.13.</span> <span class="nav-text">求和的过程中将每个数值都打印出来，同时算出最终的求和结果</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义注解"><span class="nav-number"></span> <span class="nav-text">自定义注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特点-1"><span class="nav-number">1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解的作用"><span class="nav-number">2.</span> <span class="nav-text">注解的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元注解"><span class="nav-number">3.</span> <span class="nav-text">元注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子-1"><span class="nav-number">4.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过时"><span class="nav-number">4.1.</span> <span class="nav-text">过时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">5.</span> <span class="nav-text">原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
