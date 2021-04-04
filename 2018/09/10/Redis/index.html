@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Bill">
 <meta property="og:description" content="Redis大概redis是单线程的 io多路复用，所以不需要线程池 问题如何保证缓存与数据库双写时数据一致性？只要用缓存，就可能涉及到缓存与数据库双存储双写，只要是双写，就一定有数据一致性的问题。  先更新数据库，再更新缓存 先删除缓存，再更新数据库 先更新数据库，再删除缓存  先更新数据库，再更新缓存**原因一：线程安全角度 同时有请求A和请求B进行更新操作，那么会出现（1）线程A更新了数据库（">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-13T11:58:27.955Z">
+<meta property="og:updated_time" content="2020-01-10T02:53:38.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis">
 <meta name="twitter:description" content="Redis大概redis是单线程的 io多路复用，所以不需要线程池 问题如何保证缓存与数据库双写时数据一致性？只要用缓存，就可能涉及到缓存与数据库双存储双写，只要是双写，就一定有数据一致性的问题。  先更新数据库，再更新缓存 先删除缓存，再更新数据库 先更新数据库，再删除缓存  先更新数据库，再更新缓存**原因一：线程安全角度 同时有请求A和请求B进行更新操作，那么会出现（1）线程A更新了数据库（">
@@ -359,7 +359,7 @@
 <p>解决办法是打开 Terminal，执行如下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
 <p>这将下载并安装 xcode 开发者工具，之后就会修复这个问题。这个问题是因为需要你明确同意许可协议。如果你有多个版本的 Xcode 或者只需要命令行工具而非 Xcode，你可能需要重置 Xcode 的路径：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 重置 Xcode 路径</span><br><span class="line">xcode-select --switch /Applications/Xcode.app</span><br><span class="line"><span class="meta">#</span> 使用命令行工具</span><br><span class="line">xcode-select --switch /Library/Developer/CommandLineTool</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 重置 Xcode 路径</span></span><br><span class="line">xcode-select --switch /Applications/Xcode.app</span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用命令行工具</span></span><br><span class="line">xcode-select --switch /Library/Developer/CommandLineTool</span><br></pre></td></tr></table></figure>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>cd /usr/local/bin     ./redis-server        启动redis服务端</p>
 <p>redis-cli              启动客户端</p>
 <p>get  ‘key’            通过key来取值</p>
@@ -394,8 +394,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/10/复制hexo/" rel="next" title="复制hexo">
-                <i class="fa fa-chevron-left"></i> 复制hexo
+              <a href="/2018/09/10/Maven/" rel="next" title="Maven">
+                <i class="fa fa-chevron-left"></i> Maven
               </a>
             
           </div>
@@ -404,8 +404,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/10/Nginx/" rel="prev" title="Nginx">
-                Nginx <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/10/JDK8新特性/" rel="prev" title="Lambda表达式">
+                Lambda表达式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -494,7 +494,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -505,7 +505,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
