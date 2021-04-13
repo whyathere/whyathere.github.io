@@ -73,3 +73,5 @@ target
 .classpath
 
 !/db.json
+!/db.json
+!/public/index.html
